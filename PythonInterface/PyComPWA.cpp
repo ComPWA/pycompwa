@@ -1,8 +1,7 @@
 #include "Tools/ParameterTools.hpp"
 #include "Physics/ParticleList.hpp"
 #include "Physics/HelicityFormalism/HelicityKinematics.hpp"
-#include "Physics/HelicityFormalism/IncoherentIntensity.hpp"
-#include "Tools/Generate.hpp"
+#include "Physics/IncoherentIntensity.hpp"
 #include "Tools/RootGenerator.hpp"
 #include "Tools/RootPlot.hpp"
 #include "Tools/FitFractions.hpp"
@@ -38,7 +37,7 @@
 namespace py = pybind11;
 //using namespace ComPWA;
 using ComPWA::Physics::HelicityFormalism::HelicityKinematics;
-using ComPWA::Physics::HelicityFormalism::IncoherentIntensity;
+using ComPWA::Physics::IncoherentIntensity;
 using ComPWA::Optimizer::Minuit2::MinuitResult;
 
 PYBIND11_MAKE_OPAQUE(ComPWA::PartList);
@@ -50,10 +49,10 @@ py::array_t<double> result_values(std::shared_ptr<ComPWA::FitResult> fitRes){
   //  ret.push_back(resPar.GetDoubleParameterValue(i));
  // }
 
-  std::size_t size = resPar.GetNParameter();
+  std::size_t size = resPar.numParameters();
   double *foo = new double[size];
   for (std::size_t i = 0; i < size; i++) {
-      foo[i] = resPar.GetDoubleParameterValue(i);
+      foo[i] = resPar.doubleParameter(i)->value();
   }
 
   // Create a Python object that will free the allocated
@@ -84,8 +83,8 @@ std::shared_ptr<ComPWA::AmpIntensity> createIntens(
   auto intens = IncoherentIntensity::Factory(
     partL, kin, modelTree.get_child("IncoherentIntensity"));
   auto phspPoints =
-      std::make_shared<std::vector<ComPWA::dataPoint>>(phspSample->GetDataPoints(kin));
-  intens->SetPhspSample(phspPoints, phspPoints);
+      std::make_shared<std::vector<ComPWA::DataPoint>>(phspSample->GetDataPoints(kin));
+  intens->setPhspSample(phspPoints, phspPoints);
   return intens;
 }
 
@@ -101,7 +100,7 @@ std::vector<std::pair<std::string, std::string>> fitComponents(){
 ComPWA::ParameterList calculateFitFractions(std::shared_ptr<ComPWA::Kinematics> kin,
 		std::shared_ptr<ComPWA::AmpIntensity> intens, std::shared_ptr<ComPWA::DataReader::Data> phspSample){
   auto phspPoints =
-		  std::make_shared<std::vector<ComPWA::dataPoint>>(phspSample->GetDataPoints(kin));
+		  std::make_shared<std::vector<ComPWA::DataPoint>>(phspSample->GetDataPoints(kin));
   return ComPWA::Tools::CalculateFitFractions(kin, intens, phspPoints, fitComponents());
 }
 
@@ -110,7 +109,7 @@ void calcFractionError(ComPWA::ParameterList& fitPar, std::shared_ptr<ComPWA::Fi
 		std::shared_ptr<ComPWA::DataReader::Data> phspSample, int nSets){
   auto resultM = std::dynamic_pointer_cast<MinuitResult>(result);
   auto phspPoints =
-		  std::make_shared<std::vector<ComPWA::dataPoint>>(phspSample->GetDataPoints(kin));
+		  std::make_shared<std::vector<ComPWA::DataPoint>>(phspSample->GetDataPoints(kin));
   ComPWA::Tools::CalcFractionError(fitPar, resultM->GetCovarianceMatrix(), fitFracs, kin,
 	                       intens, phspPoints, nSets, fitComponents());
 }
@@ -201,14 +200,14 @@ PYBIND11_MODULE(PyComPWA, m)
 
 	// ComPWA Classes
 	py::class_<ComPWA::AmpIntensity, std::shared_ptr<ComPWA::AmpIntensity> >(m, "AmpIntensity")
-	  .def("GetParameters", &ComPWA::AmpIntensity::GetParameters)
+	  .def("GetParameters", &ComPWA::AmpIntensity::parameters)
 	;
 
 	py::class_<ComPWA::DataReader::Data, std::shared_ptr<ComPWA::DataReader::Data> >(m, "Data")
       .def(py::init<>())
 	;
 
-	py::class_<ComPWA::dataPoint>(m, "dataPoint")
+	py::class_<ComPWA::DataPoint>(m, "dataPoint")
       .def(py::init<>())
 	;
 
@@ -238,15 +237,7 @@ PYBIND11_MODULE(PyComPWA, m)
 
 	py::class_<ComPWA::ParameterList>(m, "ParameterList")
       .def(py::init<>())
-	  .def("GetNParameter", &ComPWA::ParameterList::GetNParameter)
-	  .def("SetParameterValue", (void (ComPWA::ParameterList::*) (const unsigned int, const double)) &ComPWA::ParameterList::SetParameterValue)
-	  .def("SetParameterValue", (void (ComPWA::ParameterList::*) (std::string, const double)) &ComPWA::ParameterList::SetParameterValue)
-	  .def("AddParameter", (void (ComPWA::ParameterList::*) (std::shared_ptr<ComPWA::DoubleParameter>)) &ComPWA::ParameterList::AddParameter)
-	  //.def("GetDoubleParameter", (std::shared_ptr<ComPWA::DoubleParameter> (ComPWA::ParameterList::*) (const unsigned int)) &ComPWA::ParameterList::GetDoubleParameter)
-	  //.def("GetDoubleParameter", (std::shared_ptr<ComPWA::DoubleParameter> (ComPWA::ParameterList::*) (std::string))  &ComPWA::ParameterList::GetDoubleParameter)
-	  //.def("GetDoubleParameter", py::overload_cast<const unsigned int>(&ComPWA::ParameterList::GetDoubleParameter, py::const_))
-	  //.def("GetDoubleParameter", py::overload_cast<const std::string>(&ComPWA::ParameterList::GetDoubleParameter, py::const_))
-	  .def("ToString", &ComPWA::ParameterList::to_str)
+	  .def("GetNParameter", &ComPWA::ParameterList::numParameters)
 	;
 
 	py::class_<HelicityKinematics, ComPWA::Kinematics, std::shared_ptr<HelicityKinematics> >(m, "HelicityKinematics")
