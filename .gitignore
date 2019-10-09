@@ -3,3 +3,4 @@ pycompwa.egg-info
 dist
 .eggs
 *.xml
+MANIFEST
