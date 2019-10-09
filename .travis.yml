@@ -3,6 +3,7 @@ language: c++
 branches:
   only:
   - master
+  - dev
   except: gh-pages
 
 env:
