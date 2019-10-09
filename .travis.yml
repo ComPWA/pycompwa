@@ -1,47 +1,36 @@
-# This will run on Travis' 'new' container-based infrastructure
 sudo: false
 language: c++
-
-# Blacklist
 branches:
-  only: 
-    - master
-    - coverity_scan
+  only:
+  - master
   except: gh-pages
 
 env:
   global:
-    - GH_REPO_NAME: pycompwa
-    - GH_REPO_REF: github.com/ComPWA/pycompwa.git
-    - OMP_NUM_THREADS: 1
-    - LANG: en_US.UTF-8
-      #$TRAVIS_REPO_SLUG is of the form owner_name/repo_name
-    - BASEPATH: $TRAVIS_BUILD_DIR
-    - ROOTSYS: $BASEPATH/root
+  - GH_REPO_NAME: pycompwa
+  - GH_REPO_REF: github.com/ComPWA/pycompwa.git
+  - OMP_NUM_THREADS: 1
+  - LANG: en_US.UTF-8
+  - BASEPATH: "$TRAVIS_BUILD_DIR"
+  - ROOTSYS: "$BASEPATH/root"
 
 addons:
   homebrew:
     packages:
-      - boost
-      - gsl
-      - python
-      - pipenv
+    - boost
+    - gsl
+    - python
+    - pipenv
   apt:
-    update: True
-    # sources:
-      # - ubuntu-toolchain-r-test # gcc upto  8.0
-      # - llvm-toolchain-xenial-8
+    update: true
     packages:
-      # - gcc-7
-      # - g++-7
-      - libboost-all-dev # Version 1.65 for bionic
-      - libgsl0-dev
+    - libboost-all-dev
+    - libgsl0-dev
 
 install:
   - cd $BASEPATH
   - cmake --version
-  - pipenv install # Create virtulenv and install packages
-  # ROOT
+  - pipenv install
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
   - cd root
@@ -50,34 +39,36 @@ install:
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode10.2 # macOS 10.14
-      env:
-        - TASK="clang, ROOT v6.18"
-        - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
-        # Add the brew python binary path to ensure python3 will be used
-        - PATH=/usr/local/opt/python/libexec/bin:$PATH
-      before_install:
-        - echo "Using system python version."
-
-    - os: linux
-      dist: bionic # gcc 7.4
-      compiler: gcc
-      env: 
-        - TASK="gcc7, ROOT v6.18"
-        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      before_install:
-        # TravisCI uses pyenv to manage different python versions
-        # FindPython3.cmake finds always this version (no matter 
-        # if it is activated or not)
-        - pyenv global 3.7.1
-        - pip3 install pipenv
+  - os: osx
+    osx_image: xcode10.2
+    env:
+    - TASK="clang, ROOT v6.18"
+    - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
+    - PATH=/usr/local/opt/python/libexec/bin:$PATH
+    before_install:
+    - echo "Using system python version."
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    env:
+    - TASK="gcc7, ROOT v6.18"
+    - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+    before_install:
+    - pyenv global 3.7.1
+    - pip3 install pipenv
 
 script:
-  - pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
-  - cd tests 
-  # Do not run tests for osx since it will fail. The reason is that 
-  # the precompiled ROOT libraries do not have RPATH set properly.
-  - if [ "$TRAVIS_OS_NAME" != "osx" ]; then
-      pipenv run python -m pytest;
-    fi
+- pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
+- cd tests
+- if [ "$TRAVIS_OS_NAME" != "osx" ]; then pipenv run python -m pytest; fi
+
+deploy:
+  provider: pypi
+  user: __token__
+  server: https://test.pypi.org/index
+  distributions: "sdist" # Upload only source distributions
+  on:
+    branch: dev
+  skip_existing: true # Ignore if dist already exists
+  password:
+    secure: F1LCo60aEYzVVOa4X9rN+ZdHPiUNj5GjYy6NVWj+XpA7fLxf0plHWic3npcwff6bEMqZ9IoLJGMFPIAuFPwizCgxLx1zLtiYuxTxaAlsNRBYVDfpuHr+ejNPnc6EL1VIMl6FJGKY/TdTzz1cHfXreCPaL2nv3z6zFcA8lp1dLNAj2HThVKIG1fsy+Q5xfVMswKzWx7Th+uU3D1W96ITtZKrK80qbiv9akDoX40rn6Pmgqcax5PtCVteMXAHCpnDCWxA8BNcbA1tTr9c/t6mSZFW856fWWhEmOeHti+Ff+3Oa6LxipMmyDMWU5YvhtnyDt7hG2YbbYgk8aWSnhlcC9UVCYCx6jhbMSkVUBjqDiXwgIQb2VntmPKFdIWx3kRXCWqRp6fKuCbeU+Kwv2WtfdPsg/MxuuxZddhls+1WCoSKQxzBuX/ng1ueYcn4tdj/niutKFwxy5PKi3pL4m8SfBC0mspE4VKao6I52gXEQR3Lnu7PYRYOt30ZdtzWWx0z8tXsktmBxxS9BTq6NXJ2mtCk/DnwfGi4JiI/2NTC0AM6rZAaHLoNy9qe7HMFCp0E09FG9qxnUoLPKVPCyCkUiL1Fl9l+KPM8UUzo0rCpOU2Xn4GTOJ2P/iQCA5cg588cw8039VOrRzOsPUlAEKusNiCqNl62HlEufXPf7o3xpSq4=
