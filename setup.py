@@ -18,11 +18,11 @@ def readme():
 
 
 setup(name='pycompwa',
-      version='0.0.1',
+      version='0.1.00',
       author='The ComPWA team',
       maintainer="Peter Weidenkaff",
       maintainer_email="weidenka@uni-mainz.de",
-      url="https://github.com/ComPWA/ComPWA",
+      url="https://github.com/ComPWA/pycompwa",
       description='ComPWA: The common Partial Wave Analysis framework',
       long_description=readme(),
       license="GPLv3 or later",
