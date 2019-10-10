@@ -18,7 +18,7 @@ def readme():
 
 
 setup(name='pycompwa',
-      version='0.0.11',
+      version='0.1.00',
       author='The ComPWA team',
       maintainer="Peter Weidenkaff",
       maintainer_email="weidenka@uni-mainz.de",
