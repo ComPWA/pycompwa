@@ -16,6 +16,10 @@ xmltodict = "*"
 pytest = "*"
 uproot = "*"
 scipy = "*"
+ipykernel = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+installKernel = "python -m ipykernel install --user --name pycompwa"

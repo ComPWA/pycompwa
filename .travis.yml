@@ -3,7 +3,7 @@ language: c++
 branches:
   only:
   - master
-  - dev
+  - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
   except: gh-pages
 
 env:
@@ -15,61 +15,82 @@ env:
   - BASEPATH: "$TRAVIS_BUILD_DIR"
   - ROOTSYS: "$BASEPATH/root"
 
-addons:
-  homebrew:
-    packages:
-    - boost
-    - gsl
-    - python
-    - pipenv
-  apt:
-    update: true
-    packages:
-    - libboost-all-dev
-    - libgsl0-dev
-
-install:
-  - cd $BASEPATH
-  - cmake --version
-  - pipenv install
-  - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-  - tar xpvfz root_*.tar.gz > /dev/null 2>&1
-  - cd root
-  - source bin/thisroot.sh
-  - cd $BASEPATH
-
 matrix:
   include:
+
   - os: osx
     osx_image: xcode10.2
+    addons:
+      homebrew:
+        packages:
+        - boost
+        - gsl
+        - python
+        - pipenv
     env:
     - TASK="clang, ROOT v6.18"
     - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
-    - PATH=/usr/local/opt/python/libexec/bin:$PATH
+    - PATH=/Users/travis/Library/Python/3.7/bin:$PATH
     before_install:
     - echo "Using system python version."
+
   - os: linux
     dist: bionic
     compiler: gcc
     env:
     - TASK="gcc7, ROOT v6.18"
     - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+    addons:
+      apt:
+        update: true
+        packages:
+        - libboost-all-dev
+        - libgsl0-dev
     before_install:
     - pyenv global 3.7.1
     - pip3 install pipenv
 
+  - os: linux
+    dist: bionic
+    env:
+    - TASK="deployment"
+    before_install:
+    - pyenv global 3.7.1
+    install: echo "Skipping install stage!"
+    script: echo "Skipping script stage!"
+    before_deploy:
+    - pip3 install scikit-build
+    deploy:
+      - provider: pypi # Upload new release on pypi for each tagged commit
+        on:            # Make sure that the version number in setup.py is 
+          tags: true   # increased before(!) you tag the commit
+        distributions: sdist
+        skip_existing: true
+        user: __token__
+        password:
+          secure: bvlu0vG8oOYgLbNRkbZT5QO8AQDRlMuHPUn4U7PIECzQNjFC31Y8ugXTQOPdcNsACc8TR3z52uZ1JmuK4XI9++7HuzRwhMgKziCEwD/fBdZETxXq95LorbMaD8qOY43v5vJAeFDzouDoP3iBVTpJG3dZPk7OrHy0uSSGYnC0M/WqoFg/3Lfg5tlKz8doBbgGVG/vY/58GyDxu3GcSVg7c3A4CNYKk6FwXwbWo7itTzXMJFjWmlolFtNv9m4b4gLrPSvUf7A/BrovC9IYic2N+T/KnbVOBopQ9ggk+uf1eMv1emruNiqUaJ963DMPjE154hbR7Ykvz4ng/CsvI8enmiPg18RoS1DLGxe7LVr0RzZaGsW0gw8q6H6Noc0FzNXwLb5+fDWHJtz87rrVmZZz+ofVpo370Q9y7B6joJ5EBDxPwi/Ef9MBZMEMR1pArX9rnlkVpPit0nvsb+R4e5ZS5CHj7ArSxio5pXLMrEtJyJKpnaeCbjIp5b+UfsVwSbY6i3UpE0HSHDW/Nic02/d9PfgxuBkEp6jb30yajsfWroMpJQyKD/X1qIUO48deUO79Mnu33EGWnccYBbmhMxFNCQnfLVPwKAQm7YM1/WlUa6ictifxlLouG8wZjAUviBcvTjzDY53UUpS/PIkGPL9MrqjLJbsR0XwAwp4leprngyY=
+      # - provider: release # Create github release on each tagged commit
+      #   api_key:
+      #   file: "FILE TO UPLOAD"
+      #   skip_cleanup: true
+      #   draft: true
+      #   on:
+      #     tags: true
+
+install:
+- cd $BASEPATH
+- cmake --version
+- pipenv install
+- wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
+- tar xpvfz root_*.tar.gz > /dev/null 2>&1
+- cd root
+- source bin/thisroot.sh
+- cd $BASEPATH
+
 script:
-- pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
+- cd $BASEPATH
+- pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install
+  -- -- -j2
 - cd tests
 - if [ "$TRAVIS_OS_NAME" != "osx" ]; then pipenv run python -m pytest; fi
-
-deploy:
-  provider: pypi
-  user: __token__
-  server: https://test.pypi.org/index
-  distributions: "sdist" # Upload only source distributions
-  on:
-    branch: dev
-  skip_existing: true # Ignore if dist already exists
-  password:
-    secure: F1LCo60aEYzVVOa4X9rN+ZdHPiUNj5GjYy6NVWj+XpA7fLxf0plHWic3npcwff6bEMqZ9IoLJGMFPIAuFPwizCgxLx1zLtiYuxTxaAlsNRBYVDfpuHr+ejNPnc6EL1VIMl6FJGKY/TdTzz1cHfXreCPaL2nv3z6zFcA8lp1dLNAj2HThVKIG1fsy+Q5xfVMswKzWx7Th+uU3D1W96ITtZKrK80qbiv9akDoX40rn6Pmgqcax5PtCVteMXAHCpnDCWxA8BNcbA1tTr9c/t6mSZFW856fWWhEmOeHti+Ff+3Oa6LxipMmyDMWU5YvhtnyDt7hG2YbbYgk8aWSnhlcC9UVCYCx6jhbMSkVUBjqDiXwgIQb2VntmPKFdIWx3kRXCWqRp6fKuCbeU+Kwv2WtfdPsg/MxuuxZddhls+1WCoSKQxzBuX/ng1ueYcn4tdj/niutKFwxy5PKi3pL4m8SfBC0mspE4VKao6I52gXEQR3Lnu7PYRYOt30ZdtzWWx0z8tXsktmBxxS9BTq6NXJ2mtCk/DnwfGi4JiI/2NTC0AM6rZAaHLoNy9qe7HMFCp0E09FG9qxnUoLPKVPCyCkUiL1Fl9l+KPM8UUzo0rCpOU2Xn4GTOJ2P/iQCA5cg588cw8039VOrRzOsPUlAEKusNiCqNl62HlEufXPf7o3xpSq4=
+- cd $BASEPATH
