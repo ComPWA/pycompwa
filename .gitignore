@@ -6,3 +6,8 @@ dist
 MANIFEST
 .ipynb_checkpoints
 __pycache__
+venv/
+
+# Visual Studio Code
+.vscode/
+**.code-workspace
