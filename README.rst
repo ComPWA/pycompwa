@@ -7,6 +7,8 @@
 .. image:: https://readthedocs.org/projects/pycompwa/badge/?version=latest
     :target: https://pycompwa.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. image:: https://api.codacy.com/project/badge/Grade/7bed0ae71aca43ac945af06c19ea9cae
+    :target: https://www.codacy.com/manual/ComPWA/pycompwa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ComPWA/pycompwa&amp;utm_campaign=Badge_Grade
 
 About pycompwa
 ==============
