@@ -33,10 +33,17 @@ if(NOT ${Python3_FOUND})
   message( FATAL_ERROR "Python3 not found!")
 endif()
 
+# # Configure RPATH
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+if (APPLE)
+  list(APPEND CMAKE_INSTALL_RPATH "@loader_path/../lib;@loader_path")
+else ()
+  list(APPEND CMAKE_INSTALL_RPATH "$ORIGIN/:$ORIGIN/../lib")
+endif ()
+
 # ComPWA needs to be linked statically since scikit-build
 # does not handle the RPATH properly. External libraries as
 # boost, ROOT etc may still be linked dynamically
-option(COMPWA_BUILD_STATIC "Static build" ON)
 add_subdirectory(ComPWA)
 
 add_subdirectory(pybind11)
