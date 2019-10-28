@@ -1,12 +1,24 @@
-_skbuild
-pycompwa.egg-info
-dist
-.eggs
-*.xml
 MANIFEST
+
+# Output files
+*.png
+*.root
+*.xml
+
+# Python temporary files
+pycompwa.egg-info
+.eggs
 .ipynb_checkpoints
 __pycache__
+
+# Python virtual environments
 venv/
+
+# Build files
+_skbuild/
+build/
+dist/
+*.so
 
 # Visual Studio Code
 .vscode/
