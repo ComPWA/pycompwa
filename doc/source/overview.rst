@@ -15,11 +15,10 @@ extends the ComPWA framework with some useful modules:
   
   An amplitude/intensity model generator
 
-* :ref:`plotting <plotting>`
-
-  Facilitates the visualization of data and results
-
 * :ref:`ui <python-ui>`
 
   The python interface to ComPWA
 
+* :ref:`plotting <plotting>`
+
+  Facilitates the visualization of data and results
