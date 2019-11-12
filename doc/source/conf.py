@@ -21,11 +21,13 @@ import os
 import sys
 import subprocess
 
-sys.path.insert(0, os.path.abspath('../..'))
+# It is assume that you run sphinx from the virtual environment which 
+# includes pycompwa
 
-# build docu for python code
+# build skeleton api docu for python code
+# this does not work for ui, therefore its added already manually
 subprocess.call(
-    'sphinx-apidoc -f -o pycompwa/ ../../pycompwa',
+    'sphinx-apidoc -o pycompwa/ ../../pycompwa/',
     shell=True)
 
 subprocess.call(
@@ -49,6 +51,8 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
               'sphinx.ext.autosummary',
               ]
+
+#autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -77,7 +81,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['tests']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -86,10 +90,11 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 add_module_names = False  # True is the default
+modindex_common_prefix = ['pycompwa.']
 
 # Because the pycompwa.ui module does not exist without building
 # Currently readthedocs does not build the repo, so this module is mocked here
-autodoc_mock_imports = ["pycompwa.ui"]
+#autodoc_mock_imports = ["pycompwa.ui"]
 
 # autosummary_generate = True
 

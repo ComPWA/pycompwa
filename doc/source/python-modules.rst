@@ -3,11 +3,6 @@ Modules
 
 .. include:: expertsystem.rst
 
-.. _plotting:
-
-Plotting
---------
-
-Coming soon ...
+.. include:: plotting.rst
 
 .. include:: python-ui.rst
