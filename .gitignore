@@ -6,10 +6,11 @@ MANIFEST
 *.xml
 
 # Python temporary files
-pycompwa.egg-info
 .eggs
 .ipynb_checkpoints
+.pytest_cache/
 __pycache__
+pycompwa.egg-info
 
 # Python virtual environments
 venv/
