@@ -4,5 +4,5 @@ Examples
 ========
 
 .. _example_quickstart:
-.. include:: examples/Quickstart.rst
-.. include:: examples/ImportanceSampling.rst
+.. include:: _examples/Quickstart.rst
+.. include:: _examples/ImportanceSampling.rst

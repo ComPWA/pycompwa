@@ -1,96 +1,102 @@
-sudo: false
-language: c++
+language: cpp
 branches:
   only:
-  - master
-  - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
+    - master
+    - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
   except: gh-pages
-
 env:
   global:
-  - GH_REPO_NAME: pycompwa
-  - GH_REPO_REF: github.com/ComPWA/pycompwa.git
-  - OMP_NUM_THREADS: 1
-  - LANG: en_US.UTF-8
-  - BASEPATH: "$TRAVIS_BUILD_DIR"
-  - ROOTSYS: "$BASEPATH/root"
+    - OMP_NUM_THREADS: 1
+    - LANG: en_US.UTF-8
+    - BASEPATH: "$TRAVIS_BUILD_DIR"
+    - ROOTSYS: "$BASEPATH/root"
 
-matrix:
+jobs:
   include:
+    - os: osx
+      osx_image: xcode10.2
+      addons:
+        homebrew:
+          packages:
+            - boost
+            - gsl
+            - python
+            - pipenv
+      env:
+        - TASK="clang, ROOT v6.18"
+        - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
+        - PATH=/Users/travis/Library/Python/3.7/bin:$PATH
+      before_install:
+        - echo "Using system python version."
 
-  - os: osx
-    osx_image: xcode10.2
-    addons:
-      homebrew:
-        packages:
-        - boost
-        - gsl
-        - python
-        - pipenv
-    env:
-    - TASK="clang, ROOT v6.18"
-    - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
-    - PATH=/Users/travis/Library/Python/3.7/bin:$PATH
-    before_install:
-    - echo "Using system python version."
+    - os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - TASK="gcc7, ROOT v6.18"
+        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+      addons:
+        apt:
+          update: true
+          packages:
+            - libboost-all-dev
+            - libgsl0-dev
+            - pandoc
+      before_install:
+        - pyenv global 3.7.1
+        - pip3 install pipenv
+      before_deploy:
+        - openssl aes-256-cbc -K $encrypted_ffa3dff63372_key -iv $encrypted_ffa3dff63372_iv -in github_deploy_key.enc -out github_deploy_key -d
+      deploy:
+        provider: pages
+        keep_history: true
+        deploy_key: github_deploy_key
+        cleanup: false
+        edge: true
+        repo: ComPWA/ComPWA.github.io
+        target_branch: master
+        local_dir: "$BASEPATH/doc/build/html"
+        verbose: true
+        on:
+          branch: master
 
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    env:
-    - TASK="gcc7, ROOT v6.18"
-    - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-    addons:
-      apt:
-        update: true
-        packages:
-        - libboost-all-dev
-        - libgsl0-dev
-    before_install:
-    - pyenv global 3.7.1
-    - pip3 install pipenv
-
-  - os: linux
-    dist: bionic
-    env:
-    - TASK="deployment"
-    before_install:
-    - pyenv global 3.7.1
-    install: echo "Skipping install stage!"
-    script: echo "Skipping script stage!"
-    before_deploy:
-    - pip3 install scikit-build
-    deploy:
-      - provider: pypi # Upload new release on pypi for each tagged commit
-        on:            # Make sure that the version number in setup.py is 
-          tags: true   # increased before(!) you tag the commit
-        distributions: sdist
-        skip_existing: true
-        user: __token__
-        password:
-          secure: bvlu0vG8oOYgLbNRkbZT5QO8AQDRlMuHPUn4U7PIECzQNjFC31Y8ugXTQOPdcNsACc8TR3z52uZ1JmuK4XI9++7HuzRwhMgKziCEwD/fBdZETxXq95LorbMaD8qOY43v5vJAeFDzouDoP3iBVTpJG3dZPk7OrHy0uSSGYnC0M/WqoFg/3Lfg5tlKz8doBbgGVG/vY/58GyDxu3GcSVg7c3A4CNYKk6FwXwbWo7itTzXMJFjWmlolFtNv9m4b4gLrPSvUf7A/BrovC9IYic2N+T/KnbVOBopQ9ggk+uf1eMv1emruNiqUaJ963DMPjE154hbR7Ykvz4ng/CsvI8enmiPg18RoS1DLGxe7LVr0RzZaGsW0gw8q6H6Noc0FzNXwLb5+fDWHJtz87rrVmZZz+ofVpo370Q9y7B6joJ5EBDxPwi/Ef9MBZMEMR1pArX9rnlkVpPit0nvsb+R4e5ZS5CHj7ArSxio5pXLMrEtJyJKpnaeCbjIp5b+UfsVwSbY6i3UpE0HSHDW/Nic02/d9PfgxuBkEp6jb30yajsfWroMpJQyKD/X1qIUO48deUO79Mnu33EGWnccYBbmhMxFNCQnfLVPwKAQm7YM1/WlUa6ictifxlLouG8wZjAUviBcvTjzDY53UUpS/PIkGPL9MrqjLJbsR0XwAwp4leprngyY=
-      # - provider: release # Create github release on each tagged commit
-      #   api_key:
-      #   file: "FILE TO UPLOAD"
-      #   skip_cleanup: true
-      #   draft: true
-      #   on:
-      #     tags: true
+    - os: linux
+      dist: bionic
+      env:
+        - TASK="deployment"
+      before_install:
+        - pyenv global 3.7.1
+      install: echo "Skipping install stage!"
+      script: echo "Skipping script stage!"
+      before_deploy:
+        - pip3 install scikit-build
+      deploy:
+        - provider: pypi # Upload new release on pypi for each tagged commit
+          on: # Make sure that the version number in setup.py is
+            tags: true # increased before(!) you tag the commit  q
+          distributions: sdist
+          skip_existing: true
+          username: __token__
+          password:
+            secure: bvlu0vG8oOYgLbNRkbZT5QO8AQDRlMuHPUn4U7PIECzQNjFC31Y8ugXTQOPdcNsACc8TR3z52uZ1JmuK4XI9++7HuzRwhMgKziCEwD/fBdZETxXq95LorbMaD8qOY43v5vJAeFDzouDoP3iBVTpJG3dZPk7OrHy0uSSGYnC0M/WqoFg/3Lfg5tlKz8doBbgGVG/vY/58GyDxu3GcSVg7c3A4CNYKk6FwXwbWo7itTzXMJFjWmlolFtNv9m4b4gLrPSvUf7A/BrovC9IYic2N+T/KnbVOBopQ9ggk+uf1eMv1emruNiqUaJ963DMPjE154hbR7Ykvz4ng/CsvI8enmiPg18RoS1DLGxe7LVr0RzZaGsW0gw8q6H6Noc0FzNXwLb5+fDWHJtz87rrVmZZz+ofVpo370Q9y7B6joJ5EBDxPwi/Ef9MBZMEMR1pArX9rnlkVpPit0nvsb+R4e5ZS5CHj7ArSxio5pXLMrEtJyJKpnaeCbjIp5b+UfsVwSbY6i3UpE0HSHDW/Nic02/d9PfgxuBkEp6jb30yajsfWroMpJQyKD/X1qIUO48deUO79Mnu33EGWnccYBbmhMxFNCQnfLVPwKAQm7YM1/WlUa6ictifxlLouG8wZjAUviBcvTjzDY53UUpS/PIkGPL9MrqjLJbsR0XwAwp4leprngyY=
 
 install:
-- cd $BASEPATH
-- cmake --version
-- pipenv install
-- wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-- tar xpvfz root_*.tar.gz > /dev/null 2>&1
-- cd root
-- source bin/thisroot.sh
-- cd $BASEPATH
+  - cd $BASEPATH
+  - cmake --version
+  - pipenv install
+  - pipenv install -r doc/requirements.txt
+  - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
+  - tar xpvfz root_*.tar.gz > /dev/null 2>&1
+  - cd root
+  - source bin/thisroot.sh
+  - cd $BASEPATH
 
 script:
-- cd $BASEPATH
-- pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install
-  -- -- -j2
-- cd tests
-- if [ "$TRAVIS_OS_NAME" != "osx" ]; then pipenv run python -m pytest; fi
-- cd $BASEPATH
+  - cd $BASEPATH
+  - pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install
+    -- -- -j2
+  - if [ "$TRAVIS_OS_NAME" != "osx" ]; then
+    cd tests; pipenv run python -m pytest;
+    cd $BASEPATH/doc; pipenv run make html; touch build/html/.nojekyll; rm -rf build/html/_sources;
+    fi
+  - cd $BASEPATH
