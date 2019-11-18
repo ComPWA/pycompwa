@@ -1,0 +1,907 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.state.propagation &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../../../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.state.propagation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycompwa.expertsystem.state.propagation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module is responsible for propagating the quantum numbers of the initial</span>
+<span class="sd">and final state particles through a graphs (Propagator classes). Hence it</span>
+<span class="sd">finds the allowed quantum numbers of the intermediate states.</span>
+<span class="sd">The propagator classes (e.g. :class:`.CSPPropagator`) use the implemented</span>
+<span class="sd">conservation rules of :mod:`.conservationrules`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">..solvers.constraint</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">Problem</span><span class="p">,</span>
+    <span class="n">Constraint</span><span class="p">,</span>
+    <span class="n">Unassigned</span><span class="p">,</span>
+    <span class="n">BacktrackingSolver</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">get_initial_state_edges</span><span class="p">,</span>
+    <span class="n">get_final_state_edges</span><span class="p">,</span>
+    <span class="n">get_edges_ingoing_to_node</span><span class="p">,</span>
+    <span class="n">get_edges_outgoing_to_node</span><span class="p">,</span>
+    <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..state.conservationrules</span> <span class="k">import</span> <span class="n">AbstractRule</span>
+<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">get_xml_label</span><span class="p">,</span> <span class="n">XMLLabelConstants</span><span class="p">,</span>
+    <span class="n">StateQuantumNumberNames</span><span class="p">,</span>
+    <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
+    <span class="n">ParticlePropertyNames</span><span class="p">,</span>
+    <span class="n">get_particle_property</span><span class="p">,</span>
+    <span class="n">get_interaction_property</span><span class="p">,</span>
+    <span class="n">QNNameClassMapping</span><span class="p">,</span>
+    <span class="n">QNClassConverterMapping</span><span class="p">,</span>
+    <span class="n">initialize_graphs_with_particles</span><span class="p">,</span>
+    <span class="n">get_particle_candidates_for_state</span><span class="p">,</span>
+    <span class="n">initialize_allowed_particle_list</span><span class="p">)</span>
+
+
+<span class="n">graph_element_types</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;GraphElementTypes&#39;</span><span class="p">,</span> <span class="s1">&#39;node edge&#39;</span><span class="p">)</span>
+
+
+<span class="n">InteractionTypes</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;InteractionTypes&#39;</span><span class="p">,</span> <span class="s1">&#39;Strong EM Weak&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="InteractionNodeSettings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.InteractionNodeSettings">[docs]</a><span class="k">class</span> <span class="nc">InteractionNodeSettings</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Container class for the interaction settings, which can be assigned to each</span>
+<span class="sd">    node of a state transition graph. Hence these settings contain the complete</span>
+<span class="sd">    configuration information which is required for the solution finding, e.g:</span>
+
+<span class="sd">      - list of conservation laws</span>
+<span class="sd">      - list of quantum number domains</span>
+<span class="sd">      - strength scale parameter (higher value means stronger force)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conservation_laws</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qn_domains</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_strength</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="s2">&quot;conservation laws:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conservation_laws</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">quantum number domains:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qn_domains</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">interaction strength: &quot;</span> <span class="o">+</span> \
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interaction_strength</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">return_string</span></div>
+
+
+<div class="viewcode-block" id="AbstractPropagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator">[docs]</a><span class="k">class</span> <span class="nc">AbstractPropagator</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
+
+<div class="viewcode-block" id="AbstractPropagator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.find_solutions">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractPropagator.get_non_satisfied_conservation_laws"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.get_non_satisfied_conservation_laws">[docs]</a>    <span class="k">def</span> <span class="nf">get_non_satisfied_conservation_laws</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span></div>
+
+<div class="viewcode-block" id="AbstractPropagator.assign_settings_to_all_nodes"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.assign_settings_to_all_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">assign_settings_to_all_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AbstractPropagator.assign_settings_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.assign_settings_to_node">[docs]</a>    <span class="k">def</span> <span class="nf">assign_settings_to_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">interaction_settings</span></div>
+
+<div class="viewcode-block" id="AbstractPropagator.set_allowed_intermediate_particles"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.set_allowed_intermediate_particles">[docs]</a>    <span class="k">def</span> <span class="nf">set_allowed_intermediate_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                           <span class="n">allowed_intermediate_particles</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="n">allowed_intermediate_particles</span></div></div>
+
+
+<div class="viewcode-block" id="FullPropagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator">[docs]</a><span class="k">class</span> <span class="nc">FullPropagator</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">propagation_mode</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span> <span class="o">=</span> <span class="n">CSPPropagator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagation_mode</span> <span class="o">=</span> <span class="n">propagation_mode</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;using CSP propagator&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FullPropagator.assign_settings_to_all_nodes"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.assign_settings_to_all_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">assign_settings_to_all_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FullPropagator.assign_settings_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.assign_settings_to_node">[docs]</a>    <span class="k">def</span> <span class="nf">assign_settings_to_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="p">,</span> <span class="n">ParticleStateTransitionGraphValidator</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span>
+                <span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="o">.</span><span class="n">conservation_laws</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span>
+                                                    <span class="n">interaction_settings</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FullPropagator.set_allowed_intermediate_particles"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.set_allowed_intermediate_particles">[docs]</a>    <span class="k">def</span> <span class="nf">set_allowed_intermediate_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                           <span class="n">allowed_intermediate_particles</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="n">allowed_intermediate_particles</span></div>
+
+<div class="viewcode-block" id="FullPropagator.get_non_satisfied_conservation_laws"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.get_non_satisfied_conservation_laws">[docs]</a>    <span class="k">def</span> <span class="nf">get_non_satisfied_conservation_laws</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span></div>
+
+<div class="viewcode-block" id="FullPropagator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">run_validation</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">solutions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Number of solutions after propagator: &quot;</span> <span class="o">+</span>
+                      <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">solutions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">:</span>
+                <span class="n">run_validation</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;violated rules: &quot;</span> <span class="o">+</span>
+                              <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">))</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+
+        <span class="n">full_particle_graphs</span> <span class="o">=</span> <span class="n">initialize_graphs_with_particles</span><span class="p">(</span>
+            <span class="n">solutions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Number of fully initialized graphs: &quot;</span> <span class="o">+</span>
+                      <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">full_particle_graphs</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;validating graphs&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">propagation_mode</span> <span class="o">==</span> <span class="s1">&#39;full&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">full_particle_graphs</span>
+                    <span class="ow">or</span> <span class="n">run_validation</span><span class="p">):</span>
+                <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">graph</span>
+                <span class="n">validator</span> <span class="o">=</span> <span class="n">ParticleStateTransitionGraphValidator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+                <span class="n">postponed_rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span>
+                <span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_laws</span> <span class="ow">in</span> <span class="n">postponed_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">validator</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span>
+                        <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_laws</span><span class="p">)</span>
+                <span class="n">full_particle_graphs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">validator</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">temp_solution_graphs</span> <span class="o">=</span> <span class="n">full_particle_graphs</span>
+                <span class="n">full_particle_graphs</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">temp_solution_graphs</span><span class="p">:</span>
+                    <span class="n">validator</span> <span class="o">=</span> <span class="n">ParticleStateTransitionGraphValidator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+                    <span class="n">postponed_rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span>
+                    <span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_laws</span> <span class="ow">in</span> <span class="n">postponed_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">validator</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span>
+                            <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_laws</span><span class="p">)</span>
+                    <span class="n">full_particle_graphs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                        <span class="n">validator</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Number of solutions after full propagator: &quot;</span> <span class="o">+</span>
+                      <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">full_particle_graphs</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_particle_graphs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;violated rules: &quot;</span> <span class="o">+</span>
+                          <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">full_particle_graphs</span></div></div>
+
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator">[docs]</a><span class="k">class</span> <span class="nc">ParticleStateTransitionGraphValidator</span><span class="p">(</span><span class="n">AbstractPropagator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;validating graph...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_laws</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">cons_law</span> <span class="ow">in</span> <span class="n">cons_laws</span><span class="p">:</span>
+                <span class="c1"># get the needed qns for this conservation law</span>
+                <span class="c1"># for all edges and the node</span>
+                <span class="n">var_containers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_variable_containers</span><span class="p">(</span>
+                    <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_law</span><span class="p">)</span>
+                <span class="c1"># check the requirements</span>
+                <span class="k">if</span> <span class="n">cons_law</span><span class="o">.</span><span class="n">check_requirements</span><span class="p">(</span><span class="n">var_containers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                               <span class="n">var_containers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                               <span class="n">var_containers</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                    <span class="c1"># and run the rule check</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">cons_law</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">var_containers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                          <span class="n">var_containers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                          <span class="n">var_containers</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cons_law</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">node_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">cons_law</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.create_variable_containers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.create_variable_containers">[docs]</a>    <span class="k">def</span> <span class="nf">create_variable_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">cons_law</span><span class="p">):</span>
+        <span class="n">in_edges</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+        <span class="n">out_edges</span> <span class="o">=</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+
+        <span class="n">qn_names</span> <span class="o">=</span> <span class="n">cons_law</span><span class="o">.</span><span class="n">get_required_qn_names</span><span class="p">()</span>
+        <span class="n">qn_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
+                                              <span class="n">ParticlePropertyNames</span><span class="p">))</span>
+        <span class="n">in_edges_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span><span class="n">in_edges</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">)</span>
+        <span class="n">out_edges_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span><span class="n">out_edges</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">)</span>
+
+        <span class="n">node_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node_variables</span><span class="p">(</span>
+            <span class="n">node_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="n">InteractionQuantumNumberNames</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">in_edges_vars</span><span class="p">,</span> <span class="n">out_edges_vars</span><span class="p">,</span> <span class="n">node_vars</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.prepare_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.prepare_qns">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">type_to_filter</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qn_names</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">type_to_filter</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.create_node_variables"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.create_node_variables">[docs]</a>    <span class="k">def</span> <span class="nf">create_node_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates variables for the quantum numbers of the specified node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">:</span>
+            <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_list</span><span class="p">:</span>
+                <span class="n">converter</span> <span class="o">=</span> <span class="n">QNClassConverterMapping</span><span class="p">[</span>
+                    <span class="n">QNNameClassMapping</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]]</span>
+                <span class="n">found_prop</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">node_qn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">[</span><span class="n">node_id</span><span class="p">][</span><span class="n">qns_label</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">node_qn</span><span class="p">[</span><span class="n">type_label</span><span class="p">]</span> <span class="o">==</span> <span class="n">qn_name</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+                        <span class="n">found_prop</span> <span class="o">=</span> <span class="n">node_qn</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="n">found_prop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">parse_from_dict</span><span class="p">(</span><span class="n">found_prop</span><span class="p">)</span>
+                    <span class="n">variables</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">variables</span></div>
+
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.create_edge_variables"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.create_edge_variables">[docs]</a>    <span class="k">def</span> <span class="nf">create_edge_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates variables for the quantum numbers of the specified edges.</span>
+
+<span class="sd">        Initial and final state edges just get a single domain value.</span>
+<span class="sd">        Intermediate edges are initialized with the default domains of that</span>
+<span class="sd">        quantum number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">:</span>
+                <span class="n">edge_vars</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">edge_props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_list</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">get_particle_property</span><span class="p">(</span><span class="n">edge_props</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">edge_vars</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="n">variables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_vars</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">variables</span></div></div>
+
+
+<div class="viewcode-block" id="VariableInfo"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.VariableInfo">[docs]</a><span class="k">class</span> <span class="nc">VariableInfo</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_type</span> <span class="o">=</span> <span class="n">graph_element_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element_id</span> <span class="o">=</span> <span class="n">element_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span></div>
+
+
+<div class="viewcode-block" id="decode_variable_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.decode_variable_name">[docs]</a><span class="k">def</span> <span class="nf">decode_variable_name</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decodes the variable name (see :func:`.encode_variable_name`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">split_name</span> <span class="o">=</span> <span class="n">variable_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">delimiter</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;The variable name does not follow the scheme: &quot;</span> <span class="o">+</span> <span class="n">variable_name</span><span class="p">)</span>
+    <span class="n">qn_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">graph_element_type</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">element_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">split_name</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">split_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">graph_element_types</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+        <span class="n">qn_name</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="p">[</span><span class="n">split_name</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="n">graph_element_type</span> <span class="o">=</span> <span class="n">graph_element_types</span><span class="o">.</span><span class="n">node</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qn_name</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="p">[</span><span class="n">split_name</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="n">graph_element_type</span> <span class="o">=</span> <span class="n">graph_element_types</span><span class="o">.</span><span class="n">edge</span>
+
+    <span class="k">return</span> <span class="n">VariableInfo</span><span class="p">(</span><span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="encode_variable_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.encode_variable_name">[docs]</a><span class="k">def</span> <span class="nf">encode_variable_name</span><span class="p">(</span><span class="n">variable_info</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The variable names are encoded as a concatenated string of the form</span>
+<span class="sd">    graph element type + delimiter + element id + delimiter + qn name</span>
+<span class="sd">    The variable of type :class:`.VariableInfo` and contains:</span>
+
+<span class="sd">      - graph_element_type: is either &quot;node&quot; or &quot;edge&quot; (enum)</span>
+<span class="sd">      - element_id: is the id of that node/edge</span>
+<span class="sd">        (as it is defined in the graph)</span>
+<span class="sd">      - qn_name: the quantum number name (enum)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">variable_info</span><span class="p">,</span> <span class="n">VariableInfo</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;parameter variable_info must be of type VariableInfo&#39;</span><span class="p">)</span>
+    <span class="n">var_name</span> <span class="o">=</span> <span class="n">variable_info</span><span class="o">.</span><span class="n">graph_element_type</span><span class="o">.</span><span class="n">name</span> \
+        <span class="o">+</span> <span class="n">delimiter</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">variable_info</span><span class="o">.</span><span class="n">element_id</span><span class="p">)</span> \
+        <span class="o">+</span> <span class="n">delimiter</span> <span class="o">+</span> <span class="n">variable_info</span><span class="o">.</span><span class="n">qn_name</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">return</span> <span class="n">var_name</span></div>
+
+
+<div class="viewcode-block" id="CSPPropagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator">[docs]</a><span class="k">class</span> <span class="nc">CSPPropagator</span><span class="p">(</span><span class="n">AbstractPropagator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quantum number propagator reducing the problem to a constraint</span>
+<span class="sd">    satisfaction problem and solving this with the python-constraint module.</span>
+
+<span class="sd">    The variables are the quantum numbers of particles/edges, but also some</span>
+<span class="sd">    composite quantum numbers which are attributed to the interaction nodes</span>
+<span class="sd">    (such as angular momentum L).</span>
+<span class="sd">    The conservation laws serve as the constraints and are wrapped with a</span>
+<span class="sd">    special class :class:`.ConservationLawConstraintWrapper`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">BacktrackingSolver</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">particle_variable_delimiter</span> <span class="o">=</span> <span class="s2">&quot;-*-&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CSPPropagator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_contraints</span><span class="p">()</span>
+        <span class="n">solutions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">getSolutions</span><span class="p">()</span>
+        <span class="n">solution_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_solutions_to_graph</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">constraint</span><span class="o">.</span><span class="n">conditions_never_met</span> <span class="ow">or</span>
+                    <span class="nb">sum</span><span class="p">(</span><span class="n">constraint</span><span class="o">.</span><span class="n">scenario_results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span><span class="p">[</span>
+                    <span class="n">constraint</span><span class="o">.</span><span class="n">node_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constraint</span><span class="o">.</span><span class="n">rule</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">constraint</span><span class="o">.</span><span class="n">scenario_results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+                    <span class="n">constraint</span><span class="o">.</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span><span class="p">[</span><span class="n">constraint</span><span class="o">.</span><span class="n">node_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">constraint</span><span class="o">.</span><span class="n">rule</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solution_graphs</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.initialize_contraints"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.initialize_contraints">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_contraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes all of the constraints for this graph. For each interaction</span>
+<span class="sd">        node a set of independent constraints/conservation laws are created.</span>
+<span class="sd">        For each conservation law a new CSP wrapper is created.</span>
+<span class="sd">        This wrapper needs all of the qn numbers/variables which</span>
+<span class="sd">        enter or exit the node and play a role for this conservation law.</span>
+<span class="sd">        Hence variables are also created within this method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">new_cons_laws</span> <span class="o">=</span> <span class="n">interaction_settings</span><span class="o">.</span><span class="n">conservation_laws</span>
+            <span class="k">for</span> <span class="n">cons_law</span> <span class="ow">in</span> <span class="n">new_cons_laws</span><span class="p">:</span>
+                <span class="n">variable_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="c1"># from cons law and graph determine needed var lists</span>
+                <span class="n">qn_names</span> <span class="o">=</span> <span class="n">cons_law</span><span class="o">.</span><span class="n">get_required_qn_names</span><span class="p">()</span>
+
+                <span class="c1"># create needed variables for edges state qns</span>
+                <span class="n">part_qn_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span>
+                    <span class="n">qn_names</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="o">.</span><span class="n">qn_domains</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span> <span class="n">ParticlePropertyNames</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">in_edges</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+
+                <span class="n">in_edge_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span>
+                    <span class="n">in_edges</span><span class="p">,</span> <span class="n">part_qn_dict</span><span class="p">)</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;ingoing&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">in_edge_vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;ingoing-fixed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">in_edge_vars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">var_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;ingoing&quot;</span><span class="p">]]</span>
+
+                <span class="n">out_edges</span> <span class="o">=</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+                <span class="n">out_edge_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span>
+                    <span class="n">out_edges</span><span class="p">,</span> <span class="n">part_qn_dict</span><span class="p">)</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;outgoing&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_edge_vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;outgoing-fixed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_edge_vars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">var_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;outgoing&quot;</span><span class="p">]])</span>
+
+                <span class="c1"># now create variables for node/interaction qns</span>
+                <span class="n">int_qn_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span>
+                    <span class="n">qn_names</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="o">.</span><span class="n">qn_domains</span><span class="p">,</span>
+                    <span class="n">InteractionQuantumNumberNames</span><span class="p">)</span>
+                <span class="n">int_node_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_node_variables</span><span class="p">(</span>
+                    <span class="n">node_id</span><span class="p">,</span> <span class="n">int_qn_dict</span><span class="p">)</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;interaction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">int_node_vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;interaction-fixed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">int_node_vars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">var_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;interaction&quot;</span><span class="p">]])</span>
+
+                <span class="n">constraint</span> <span class="o">=</span> <span class="n">ConservationLawConstraintWrapper</span><span class="p">(</span>
+                    <span class="n">cons_law</span><span class="p">,</span>
+                    <span class="n">variable_mapping</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">particle_variable_delimiter</span><span class="p">)</span>
+                <span class="n">constraint</span><span class="o">.</span><span class="n">register_graph_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">var_list</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">constraint</span><span class="p">,</span> <span class="n">var_list</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">conditions_never_met</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.prepare_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.prepare_qns">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">qn_domains</span><span class="p">,</span> <span class="n">type_to_filter</span><span class="p">):</span>
+        <span class="n">part_qn_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qn_names</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">type_to_filter</span><span class="p">)]:</span>
+            <span class="k">if</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_domains</span><span class="p">:</span>
+                <span class="n">part_qn_dict</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">qn_domains</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">part_qn_dict</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">part_qn_dict</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.create_node_variables"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.create_node_variables">[docs]</a>    <span class="k">def</span> <span class="nf">create_node_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">qn_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates variables for the quantum numbers of the specified node.</span>
+
+<span class="sd">        If a quantum number is already defined for a node, then a fixed</span>
+<span class="sd">        variable is created, which cannot be changed by the csp solver.</span>
+<span class="sd">        Otherwise the node is initialized with the specified domain of</span>
+<span class="sd">        that quantum number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="p">(</span><span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">:</span>
+            <span class="n">node_props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">qn_domain</span> <span class="ow">in</span> <span class="n">qn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">get_interaction_property</span><span class="p">(</span><span class="n">node_props</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">variables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">qn_domain</span> <span class="ow">in</span> <span class="n">qn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">var_info</span> <span class="o">=</span> <span class="n">VariableInfo</span><span class="p">(</span>
+                    <span class="n">graph_element_types</span><span class="o">.</span><span class="n">node</span><span class="p">,</span>
+                    <span class="n">node_id</span><span class="p">,</span>
+                    <span class="n">qn_name</span>
+                <span class="p">)</span>
+                <span class="c1"># domain_values = self.determine_domain(var_info, [], )</span>
+                <span class="k">if</span> <span class="n">qn_domain</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">var_info</span><span class="p">,</span> <span class="n">qn_domain</span><span class="p">)</span>
+                    <span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">variables</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.create_edge_variables"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.create_edge_variables">[docs]</a>    <span class="k">def</span> <span class="nf">create_edge_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">,</span> <span class="n">qn_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates variables for the quantum numbers of the specified edges.</span>
+
+<span class="sd">        If a quantum number is already defined for an edge, then a fixed</span>
+<span class="sd">        variable is created, which cannot be changed by the csp solver.</span>
+<span class="sd">        This is the case for initial and final state edges.</span>
+<span class="sd">        Otherwise the edges are initialized with the specified domains of</span>
+<span class="sd">        that quantum number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="p">(</span><span class="nb">set</span><span class="p">(),</span> <span class="p">{})</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
+            <span class="n">variables</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">edge_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">:</span>
+                <span class="n">edge_props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">qn_domain</span> <span class="ow">in</span> <span class="n">qn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">get_particle_property</span><span class="p">(</span><span class="n">edge_props</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">variables</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">qn_domain</span> <span class="ow">in</span> <span class="n">qn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">var_info</span> <span class="o">=</span> <span class="n">VariableInfo</span><span class="p">(</span><span class="n">graph_element_types</span><span class="o">.</span><span class="n">edge</span><span class="p">,</span>
+                                            <span class="n">edge_id</span><span class="p">,</span>
+                                            <span class="n">qn_name</span>
+                                            <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">qn_domain</span><span class="p">:</span>
+                        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">var_info</span><span class="p">,</span> <span class="n">qn_domain</span><span class="p">)</span>
+                        <span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">variables</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.add_variable"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.add_variable">[docs]</a>    <span class="k">def</span> <span class="nf">add_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_info</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">encode_variable_name</span><span class="p">(</span><span class="n">var_info</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">particle_variable_delimiter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">addVariable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span></div>
+
+<div class="viewcode-block" id="CSPPropagator.apply_solutions_to_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.apply_solutions_to_graph">[docs]</a>    <span class="k">def</span> <span class="nf">apply_solutions_to_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solutions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply the CSP solutions to the graph instance.</span>
+<span class="sd">        In other words attach the solution quantum numbers as properties to</span>
+<span class="sd">        the edges. Also the solutions are filtered using the allowed</span>
+<span class="sd">        intermediate particle list, to avoid large memory consumption.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          solutions: list of solutions of the csp solver</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">          solution graphs ([:class:`.StateTransitionGraph`])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">solution_graphs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">initial_edges</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">final_edges</span> <span class="o">=</span> <span class="n">get_final_state_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+
+        <span class="n">full_allowed_particle_list</span> <span class="o">=</span> <span class="n">initialize_allowed_particle_list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span><span class="p">)</span>
+
+        <span class="c1"># logging.info(&quot;attempting to filter &quot; + str(len(solutions)) +</span>
+        <span class="c1">#             &quot; solutions for allowed intermediate particles and&quot;</span>
+        <span class="c1">#             &quot; create a copy graph&quot;)</span>
+        <span class="c1">#bar = IncrementalBar(&#39;Filtering solutions&#39;, max=len(solutions))</span>
+
+        <span class="n">found_JPs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">solutions</span><span class="p">:</span>
+            <span class="n">graph_copy</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">solution</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">var_info</span> <span class="o">=</span> <span class="n">decode_variable_name</span><span class="p">(</span>
+                    <span class="n">var_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle_variable_delimiter</span><span class="p">)</span>
+                <span class="n">ele_id</span> <span class="o">=</span> <span class="n">var_info</span><span class="o">.</span><span class="n">element_id</span>
+
+                <span class="k">if</span> <span class="n">var_info</span><span class="o">.</span><span class="n">graph_element_type</span> <span class="ow">is</span> <span class="n">graph_element_types</span><span class="o">.</span><span class="n">edge</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">ele_id</span> <span class="ow">in</span> <span class="n">initial_edges</span> <span class="ow">or</span> <span class="n">ele_id</span> <span class="ow">in</span> <span class="n">final_edges</span><span class="p">:</span>
+                        <span class="c1"># skip if its an initial or final state edge</span>
+                        <span class="k">continue</span>
+
+                <span class="n">add_qn_to_graph_element</span><span class="p">(</span><span class="n">graph_copy</span><span class="p">,</span> <span class="n">var_info</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+            <span class="n">solution_valid</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">int_edge_id</span> <span class="ow">in</span> <span class="n">get_intermediate_state_edges</span><span class="p">(</span><span class="n">graph_copy</span><span class="p">):</span>
+                    <span class="c1"># for documentation in case of failure</span>
+                    <span class="n">spin</span> <span class="o">=</span> <span class="n">get_particle_property</span><span class="p">(</span>
+                        <span class="n">graph_copy</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">int_edge_id</span><span class="p">],</span>
+                        <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">)</span>
+                    <span class="n">parity</span> <span class="o">=</span> <span class="n">get_particle_property</span><span class="p">(</span>
+                        <span class="n">graph_copy</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">int_edge_id</span><span class="p">],</span>
+                        <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span><span class="p">)</span>
+                    <span class="n">found_JPs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">magnitude</span><span class="p">())</span> <span class="o">+</span>
+                                  <span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">parity</span> <span class="o">==</span> <span class="o">-</span><span class="mf">1.0</span>
+                                   <span class="k">else</span> <span class="s2">&quot;+&quot;</span><span class="p">))</span>
+                    <span class="c1"># now do actual candidate finding</span>
+                    <span class="n">candidates</span> <span class="o">=</span> <span class="n">get_particle_candidates_for_state</span><span class="p">(</span>
+                        <span class="n">graph_copy</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">int_edge_id</span><span class="p">],</span>
+                        <span class="n">full_allowed_particle_list</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">candidates</span><span class="p">:</span>
+                        <span class="n">solution_valid</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">break</span>
+            <span class="k">if</span> <span class="n">solution_valid</span><span class="p">:</span>
+                <span class="n">solution_graphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">graph_copy</span><span class="p">)</span>
+            <span class="c1"># bar.next()</span>
+        <span class="c1"># bar.finish()</span>
+        <span class="k">if</span> <span class="n">solutions</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">solution_graphs</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;No intermediate state particles match the found &quot;</span>
+                <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;solution inter. state J^P: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">found_JPs</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">solution_graphs</span></div></div>
+
+
+<div class="viewcode-block" id="add_qn_to_graph_element"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.add_qn_to_graph_element">[docs]</a><span class="k">def</span> <span class="nf">add_qn_to_graph_element</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">var_info</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
+
+    <span class="n">element_id</span> <span class="o">=</span> <span class="n">var_info</span><span class="o">.</span><span class="n">element_id</span>
+    <span class="n">qn_name</span> <span class="o">=</span> <span class="n">var_info</span><span class="o">.</span><span class="n">qn_name</span>
+    <span class="n">graph_prop_dict</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span>
+    <span class="k">if</span> <span class="n">var_info</span><span class="o">.</span><span class="n">graph_element_type</span> <span class="ow">is</span> <span class="n">graph_element_types</span><span class="o">.</span><span class="n">node</span><span class="p">:</span>
+        <span class="n">graph_prop_dict</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">node_props</span>
+
+    <span class="n">converter</span> <span class="o">=</span> <span class="n">QNClassConverterMapping</span><span class="p">[</span>
+        <span class="n">QNNameClassMapping</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]]</span>
+
+    <span class="k">if</span> <span class="n">element_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph_prop_dict</span><span class="p">:</span>
+        <span class="n">graph_prop_dict</span><span class="p">[</span><span class="n">element_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">qns_label</span><span class="p">:</span> <span class="p">[]}</span>
+
+    <span class="n">graph_prop_dict</span><span class="p">[</span><span class="n">element_id</span><span class="p">][</span><span class="n">qns_label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">converter</span><span class="o">.</span><span class="n">convert_to_dict</span><span class="p">(</span>
+        <span class="n">qn_name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ConservationLawConstraintWrapper"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper">[docs]</a><span class="k">class</span> <span class="nc">ConservationLawConstraintWrapper</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper class of the python-constraint Constraint class, to allow a</span>
+<span class="sd">    customized definition of conservation laws, and hence a cleaner</span>
+<span class="sd">    user interface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="p">,</span> <span class="n">name_delimiter</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">AbstractRule</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;rule has to be of type AbstractRule!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rule</span> <span class="o">=</span> <span class="n">rule</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_variable_set</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;ingoing&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_in_variables</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;ingoing-fixed&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_variable_set</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;outgoing&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_out_variables</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;outgoing-fixed&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_variable_set</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span><span class="s2">&quot;interaction&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_interaction_variable_set</span> <span class="o">=</span> <span class="n">variable_mapping</span><span class="p">[</span>
+            <span class="s2">&quot;interaction-fixed&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_delimiter</span> <span class="o">=</span> <span class="n">name_delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">part_in</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">part_out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_name_decoding_map</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_particle_lists</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conditions_never_met</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_results</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ConservationLawConstraintWrapper.register_graph_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.register_graph_node">[docs]</a>    <span class="k">def</span> <span class="nf">register_graph_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
+
+<div class="viewcode-block" id="ConservationLawConstraintWrapper.initialize_particle_lists"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.initialize_particle_lists">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_particle_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill the name decoding map and initialize the in and out particle</span>
+<span class="sd">        lists. The variable names follow the scheme edge_id(delimiter)qn_name.</span>
+<span class="sd">        This method creates a dict linking the var name to a list that consists</span>
+<span class="sd">        of the particle list index and the qn name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_particle_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_variable_set</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">fixed_in_variables</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">part_in</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_particle_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_variable_set</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">fixed_out_variables</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">part_out</span><span class="p">)</span>
+        <span class="c1"># and now interaction node variables</span>
+        <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_variable_set</span><span class="p">:</span>
+            <span class="n">var_info</span> <span class="o">=</span> <span class="n">decode_variable_name</span><span class="p">(</span>
+                <span class="n">var_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_delimiter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span><span class="p">[</span><span class="n">var_info</span><span class="o">.</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_name_decoding_map</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="n">var_info</span><span class="o">.</span><span class="n">qn_name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_interaction_variable_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="ConservationLawConstraintWrapper.initialize_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.initialize_particle_list">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_particle_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable_set</span><span class="p">,</span> <span class="n">fixed_variables</span><span class="p">,</span>
+                                 <span class="n">list_to_init</span><span class="p">):</span>
+        <span class="n">temp_var_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">variable_set</span><span class="p">:</span>
+            <span class="n">var_info</span> <span class="o">=</span> <span class="n">decode_variable_name</span><span class="p">(</span>
+                <span class="n">var_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_delimiter</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">var_info</span><span class="o">.</span><span class="n">element_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="p">:</span>
+                <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">var_info</span><span class="o">.</span><span class="n">element_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;vars&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">var_name</span><span class="p">:</span> <span class="n">var_info</span><span class="o">.</span><span class="n">qn_name</span><span class="p">}}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">var_info</span><span class="o">.</span><span class="n">element_id</span><span class="p">][</span><span class="s1">&#39;vars&#39;</span><span class="p">][</span>
+                    <span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">var_info</span><span class="o">.</span><span class="n">qn_name</span>
+
+        <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">varlist</span> <span class="ow">in</span> <span class="n">fixed_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="p">:</span>
+                <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;fixed-vars&#39;</span><span class="p">:</span> <span class="n">varlist</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;fixed-vars&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]:</span>
+                    <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">edge_id</span><span class="p">][</span><span class="s1">&#39;fixed-vars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varlist</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_to_init</span><span class="p">)</span>
+            <span class="n">list_to_init</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+            <span class="k">if</span> <span class="s1">&#39;vars&#39;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">value</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">variable_name_decoding_map</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">index</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;fixed-vars&#39;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">[</span><span class="s1">&#39;fixed-vars&#39;</span><span class="p">]:</span>
+                    <span class="n">list_to_init</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conditions_never_met</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="n">_unassigned</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_variable_lists</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">check_requirements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part_in</span><span class="p">,</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">part_out</span><span class="p">,</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conditions_never_met</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">passed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">part_in</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">part_out</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span><span class="p">)</span>
+
+        <span class="c1"># before returning gather statistics about the rule</span>
+        <span class="k">if</span> <span class="n">passed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scenario_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">passed</span>
+
+<div class="viewcode-block" id="ConservationLawConstraintWrapper.update_variable_lists"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.update_variable_lists">[docs]</a>    <span class="k">def</span> <span class="nf">update_variable_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="k">for</span> <span class="p">[</span><span class="n">var_name</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_name_decoding_map</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_variable_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">part_in</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">elif</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_variable_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">part_out</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">elif</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_variable_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">interaction_qns</span><span class="p">[</span><span class="n">qn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The variable with name &quot;</span> <span class="o">+</span>
+                                 <span class="n">var_name</span> <span class="o">+</span>
+                                 <span class="s2">&quot;does not appear in the variable mapping!&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

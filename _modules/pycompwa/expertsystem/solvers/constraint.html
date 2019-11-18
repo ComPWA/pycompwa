@@ -1,0 +1,1658 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.solvers.constraint &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../../../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.solvers.constraint</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycompwa.expertsystem.solvers.constraint</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2005-2014 - Gustavo Niemeyer &lt;gustavo@niemeyer.net&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. Redistributions of source code must retain the above copyright notice, this</span>
+<span class="c1">#    list of conditions and the following disclaimer.</span>
+<span class="c1"># 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1">#    this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1">#    and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1"># DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE</span>
+<span class="c1"># FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span>
+<span class="c1"># DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1"># SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span>
+<span class="c1"># CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span>
+<span class="c1"># OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@var Unassigned: Helper object instance representing unassigned values</span>
+
+<span class="sd">@sort: Problem, Variable, Domain</span>
+<span class="sd">@group Solvers: Solver,</span>
+<span class="sd">                BacktrackingSolver,</span>
+<span class="sd">                RecursiveBacktrackingSolver,</span>
+<span class="sd">                MinConflictsSolver</span>
+<span class="sd">@group Constraints: Constraint,</span>
+<span class="sd">                    FunctionConstraint,</span>
+<span class="sd">                    AllDifferentConstraint,</span>
+<span class="sd">                    AllEqualConstraint,</span>
+<span class="sd">                    MaxSumConstraint,</span>
+<span class="sd">                    ExactSumConstraint,</span>
+<span class="sd">                    MinSumConstraint,</span>
+<span class="sd">                    InSetConstraint,</span>
+<span class="sd">                    NotInSetConstraint,</span>
+<span class="sd">                    SomeInSetConstraint,</span>
+<span class="sd">                    SomeNotInSetConstraint</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+
+
+<span class="kn">from</span> <span class="nn">.version</span> <span class="k">import</span> <span class="p">(</span><span class="n">__author__</span><span class="p">,</span> <span class="n">__copyright__</span><span class="p">,</span> <span class="n">__credits__</span><span class="p">,</span> <span class="n">__license__</span><span class="p">,</span>  <span class="c1"># noqa</span>
+                      <span class="n">__version__</span><span class="p">,</span> <span class="n">__email__</span><span class="p">,</span> <span class="n">__status__</span><span class="p">,</span> <span class="n">__url__</span><span class="p">)</span>  <span class="c1"># noqa</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">.compat</span> <span class="k">import</span> <span class="n">xrange</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Problem&quot;</span><span class="p">,</span> <span class="s2">&quot;Variable&quot;</span><span class="p">,</span> <span class="s2">&quot;Domain&quot;</span><span class="p">,</span> <span class="s2">&quot;Unassigned&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;Solver&quot;</span><span class="p">,</span> <span class="s2">&quot;BacktrackingSolver&quot;</span><span class="p">,</span> <span class="s2">&quot;RecursiveBacktrackingSolver&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;MinConflictsSolver&quot;</span><span class="p">,</span> <span class="s2">&quot;Constraint&quot;</span><span class="p">,</span> <span class="s2">&quot;FunctionConstraint&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;AllDifferentConstraint&quot;</span><span class="p">,</span> <span class="s2">&quot;AllEqualConstraint&quot;</span><span class="p">,</span> <span class="s2">&quot;MaxSumConstraint&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;ExactSumConstraint&quot;</span><span class="p">,</span> <span class="s2">&quot;MinSumConstraint&quot;</span><span class="p">,</span> <span class="s2">&quot;InSetConstraint&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;NotInSetConstraint&quot;</span><span class="p">,</span> <span class="s2">&quot;SomeInSetConstraint&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;SomeNotInSetConstraint&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Problem"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem">[docs]</a><span class="k">class</span> <span class="nc">Problem</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class used to define a problem and retrieve solutions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param solver: Problem solver used to find solutions</span>
+<span class="sd">                       (default is L{BacktrackingSolver})</span>
+<span class="sd">        @type solver:  instance of a L{Solver} subclass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span> <span class="o">=</span> <span class="n">solver</span> <span class="ow">or</span> <span class="n">BacktrackingSolver</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="Problem.reset"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset the current problem definition</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariable(&quot;a&quot;, [1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; problem.reset()</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolution()</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">[:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Problem.setSolver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.setSolver">[docs]</a>    <span class="k">def</span> <span class="nf">setSolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Change the problem solver currently in use</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; solver = BacktrackingSolver()</span>
+<span class="sd">        &gt;&gt;&gt; problem = Problem(solver)</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolver() is solver</span>
+<span class="sd">        True</span>
+
+<span class="sd">        @param solver: New problem solver</span>
+<span class="sd">        @type  solver: instance of a C{Solver} subclass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span> <span class="o">=</span> <span class="n">solver</span></div>
+
+<div class="viewcode-block" id="Problem.getSolver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.getSolver">[docs]</a>    <span class="k">def</span> <span class="nf">getSolver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtain the problem solver currently in use</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; solver = BacktrackingSolver()</span>
+<span class="sd">        &gt;&gt;&gt; problem = Problem(solver)</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolver() is solver</span>
+<span class="sd">        True</span>
+
+<span class="sd">        @return: Solver currently in use</span>
+<span class="sd">        @rtype: instance of a L{Solver} subclass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span></div>
+
+<div class="viewcode-block" id="Problem.addVariable"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.addVariable">[docs]</a>    <span class="k">def</span> <span class="nf">addVariable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a variable to the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariable(&quot;a&quot;, [1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolution() in ({&#39;a&#39;: 1}, {&#39;a&#39;: 2})</span>
+<span class="sd">        True</span>
+
+<span class="sd">        @param variable: Object representing a problem variable</span>
+<span class="sd">        @type  variable: hashable object</span>
+<span class="sd">        @param domain: Set of items defining the possible values that</span>
+<span class="sd">                       the given variable may assume</span>
+<span class="sd">        @type  domain: list, tuple, or instance of C{Domain}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Tried to insert duplicated variable </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">):</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">Domain</span><span class="p">):</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Domains must be instances of subclasses of the Domain class&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Domain is empty&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">domain</span></div>
+
+<div class="viewcode-block" id="Problem.addVariables"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.addVariables">[docs]</a>    <span class="k">def</span> <span class="nf">addVariables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add one or more variables to the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; solutions = problem.getSolutions()</span>
+<span class="sd">        &gt;&gt;&gt; len(solutions)</span>
+<span class="sd">        9</span>
+<span class="sd">        &gt;&gt;&gt; {&#39;a&#39;: 3, &#39;b&#39;: 1} in solutions</span>
+<span class="sd">        True</span>
+
+<span class="sd">        @param variables: Any object containing a sequence of objects</span>
+<span class="sd">                          represeting problem variables</span>
+<span class="sd">        @type  variables: sequence of hashable objects</span>
+<span class="sd">        @param domain: Set of items defining the possible values that</span>
+<span class="sd">                       the given variables may assume</span>
+<span class="sd">        @type  domain: list, tuple, or instance of C{Domain}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addVariable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Problem.addConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.addConstraint">[docs]</a>    <span class="k">def</span> <span class="nf">addConstraint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a constraint to the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; problem.addConstraint(lambda a, b: b == a+1, [&quot;a&quot;, &quot;b&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; solutions = problem.getSolutions()</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+
+<span class="sd">        @param constraint: Constraint to be included in the problem</span>
+<span class="sd">        @type  constraint: instance a L{Constraint} subclass or a</span>
+<span class="sd">                           function to be wrapped by L{FunctionConstraint}</span>
+<span class="sd">        @param variables: Variables affected by the constraint (default to</span>
+<span class="sd">                          all variables). Depending on the constraint type</span>
+<span class="sd">                          the order may be important.</span>
+<span class="sd">        @type  variables: set or sequence of variables</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">constraint</span><span class="p">,</span> <span class="n">Constraint</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">constraint</span><span class="p">):</span>
+                <span class="n">constraint</span> <span class="o">=</span> <span class="n">FunctionConstraint</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Constraints must be instances of subclasses &quot;</span>\
+                      <span class="s2">&quot;of the Constraint class&quot;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Problem.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find and return a solution to the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolution() is None</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariables([&quot;a&quot;], [42])</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolution()</span>
+<span class="sd">        {&#39;a&#39;: 42}</span>
+
+<span class="sd">        @return: Solution for the problem</span>
+<span class="sd">        @rtype: dictionary mapping variables to values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getArgs</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">domains</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">getSolution</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Problem.getSolutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.getSolutions">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find and return all solutions to the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolutions() == []</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariables([&quot;a&quot;], [42])</span>
+<span class="sd">        &gt;&gt;&gt; problem.getSolutions()</span>
+<span class="sd">        [{&#39;a&#39;: 42}]</span>
+
+<span class="sd">        @return: All solutions for the problem</span>
+<span class="sd">        @rtype: list of dictionaries mapping variables to values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getArgs</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">domains</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">getSolutions</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Problem.getSolutionIter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.getSolutionIter">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutionIter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an iterator to the solutions of the problem</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">        &gt;&gt;&gt; list(problem.getSolutionIter()) == []</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; problem.addVariables([&quot;a&quot;], [42])</span>
+<span class="sd">        &gt;&gt;&gt; iter = problem.getSolutionIter()</span>
+<span class="sd">        &gt;&gt;&gt; next(iter)</span>
+<span class="sd">        {&#39;a&#39;: 42}</span>
+<span class="sd">        &gt;&gt;&gt; next(iter)</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">          File &quot;&lt;stdin&gt;&quot;, line 1, in ?</span>
+<span class="sd">        StopIteration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getArgs</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">domains</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">iter</span><span class="p">(())</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">getSolutionIter</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span>
+                                            <span class="n">vconstraints</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_getArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">domains</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">allvariables</span> <span class="o">=</span> <span class="n">domains</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="n">variables</span> <span class="o">=</span> <span class="n">allvariables</span>
+            <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span>
+        <span class="n">vconstraints</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">:</span>
+            <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">[:]:</span>
+            <span class="n">constraint</span><span class="o">.</span><span class="n">preProcess</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
+                                  <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">domains</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">domain</span><span class="o">.</span><span class="n">resetState</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="c1"># doArc8(getArcs(domains, constraints), domains, {})</span>
+        <span class="k">return</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span></div>
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Solvers</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+
+<span class="k">def</span> <span class="nf">getArcs</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a dictionary mapping pairs (arcs) of constrained variables</span>
+
+<span class="sd">    @attention: Currently unused.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">arcs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">variable1</span><span class="p">,</span> <span class="n">variable2</span> <span class="o">=</span> <span class="n">variables</span>
+            <span class="n">arcs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">variable1</span><span class="p">,</span> <span class="p">{})</span>\
+                <span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">variable2</span><span class="p">,</span> <span class="p">[])</span>\
+                <span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">arcs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">variable2</span><span class="p">,</span> <span class="p">{})</span>\
+                <span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">variable1</span><span class="p">,</span> <span class="p">[])</span>\
+                <span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">arcs</span>
+
+
+<span class="k">def</span> <span class="nf">doArc8</span><span class="p">(</span><span class="n">arcs</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform the ARC-8 arc checking algorithm and prune domains</span>
+
+<span class="sd">    @attention: Currently unused.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">check</span><span class="p">:</span>
+        <span class="n">variable</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">arcs</span> <span class="ow">or</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+        <span class="n">arcsvariable</span> <span class="o">=</span> <span class="n">arcs</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">othervariable</span> <span class="ow">in</span> <span class="n">arcsvariable</span><span class="p">:</span>
+            <span class="n">arcconstraints</span> <span class="o">=</span> <span class="n">arcsvariable</span><span class="p">[</span><span class="n">othervariable</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">othervariable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="n">otherdomain</span> <span class="o">=</span> <span class="p">[</span><span class="n">assignments</span><span class="p">[</span><span class="n">othervariable</span><span class="p">]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">otherdomain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">othervariable</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">domain</span><span class="p">:</span>
+                <span class="c1"># changed = False</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                    <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">if</span> <span class="n">otherdomain</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">othervalue</span> <span class="ow">in</span> <span class="n">otherdomain</span><span class="p">:</span>
+                            <span class="n">assignments</span><span class="p">[</span><span class="n">othervariable</span><span class="p">]</span> <span class="o">=</span> <span class="n">othervalue</span>
+                            <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">arcconstraints</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
+                                                  <span class="n">assignments</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+                                    <span class="k">break</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="c1"># All constraints passed. Value is safe.</span>
+                                <span class="k">break</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="c1"># All othervalues failed. Kill value.</span>
+                            <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                            <span class="c1"># changed = True</span>
+                        <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">othervariable</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="c1"># if changed:</span>
+                <span class="c1">#     check.update(dict.fromkeys(arcsvariable))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<div class="viewcode-block" id="Solver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Solver">[docs]</a><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for solvers</span>
+
+<span class="sd">    @sort: getSolution, getSolutions, getSolutionIter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Solver.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Solver.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return one solution for the given problem</span>
+
+<span class="sd">        @param domains: Dictionary mapping variables to their domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param constraints: List of pairs of (constraint, variables)</span>
+<span class="sd">        @type  constraints: list</span>
+<span class="sd">        @param vconstraints: Dictionary mapping variables to a list of</span>
+<span class="sd">                             constraints affecting the given variables.</span>
+<span class="sd">        @type  vconstraints: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is an abstract class&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Solver.getSolutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Solver.getSolutions">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all solutions for the given problem</span>
+
+<span class="sd">        @param domains: Dictionary mapping variables to domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param constraints: List of pairs of (constraint, variables)</span>
+<span class="sd">        @type  constraints: list</span>
+<span class="sd">        @param vconstraints: Dictionary mapping variables to a list of</span>
+<span class="sd">                             constraints affecting the given variables.</span>
+<span class="sd">        @type  vconstraints: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> provides only a single solution&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Solver.getSolutionIter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Solver.getSolutionIter">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutionIter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an iterator for the solutions of the given problem</span>
+
+<span class="sd">        @param domains: Dictionary mapping variables to domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param constraints: List of pairs of (constraint, variables)</span>
+<span class="sd">        @type  constraints: list</span>
+<span class="sd">        @param vconstraints: Dictionary mapping variables to a list of</span>
+<span class="sd">                             constraints affecting the given variables.</span>
+<span class="sd">        @type  vconstraints: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> doesn&#39;t provide iteration&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="BacktrackingSolver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver">[docs]</a><span class="k">class</span> <span class="nc">BacktrackingSolver</span><span class="p">(</span><span class="n">Solver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Problem solver with backtracking capabilities</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; result = [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 1), (&#39;b&#39;, 3)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 2), (&#39;b&#39;, 3)]]</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem(BacktrackingSolver())</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(lambda a, b: b &gt; a, [&quot;a&quot;, &quot;b&quot;])</span>
+
+<span class="sd">    &gt;&gt;&gt; solution = problem.getSolution()</span>
+<span class="sd">    &gt;&gt;&gt; sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; for solution in problem.getSolutionIter():</span>
+<span class="sd">    ...     sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; for solution in problem.getSolutions():</span>
+<span class="sd">    ...     sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param forwardcheck: If false forward checking will not be requested</span>
+<span class="sd">                             to constraints while looking for solutions</span>
+<span class="sd">                             (default is true)</span>
+<span class="sd">        @type  forwardcheck: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span>
+
+<div class="viewcode-block" id="BacktrackingSolver.getSolutionIter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolutionIter">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutionIter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="n">forwardcheck</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span>
+        <span class="n">assignments</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+            <span class="c1"># Mix the Degree and Minimum Remaing Values (MRV) heuristics</span>
+            <span class="n">lst</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">]</span>
+            <span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="c1"># Found unassigned variable</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">values</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">][:]</span>
+                    <span class="k">if</span> <span class="n">forwardcheck</span><span class="p">:</span>
+                        <span class="n">pushdomains</span> <span class="o">=</span> <span class="p">[</span><span class="n">domains</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">domains</span>
+                                       <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">variable</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">pushdomains</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># No unassigned variables. We&#39;ve got a solution. Go back</span>
+                <span class="c1"># to last variable, if there&#39;s one.</span>
+                <span class="k">yield</span> <span class="n">assignments</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">queue</span><span class="p">:</span>
+                    <span class="k">return</span>
+                <span class="n">variable</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">pushdomains</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">popState</span><span class="p">()</span>
+
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="c1"># We have a variable. Do we have any values left?</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
+                    <span class="c1"># No. Go back to last variable, if there&#39;s one.</span>
+                    <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+                        <span class="n">variable</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">pushdomains</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">popState</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">values</span><span class="p">:</span>
+                            <span class="k">break</span>
+                        <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">return</span>
+
+                <span class="c1"># Got a value. Check it.</span>
+                <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">pushState</span><span class="p">()</span>
+
+                <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span>
+                                      <span class="n">pushdomains</span><span class="p">):</span>
+                        <span class="c1"># Value is not good.</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+                <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">popState</span><span class="p">()</span>
+
+            <span class="c1"># Push state before looking for next variable.</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">variable</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">pushdomains</span><span class="p">))</span>
+
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t happen&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BacktrackingSolver.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSolutionIter</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="BacktrackingSolver.getSolutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolutions">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getSolutionIter</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="RecursiveBacktrackingSolver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver">[docs]</a><span class="k">class</span> <span class="nc">RecursiveBacktrackingSolver</span><span class="p">(</span><span class="n">Solver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursive problem solver with backtracking capabilities</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; result = [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 1), (&#39;b&#39;, 3)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 2), (&#39;b&#39;, 3)]]</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem(RecursiveBacktrackingSolver())</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(lambda a, b: b &gt; a, [&quot;a&quot;, &quot;b&quot;])</span>
+
+<span class="sd">    &gt;&gt;&gt; solution = problem.getSolution()</span>
+<span class="sd">    &gt;&gt;&gt; sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; for solution in problem.getSolutions():</span>
+<span class="sd">    ...     sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; problem.getSolutionIter()</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">       ...</span>
+<span class="sd">    NotImplementedError: RecursiveBacktrackingSolver doesn&#39;t provide iteration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param forwardcheck: If false forward checking will not be requested</span>
+<span class="sd">                             to constraints while looking for solutions</span>
+<span class="sd">                             (default is true)</span>
+<span class="sd">        @type  forwardcheck: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span>
+
+<div class="viewcode-block" id="RecursiveBacktrackingSolver.recursiveBacktracking"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.recursiveBacktracking">[docs]</a>    <span class="k">def</span> <span class="nf">recursiveBacktracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
+                              <span class="n">assignments</span><span class="p">,</span> <span class="n">single</span><span class="p">):</span>
+
+        <span class="c1"># Mix the Degree and Minimum Remaing Values (MRV) heuristics</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">]</span>
+        <span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="c1"># Found an unassigned variable. Let&#39;s go.</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No unassigned variables. We&#39;ve got a solution.</span>
+            <span class="n">solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assignments</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">return</span> <span class="n">solutions</span>
+
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">forwardcheck</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span>
+        <span class="k">if</span> <span class="n">forwardcheck</span><span class="p">:</span>
+            <span class="n">pushdomains</span> <span class="o">=</span> <span class="p">[</span><span class="n">domains</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">domains</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pushdomains</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+            <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                    <span class="n">domain</span><span class="o">.</span><span class="n">pushState</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span>
+                                  <span class="n">pushdomains</span><span class="p">):</span>
+                    <span class="c1"># Value is not good.</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Value is good. Recurse and get next variable.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recursiveBacktracking</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
+                                           <span class="n">assignments</span><span class="p">,</span> <span class="n">single</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">solutions</span> <span class="ow">and</span> <span class="n">single</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">solutions</span>
+            <span class="k">if</span> <span class="n">pushdomains</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">pushdomains</span><span class="p">:</span>
+                    <span class="n">domain</span><span class="o">.</span><span class="n">popState</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">solutions</span></div>
+
+<div class="viewcode-block" id="RecursiveBacktrackingSolver.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="n">solutions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recursiveBacktracking</span><span class="p">([],</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
+                                               <span class="p">{},</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solutions</span> <span class="ow">and</span> <span class="n">solutions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="RecursiveBacktrackingSolver.getSolutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.getSolutions">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">recursiveBacktracking</span><span class="p">([],</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
+                                          <span class="p">{},</span> <span class="kc">False</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MinConflictsSolver"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver">[docs]</a><span class="k">class</span> <span class="nc">MinConflictsSolver</span><span class="p">(</span><span class="n">Solver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Problem solver based on the minimum conflicts theory</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; result = [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 1), (&#39;b&#39;, 3)],</span>
+<span class="sd">    ...           [(&#39;a&#39;, 2), (&#39;b&#39;, 3)]]</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem(MinConflictsSolver())</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(lambda a, b: b &gt; a, [&quot;a&quot;, &quot;b&quot;])</span>
+
+<span class="sd">    &gt;&gt;&gt; solution = problem.getSolution()</span>
+<span class="sd">    &gt;&gt;&gt; sorted(solution.items()) in result</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; problem.getSolutions()</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">       ...</span>
+<span class="sd">    NotImplementedError: MinConflictsSolver provides only a single solution</span>
+
+<span class="sd">    &gt;&gt;&gt; problem.getSolutionIter()</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">       ...</span>
+<span class="sd">    NotImplementedError: MinConflictsSolver doesn&#39;t provide iteration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param steps: Maximum number of steps to perform before giving up</span>
+<span class="sd">                      when looking for a solution (default is 1000)</span>
+<span class="sd">        @type  steps: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_steps</span> <span class="o">=</span> <span class="n">steps</span>
+
+<div class="viewcode-block" id="MinConflictsSolver.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="n">assignments</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Initial assignment</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">:</span>
+            <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_steps</span><span class="p">):</span>
+            <span class="n">conflicted</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">lst</span> <span class="o">=</span> <span class="n">domains</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+                <span class="c1"># Check if variable is not in conflict</span>
+                <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">):</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="c1"># Variable has conflicts. Find values with less conflicts.</span>
+                <span class="n">mincount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span>
+                <span class="n">minvalues</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+                    <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">for</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">):</span>
+                            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">mincount</span><span class="p">:</span>
+                        <span class="n">minvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">mincount</span><span class="p">:</span>
+                        <span class="n">mincount</span> <span class="o">=</span> <span class="n">count</span>
+                        <span class="k">del</span> <span class="n">minvalues</span><span class="p">[:]</span>
+                        <span class="n">minvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="c1"># Pick a random one from these values.</span>
+                <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">minvalues</span><span class="p">)</span>
+                <span class="n">conflicted</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">conflicted</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">assignments</span>
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Variables</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="Variable"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Variable">[docs]</a><span class="k">class</span> <span class="nc">Variable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper class for variable definition</span>
+
+<span class="sd">    Using this class is optional, since any hashable object,</span>
+<span class="sd">    including plain strings and integers, may be used as variables.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param name: Generic variable name for problem-specific purposes</span>
+<span class="sd">        @type  name: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+<span class="n">Unassigned</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s2">&quot;Unassigned&quot;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Domains</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="Domain"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain">[docs]</a><span class="k">class</span> <span class="nc">Domain</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class used to control possible values for variables</span>
+
+<span class="sd">    When list or tuples are used as domains, they are automatically</span>
+<span class="sd">    converted to an instance of that class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param set: Set of values that the given variables may assume</span>
+<span class="sd">        @type  set: set of objects comparable by equality</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Domain.resetState"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.resetState">[docs]</a>    <span class="k">def</span> <span class="nf">resetState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset to the original domain state, including all possible values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span><span class="p">[:]</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[:]</span></div>
+
+<div class="viewcode-block" id="Domain.pushState"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.pushState">[docs]</a>    <span class="k">def</span> <span class="nf">pushState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save current domain state</span>
+
+<span class="sd">        Variables hidden after that call are restored when that state</span>
+<span class="sd">        is popped from the stack.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Domain.popState"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.popState">[docs]</a>    <span class="k">def</span> <span class="nf">popState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore domain state from the top of the stack</span>
+
+<span class="sd">        Variables hidden since the last popped state are then available</span>
+<span class="sd">        again.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span><span class="p">[</span><span class="o">-</span><span class="n">diff</span><span class="p">:])</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span><span class="p">[</span><span class="o">-</span><span class="n">diff</span><span class="p">:]</span></div>
+
+<div class="viewcode-block" id="Domain.hideValue"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.hideValue">[docs]</a>    <span class="k">def</span> <span class="nf">hideValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hide the given value from the domain</span>
+
+<span class="sd">        After that call the given value won&#39;t be seen as a possible value</span>
+<span class="sd">        on that domain anymore. The hidden value will be restored when the</span>
+<span class="sd">        previous saved state is popped.</span>
+
+<span class="sd">        @param value: Object currently available in the domain</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Constraints</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="Constraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Constraint">[docs]</a><span class="k">class</span> <span class="nc">Constraint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for constraints</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform the constraint checking</span>
+
+<span class="sd">        If the forwardcheck parameter is not false, besides telling if</span>
+<span class="sd">        the constraint is currently broken or not, the constraint</span>
+<span class="sd">        implementation may choose to hide values from the domains of</span>
+<span class="sd">        unassigned variables to prevent them from being used, and thus</span>
+<span class="sd">        prune the search space.</span>
+
+<span class="sd">        @param variables: Variables affected by that constraint, in the</span>
+<span class="sd">                          same order provided by the user</span>
+<span class="sd">        @type  variables: sequence</span>
+<span class="sd">        @param domains: Dictionary mapping variables to their domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param assignments: Dictionary mapping assigned variables to their</span>
+<span class="sd">                            current assumed value</span>
+<span class="sd">        @type  assignments: dict</span>
+<span class="sd">        @param forwardcheck: Boolean value stating whether forward checking</span>
+<span class="sd">                             should be performed or not</span>
+<span class="sd">        @return: Boolean value stating if this constraint is currently</span>
+<span class="sd">                 broken or not</span>
+<span class="sd">        @rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="Constraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Constraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preprocess variable domains</span>
+
+<span class="sd">        This method is called before starting to look for solutions,</span>
+<span class="sd">        and is used to prune domains with specific constraint logic</span>
+<span class="sd">        when possible. For instance, any constraints with a single</span>
+<span class="sd">        variable may be applied on all possible values and removed,</span>
+<span class="sd">        since they may act on individual values even without further</span>
+<span class="sd">        knowledge about other assignments.</span>
+
+<span class="sd">        @param variables: Variables affected by that constraint, in the</span>
+<span class="sd">                          same order provided by the user</span>
+<span class="sd">        @type  variables: sequence</span>
+<span class="sd">        @param domains: Dictionary mapping variables to their domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param constraints: List of pairs of (constraint, variables)</span>
+<span class="sd">        @type  constraints: list</span>
+<span class="sd">        @param vconstraints: Dictionary mapping variables to a list of</span>
+<span class="sd">                             constraints affecting the given variables.</span>
+<span class="sd">        @type  vconstraints: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">variable</span> <span class="o">=</span> <span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="p">{</span><span class="n">variable</span><span class="p">:</span> <span class="n">value</span><span class="p">}):</span>
+                    <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">constraints</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span>
+            <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Constraint.forwardCheck"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Constraint.forwardCheck">[docs]</a>    <span class="k">def</span> <span class="nf">forwardCheck</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span>
+                     <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper method for generic forward checking</span>
+
+<span class="sd">        Currently, this method acts only when there&#39;s a single</span>
+<span class="sd">        unassigned variable.</span>
+
+<span class="sd">        @param variables: Variables affected by that constraint, in the</span>
+<span class="sd">                          same order provided by the user</span>
+<span class="sd">        @type  variables: sequence</span>
+<span class="sd">        @param domains: Dictionary mapping variables to their domains</span>
+<span class="sd">        @type  domains: dict</span>
+<span class="sd">        @param assignments: Dictionary mapping assigned variables to their</span>
+<span class="sd">                            current assumed value</span>
+<span class="sd">        @type  assignments: dict</span>
+<span class="sd">        @return: Boolean value stating if this constraint is currently</span>
+<span class="sd">                 broken or not</span>
+<span class="sd">        @rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unassignedvariable</span> <span class="o">=</span> <span class="n">_unassigned</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">unassignedvariable</span> <span class="ow">is</span> <span class="n">_unassigned</span><span class="p">:</span>
+                    <span class="n">unassignedvariable</span> <span class="o">=</span> <span class="n">variable</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">unassignedvariable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unassigned</span><span class="p">:</span>
+                <span class="c1"># Remove from the unassigned variable domain&#39;s all</span>
+                <span class="c1"># values which break our variable&#39;s constraints.</span>
+                <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">unassignedvariable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">domain</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                        <span class="n">assignments</span><span class="p">[</span><span class="n">unassignedvariable</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">):</span>
+                            <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">assignments</span><span class="p">[</span><span class="n">unassignedvariable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="FunctionConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.FunctionConstraint">[docs]</a><span class="k">class</span> <span class="nc">FunctionConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint which wraps a function defining the constraint logic</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; def func(a, b):</span>
+<span class="sd">    ...     return b &gt; a</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(func, [&quot;a&quot;, &quot;b&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; problem.getSolution()</span>
+<span class="sd">    {&#39;a&#39;: 1, &#39;b&#39;: 2}</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; def func(a, b):</span>
+<span class="sd">    ...     return b &gt; a</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(FunctionConstraint(func), [&quot;a&quot;, &quot;b&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; problem.getSolution()</span>
+<span class="sd">    {&#39;a&#39;: 1, &#39;b&#39;: 2}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param func: Function wrapped and queried for constraint logic</span>
+<span class="sd">        @type  func: callable object</span>
+<span class="sd">        @param assigned: Whether the function may receive unassigned</span>
+<span class="sd">                         variables or not</span>
+<span class="sd">        @type  assigned: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_func</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="o">=</span> <span class="n">assigned</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
+        <span class="n">parms</span> <span class="o">=</span> <span class="p">[</span><span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="n">parms</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">_unassigned</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">parms</span><span class="p">))</span> <span class="ow">and</span>
+                    <span class="p">(</span><span class="ow">not</span> <span class="n">forwardcheck</span> <span class="ow">or</span> <span class="n">missing</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">forwardCheck</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">parms</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AllDifferentConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.AllDifferentConstraint">[docs]</a><span class="k">class</span> <span class="nc">AllDifferentConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of all given variables are different</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(AllDifferentConstraint())</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unassigned</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+                <span class="n">seen</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">forwardcheck</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="AllEqualConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.AllEqualConstraint">[docs]</a><span class="k">class</span> <span class="nc">AllEqualConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of all given variables are equal</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(AllEqualConstraint())</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
+        <span class="n">singlevalue</span> <span class="o">=</span> <span class="n">_unassigned</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">singlevalue</span> <span class="ow">is</span> <span class="n">_unassigned</span><span class="p">:</span>
+                <span class="n">singlevalue</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unassigned</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">singlevalue</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">forwardcheck</span> <span class="ow">and</span> <span class="n">singlevalue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unassigned</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">singlevalue</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="kc">False</span>
+                    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                        <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">singlevalue</span><span class="p">:</span>
+                            <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="MaxSumConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint">[docs]</a><span class="k">class</span> <span class="nc">MaxSumConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of given variables sum up to</span>
+<span class="sd">    a given amount</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(MaxSumConstraint(3))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param maxsum: Value to be considered as the maximum sum</span>
+<span class="sd">        @type  maxsum: number</span>
+<span class="sd">        @param multipliers: If given, variable values will be multiplied by</span>
+<span class="sd">                            the given factors before being summed to be checked</span>
+<span class="sd">        @type  multipliers: sequence of numbers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_maxsum</span> <span class="o">=</span> <span class="n">maxsum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+
+<div class="viewcode-block" id="MaxSumConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="n">Constraint</span><span class="o">.</span><span class="n">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
+                              <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span>
+        <span class="n">multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span>
+        <span class="n">maxsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsum</span>
+        <span class="k">if</span> <span class="n">multipliers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span>
+        <span class="n">maxsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsum</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">multipliers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">*</span> <span class="n">multiplier</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+                <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+                <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="ExactSumConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint">[docs]</a><span class="k">class</span> <span class="nc">ExactSumConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of given variables sum exactly</span>
+<span class="sd">    to a given amount</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(ExactSumConstraint(3))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exactsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param exactsum: Value to be considered as the exact sum</span>
+<span class="sd">        @type  exactsum: number</span>
+<span class="sd">        @param multipliers: If given, variable values will be multiplied by</span>
+<span class="sd">                            the given factors before being summed to be checked</span>
+<span class="sd">        @type  multipliers: sequence of numbers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exactsum</span> <span class="o">=</span> <span class="n">exactsum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+
+<div class="viewcode-block" id="ExactSumConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="n">Constraint</span><span class="o">.</span><span class="n">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
+                              <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span>
+        <span class="n">multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span>
+        <span class="n">exactsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exactsum</span>
+        <span class="k">if</span> <span class="n">multipliers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                        <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span>
+        <span class="n">exactsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exactsum</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">multipliers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">*</span> <span class="n">multiplier</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">missing</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+                <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span> <span class="ow">and</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">missing</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+                <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span> <span class="ow">and</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">sum</span> <span class="o">&lt;=</span> <span class="n">exactsum</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">sum</span> <span class="o">==</span> <span class="n">exactsum</span></div>
+
+
+<div class="viewcode-block" id="MinSumConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinSumConstraint">[docs]</a><span class="k">class</span> <span class="nc">MinSumConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of given variables sum at least</span>
+<span class="sd">    to a given amount</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(MinSumConstraint(3))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param minsum: Value to be considered as the minimum sum</span>
+<span class="sd">        @type  minsum: number</span>
+<span class="sd">        @param multipliers: If given, variable values will be multiplied by</span>
+<span class="sd">                            the given factors before being summed to be checked</span>
+<span class="sd">        @type  multipliers: sequence of numbers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minsum</span> <span class="o">=</span> <span class="n">minsum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span>
+            <span class="n">minsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minsum</span>
+            <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">multipliers</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">*</span> <span class="n">multiplier</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+                <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">sum</span> <span class="o">&gt;=</span> <span class="n">minsum</span></div>
+
+
+<div class="viewcode-block" id="InSetConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.InSetConstraint">[docs]</a><span class="k">class</span> <span class="nc">InSetConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of given variables are present in</span>
+<span class="sd">    the given set</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(InSetConstraint([1]))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param set: Set of allowed values</span>
+<span class="sd">        @type  set: set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># preProcess() will remove it.</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t happen&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="InSetConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.InSetConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">:</span>
+                    <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span>
+        <span class="n">constraints</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="NotInSetConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.NotInSetConstraint">[docs]</a><span class="k">class</span> <span class="nc">NotInSetConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that values of given variables are not present in</span>
+<span class="sd">    the given set</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(NotInSetConstraint([1]))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param set: Set of disallowed values</span>
+<span class="sd">        @type  set: set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># preProcess() will remove it.</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t happen&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NotInSetConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
+        <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">:</span>
+                    <span class="n">domain</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span>
+        <span class="n">constraints</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="SomeInSetConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.SomeInSetConstraint">[docs]</a><span class="k">class</span> <span class="nc">SomeInSetConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that at least some of the values of given</span>
+<span class="sd">    variables must be present in a given set</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(SomeInSetConstraint([1]))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param set: Set of values to be checked</span>
+<span class="sd">        @type  set: set</span>
+<span class="sd">        @param n: Minimum number of assigned values that should be present</span>
+<span class="sd">                  in set (default is 1)</span>
+<span class="sd">        @type  n: int</span>
+<span class="sd">        @param exact: Whether the number of assigned values which are</span>
+<span class="sd">                      present in set must be exactly C{n}</span>
+<span class="sd">        @type  exact: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="ow">in</span> <span class="nb">set</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">missing</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">found</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">&lt;=</span> <span class="n">missing</span> <span class="o">+</span> <span class="n">found</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">&gt;</span> <span class="n">missing</span> <span class="o">+</span> <span class="n">found</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">-</span> <span class="n">found</span> <span class="o">==</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="c1"># All unassigned variables must be assigned to</span>
+                <span class="c1"># values in the set.</span>
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">found</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">found</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="SomeNotInSetConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.SomeNotInSetConstraint">[docs]</a><span class="k">class</span> <span class="nc">SomeNotInSetConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constraint enforcing that at least some of the values of given</span>
+<span class="sd">    variables must not be present in a given set</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; problem = Problem()</span>
+<span class="sd">    &gt;&gt;&gt; problem.addVariables([&quot;a&quot;, &quot;b&quot;], [1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; problem.addConstraint(SomeNotInSetConstraint([1]))</span>
+<span class="sd">    &gt;&gt;&gt; sorted(sorted(x.items()) for x in problem.getSolutions())</span>
+<span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param set: Set of values to be checked</span>
+<span class="sd">        @type  set: set</span>
+<span class="sd">        @param n: Minimum number of assigned values that should not be present</span>
+<span class="sd">                  in set (default is 1)</span>
+<span class="sd">        @type  n: int</span>
+<span class="sd">        @param exact: Whether the number of assigned values which are</span>
+<span class="sd">                      not present in set must be exactly C{n}</span>
+<span class="sd">        @type  exact: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">missing</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">found</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">&lt;=</span> <span class="n">missing</span> <span class="o">+</span> <span class="n">found</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">&gt;</span> <span class="n">missing</span> <span class="o">+</span> <span class="n">found</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">forwardcheck</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">-</span> <span class="n">found</span> <span class="o">==</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="c1"># All unassigned variables must be assigned to</span>
+                <span class="c1"># values not in the set.</span>
+                <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">[:]:</span>
+                            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">:</span>
+                                <span class="n">domain</span><span class="o">.</span><span class="n">hideValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">found</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">found</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

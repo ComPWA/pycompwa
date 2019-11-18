@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modules" href="python-modules.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-pypi">Installation from pypi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-source">Installation from source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-the-source">Getting the source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-installing">Building &amp; Installing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-pycompwa-installation">Testing the pycompwa installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-pycompwa">Updating pycompwa</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/installation.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>There are two possibilities to install pycompwa:</p>
+<ul class="simple">
+<li><p>install from pypi (releases only)</p></li>
+<li><p>build from source</p></li>
+</ul>
+<p>The detailed steps for these two installation possibilities are explained below.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In either case, it is highly recommended to setup and use a python virtual
+environment for pycompwa. Use the tool of your liking, popular choices are
+<a class="reference external" href="https://github.com/pypa/pipenv">pipenv</a> and
+<a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">venv</a>.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>pycompwa is designed to run on most modern unix systems (including MacOS).
+When installing pycompwa from pypi, no precompiled binaries are used, but
+instead the source is downloaded and build. Therefore the following packages
+are mandatory for both installation variants:</p>
+<ul>
+<li><p>scikit-build (python package)</p>
+<p>Install via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-build</span></code></p>
+</li>
+<li><p>requirements of <a class="reference external" href="https://github.com/ComPWA/ComPWA#prerequisites">ComPWA</a>:</p>
+<ul class="simple">
+<li><p>cmake</p></li>
+<li><p>gcc or clang</p></li>
+<li><p>Boost</p></li>
+<li><p>optional libraries: ROOT, Geneva, …</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since pycompwa uses and builds ComPWA in the background, all requirements of
+ComPWA are inherited.</p>
+</div>
+</div>
+<div class="section" id="installation-from-pypi">
+<h2>Installation from pypi<a class="headerlink" href="#installation-from-pypi" title="Permalink to this headline">¶</a></h2>
+<p>If you plan to only work with a release version, this variant is the easiest and most convenient.
+Make sure your virtual environment is activated, then simply run</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install pycompwa
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-from-source">
+<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getting-the-source">
+<h3>Getting the source<a class="headerlink" href="#getting-the-source" title="Permalink to this headline">¶</a></h3>
+<p>To get the most recent version of pycompwa, clone its GitHub repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:ComPWA/pycompwa.git &lt;PYCOMPWA_SOURCE_PATH&gt;
+</pre></div>
+</div>
+<p>this will clone the repository to the subfolder <code class="docutils literal notranslate"><span class="pre">&lt;PYCOMPWA_SOURCE_PATH&gt;</span></code>
+within the current directory. pycompwa includes several, submodules</p>
+</div>
+<div class="section" id="building-installing">
+<h3>Building &amp; Installing<a class="headerlink" href="#building-installing" title="Permalink to this headline">¶</a></h3>
+<p>First navigate into the source directory of pycompwa</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;PYCOMPWA_SOURCE_PATH&gt;
+</pre></div>
+</div>
+<p>Make sure the virtual environment is setup and activated. Then the building and
+installation of pycompwa is also simply:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python setup.py install -j4
+</pre></div>
+</div>
+<p>This will build ComPWA and all submodules via cmake and install all necessary
+files into the python environment. Alternatively you can run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code>.
+This does not build multithreaded though…</p>
+<p>That’s it. On how to use ComPWA please refer to the
+<a class="reference internal" href="examples.html#example-quickstart"><span class="std std-ref">Quickstart Example</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Of course pycompwa can also be used with <a class="reference external" href="https://jupyter.org/">jupyter</a>.
+You can install jupyter into your virtual environment via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>
+Then just navigate to the jupyter examples subdirectory <code class="docutils literal notranslate"><span class="pre">examples/jupyter</span></code>
+and run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>.</p>
+</div>
+</div>
+<div class="section" id="testing-the-pycompwa-installation">
+<h3>Testing the pycompwa installation<a class="headerlink" href="#testing-the-pycompwa-installation" title="Permalink to this headline">¶</a></h3>
+<p>You can run the test suite in the pycompwa source directory via</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> tests
+python -m pytest
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="updating-pycompwa">
+<h2>Updating pycompwa<a class="headerlink" href="#updating-pycompwa" title="Permalink to this headline">¶</a></h2>
+<p>You can update to newer versions of pycompwa via</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install pycompwa --upgrade
+</pre></div>
+</div>
+<p>We would be happy to recieve some feedback or contributions ;)!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python-modules.html" class="btn btn-neutral float-right" title="Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.state.conservationrules &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../../../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.state.conservationrules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycompwa.expertsystem.state.conservationrules</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">arange</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">.particle</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">StateQuantumNumberNames</span><span class="p">,</span>
+    <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
+    <span class="n">ParticlePropertyNames</span><span class="p">,</span>
+    <span class="n">ParticleDecayPropertyNames</span><span class="p">,</span>
+    <span class="n">QNNameClassMapping</span><span class="p">,</span>
+    <span class="n">QuantumNumberClasses</span><span class="p">,</span>
+    <span class="n">is_boson</span><span class="p">,</span>
+    <span class="n">Spin</span><span class="p">)</span>
+
+
+<span class="sd">&#39;&#39;&#39; Functors for quantum number condition checks &#39;&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="AbstractConditionFunctor"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor">[docs]</a><span class="k">class</span> <span class="nc">AbstractConditionFunctor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractConditionFunctor.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="DefinedForAllEdges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges">[docs]</a><span class="k">class</span> <span class="nc">DefinedForAllEdges</span><span class="p">(</span><span class="n">AbstractConditionFunctor</span><span class="p">):</span>
+<div class="viewcode-block" id="DefinedForAllEdges.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_names</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="p">(</span><span class="n">in_edges</span> <span class="o">+</span> <span class="n">out_edges</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">qn_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="DefinedForAllOutgoingEdges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges">[docs]</a><span class="k">class</span> <span class="nc">DefinedForAllOutgoingEdges</span><span class="p">(</span><span class="n">AbstractConditionFunctor</span><span class="p">):</span>
+<div class="viewcode-block" id="DefinedForAllOutgoingEdges.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_names</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">out_edges</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">qn_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="DefinedForInteractionNode"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode">[docs]</a><span class="k">class</span> <span class="nc">DefinedForInteractionNode</span><span class="p">(</span><span class="n">AbstractConditionFunctor</span><span class="p">):</span>
+<div class="viewcode-block" id="DefinedForInteractionNode.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">qn_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">int_node</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeperate"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeperate">[docs]</a><span class="k">class</span> <span class="nc">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span><span class="n">AbstractConditionFunctor</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Implements logic for...</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_qn_names</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other_qn_names</span> <span class="o">=</span> <span class="n">other_qn_names</span>
+
+<div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeperate.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeperate.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_edge_set</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">check_edge_set</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeperate.check_edge_set"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeperate.check_edge_set">[docs]</a>    <span class="k">def</span> <span class="nf">check_edge_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="n">found_for_all</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">other_qn_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
+                                    <span class="n">ParticlePropertyNames</span><span class="p">)):</span>
+                <span class="n">found_for_all</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">for</span> <span class="n">edge_props</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_in_dict</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">edge_props</span><span class="p">):</span>
+                        <span class="n">found_for_all</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">found_for_all</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_in_dict</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+                    <span class="n">found_for_all</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">break</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found_for_all</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">qn_name</span> <span class="ow">in</span> <span class="n">qn_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
+                                        <span class="n">ParticlePropertyNames</span><span class="p">)):</span>
+                    <span class="k">for</span> <span class="n">edge_props</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_in_dict</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">edge_props</span><span class="p">):</span>
+                            <span class="k">return</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_in_dict</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeperate.find_in_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeperate.find_in_dict">[docs]</a>    <span class="k">def</span> <span class="nf">find_in_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">props</span><span class="p">):</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">found</span></div></div>
+
+
+<div class="viewcode-block" id="is_particle_antiparticle_pair"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair">[docs]</a><span class="k">def</span> <span class="nf">is_particle_antiparticle_pair</span><span class="p">(</span><span class="n">pid1</span><span class="p">,</span> <span class="n">pid2</span><span class="p">):</span>
+    <span class="c1"># we just check if the pid is opposite in sign</span>
+    <span class="c1"># this is a requirement of the pid numbers of course</span>
+    <span class="k">return</span> <span class="n">pid1</span> <span class="o">==</span> <span class="o">-</span><span class="n">pid2</span></div>
+
+
+<div class="viewcode-block" id="AbstractRule"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule">[docs]</a><span class="k">class</span> <span class="nc">AbstractRule</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rule_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rule_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required_qn_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qn_conditions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">specify_required_qns</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rule_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rule_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AbstractRule.get_qn_conditions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_qn_conditions">[docs]</a>    <span class="k">def</span> <span class="nf">get_qn_conditions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">qn_conditions</span></div>
+
+<div class="viewcode-block" id="AbstractRule.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.specify_required_qns">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractRule.add_required_qn"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.add_required_qn">[docs]</a>    <span class="k">def</span> <span class="nf">add_required_qn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">qn_condition_functions</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">StateQuantumNumberNames</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">InteractionQuantumNumberNames</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">ParticlePropertyNames</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">qn_name</span><span class="p">,</span> <span class="n">ParticleDecayPropertyNames</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;qn_name has to be of type &#39;</span>
+                            <span class="o">+</span> <span class="s1">&#39;ParticleQuantumNumberNames or &#39;</span>
+                            <span class="o">+</span> <span class="s1">&#39;InteractionQuantumNumberNames or &#39;</span>
+                            <span class="o">+</span> <span class="s1">&#39;ParticlePropertyNames&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required_qn_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qn_name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cond</span> <span class="ow">in</span> <span class="n">qn_condition_functions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qn_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(([</span><span class="n">qn_name</span><span class="p">],</span> <span class="n">cond</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AbstractRule.get_required_qn_names"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_required_qn_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_required_qn_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_qn_names</span></div>
+
+<div class="viewcode-block" id="AbstractRule.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.check">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractRule.check_requirements"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.check_requirements">[docs]</a>    <span class="k">def</span> <span class="nf">check_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">qn_name_list</span><span class="p">,</span> <span class="n">cond_functor</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_qn_conditions</span><span class="p">():</span>
+            <span class="c1"># part_props = [x for x in qn_name_list if isinstance(</span>
+            <span class="c1">#    x, ParticlePropertyNames)]</span>
+            <span class="c1"># if part_props:</span>
+            <span class="c1">#    return False</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cond_functor</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">qn_name_list</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span>
+                                      <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;condition &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cond_functor</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span> <span class="o">+</span>
+                              <span class="s2">&quot; for quantum numbers &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">qn_name_list</span><span class="p">)</span> <span class="o">+</span>
+                              <span class="s2">&quot; for rule &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span> <span class="o">+</span>
+                              <span class="s2">&quot; not satisfied&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="AdditiveQuantumNumberConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation">[docs]</a><span class="k">class</span> <span class="nc">AdditiveQuantumNumberConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    checks for the conservation of an additive quantum number such as electric</span>
+<span class="sd">    charge, baryon number, lepton number</span>
+
+<span class="sd">    :math:`\\sum q_{in} = \\sum q_{out}`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">qn_name</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AdditiveQuantumNumberConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="AdditiveQuantumNumberConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="n">in_qn_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">part</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span><span class="p">]</span>
+                         <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="ow">in</span> <span class="n">part</span><span class="p">])</span>
+        <span class="n">out_qn_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">part</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span><span class="p">]</span>
+                          <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span> <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="ow">in</span> <span class="n">part</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">in_qn_sum</span> <span class="o">==</span> <span class="n">out_qn_sum</span></div></div>
+
+
+<div class="viewcode-block" id="ParityConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservation">[docs]</a><span class="k">class</span> <span class="nc">ParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="p">[</span>
+            <span class="n">DefinedForInteractionNode</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="ParityConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; implements :math:`P_{in} = P_{out} \\cdot (-1)^L` &quot;&quot;&quot;</span>
+        <span class="c1"># is this valid for two outgoing particles only?</span>
+        <span class="n">parity_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span>
+        <span class="n">parity_in</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">parity_label</span><span class="p">],</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">parity_out</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">parity_label</span><span class="p">],</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">ang_mom</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">parity_in</span> <span class="o">==</span> <span class="p">(</span><span class="n">parity_out</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">ang_mom</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div></div>
+
+
+<div class="viewcode-block" id="ParityConservationHelicity"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity">[docs]</a><span class="k">class</span> <span class="nc">ParityConservationHelicity</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservationHelicity&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParityConservationHelicity.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">ParityPrefactor</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedForInteractionNode</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="ParityConservationHelicity.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the check</span>
+
+<span class="sd">        :math:`A_{-\\lambda_1-\\lambda_2} = P_1 P_2 P_3 (-1)^{S_2+S_3-S_1} A_{\\lambda_1\\lambda_2}`</span>
+
+<span class="sd">        Notice that only the special case :math:`\\lambda_1=\\lambda_2=0`</span>
+<span class="sd">        may return False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ingoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
+            <span class="n">parity_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span>
+
+            <span class="n">spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+                     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span> <span class="o">+</span> <span class="n">outgoing_part_qns</span><span class="p">]</span>
+            <span class="n">parity_product</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">parity_label</span><span class="p">],</span>
+                                    <span class="n">ingoing_part_qns</span> <span class="o">+</span> <span class="n">outgoing_part_qns</span><span class="p">,</span>
+                                    <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">prefactor</span> <span class="o">=</span> <span class="p">(</span><span class="n">parity_product</span> <span class="o">*</span>
+                         <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">spins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">spins</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">spins</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+            <span class="n">daughter_hel</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span>
+                            <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">daughter_hel</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">prefactor</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+
+            <span class="n">pf_label</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">ParityPrefactor</span>
+            <span class="k">return</span> <span class="n">prefactor</span> <span class="o">==</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">pf_label</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="CParityConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.CParityConservation">[docs]</a><span class="k">class</span> <span class="nc">CParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;CParityConservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">)</span>
+        <span class="c1"># the spin quantum number is required to check if the daughter</span>
+        <span class="c1"># particles are fermions or bosons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">])])</span></div>
+
+<div class="viewcode-block" id="CParityConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.CParityConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; implements :math:`C_{in} = C_{out}` &quot;&quot;&quot;</span>
+        <span class="n">cparity_in</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cparity_multiparticle</span><span class="p">(</span>
+            <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cparity_in</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">cparity_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cparity_multiparticle</span><span class="p">(</span>
+            <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cparity_out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="n">cparity_in</span> <span class="o">==</span> <span class="n">cparity_out</span></div>
+
+<div class="viewcode-block" id="CParityConservation.get_cparity_multiparticle"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.CParityConservation.get_cparity_multiparticle">[docs]</a>    <span class="k">def</span> <span class="nf">get_cparity_multiparticle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="n">cparity_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span>
+        <span class="n">pid_label</span> <span class="o">=</span> <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span>
+        <span class="n">ang_mom_label</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span>
+        <span class="n">int_spin_label</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span>
+
+        <span class="n">no_cpar_part</span> <span class="o">=</span> <span class="p">[</span><span class="n">part_qns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">part_qns</span>
+                        <span class="k">if</span> <span class="n">cparity_label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="n">cparity_label</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="c1"># if all states have c parity defined, then just multiply them</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">no_cpar_part</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">cparity_label</span><span class="p">],</span> <span class="n">part_qns</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># two particle case</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">is_particle_antiparticle_pair</span><span class="p">(</span><span class="n">part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pid_label</span><span class="p">],</span>
+                                              <span class="n">part_qns</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">pid_label</span><span class="p">])):</span>
+                <span class="n">ang_mom</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">ang_mom_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+                <span class="c1"># if boson</span>
+                <span class="k">if</span> <span class="n">is_boson</span><span class="p">(</span><span class="n">part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">ang_mom</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">coupled_spin</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">int_spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">ang_mom</span> <span class="o">+</span> <span class="n">coupled_spin</span><span class="p">)</span>
+        <span class="sd">&#39;&#39;&#39;elif len(no_cpar_part) &gt; 0 and len(no_cpar_part) % 2 == 0:</span>
+<span class="sd">            # does this also work for more than 2 particles?</span>
+<span class="sd">            # try to find pairs of particle antiparticle</span>
+<span class="sd">            pids = [x[pid_label] for x in part_qns]</span>
+<span class="sd">            while pids:</span>
+<span class="sd">                found = False</span>
+<span class="sd">                ref_pid = pids.pop()</span>
+<span class="sd">                for x in pids:</span>
+<span class="sd">                    if is_particle_antiparticle_pair(ref_pid, x):</span>
+<span class="sd">                        found = True</span>
+<span class="sd">                        break</span>
+<span class="sd">                if not found:</span>
+<span class="sd">                    break&#39;&#39;&#39;</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="GParityConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GParityConservation">[docs]</a><span class="k">class</span> <span class="nc">GParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GParityConservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">)</span>
+        <span class="c1"># the spin quantum number is required to check if the daughter</span>
+        <span class="c1"># particles are fermions or bosons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">IsoSpin</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedIfOtherQnNotDefinedInOutSeperate</span><span class="p">(</span>
+                                 <span class="p">[</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">])])</span></div>
+
+<div class="viewcode-block" id="GParityConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GParityConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; implements :math:`G_{in} = G_{out}` &quot;&quot;&quot;</span>
+        <span class="n">gparity_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span>
+        <span class="n">no_gpar_inpart</span> <span class="o">=</span> <span class="p">[</span><span class="n">ingoing_part_qns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                          <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span> <span class="k">if</span> <span class="n">gparity_label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span>
+                          <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="n">gparity_label</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">no_gpar_outpart</span> <span class="o">=</span> <span class="p">[</span><span class="n">outgoing_part_qns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span> <span class="k">if</span> <span class="n">gparity_label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span>
+                           <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="n">gparity_label</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="c1"># if all states have g parity defined, then just multiply them</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">no_gpar_inpart</span> <span class="o">+</span> <span class="n">no_gpar_outpart</span><span class="p">:</span>
+            <span class="n">in_gpar</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">gparity_label</span><span class="p">],</span>
+                             <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">out_gpar</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">gparity_label</span><span class="p">],</span>
+                              <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">in_gpar</span> <span class="o">==</span> <span class="n">out_gpar</span>
+
+        <span class="c1"># two particle case</span>
+        <span class="n">particle_counts</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ingoing_part_qns</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">particle_counts</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">gparity_label</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">out_gpar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_multistate_gparity</span><span class="p">(</span><span class="n">ingoing_part_qns</span><span class="p">,</span>
+                                                         <span class="n">outgoing_part_qns</span><span class="p">,</span>
+                                                         <span class="n">interaction_qns</span><span class="p">)</span>
+                <span class="n">in_gpar</span> <span class="o">=</span> <span class="n">ingoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">gparity_label</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">out_gpar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">in_gpar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">out_gpar</span> <span class="o">==</span> <span class="n">in_gpar</span>
+
+        <span class="k">if</span> <span class="n">particle_counts</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">gparity_label</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">in_gpar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_multistate_gparity</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">,</span>
+                                                        <span class="n">ingoing_part_qns</span><span class="p">,</span>
+                                                        <span class="n">interaction_qns</span><span class="p">)</span>
+                <span class="n">out_gpar</span> <span class="o">=</span> <span class="n">outgoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">gparity_label</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">out_gpar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">in_gpar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">out_gpar</span> <span class="o">==</span> <span class="n">in_gpar</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="GParityConservation.check_multistate_gparity"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GParityConservation.check_multistate_gparity">[docs]</a>    <span class="k">def</span> <span class="nf">check_multistate_gparity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">single_state_qns</span><span class="p">,</span>
+                                 <span class="n">double_state_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="n">isospin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">IsoSpin</span>
+        <span class="n">pid_label</span> <span class="o">=</span> <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span>
+        <span class="n">ang_mom_label</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span>
+        <span class="n">int_spin_label</span> <span class="o">=</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">is_particle_antiparticle_pair</span><span class="p">(</span><span class="n">double_state_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pid_label</span><span class="p">],</span>
+                                          <span class="n">double_state_qns</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">pid_label</span><span class="p">])):</span>
+            <span class="n">ang_mom</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">ang_mom_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+            <span class="n">isospin</span> <span class="o">=</span> <span class="n">single_state_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">isospin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+            <span class="c1"># if boson</span>
+            <span class="k">if</span> <span class="n">is_boson</span><span class="p">(</span><span class="n">double_state_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">ang_mom</span> <span class="o">+</span> <span class="n">isospin</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">coupled_spin</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">int_spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+                <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">ang_mom</span> <span class="o">+</span> <span class="n">coupled_spin</span> <span class="o">+</span> <span class="n">isospin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="IdenticalParticleSymmetrization"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization">[docs]</a><span class="k">class</span> <span class="nc">IdenticalParticleSymmetrization</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;IdenticalParticleSymmetrization&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IdenticalParticleSymmetrization.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedForAllOutgoingEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span>
+                             <span class="p">[</span><span class="n">DefinedForAllOutgoingEdges</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="IdenticalParticleSymmetrization.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_particles_identical</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">):</span>
+            <span class="n">parity_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span>
+
+            <span class="k">if</span> <span class="n">is_boson</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="c1"># we have a boson, check if parity of mother is even</span>
+                <span class="n">parity</span> <span class="o">=</span> <span class="n">ingoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">parity_label</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># if its odd then return False</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># its fermion</span>
+                <span class="n">parity</span> <span class="o">=</span> <span class="n">ingoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">parity_label</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="IdenticalParticleSymmetrization.check_particles_identical"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check_particles_identical">[docs]</a>    <span class="k">def</span> <span class="nf">check_particles_identical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particles</span><span class="p">):</span>
+        <span class="c1"># check if pids and spins match</span>
+        <span class="n">pid_label</span> <span class="o">=</span> <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Pid</span>
+        <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
+        <span class="n">reference_pid</span> <span class="o">=</span> <span class="n">particles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pid_label</span><span class="p">]</span>
+        <span class="n">reference_spin</span> <span class="o">=</span> <span class="n">particles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">spin_label</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particles</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">pid_label</span><span class="p">]</span> <span class="o">!=</span> <span class="n">reference_pid</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span> <span class="o">!=</span> <span class="n">reference_spin</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="SpinConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation">[docs]</a><span class="k">class</span> <span class="nc">SpinConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements conservation of a spin-like quantum number for a two body decay</span>
+<span class="sd">    (coupling of two particle states). See :py:meth:`check` for details.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spinlike_qn</span><span class="p">,</span> <span class="n">use_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spinlike_qn</span><span class="p">,</span> <span class="n">StateQuantumNumberNames</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expecting Emum of the type </span><span class="se">\</span>
+<span class="s1">                ParticleQuantumNumberNames for spinlike_qn&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spinlike_qn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">QNNameClassMapping</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;spinlike_qn is not associacted with a QN class&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">QNNameClassMapping</span><span class="p">[</span><span class="n">spinlike_qn</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">QuantumNumberClasses</span><span class="o">.</span><span class="n">Spin</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;spinlike_qn is not of class Spin&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span> <span class="o">=</span> <span class="n">spinlike_qn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span> <span class="o">=</span> <span class="n">use_projection</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">spinlike_qn</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SpinConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="c1"># for actual spins we include the angular momentum</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span> <span class="ow">is</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="p">[</span>
+                                 <span class="n">DefinedForInteractionNode</span><span class="p">()])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="p">[</span>
+                                 <span class="n">DefinedForInteractionNode</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="SpinConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        implements :math:`|S_1 - S_2| \\leq S \\leq |S_1 + S_2|` and optionally</span>
+<span class="sd">        :math:`|L - S| \\leq J \\leq |L + S|`. Also checks</span>
+<span class="sd">        :math:`M_1 + M_2 = M` and if clebsch gordan coefficients are 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spin_label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span>
+
+        <span class="n">in_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span><span class="p">]</span>
+        <span class="n">out_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span> <span class="ow">and</span>
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_projections</span><span class="p">(</span><span class="n">in_spins</span><span class="p">,</span> <span class="n">out_spins</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_magnitude</span><span class="p">(</span><span class="n">in_spins</span><span class="p">,</span> <span class="n">out_spins</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpinConservation.check_projections"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_projections">[docs]</a>    <span class="k">def</span> <span class="nf">check_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_part</span><span class="p">,</span> <span class="n">out_part</span><span class="p">):</span>
+        <span class="n">in_proj</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">in_part</span><span class="p">]</span>
+        <span class="n">out_proj</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">out_part</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">in_proj</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">(</span><span class="n">out_proj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpinConservation.check_magnitude"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">check_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_part</span><span class="p">,</span> <span class="n">out_part</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="n">in_tot_spins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_total_spins</span><span class="p">(</span><span class="n">in_part</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">)</span>
+        <span class="n">out_tot_spins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_total_spins</span><span class="p">(</span><span class="n">out_part</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">)</span>
+        <span class="n">matching_spins</span> <span class="o">=</span> <span class="n">in_tot_spins</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">out_tot_spins</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">matching_spins</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="SpinConservation.calculate_total_spins"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.calculate_total_spins">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_total_spins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part_list</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="n">total_spins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">part_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span><span class="p">:</span>
+                <span class="n">total_spins</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">part_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">total_spins</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Spin</span><span class="p">(</span><span class="n">part_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># first couple all spins together</span>
+            <span class="n">spins_daughters_coupled</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="n">spin_list</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">part_list</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">spin_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">spins_daughters_coupled</span><span class="p">:</span>
+                    <span class="n">temp_coupled_spins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                    <span class="n">tempspin</span> <span class="o">=</span> <span class="n">spin_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spins_daughters_coupled</span><span class="p">:</span>
+                        <span class="n">coupled_spins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin_couplings</span><span class="p">(</span>
+                            <span class="n">s</span><span class="p">,</span> <span class="n">tempspin</span><span class="p">)</span>
+                        <span class="n">temp_coupled_spins</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">coupled_spins</span><span class="p">)</span>
+                    <span class="n">spins_daughters_coupled</span> <span class="o">=</span> <span class="n">temp_coupled_spins</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">spins_daughters_coupled</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">spin_list</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span> <span class="ow">in</span> <span class="n">interaction_qns</span><span class="p">:</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">]</span>
+                <span class="n">S</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">spins_daughters_coupled</span><span class="p">:</span>
+                        <span class="n">total_spins</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spin_couplings</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">S</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span>
+                            <span class="n">x</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">spins_daughters_coupled</span><span class="p">]:</span>
+                        <span class="n">total_spins</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spin_couplings</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span><span class="p">:</span>
+                    <span class="n">total_spins</span> <span class="o">=</span> <span class="n">spins_daughters_coupled</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">total_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">Spin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">spins_daughters_coupled</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">total_spins</span></div>
+
+<div class="viewcode-block" id="SpinConservation.spin_couplings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.spin_couplings">[docs]</a>    <span class="k">def</span> <span class="nf">spin_couplings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spin1</span><span class="p">,</span> <span class="n">spin2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        implements the coupling of two spins</span>
+<span class="sd">        :math:`|S_1 - S_2| \\leq S \\leq |S_1 + S_2|` and :math:`M_1 + M_2 = M`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j1</span> <span class="o">=</span> <span class="n">spin1</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+        <span class="n">j2</span> <span class="o">=</span> <span class="n">spin2</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">spin1</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="o">+</span> <span class="n">spin2</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+            <span class="n">possible_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">Spin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arange</span><span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span><span class="n">j1</span> <span class="o">-</span> <span class="n">j2</span><span class="p">),</span> <span class="n">j1</span> <span class="o">+</span> <span class="n">j2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+
+            <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">possible_spins</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_clebsch_gordan_coefficient_zero</span><span class="p">(</span><span class="n">spin1</span><span class="p">,</span> <span class="n">spin2</span><span class="p">,</span> <span class="n">x</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">Spin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arange</span><span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span><span class="n">j1</span> <span class="o">-</span> <span class="n">j2</span><span class="p">),</span> <span class="n">j1</span> <span class="o">+</span> <span class="n">j2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span></div></div>
+
+
+<div class="viewcode-block" id="is_clebsch_gordan_coefficient_zero"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.is_clebsch_gordan_coefficient_zero">[docs]</a><span class="k">def</span> <span class="nf">is_clebsch_gordan_coefficient_zero</span><span class="p">(</span><span class="n">spin1</span><span class="p">,</span> <span class="n">spin2</span><span class="p">,</span> <span class="n">spin_coupled</span><span class="p">):</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">spin1</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+    <span class="n">j1</span> <span class="o">=</span> <span class="n">spin1</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">spin2</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+    <span class="n">j2</span> <span class="o">=</span> <span class="n">spin2</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">spin_coupled</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">spin_coupled</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+    <span class="n">iszero</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">j1</span> <span class="o">==</span> <span class="n">j2</span> <span class="ow">and</span> <span class="n">m1</span> <span class="o">==</span> <span class="n">m2</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="n">m1</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">m2</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">j1</span> <span class="o">-</span> <span class="n">j2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">iszero</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">j1</span> <span class="o">==</span> <span class="n">j</span> <span class="ow">and</span> <span class="n">m1</span> <span class="o">==</span> <span class="o">-</span><span class="n">m</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">j2</span> <span class="o">-</span> <span class="n">j1</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">iszero</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">j2</span> <span class="o">==</span> <span class="n">j</span> <span class="ow">and</span> <span class="n">m2</span> <span class="o">==</span> <span class="o">-</span><span class="n">m</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">j1</span> <span class="o">-</span> <span class="n">j2</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">iszero</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">iszero</span></div>
+
+
+<div class="viewcode-block" id="ClebschGordanCheckHelicityToCanonical"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical">[docs]</a><span class="k">class</span> <span class="nc">ClebschGordanCheckHelicityToCanonical</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    implements clebsch gordan checks for :math:`S_1, S_2` to :math:`S` and the</span>
+<span class="sd">    :math:`L,S` to :math:`J` coupling based on the conversion of helicity to</span>
+<span class="sd">    canonical amplitude sums</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ClebschGordanCheckHelicityToCanonical&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ClebschGordanCheckHelicityToCanonical.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="p">[</span>
+            <span class="n">DefinedForInteractionNode</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="p">[</span>
+            <span class="n">DefinedForInteractionNode</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="ClebschGordanCheckHelicityToCanonical.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ingoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
+            <span class="n">in_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span><span class="p">]</span>
+            <span class="n">out_spins</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span><span class="p">]</span>
+            <span class="n">out_spins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Spin</span><span class="p">(</span><span class="n">out_spins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span>
+                                <span class="o">-</span><span class="n">out_spins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">())</span>
+            <span class="n">helicity_diff</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">out_spins</span><span class="p">])</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">]</span>
+            <span class="n">S</span> <span class="o">=</span> <span class="n">interaction_qns</span><span class="p">[</span><span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">S</span><span class="p">]</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">helicity_diff</span><span class="p">)</span> <span class="ow">or</span>
+                    <span class="n">in_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">helicity_diff</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">S</span> <span class="o">=</span> <span class="n">Spin</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span> <span class="n">helicity_diff</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">is_clebsch_gordan_coefficient_zero</span><span class="p">(</span><span class="n">out_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                  <span class="n">out_spins</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">S</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">in_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Spin</span><span class="p">(</span><span class="n">in_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(),</span> <span class="n">helicity_diff</span><span class="p">)</span>
+            <span class="k">return</span> <span class="ow">not</span> <span class="n">is_clebsch_gordan_coefficient_zero</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">in_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">False</span></div></div>
+
+
+<div class="viewcode-block" id="HelicityConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation">[docs]</a><span class="k">class</span> <span class="nc">HelicityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;HelicityConservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HelicityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="HelicityConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        implements :math:`|\\lambda_2-\\lambda_3| \\leq S_1`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ingoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">outgoing_part_qns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
+
+            <span class="n">mother_spin</span> <span class="o">=</span> <span class="n">ingoing_part_qns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>
+            <span class="n">daughter_hel</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+                            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">mother_spin</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">daughter_hel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">daughter_hel</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div></div>
+
+
+<div class="viewcode-block" id="GellMannNishijimaRule"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule">[docs]</a><span class="k">class</span> <span class="nc">GellMannNishijimaRule</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GellMannNishijimaRule&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GellMannNishijimaRule.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Charge</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">IsoSpin</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Strangeness</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Charm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Bottomness</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Topness</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">BaryonNumber</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">ElectronLN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">MuonLN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">TauLN</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GellMannNishijimaRule.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        checks the Gell-Mann–Nishijima formula :math:`Q=I_3+\\frac{Y}{2}` for</span>
+<span class="sd">        each particle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">charge_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Charge</span>
+        <span class="n">isospin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">IsoSpin</span>
+
+        <span class="n">eln</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">ElectronLN</span>
+        <span class="n">mln</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">MuonLN</span>
+        <span class="n">tln</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">TauLN</span>
+
+        <span class="k">for</span> <span class="n">particle</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span> <span class="o">+</span> <span class="n">outgoing_part_qns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">particle</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">eln</span><span class="p">,</span> <span class="n">mln</span><span class="p">,</span> <span class="n">tln</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">particle</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="c1"># if particle is a lepton then skip the check</span>
+                <span class="k">continue</span>
+            <span class="n">isospin_3</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">isospin_label</span> <span class="ow">in</span> <span class="n">particle</span><span class="p">:</span>
+                <span class="n">isospin_3</span> <span class="o">=</span> <span class="n">particle</span><span class="p">[</span><span class="n">isospin_label</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">particle</span><span class="p">[</span><span class="n">charge_label</span><span class="p">])</span> <span class="o">!=</span>
+                    <span class="p">(</span><span class="n">isospin_3</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_hypercharge</span><span class="p">(</span><span class="n">particle</span><span class="p">))):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="GellMannNishijimaRule.calculate_hypercharge"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.calculate_hypercharge">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_hypercharge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the hypercharge :math:`Y=S+C+B+T+B`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">qn_labels</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Strangeness</span><span class="p">,</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Charm</span><span class="p">,</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Bottomness</span><span class="p">,</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Topness</span><span class="p">,</span>
+            <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">BaryonNumber</span>
+        <span class="p">]</span>
+        <span class="n">qn_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">particle</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qn_labels</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">particle</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">qn_values</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MassConservation"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.MassConservation">[docs]</a><span class="k">class</span> <span class="nc">MassConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width_factor</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width_factor</span> <span class="o">=</span> <span class="n">width_factor</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;MassConservation&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MassConservation.specify_required_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Mass</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
+            <span class="n">ParticleDecayPropertyNames</span><span class="o">.</span><span class="n">Width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MassConservation.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.conservationrules.MassConservation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_part_qns</span><span class="p">,</span> <span class="n">outgoing_part_qns</span><span class="p">,</span> <span class="n">interaction_qns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        implements the mass check</span>
+
+<span class="sd">        :math:`M_{out} - N \\cdot W_{out} &lt; M_{in} + N \\cdot W_{in}`</span>
+
+<span class="sd">        It makes sure that the net mass outgoing state :math:`M_{out}` is</span>
+<span class="sd">        smaller than the net mass of the ingoing state :math:`M_{in}`. Also</span>
+<span class="sd">        the width :math:`W` of the states is taken into account.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mass_label</span> <span class="o">=</span> <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Mass</span>
+        <span class="n">width_label</span> <span class="o">=</span> <span class="n">ParticleDecayPropertyNames</span><span class="o">.</span><span class="n">Width</span>
+
+        <span class="n">mass_in</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">mass_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span><span class="p">])</span>
+        <span class="n">width_in</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">width_label</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingoing_part_qns</span> <span class="k">if</span> <span class="n">width_label</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+        <span class="n">mass_out</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">mass_label</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span><span class="p">])</span>
+        <span class="n">width_out</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">width_label</span><span class="p">]</span>
+                         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outgoing_part_qns</span> <span class="k">if</span> <span class="n">width_label</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="p">((</span><span class="n">mass_out</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">width_factor</span> <span class="o">*</span> <span class="n">width_out</span><span class="p">)</span> <span class="o">&lt;</span>
+                <span class="p">(</span><span class="n">mass_in</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">width_factor</span> <span class="o">*</span> <span class="n">width_in</span><span class="p">))</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

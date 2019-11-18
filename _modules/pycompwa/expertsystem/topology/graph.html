@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.topology.graph &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../../../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.topology.graph</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycompwa.expertsystem.topology.graph</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;graph module - some description here.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+
+<div class="viewcode-block" id="are_graphs_isomorphic"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.are_graphs_isomorphic">[docs]</a><span class="k">def</span> <span class="nf">are_graphs_isomorphic</span><span class="p">(</span><span class="n">graph1</span><span class="p">,</span> <span class="n">graph2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns True if the two graphs have a one-to-one mapping</span>
+<span class="sd">    of the node IDs and edge IDs&quot;&quot;&quot;</span>
+    <span class="c1"># EdgeIndexMapping = {}</span>
+    <span class="c1"># NodeIndexMapping = {}</span>
+
+    <span class="c1"># get start edges</span>
+    <span class="c1"># CurrentEdges = [graph1.getInitial]</span>
+
+    <span class="c1"># while(CurrentEdges):</span>
+    <span class="c1">#    TempEdges = CurrentEdges</span>
+    <span class="c1">#    CurrentEdges = []</span>
+
+    <span class="c1"># check if the mapping is still valid and can be extended</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="get_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
+    <span class="n">is_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">is_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">is_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="n">fs_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fs_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_intermediate_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_intermediate_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_intermediate_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="n">is_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="n">edge</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">is_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">is_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_edges_ingoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_edges_ingoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
+    <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">==</span> <span class="n">node_id</span><span class="p">:</span>
+            <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">edge_list</span></div>
+
+
+<div class="viewcode-block" id="get_edges_outgoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_edges_outgoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
+    <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">==</span> <span class="n">node_id</span><span class="p">:</span>
+            <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">edge_list</span></div>
+
+
+<div class="viewcode-block" id="get_originating_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_originating_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
+    <span class="n">fs_edges</span> <span class="o">=</span> <span class="n">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">temp_edge_list</span> <span class="o">=</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">temp_edge_list</span><span class="p">:</span>
+        <span class="n">new_temp_edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">temp_edge_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">fs_edges</span><span class="p">:</span>
+                <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_node_id</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">ending_node_id</span>
+                <span class="n">new_temp_edge_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                    <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">new_node_id</span><span class="p">))</span>
+        <span class="n">temp_edge_list</span> <span class="o">=</span> <span class="n">new_temp_edge_list</span>
+    <span class="k">return</span> <span class="n">edge_list</span></div>
+
+
+<div class="viewcode-block" id="get_originating_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_originating_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
+    <span class="n">is_edges</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">temp_edge_list</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">temp_edge_list</span><span class="p">:</span>
+        <span class="n">new_temp_edge_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">temp_edge_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">is_edges</span><span class="p">:</span>
+                <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_node_id</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span>
+                <span class="n">new_temp_edge_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                    <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">new_node_id</span><span class="p">))</span>
+        <span class="n">temp_edge_list</span> <span class="o">=</span> <span class="n">new_temp_edge_list</span>
+    <span class="k">return</span> <span class="n">edge_list</span></div>
+
+
+<div class="viewcode-block" id="dicts_unequal"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.dicts_unequal">[docs]</a><span class="k">def</span> <span class="nf">dicts_unequal</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">dict1</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">!=</span>
+            <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">dict2</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
+
+
+<div class="viewcode-block" id="StateTransitionGraph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionGraph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Graph class which contains edges and nodes, similar to feynman graphs.</span>
+<span class="sd">        The graphs are directed, meaning the edges are ingoing and outgoing</span>
+<span class="sd">        to specific nodes (since feynman graphs also have a time axis)</span>
+<span class="sd">        This class can contain the full information of a state transition from</span>
+<span class="sd">        a initial state to a final state. This information can be attached to</span>
+<span class="sd">        the nodes and edges via properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="StateTransitionGraph.set_graph_element_properties_comparator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator">[docs]</a>    <span class="k">def</span> <span class="nf">set_graph_element_properties_comparator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="n">comparator</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">nodes: &quot;</span> <span class="o">+</span> \
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">edges: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;node props: {</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;edge props: {</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">return_string</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">nodes: &quot;</span> <span class="o">+</span> \
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">edges: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">node props: {</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">edge props: {</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">return_string</span> <span class="o">=</span> <span class="n">return_string</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">return_string</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        defines the equal operator for the graph class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">dicts_unequal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">edges</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">node_props</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">edge_props</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Graph element properties comparator is not set!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+<div class="viewcode-block" id="StateTransitionGraph.add_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_node">[docs]</a>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a node with id node_id. Raises an value error,</span>
+<span class="sd">        if node_id already exists&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Node with id &#39;</span> <span class="o">+</span>
+                             <span class="nb">str</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; already exists!&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.add_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges">[docs]</a>    <span class="k">def</span> <span class="nf">add_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds edges with the ids in the edge_ids list&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge with id &#39;</span> <span class="o">+</span>
+                                 <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; already exists!&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_ingoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_ingoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_ingoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Attaches existing edges to nodes, so that the are ingoing to these</span>
+<span class="sd">        nodes</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ingoing_edge_ids ([int]): list of edge ids, that will be attached</span>
+<span class="sd">            node_id (int): id of the node to which the edges will be attached</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># first check if the ingoing edges are all available</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">ingoing_edge_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge with id &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+                                 <span class="o">+</span> <span class="s1">&#39; does not exist!&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge with id &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+                                 <span class="o">+</span> <span class="s1">&#39; is already ingoing to node &#39;</span>
+                                 <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">ending_node_id</span><span class="p">))</span>
+
+        <span class="c1"># update the newly connected edges</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">ingoing_edge_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_outgoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_outgoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_outgoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outgoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+        <span class="c1"># first check if the ingoing edges are all available</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">outgoing_edge_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge with id &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+                                 <span class="o">+</span> <span class="s1">&#39; does not exist!&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Edge with id &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+                                 <span class="o">+</span> <span class="s1">&#39; is already outgoing from node &#39;</span>
+                                 <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">))</span>
+
+        <span class="c1"># update the edges</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">outgoing_edge_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.get_originating_node_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.get_originating_node_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_originating_node_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get list of node ids from which the supplied edges originate from</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            edge_ids ([int]): list of edge ids for which the origin node is \</span>
+<span class="sd">            searched for</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            [int]: a list of node ids</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">node_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
+            <span class="n">node_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node_list</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.swap_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.swap_edges">[docs]</a>    <span class="k">def</span> <span class="nf">swap_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_id1</span><span class="p">,</span> <span class="n">edge_id2</span><span class="p">):</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id1</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id2</span><span class="p">]</span> <span class="o">=</span> <span class="n">val1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id1</span><span class="p">]</span> <span class="o">=</span> <span class="n">val2</span>
+
+        <span class="n">val1</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">edge_id1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">:</span>
+            <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">edge_id2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">:</span>
+            <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">val1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id2</span><span class="p">]</span> <span class="o">=</span> <span class="n">val1</span>
+        <span class="k">if</span> <span class="n">val2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id1</span><span class="p">]</span> <span class="o">=</span> <span class="n">val2</span></div>
+
+<div class="viewcode-block" id="StateTransitionGraph.verify"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verify the graph is connected,</span>
+<span class="sd">        so no dangling parts which are not connected&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="InteractionNode"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.InteractionNode">[docs]</a><span class="k">class</span> <span class="nc">InteractionNode</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;struct-like definition of an interaction node&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">number_of_ingoing_edges</span><span class="p">,</span>
+                 <span class="n">number_of_outgoing_edges</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_ingoing_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;NumberOfIngoingEdges must be an integer&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_outgoing_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;NumberOfOutgoingEdges must be an integer&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number_of_ingoing_edges</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;NumberOfIngoingEdges has to be larger than 0&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number_of_outgoing_edges</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;NumberOfOutgoingEdges has to be larger than 0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type_name</span> <span class="o">=</span> <span class="n">type_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_ingoing_edges</span> <span class="o">=</span> <span class="n">number_of_ingoing_edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_outgoing_edges</span> <span class="o">=</span> <span class="n">number_of_outgoing_edges</span></div>
+
+
+<div class="viewcode-block" id="Edge"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.Edge">[docs]</a><span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;struct-like definition of an edge&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        defines the equal operator for the graph class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Edge</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">and</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

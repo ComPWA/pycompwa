@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.topology.topologybuilder &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../../../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.topology.topologybuilder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycompwa.expertsystem.topology.topologybuilder</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">module topologybuilder</span>
+<span class="sd">responsible for building all possible topologies base on basic user input</span>
+
+<span class="sd">  - number of initial state particles</span>
+<span class="sd">  - number of final state particles</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">.graph</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">StateTransitionGraph</span><span class="p">,</span> <span class="n">InteractionNode</span><span class="p">,</span> <span class="n">are_graphs_isomorphic</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder">[docs]</a><span class="k">class</span> <span class="nc">SimpleStateTransitionTopologyBuilder</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple topology builder. Recursively trys to add the interaction nodes</span>
+<span class="sd">    to available open end edges/lines in all combinations until the number of</span>
+<span class="sd">    open end lines matches the final state lines</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_node_set</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;interaction_node_set must be a list&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">Item</span><span class="p">,</span> <span class="n">InteractionNode</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">Item</span> <span class="ow">in</span> <span class="n">interaction_node_set</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">&quot;interaction_node_set must be a list of InteractionNode&quot;</span>
+                    <span class="s2">&quot; instances&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span> <span class="o">=</span> <span class="n">interaction_node_set</span>
+
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.build_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">build_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_intial_edges</span><span class="p">,</span> <span class="n">number_of_final_edges</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_intial_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;number_of_intial_edges must be an integer&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number_of_intial_edges</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;number_of_intial_edges has to be larger than 0&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_final_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;number_of_final_edges must be an integer&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number_of_final_edges</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;number_of_final_edges has to be larger than 0&quot;</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;building topology graphs...&#39;</span><span class="p">)</span>
+        <span class="c1"># result list</span>
+        <span class="n">graph_tuple_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># create seed graph</span>
+        <span class="n">seed_graph</span> <span class="o">=</span> <span class="n">StateTransitionGraph</span><span class="p">()</span>
+        <span class="n">current_open_end_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">number_of_intial_edges</span><span class="p">))</span>
+        <span class="n">seed_graph</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">current_open_end_edges</span><span class="p">)</span>
+        <span class="n">extendable_graph_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">seed_graph</span><span class="p">,</span> <span class="n">current_open_end_edges</span><span class="p">)]</span>
+
+        <span class="k">while</span> <span class="n">extendable_graph_list</span><span class="p">:</span>
+            <span class="n">active_graph_list</span> <span class="o">=</span> <span class="n">extendable_graph_list</span>
+            <span class="n">extendable_graph_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">active_graph</span> <span class="ow">in</span> <span class="n">active_graph_list</span><span class="p">:</span>
+                <span class="c1"># check if finished</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">active_graph</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">number_of_final_edges</span>
+                        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">active_graph</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">active_graph</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">verify</span><span class="p">():</span>
+                        <span class="n">graph_tuple_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">active_graph</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">extendable_graph_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extend_graph</span><span class="p">(</span><span class="n">active_graph</span><span class="p">))</span>
+
+            <span class="c1"># check if two topologies are the same</span>
+            <span class="k">for</span> <span class="n">graph_index1</span><span class="p">,</span> <span class="n">graph_index2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span>
+                    <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extendable_graph_list</span><span class="p">)),</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">are_graphs_isomorphic</span><span class="p">(</span>
+                        <span class="n">extendable_graph_list</span><span class="p">[</span><span class="n">graph_index1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="n">extendable_graph_list</span><span class="p">[</span><span class="n">graph_index2</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="n">extendable_graph_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span>
+                        <span class="n">extendable_graph_list</span><span class="p">[</span><span class="n">graph_index2</span><span class="p">])</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;finished building topology graphs...&#39;</span><span class="p">)</span>
+        <span class="c1"># strip the current open end edges list from the result graph tuples</span>
+        <span class="n">result_graph_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">graph_tuple</span> <span class="ow">in</span> <span class="n">graph_tuple_list</span><span class="p">:</span>
+            <span class="n">result_graph_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">graph_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">result_graph_list</span></div>
+
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.extend_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.extend_graph">[docs]</a>    <span class="k">def</span> <span class="nf">extend_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="n">extended_graph_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">current_open_end_edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Try to extend the graph with interaction nodes</span>
+        <span class="c1"># that have equal or less ingoing lines than active lines</span>
+        <span class="k">for</span> <span class="n">interaction_node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">interaction_node</span><span class="o">.</span><span class="n">number_of_ingoing_edges</span>
+                    <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_open_end_edges</span><span class="p">)):</span>
+                <span class="c1"># make all combinations</span>
+                <span class="n">combis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span>
+                    <span class="n">current_open_end_edges</span><span class="p">,</span>
+                    <span class="n">interaction_node</span><span class="o">.</span><span class="n">number_of_ingoing_edges</span><span class="p">))</span>
+                <span class="c1"># remove all combinations that originate from the same nodes</span>
+                <span class="k">for</span> <span class="n">comb1</span><span class="p">,</span> <span class="n">comb2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">combis</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_originating_node_list</span><span class="p">(</span><span class="n">comb1</span><span class="p">)</span>
+                            <span class="o">==</span> <span class="n">graph</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_originating_node_list</span><span class="p">(</span><span class="n">comb2</span><span class="p">)):</span>
+                        <span class="n">combis</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">comb2</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">combi</span> <span class="ow">in</span> <span class="n">combis</span><span class="p">:</span>
+                    <span class="n">new_graph</span> <span class="o">=</span> <span class="n">attach_node_to_edges</span><span class="p">(</span>
+                        <span class="n">graph</span><span class="p">,</span> <span class="n">interaction_node</span><span class="p">,</span> <span class="n">combi</span><span class="p">)</span>
+                    <span class="n">extended_graph_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_graph</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">extended_graph_list</span></div></div>
+
+
+<div class="viewcode-block" id="attach_node_to_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.attach_node_to_edges">[docs]</a><span class="k">def</span> <span class="nf">attach_node_to_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">interaction_node</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">):</span>
+    <span class="n">temp_graph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">new_open_end_lines</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># add node</span>
+    <span class="n">new_node_id</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="n">temp_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">new_node_id</span><span class="p">)</span>
+
+    <span class="c1"># attach the edges to the node</span>
+    <span class="n">temp_graph</span><span class="o">.</span><span class="n">attach_edges_to_node_ingoing</span><span class="p">(</span><span class="n">ingoing_edge_ids</span><span class="p">,</span> <span class="n">new_node_id</span><span class="p">)</span>
+    <span class="c1"># update the newly connected edges</span>
+    <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">ingoing_edge_ids</span><span class="p">:</span>
+        <span class="n">new_open_end_lines</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+
+    <span class="c1"># make new edges for the outgoing lines</span>
+    <span class="n">new_edge_start_id</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+    <span class="n">new_edge_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="nb">range</span><span class="p">(</span><span class="n">new_edge_start_id</span><span class="p">,</span>
+              <span class="n">new_edge_start_id</span> <span class="o">+</span> <span class="n">interaction_node</span><span class="o">.</span><span class="n">number_of_outgoing_edges</span><span class="p">))</span>
+    <span class="n">temp_graph</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">new_edge_ids</span><span class="p">)</span>
+    <span class="n">temp_graph</span><span class="o">.</span><span class="n">attach_edges_to_node_outgoing</span><span class="p">(</span><span class="n">new_edge_ids</span><span class="p">,</span> <span class="n">new_node_id</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">new_edge_ids</span><span class="p">:</span>
+        <span class="n">new_open_end_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">temp_graph</span><span class="p">,</span> <span class="n">new_open_end_lines</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

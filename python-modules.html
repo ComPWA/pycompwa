@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modules &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-compwa-expert-system">The ComPWA Expert System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-ui">Python UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-and-write-data-samples">Read and Write Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-data-samples">Generate Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-intensity-from-a-description">Create an Intensity from a Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/python-modules.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-compwa-expert-system">
+<span id="compwa-expert-system"></span><h2>The ComPWA Expert System<a class="headerlink" href="#the-compwa-expert-system" title="Permalink to this headline">¶</a></h2>
+<p>The ComPWA expert system is a pure python package which can generate decay
+intensities of arbitrary decays in the helicity or canonical formalism.</p>
+<p>A typical analysis user only has to work with the user interface of the expert
+system</p>
+</div>
+<div class="section" id="plotting">
+<span id="id1"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon …</p>
+</div>
+<div class="section" id="python-ui">
+<span id="id2"></span><h2>Python UI<a class="headerlink" href="#python-ui" title="Permalink to this headline">¶</a></h2>
+<p>The Python User Interface is a python module named <code class="code docutils literal notranslate"><span class="pre">ui</span></code>, built with
+<a class="reference external" href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a>.
+It is the recommended way to use ComPWA, since the user benefits from the python ease of use.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because the Python UI calls the c++ code in the background, you do not have to worry about speed.
+It runs just as fast ;)</p>
+</div>
+<p>The Python UI enables you to perform all of the tasks needed for your partial wave analysis:</p>
+<div class="section" id="read-and-write-data-samples">
+<h3>Read and Write Data Samples<a class="headerlink" href="#read-and-write-data-samples" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">RootDataIO</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">readData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">input_file: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Read ROOT tree from file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="sig-name descname">writeData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">data: pycompwa.ui.EventList</em>, <em class="sig-param">file: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Save data as ROOT tree to file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="generate-data-samples">
+<h3>Generate Data Samples<a class="headerlink" href="#generate-data-samples" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.PhaseSpaceEventGenerator, intens: pycompwa.ui.Intensity, random_gen: pycompwa.ui.UniformRealNumberGenerator) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity</p>
+<ol class="arabic simple" start="2">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity, using a given phase space sample.</p>
+<ol class="arabic simple" start="3">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList, toyPhspSample: pycompwa.ui.EventList = None) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity. In case that detector reconstruction and selection is considered in the phase space sample a second pure toy sample needs to be passed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Generate phase space sample</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kin: pycompwa.ui.Kinematics</em>, <em class="sig-param">gen: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">intens: pycompwa.ui.Intensity</em>, <em class="sig-param">random_gen: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Generate an Intensity importance weighted phase space sample</p>
+</dd></dl>
+
+</div>
+<div class="section" id="create-an-intensity-from-a-description">
+<h3>Create an Intensity from a Description<a class="headerlink" href="#create-an-intensity-from-a-description" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt>
+<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">phsp_sample: pycompwa.ui.EventList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity</dt>
+<dd><p>Create an intensity and a helicity kinematics from a xml file. The file should contain a particle list, and a kinematics and intensity section.</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p>perform fits</p></li>
+<li><p>save &amp; visualize results</p></li>
+</ul>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">Particle</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">p4</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Particle</em><span class="sig-paren">)</span> &#x2192; List[float[4]]</dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>On how to use the Python UI, please refer to the <a class="reference internal" href="examples.html#examples"><span class="std std-ref">examples section</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Importance Sampling &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Importance Sampling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_examples/ImportanceSampling.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="importance-sampling">
+<h1>Importance Sampling<a class="headerlink" href="#importance-sampling" title="Permalink to this headline">¶</a></h1>
+<p>The <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> decay is used here
+(which has a narrow <span class="math notranslate nohighlight">\(\omega\)</span> state)</p>
+<p>Let’s go!</p>
+<div class="section" id="step-1-define-intensity">
+<h2>Step 1: Define intensity<a class="headerlink" href="#step-1-define-intensity" title="Permalink to this headline">¶</a></h2>
+<p>First we create the intensity. If this step looks unfamiliar to you, you
+might want to check other intensity construction examples using the
+expert system.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">StateTransitionManager</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">get_particle_with_name</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
+
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">tbd_manager</span> <span class="o">=</span> <span class="n">StateTransitionManager</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
+                                     <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
+                                     <span class="n">topology_building</span><span class="o">=</span><span class="s1">&#39;isobar&#39;</span><span class="p">)</span>
+
+<span class="c1"># The omega is so narrow that the hit&amp;miss generation takes way too long.</span>
+<span class="c1"># Therefore we increase the width artificially in this example!</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">get_particle_with_name</span><span class="p">(</span><span class="s1">&#39;omega&#39;</span><span class="p">)</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">par</span><span class="p">[</span><span class="s1">&#39;@Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Width&#39;</span><span class="p">:</span>
+        <span class="n">par</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+<span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">])</span>
+<span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f2(1270)&#39;</span><span class="p">,</span> <span class="s1">&#39;omega&#39;</span><span class="p">]</span>
+<span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
+<span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
+
+<span class="n">xml_generator</span> <span class="o">=</span> <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">()</span>
+<span class="n">xml_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
+<span class="n">xml_generator</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-create-intensity-and-generate-importance-weighted-phase-space-sample">
+<h2>Step 2: Create intensity and generate importance weighted phase space sample<a class="headerlink" href="#step-2-create-intensity-and-generate-importance-weighted-phase-space-sample" title="Permalink to this headline">¶</a></h2>
+<p>Now we generate a phase space sample which is importance sampled by the
+intensity. This can easily be achieved by using the
+<code class="docutils literal notranslate"><span class="pre">generate_importance_sampled_phsp()</span></code> generate helper function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This takes around 1 min on a Intel(R) Core(TM) i7-6820HQ CPU &#64; 2.70GHz running multi-threaded</p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pycompwa is the python interface to ComPWA&#39;s c++ modules</span>
+<span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+
+<span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
+
+<span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
+
+<span class="c1"># generate phase space sample (flat) used for amplitude normalization</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span><span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
+
+<span class="n">rand_gen</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">StdUniformRealGenerator</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="n">phsp_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
+
+<span class="c1"># create intensity</span>
+<span class="n">intensity</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
+
+<span class="c1"># generate importance sampled phase space sample</span>
+<span class="n">phsp_sample_importance</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_importance_sampled_phsp</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-visualize-the-phase-space-sample">
+<h2>Step 3: Visualize the phase space sample<a class="headerlink" href="#step-3-visualize-the-phase-space-sample" title="Permalink to this headline">¶</a></h2>
+<p>This phase space sample can be visualized in a Dalitz plot. There one
+expects more events, where the intensity is large, but still an overall
+uniform distribution. First create all subsystems. Since in this
+example, we have both <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> resonances, all
+subsystems already exist and this step is redundant.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">convert_events_to_dataset</span><span class="p">(</span><span class="n">phsp_sample_importance</span><span class="p">,</span> <span class="n">kin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we use the <code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> function to get data, which is
+ready to be put into a numpy record array.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span>
+<span class="p">)</span>
+
+<span class="c1"># use the direct data point access</span>
+<span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_data_array</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">data_record</span> <span class="o">=</span> <span class="n">create_nprecord</span><span class="p">(</span><span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">var_names</span><span class="p">)</span>
+<span class="c1"># check that the sum of weights is equal to the number of events!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sum of weights (should be 2000):&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data_record</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Finally we create a <code class="docutils literal notranslate"><span class="pre">PlotData</span></code> object and pass it to the
+<code class="docutils literal notranslate"><span class="pre">make_dalitz_plots()</span></code> function.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">(</span><span class="n">data_record</span><span class="o">=</span><span class="n">data_record</span><span class="p">)</span>
+<span class="c1">#plotdata.particle_id_to_name_mapping = data_points.get_finalstate_id_to_name_mapping()</span>
+<span class="c1"># plot a 2d histogram</span>
+<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
