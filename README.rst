@@ -1,14 +1,11 @@
 .. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=master
-    :target: https://travis-ci.com/ComPWA/pycompwa
+   :target: https://travis-ci.com/ComPWA/pycompwa
 .. image:: https://zenodo.org/badge/212384131.svg
    :target: https://zenodo.org/badge/latestdoi/212384131
 .. image:: https://badge.fury.io/py/pycompwa.svg
-    :target: https://badge.fury.io/py/pycompwa
-.. image:: https://readthedocs.org/projects/pycompwa/badge/?version=latest
-    :target: https://pycompwa.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+   :target: https://badge.fury.io/py/pycompwa
 .. image:: https://api.codacy.com/project/badge/Grade/7bed0ae71aca43ac945af06c19ea9cae
-    :target: https://www.codacy.com/manual/ComPWA/pycompwa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ComPWA/pycompwa&amp;utm_campaign=Badge_Grade
+   :target: https://www.codacy.com/manual/ComPWA/pycompwa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ComPWA/pycompwa&amp;utm_campaign=Badge_Grade
 
 About pycompwa
 ==============
@@ -20,25 +17,25 @@ pycompwa is a collection of python modules and the python interface to
 Analogous to ComPWA, pycompwas highest focus is also modularity. pycompwa
 extends the ComPWA framework with some useful modules:
 
-* `expertsystem <https://pycompwa.readthedocs.io/en/latest/python-modules.html#the-compwa-expert-system>`_
+* `expertsystem <https://compwa.github.io/python-modules.html#the-compwa-expert-system>`_
   
   A python package that can generate amplitude/intensity model files from simple
   user boundary conditions, such as inital and final state. Currently supports
   the helicity and canonical formalism.
 
-* `plotting <https://pycompwa.readthedocs.io/en/latest/python-modules.html#plotting>`_
-
-  Facilitates the visualization of data and results, i.e. comparison plots, Dalitz plots.
-
-* `ui <https://pycompwa.readthedocs.io/en/latest/python-modules.html#python-ui>`_
+* `ui <https://compwa.github.io/python-modules.html#python-ui>`_
 
   The python interface to ComPWA, allowing easy steering of ComPWA.
+
+* `plotting <https://compwa.github.io/python-modules.html#plotting>`_
+
+  Facilitates the visualization of data and results, i.e. comparison plots, Dalitz plots.
 
 Installation
 ============
 
 Detailed instructions can be found 
-`here <https://pycompwa.readthedocs.io/en/latest/installation.html>`_.
+`here <https://compwa.github.io/installation.html>`_.
 Make sure the virtual environment is setup and activated.
 
 Installation via pypi
@@ -66,4 +63,4 @@ On how to use ComPWA please refer to the
 Documentation
 =============
 
-The documentation can be found `here <https://pycompwa.readthedocs.io/en/latest>`_.
+The documentation can be found `here <https://compwa.github.io/>`_.
