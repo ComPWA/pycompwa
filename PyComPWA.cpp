@@ -45,11 +45,11 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 PYBIND11_MODULE(ui, m) {
   m.doc() = "pycompwa module\n"
             "---------------\n";
-  
+
   // -----------------------------------------
   //      Interface to Core components
   // -----------------------------------------
-  
+
   /// Reinitialize the logger with level INFO and disabled log file.
   ComPWA::Logging("INFO");
   py::class_<ComPWA::Logging, std::shared_ptr<ComPWA::Logging>>(m, "Logging")
@@ -57,7 +57,7 @@ PYBIND11_MODULE(ui, m) {
            py::arg("log_level"), py::arg("filename") = "")
       .def_property("level", &ComPWA::Logging::getLogLevel,
                     &ComPWA::Logging::setLogLevel);
-  
+
   /// Write message to ComPWA logging system.
   m.def("log", [](std::string msg) { LOG(INFO) << msg; },
         "Write string to logging system.");
@@ -75,8 +75,10 @@ PYBIND11_MODULE(ui, m) {
   /// This can not be changed during runtime.
   auto redirectors = std::make_unique<
       std::pair<py::scoped_ostream_redirect, py::scoped_estream_redirect>>();
-  m.attr("_ostream_redirectors") = py::capsule(redirectors.release(),
-  [](void *p) { delete reinterpret_cast<typename decltype(redirectors)::pointer>(p); });
+  m.attr("_ostream_redirectors") =
+      py::capsule(redirectors.release(), [](void *p) {
+        delete reinterpret_cast<typename decltype(redirectors)::pointer>(p);
+      });
 
   // ------- Parameters
 
@@ -166,8 +168,9 @@ PYBIND11_MODULE(ui, m) {
 
   py::class_<ComPWA::Data::Root::RootDataIO,
              std::shared_ptr<ComPWA::Data::Root::RootDataIO>>(m, "RootDataIO")
-      .def(py::init<const std::string &, int>())
-      .def(py::init<const std::string &>())
+      .def(py::init<const std::string &, int>(), py::arg("tree_name"),
+           py::arg("number_of_events"))
+      .def(py::init<const std::string &>(), py::arg("tree_name"))
       .def(py::init<>())
       .def("readData", &ComPWA::Data::Root::RootDataIO::readData,
            "Read ROOT tree from file.", py::arg("input_file"))
@@ -317,26 +320,18 @@ PYBIND11_MODULE(ui, m) {
 
   //------- Generate
 
-  py::class_<ComPWA::UniformRealNumberGenerator>(m,
-                                                 "UniformRealNumberGenerator");
-
-  py::class_<ComPWA::StdUniformRealGenerator,
-             ComPWA::UniformRealNumberGenerator>(m, "StdUniformRealGenerator")
+  py::class_<ComPWA::StdUniformRealGenerator>(m, "StdUniformRealGenerator")
       .def(py::init<int>());
 
-  py::class_<ComPWA::Data::Root::RootUniformRealGenerator,
-             ComPWA::UniformRealNumberGenerator>(m, "RootUniformRealGenerator")
+  py::class_<ComPWA::Data::Root::RootUniformRealGenerator>(
+      m, "RootUniformRealGenerator")
       .def(py::init<int>());
 
-  py::class_<ComPWA::PhaseSpaceEventGenerator>(m, "PhaseSpaceEventGenerator");
-
-  py::class_<ComPWA::Data::Root::RootGenerator,
-             ComPWA::PhaseSpaceEventGenerator>(m, "RootGenerator")
+  py::class_<ComPWA::Data::Root::RootGenerator>(m, "RootGenerator")
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>());
 
-  py::class_<ComPWA::Data::EvtGen::EvtGenGenerator,
-             ComPWA::PhaseSpaceEventGenerator>(m, "EvtGenGenerator")
+  py::class_<ComPWA::Data::EvtGen::EvtGenGenerator>(m, "EvtGenGenerator")
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>());
 
@@ -387,10 +382,8 @@ PYBIND11_MODULE(ui, m) {
 
   //------- Estimator + Optimizer
 
-  py::class_<ComPWA::Estimator::Estimator<double>>(m, "Estimator");
-
-  py::class_<ComPWA::FunctionTree::FunctionTreeEstimator,
-             ComPWA::Estimator::Estimator<double>>(m, "FunctionTreeEstimator")
+  py::class_<ComPWA::FunctionTree::FunctionTreeEstimator>(
+      m, "FunctionTreeEstimator")
       .def("print", &ComPWA::FunctionTree::FunctionTreeEstimator::print,
            "print function tree");
 

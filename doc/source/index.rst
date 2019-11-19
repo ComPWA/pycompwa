@@ -22,5 +22,5 @@ ongoing development!
 Indices and Tables
 ==================
 
-* :ref:`Index <genindex>`
-* :ref:`Python Modules <modindex>`
+* :ref:`General Index<genindex>`
+* :ref:`Python Modules Index<modindex>`

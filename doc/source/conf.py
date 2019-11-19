@@ -21,7 +21,7 @@ import os
 import sys
 import subprocess
 
-# It is assume that you run sphinx from the virtual environment which 
+# It is assumed that you run sphinx from the virtual environment which
 # includes pycompwa
 
 # build skeleton api docu for python code
@@ -32,7 +32,19 @@ subprocess.call(
 
 subprocess.call(
     'jupyter nbconvert --to rst ../../examples/jupyter/*.ipynb; '
-    'mkdir _examples; mv ../../examples/jupyter/*.rst ./_examples/.', shell=True)
+    'mkdir _examples; mv ../../examples/jupyter/*.rst ./_examples/.',
+    shell=True)
+
+
+def skip(app, what, name, obj, would_skip, options):
+    if name == "__init__":
+        return False
+    return would_skip
+
+
+def setup(app):
+    app.connect("autodoc-skip-member", skip)
+
 
 # -- General configuration ------------------------------------------------
 
