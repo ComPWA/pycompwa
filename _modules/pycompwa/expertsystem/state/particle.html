@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../../../../genindex.html">Index</a>
+    <a href= "../../../../genindex.html">General Index</a>
+    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -206,7 +207,7 @@
 <span class="sd">    Simple struct-like class defining spin as a magintude plus the projection</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
+<div class="viewcode-block" id="Spin.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__magnitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__projection</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
         <span class="c1"># remove negative zero projections -0.0</span>
@@ -214,7 +215,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__projection</span> <span class="o">+=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__magnitude</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__projection</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The spin projection cannot be larger than the&quot;</span>
-                             <span class="s2">&quot; magnitude &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+                             <span class="s2">&quot; magnitude &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Spin.magnitude"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__magnitude</span></div>
@@ -357,8 +358,8 @@
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
     <span class="n">proj_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Projection</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parse_projection</span> <span class="o">=</span> <span class="n">parse_projection</span>
+<div class="viewcode-block" id="SpinQNConverter.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse_projection</span> <span class="o">=</span> <span class="n">parse_projection</span></div>
 
 <div class="viewcode-block" id="SpinQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
         <span class="n">mag</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">]</span>
@@ -501,11 +502,11 @@
 
 
 <div class="viewcode-block" id="CompareGraphElementPropertiesFunctor"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">[docs]</a><span class="k">class</span> <span class="nc">CompareGraphElementPropertiesFunctor</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="o">=</span><span class="p">[]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ignored_qn_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ignored_qn_list</span>
                                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
                                               <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
-                                               <span class="n">InteractionQuantumNumberNames</span><span class="p">))]</span>
+                                               <span class="n">InteractionQuantumNumberNames</span><span class="p">))]</span></div>
 
 <div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.compare_qn_numbers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">[docs]</a>    <span class="k">def</span> <span class="nf">compare_qn_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qns1</span><span class="p">,</span> <span class="n">qns2</span><span class="p">):</span>
         <span class="n">new_qns1</span> <span class="o">=</span> <span class="p">{}</span>

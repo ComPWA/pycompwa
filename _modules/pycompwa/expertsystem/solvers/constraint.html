@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../../../../genindex.html">Index</a>
+    <a href= "../../../../genindex.html">General Index</a>
+    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -224,7 +225,7 @@
 <span class="sd">    Class used to define a problem and retrieve solutions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param solver: Problem solver used to find solutions</span>
 <span class="sd">                       (default is L{BacktrackingSolver})</span>
@@ -232,7 +233,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span> <span class="o">=</span> <span class="n">solver</span> <span class="ow">or</span> <span class="n">BacktrackingSolver</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span> <span class="o">=</span> <span class="p">{}</span></div>
 
 <div class="viewcode-block" id="Problem.reset"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -610,14 +611,14 @@
 <span class="sd">    True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="BacktrackingSolver.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param forwardcheck: If false forward checking will not be requested</span>
 <span class="sd">                             to constraints while looking for solutions</span>
 <span class="sd">                             (default is true)</span>
 <span class="sd">        @type  forwardcheck: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span></div>
 
 <div class="viewcode-block" id="BacktrackingSolver.getSolutionIter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolutionIter">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutionIter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
         <span class="n">forwardcheck</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span>
@@ -734,14 +735,14 @@
 <span class="sd">    NotImplementedError: RecursiveBacktrackingSolver doesn&#39;t provide iteration</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="RecursiveBacktrackingSolver.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param forwardcheck: If false forward checking will not be requested</span>
 <span class="sd">                             to constraints while looking for solutions</span>
 <span class="sd">                             (default is true)</span>
 <span class="sd">        @type  forwardcheck: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_forwardcheck</span> <span class="o">=</span> <span class="n">forwardcheck</span></div>
 
 <div class="viewcode-block" id="RecursiveBacktrackingSolver.recursiveBacktracking"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.recursiveBacktracking">[docs]</a>    <span class="k">def</span> <span class="nf">recursiveBacktracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
                               <span class="n">assignments</span><span class="p">,</span> <span class="n">single</span><span class="p">):</span>
@@ -829,13 +830,13 @@
 <span class="sd">    NotImplementedError: MinConflictsSolver doesn&#39;t provide iteration</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="viewcode-block" id="MinConflictsSolver.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param steps: Maximum number of steps to perform before giving up</span>
 <span class="sd">                      when looking for a solution (default is 1000)</span>
 <span class="sd">        @type  steps: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_steps</span> <span class="o">=</span> <span class="n">steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_steps</span> <span class="o">=</span> <span class="n">steps</span></div>
 
 <div class="viewcode-block" id="MinConflictsSolver.getSolution"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.getSolution">[docs]</a>    <span class="k">def</span> <span class="nf">getSolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
         <span class="n">assignments</span> <span class="o">=</span> <span class="p">{}</span>
@@ -888,12 +889,12 @@
 <span class="sd">    including plain strings and integers, may be used as variables.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Variable.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Variable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param name: Generic variable name for problem-specific purposes</span>
 <span class="sd">        @type  name: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span></div>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
@@ -913,14 +914,14 @@
 <span class="sd">    converted to an instance of that class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+<div class="viewcode-block" id="Domain.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param set: Set of values that the given variables may assume</span>
 <span class="sd">        @type  set: set of objects comparable by equality</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hidden</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 <div class="viewcode-block" id="Domain.resetState"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Domain.resetState">[docs]</a>    <span class="k">def</span> <span class="nf">resetState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1097,7 +1098,7 @@
 <span class="sd">    {&#39;a&#39;: 1, &#39;b&#39;: 2}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="FunctionConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.FunctionConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param func: Function wrapped and queried for constraint logic</span>
 <span class="sd">        @type  func: callable object</span>
@@ -1106,7 +1107,7 @@
 <span class="sd">        @type  assigned: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_func</span> <span class="o">=</span> <span class="n">func</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="o">=</span> <span class="n">assigned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="o">=</span> <span class="n">assigned</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
@@ -1201,7 +1202,7 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MaxSumConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param maxsum: Value to be considered as the maximum sum</span>
 <span class="sd">        @type  maxsum: number</span>
@@ -1210,7 +1211,7 @@
 <span class="sd">        @type  multipliers: sequence of numbers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_maxsum</span> <span class="o">=</span> <span class="n">maxsum</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span></div>
 
 <div class="viewcode-block" id="MaxSumConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
         <span class="n">Constraint</span><span class="o">.</span><span class="n">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
@@ -1285,7 +1286,7 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exactsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ExactSumConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exactsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param exactsum: Value to be considered as the exact sum</span>
 <span class="sd">        @type  exactsum: number</span>
@@ -1294,7 +1295,7 @@
 <span class="sd">        @type  multipliers: sequence of numbers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_exactsum</span> <span class="o">=</span> <span class="n">exactsum</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span></div>
 
 <div class="viewcode-block" id="ExactSumConstraint.preProcess"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.preProcess">[docs]</a>    <span class="k">def</span> <span class="nf">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">):</span>
         <span class="n">Constraint</span><span class="o">.</span><span class="n">preProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span>
@@ -1377,7 +1378,7 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MinSumConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.MinSumConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minsum</span><span class="p">,</span> <span class="n">multipliers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param minsum: Value to be considered as the minimum sum</span>
 <span class="sd">        @type  minsum: number</span>
@@ -1386,7 +1387,7 @@
 <span class="sd">        @type  multipliers: sequence of numbers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_minsum</span> <span class="o">=</span> <span class="n">minsum</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multipliers</span> <span class="o">=</span> <span class="n">multipliers</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
@@ -1421,12 +1422,12 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+<div class="viewcode-block" id="InSetConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.InSetConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param set: Set of allowed values</span>
 <span class="sd">        @type  set: set</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># preProcess() will remove it.</span>
@@ -1457,12 +1458,12 @@
 <span class="sd">    [[(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+<div class="viewcode-block" id="NotInSetConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param set: Set of disallowed values</span>
 <span class="sd">        @type  set: set</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># preProcess() will remove it.</span>
@@ -1493,7 +1494,7 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SomeInSetConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.SomeInSetConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param set: Set of values to be checked</span>
 <span class="sd">        @type  set: set</span>
@@ -1506,7 +1507,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>
@@ -1559,7 +1560,7 @@
 <span class="sd">    [[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SomeNotInSetConstraint.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.SomeNotInSetConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        @param set: Set of values to be checked</span>
 <span class="sd">        @type  set: set</span>
@@ -1572,7 +1573,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exact</span> <span class="o">=</span> <span class="n">exact</span></div>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span>

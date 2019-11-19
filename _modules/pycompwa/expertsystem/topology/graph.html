@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../../../../genindex.html">Index</a>
+    <a href= "../../../../genindex.html">General Index</a>
+    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -276,12 +277,12 @@
 <span class="sd">        the nodes and edges via properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="StateTransitionGraph.set_graph_element_properties_comparator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator">[docs]</a>    <span class="k">def</span> <span class="nf">set_graph_element_properties_comparator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="n">comparator</span></div>
@@ -434,7 +435,7 @@
 <div class="viewcode-block" id="InteractionNode"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.InteractionNode">[docs]</a><span class="k">class</span> <span class="nc">InteractionNode</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;struct-like definition of an interaction node&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">number_of_ingoing_edges</span><span class="p">,</span>
+<div class="viewcode-block" id="InteractionNode.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.InteractionNode.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">number_of_ingoing_edges</span><span class="p">,</span>
                  <span class="n">number_of_outgoing_edges</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_ingoing_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;NumberOfIngoingEdges must be an integer&quot;</span><span class="p">)</span>
@@ -446,15 +447,15 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;NumberOfOutgoingEdges has to be larger than 0&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type_name</span> <span class="o">=</span> <span class="n">type_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number_of_ingoing_edges</span> <span class="o">=</span> <span class="n">number_of_ingoing_edges</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_outgoing_edges</span> <span class="o">=</span> <span class="n">number_of_outgoing_edges</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_outgoing_edges</span> <span class="o">=</span> <span class="n">number_of_outgoing_edges</span></div></div>
 
 
 <div class="viewcode-block" id="Edge"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.Edge">[docs]</a><span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;struct-like definition of an edge&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Edge.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.Edge.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">))</span>

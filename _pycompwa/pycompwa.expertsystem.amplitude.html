@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../genindex.html">Index</a>
+    <a href= "../genindex.html">General Index</a>
+    <a href= "../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -210,6 +211,12 @@ just exchange the helicity amplitudes F as a sum of canonical amplitudes a:
 F^J_lambda1,lambda2 = sum_LS { norm * a^J_LS * CG * CG }
 Here CG stands for Clebsch-Gordan factor.</p>
 <dl class="method">
+<dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">top_node_no_dynamics=True</em>, <em class="sig-param">name_generator=&lt;pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeGeneratorXML.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay">
 <code class="sig-name descname">generate_partial_decay</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeGeneratorXML.generate_partial_decay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -222,6 +229,12 @@ Here CG stands for Clebsch-Gordan factor.</p>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator" title="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator</span></code></a></p>
 <p>Generates names for canonical partial decays using the properties of
 the decay.</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">use_parity_conservation=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeNameGenerator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names">
 <code class="sig-name descname">generate_amplitude_coefficient_names</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names" title="Permalink to this definition">¶</a></dt>
@@ -251,6 +264,12 @@ interaction node of the given <code class="xref py py-class docutils literal not
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">
 <em class="property">class </em><code class="sig-name descname">HelicityAmplitudeGeneratorXML</code><span class="sig-paren">(</span><em class="sig-param">top_node_no_dynamics=True</em>, <em class="sig-param">name_generator=&lt;pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeGeneratorXML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeGenerator" title="pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeGenerator</span></code></a></p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">top_node_no_dynamics=True</em>, <em class="sig-param">name_generator=&lt;pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeGeneratorXML.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously">
 <code class="sig-name descname">fix_parameters_unambiguously</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously" title="Permalink to this definition">¶</a></dt>
@@ -295,6 +314,12 @@ except one, will all be fixed. It’s fine if they are all already fixed.</p>
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">
 <em class="property">class </em><code class="sig-name descname">HelicityAmplitudeNameGenerator</code><span class="sig-paren">(</span><em class="sig-param">use_parity_conservation=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeNameGenerator" title="pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeNameGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.amplitude.abstractgenerator.AbstractAmplitudeNameGenerator</span></code></a></p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">use_parity_conservation=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos">
 <code class="sig-name descname">generate_amplitude_coefficient_infos</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos" title="Permalink to this definition">¶</a></dt>

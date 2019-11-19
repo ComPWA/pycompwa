@@ -88,8 +88,17 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-compwa-expert-system">The ComPWA Expert System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-ui">Python UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-and-write-data-samples">Read and Write Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-data-samples">Generate Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-and-defining-particles">Loading and Defining Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-kinematics-and-intensity-instance-from-a-description">Create a Kinematics and Intensity Instance from a Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-an-intensity-to-a-data-sample">Fit an Intensity to a Data Sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-a-fit-result">Save a Fit Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-and-initialize-a-previous-fit-result">Load and Initialize a previous Fit Result</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#python-ui">Python UI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
@@ -100,7 +109,8 @@
 
             
           
-    <a href= "genindex.html">Index</a>
+    <a href= "genindex.html">General Index</a>
+    <a href= "py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -168,30 +178,242 @@
 <h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-compwa-expert-system">
 <span id="compwa-expert-system"></span><h2>The ComPWA Expert System<a class="headerlink" href="#the-compwa-expert-system" title="Permalink to this headline">¶</a></h2>
-<p>Coming soon…</p>
-</div>
-<div class="section" id="plotting">
-<span id="id1"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
-<p>Coming soon …</p>
+<p>The ComPWA expert system is a pure python package which can generate decay
+intensities of arbitrary decays in the helicity or canonical formalism.</p>
+<p>A typical analysis user only has to work with the user interface of the expert
+system <a class="reference internal" href="_pycompwa/pycompwa.expertsystem.ui.html#module-pycompwa.expertsystem.ui" title="pycompwa.expertsystem.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.expertsystem.ui</span></code></a>.</p>
+<p>Most important is the StateTransitionManager</p>
+<p>More info coming soon.</p>
 </div>
 <div class="section" id="python-ui">
-<span id="id2"></span><h2>Python UI<a class="headerlink" href="#python-ui" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Python UI<a class="headerlink" href="#python-ui" title="Permalink to this headline">¶</a></h2>
 <p>The Python User Interface is a python module named <code class="code docutils literal notranslate"><span class="pre">ui</span></code>, built with
 <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a>.
-It is the recommended way to use ComPWA, since the user benefits from the python ease of use.</p>
+It is the recommended way to use ComPWA, since the user benefits from the python
+ease of use.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Because the Python UI calls the c++ code in the background, you do not have to worry about speed.
-It runs just as fast ;)</p>
+<p>Because the Python UI calls the c++ code in the background, you do not have
+to worry about speed. It runs just as fast ;)</p>
 </div>
-<p>The Python UI enables you to perform all of the tasks needed for your partial wave analysis:</p>
-<ul class="simple">
-<li><p>load and create and intensity from a description</p></li>
-<li><p>load or generate data samples</p></li>
-<li><p>perform fits</p></li>
-<li><p>save &amp; visualize results</p></li>
+<p>Since the Python UI just binds to the c++ user interface code, there is a strong
+correlation between the two. It’s useful to read more about the
+<a class="reference external" href="https://compwa.github.io/ComPWA">ComPWA modules</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>On how to use the Python UI, also refer to the
+<a class="reference internal" href="examples.html#examples"><span class="std std-ref">examples section</span></a>.</p>
+</div>
+<p>The Python UI enables you to perform all of the tasks needed for your partial
+wave analysis:</p>
+<div class="section" id="read-and-write-data-samples">
+<span id="dataio"></span><h3>Read and Write Data Samples<a class="headerlink" href="#read-and-write-data-samples" title="Permalink to this headline">¶</a></h3>
+<p>Currently only the reading and writing of ROOT files is supported via the
+<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.RootDataIO" title="pycompwa.ui.RootDataIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootDataIO</span></code></a> class.</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">RootDataIO</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: pycompwa.ui.RootDataIO, tree_name: str, number_of_events: int) -&gt; None</p></li>
+<li><p>__init__(self: pycompwa.ui.RootDataIO, tree_name: str) -&gt; None</p></li>
+<li><p>__init__(self: pycompwa.ui.RootDataIO) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="sig-name descname">readData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">input_file: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Read ROOT tree from file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="sig-name descname">writeData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">data: pycompwa.ui.EventList</em>, <em class="sig-param">file: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Save data as ROOT tree to file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>For the reading of data/events a predefined tree structure is assumed. The name
+of the tree inside the file and the number of events to process can be by
+adjusted in the constructor. By default the tree name is <em>“data”</em> and all events
+are processed. Inside the tree a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> with the name
+<em>“Particles”</em> is expected. This <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> should contain
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TParticle</span></code>’s, the final state particles.</p>
+<p>The order of the particles inside the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> can easily be
+adjusted in the Kinematics section of your model xml file. Just use the
+<code class="docutils literal notranslate"><span class="pre">PositionIndex</span></code> attribute to specify the position inside the
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code>.</p>
+</div>
+<div class="section" id="generate-data-samples">
+<h3>Generate Data Samples<a class="headerlink" href="#generate-data-samples" title="Permalink to this headline">¶</a></h3>
+<p>With <a class="reference internal" href="_pycompwa/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> you can also easily create various types of Monte Carlo
+data samples:</p>
+<ul id="generatephsp">
+<li><p>Generating phase space samples based on the Kinematics</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: ComPWA::PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: ComPWA::UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Generate phase space sample</p>
+</dd></dl>
+
+<p>A required argument is a <code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseSpaceGenerator</span></code> instance. There are
+currently two options: <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.EvtGenGenerator" title="pycompwa.ui.EvtGenGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EvtGenGenerator</span></code></a> and <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.RootGenerator" title="pycompwa.ui.RootGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootGenerator</span></code></a>.
+Using the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.EvtGenGenerator" title="pycompwa.ui.EvtGenGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EvtGenGenerator</span></code></a> is recommended, due to numerical precision
+reasons.</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">EvtGenGenerator</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.EvtGenGenerator</em>, <em class="sig-param">arg0: pycompwa.ui.ParticleStateTransitionKinematicsInfo</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>To initialize such a PhaseSpaceGenerator the Kinematics information of the
+reaction is required. This can be extracted from the
+<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.HelicityKinematics" title="pycompwa.ui.HelicityKinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">HelicityKinematics</span></code></a>.
+Read <a class="reference internal" href="python-ui.html#create-kin-and-intens"><span class="std std-ref">below</span></a> on how to create such a Kinematics
+instance.</p>
+<p>The second argument for the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.generate_phsp" title="pycompwa.ui.generate_phsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_phsp()</span></code></a> function is a random number
+generator. Here also two options exist:</p>
+<ul>
+<li><dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">StdUniformRealGenerator</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.StdUniformRealGenerator</em>, <em class="sig-param">arg0: int</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</li>
+<li><dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">RootUniformRealGenerator</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootUniformRealGenerator</em>, <em class="sig-param">arg0: int</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</li>
 </ul>
-<p>On how to use the Python UI, please refer to the <a class="reference internal" href="examples.html#examples"><span class="std std-ref">examples section</span></a>.</p>
+</li>
+<li><p>Generating data samples based on a Intensity</p>
+<p>The usage is similar to the <a class="reference internal" href="python-ui.html#generatephsp"><span class="std std-ref">phase space generation</span></a>. Now
+the Intensity has to be given as an additional argument. A hit-or-miss based
+sampling will be performed.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::PhaseSpaceEventGenerator, intens: pycompwa.ui.Intensity, random_gen: ComPWA::UniformRealNumberGenerator) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity</p>
+<ol class="arabic simple" start="2">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity, using a given phase space sample.</p>
+<ol class="arabic simple" start="3">
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList, toyPhspSample: pycompwa.ui.EventList = None) -&gt; pycompwa.ui.EventList</p></li>
+</ol>
+<p>Generate sample from an Intensity. In case that detector reconstruction and selection is considered in the phase space sample a second pure toy sample needs to be passed.</p>
+</dd></dl>
+
+</li>
+<li><p>Generating an importance weighted phase space sample</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kin: pycompwa.ui.Kinematics</em>, <em class="sig-param">gen: ComPWA::PhaseSpaceEventGenerator</em>, <em class="sig-param">intens: pycompwa.ui.Intensity</em>, <em class="sig-param">random_gen: ComPWA::UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Generate an Intensity importance weighted phase space sample</p>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current implementation is simple and uniformly generates events in the
+phase space domain. Depending on the shape of your Intensity, this can be
+quite computation intensive. However, ideally you would only run this once
+for a specific reaction.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="loading-and-defining-particles">
+<span id="loadparticles"></span><h3>Loading and Defining Particles<a class="headerlink" href="#loading-and-defining-particles" title="Permalink to this headline">¶</a></h3>
+<p>Particles can loaded and stored inside a <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a>.</p>
+<dl class="function">
+<dt id="pycompwa.ui.read_particles">
+<code class="sig-name descname">read_particles</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.PartList<a class="headerlink" href="#pycompwa.ui.read_particles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read particles from a xml file.</p>
+</dd></dl>
+
+<p>Also particles can be inserted to an existing <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a>, overwriting
+already existing particles.</p>
+<dl class="function">
+<dt id="pycompwa.ui.insert_particles">
+<code class="sig-name descname">insert_particles</code><span class="sig-paren">(</span><em class="sig-param">arg0: pycompwa.ui.PartList</em>, <em class="sig-param">arg1: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.insert_particles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert particles to a list from a xml file. Already defined particles will be overwritten!</p>
+</dd></dl>
+
+</div>
+<div class="section" id="create-a-kinematics-and-intensity-instance-from-a-description">
+<span id="create-kin-and-intens"></span><h3>Create a Kinematics and Intensity Instance from a Description<a class="headerlink" href="#create-a-kinematics-and-intensity-instance-from-a-description" title="Permalink to this headline">¶</a></h3>
+<p>As a prerequisite a <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a> has to be already loaded.</p>
+<p>A HelicityKinematics instance can be created with
+<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.create_helicity_kinematics" title="pycompwa.ui.create_helicity_kinematics"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_helicity_kinematics()</span></code></a></p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">create_helicity_kinematics</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.HelicityKinematics</dt>
+<dd><p>Create a helicity kinematics from a xml file. The file should contain a kinematics section.</p>
+</dd></dl>
+
+<p>Analogous a Intensity instance can be created with <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.create_intensity" title="pycompwa.ui.create_intensity"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_intensity()</span></code></a></p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">phsp_sample: pycompwa.ui.EventList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity</dt>
+<dd><p>Create an intensity and a helicity kinematics from a xml file. The file should contain a particle list, and a kinematics and intensity section.</p>
+</dd></dl>
+
+<p>Here the order of execution is important and can be slightly confusing.
+In order to fit an Intensity to a data sample, the Intensity has to be
+normalized (when using an unbinned log likelihood estimator). Because the
+normalization is performed by MC integration, a phase space sample is needed.
+This however requires a Kinematics instance. Therefore the order of execution is:</p>
+<ol class="arabic simple">
+<li><p>Create/Load a <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a></p></li>
+<li><p>Create a Kinematics instance</p></li>
+<li><p>Create a phase space sample (alternatively: the data can also be
+<a class="reference internal" href="python-ui.html#dataio"><span class="std std-ref">read from file</span></a>)</p></li>
+<li><p>Create an Intensity using the phase space sample and the Kinematics instance</p></li>
+</ol>
+</div>
+<div class="section" id="fit-an-intensity-to-a-data-sample">
+<h3>Fit an Intensity to a Data Sample<a class="headerlink" href="#fit-an-intensity-to-a-data-sample" title="Permalink to this headline">¶</a></h3>
+<p>Coming soon…</p>
+</div>
+<div class="section" id="save-a-fit-result">
+<h3>Save a Fit Result<a class="headerlink" href="#save-a-fit-result" title="Permalink to this headline">¶</a></h3>
+<p>Coming soon…</p>
+</div>
+<div class="section" id="load-and-initialize-a-previous-fit-result">
+<h3>Load and Initialize a previous Fit Result<a class="headerlink" href="#load-and-initialize-a-previous-fit-result" title="Permalink to this headline">¶</a></h3>
+<p>Coming soon…</p>
+<p>Visualizing of data samples and Intensities can be done via the
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.plotting</span> <span class="pre">module</span></code> documented in the next section.</p>
+</div>
+</div>
+<div class="section" id="plotting">
+<span id="id2"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon …</p>
 </div>
 </div>
 

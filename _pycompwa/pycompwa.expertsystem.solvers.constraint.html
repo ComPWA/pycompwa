@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../genindex.html">Index</a>
+    <a href= "../genindex.html">General Index</a>
+    <a href= "../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -196,6 +197,16 @@ SomeNotInSetConstraint</p>
 <em class="property">class </em><code class="sig-name descname">Problem</code><span class="sig-paren">(</span><em class="sig-param">solver=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Problem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Problem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class used to define a problem and retrieve solutions</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.Problem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">solver=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Problem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Problem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>&#64;param solver: Problem solver used to find solutions</dt><dd><p>(default is L{BacktrackingSolver})</p>
+</dd>
+</dl>
+<p>&#64;type solver:  instance of a L{Solver} subclass</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.Problem.addConstraint">
 <code class="sig-name descname">addConstraint</code><span class="sig-paren">(</span><em class="sig-param">constraint</em>, <em class="sig-param">variables=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Problem.addConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Problem.addConstraint" title="Permalink to this definition">¶</a></dt>
@@ -374,6 +385,13 @@ the order may be important.</p>
 <p>Helper class for variable definition</p>
 <p>Using this class is optional, since any hashable object,
 including plain strings and integers, may be used as variables.</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.Variable.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Variable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Variable.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param name: Generic variable name for problem-specific purposes
+&#64;type  name: string</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -383,6 +401,13 @@ including plain strings and integers, may be used as variables.</p>
 <p>Class used to control possible values for variables</p>
 <p>When list or tuples are used as domains, they are automatically
 converted to an instance of that class.</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.Domain.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Domain.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Domain.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param set: Set of values that the given variables may assume
+&#64;type  set: set of objects comparable by equality</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.Domain.hideValue">
 <code class="sig-name descname">hideValue</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#Domain.hideValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.Domain.hideValue" title="Permalink to this definition">¶</a></dt>
@@ -506,6 +531,17 @@ is popped from the stack.</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">forwardcheck=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#BacktrackingSolver.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>&#64;param forwardcheck: If false forward checking will not be requested</dt><dd><p>to constraints while looking for solutions
+(default is true)</p>
+</dd>
+</dl>
+<p>&#64;type  forwardcheck: bool</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolution">
 <code class="sig-name descname">getSolution</code><span class="sig-paren">(</span><em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#BacktrackingSolver.getSolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.BacktrackingSolver.getSolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return one solution for the given problem</p>
@@ -587,6 +623,17 @@ is popped from the stack.</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">forwardcheck=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#RecursiveBacktrackingSolver.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>&#64;param forwardcheck: If false forward checking will not be requested</dt><dd><p>to constraints while looking for solutions
+(default is true)</p>
+</dd>
+</dl>
+<p>&#64;type  forwardcheck: bool</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.getSolution">
 <code class="sig-name descname">getSolution</code><span class="sig-paren">(</span><em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#RecursiveBacktrackingSolver.getSolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.getSolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return one solution for the given problem</p>
@@ -656,6 +703,16 @@ is popped from the stack.</p>
 <span class="gr">NotImplementedError</span>: <span class="n">MinConflictsSolver doesn&#39;t provide iteration</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">steps=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#MinConflictsSolver.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>&#64;param steps: Maximum number of steps to perform before giving up</dt><dd><p>when looking for a solution (default is 1000)</p>
+</dd>
+</dl>
+<p>&#64;type  steps: int</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.getSolution">
 <code class="sig-name descname">getSolution</code><span class="sig-paren">(</span><em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#MinConflictsSolver.getSolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.MinConflictsSolver.getSolution" title="Permalink to this definition">¶</a></dt>
@@ -755,6 +812,18 @@ knowledge about other assignments.</p>
 <span class="go">{&#39;a&#39;: 1, &#39;b&#39;: 2}</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.FunctionConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">assigned=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#FunctionConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.FunctionConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param func: Function wrapped and queried for constraint logic
+&#64;type  func: callable object
+&#64;param assigned: Whether the function may receive unassigned</p>
+<blockquote>
+<div><p>variables or not</p>
+</div></blockquote>
+<p>&#64;type  assigned: bool</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -802,6 +871,18 @@ a given amount</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">maxsum</em>, <em class="sig-param">multipliers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#MaxSumConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param maxsum: Value to be considered as the maximum sum
+&#64;type  maxsum: number
+&#64;param multipliers: If given, variable values will be multiplied by</p>
+<blockquote>
+<div><p>the given factors before being summed to be checked</p>
+</div></blockquote>
+<p>&#64;type  multipliers: sequence of numbers</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.preProcess">
 <code class="sig-name descname">preProcess</code><span class="sig-paren">(</span><em class="sig-param">variables</em>, <em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#MaxSumConstraint.preProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.MaxSumConstraint.preProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preprocess variable domains</p>
@@ -844,6 +925,18 @@ to a given amount</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">exactsum</em>, <em class="sig-param">multipliers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#ExactSumConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param exactsum: Value to be considered as the exact sum
+&#64;type  exactsum: number
+&#64;param multipliers: If given, variable values will be multiplied by</p>
+<blockquote>
+<div><p>the given factors before being summed to be checked</p>
+</div></blockquote>
+<p>&#64;type  multipliers: sequence of numbers</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.preProcess">
 <code class="sig-name descname">preProcess</code><span class="sig-paren">(</span><em class="sig-param">variables</em>, <em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#ExactSumConstraint.preProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.ExactSumConstraint.preProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preprocess variable domains</p>
@@ -885,6 +978,18 @@ to a given amount</p>
 <span class="go">[[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.MinSumConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">minsum</em>, <em class="sig-param">multipliers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#MinSumConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.MinSumConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param minsum: Value to be considered as the minimum sum
+&#64;type  minsum: number
+&#64;param multipliers: If given, variable values will be multiplied by</p>
+<blockquote>
+<div><p>the given factors before being summed to be checked</p>
+</div></blockquote>
+<p>&#64;type  multipliers: sequence of numbers</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -901,6 +1006,13 @@ the given set</p>
 <span class="go">[[(&#39;a&#39;, 1), (&#39;b&#39;, 1)]]</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.InSetConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#InSetConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.InSetConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param set: Set of allowed values
+&#64;type  set: set</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.InSetConstraint.preProcess">
 <code class="sig-name descname">preProcess</code><span class="sig-paren">(</span><em class="sig-param">variables</em>, <em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#InSetConstraint.preProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.InSetConstraint.preProcess" title="Permalink to this definition">¶</a></dt>
@@ -944,6 +1056,13 @@ the given set</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#NotInSetConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param set: Set of disallowed values
+&#64;type  set: set</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.preProcess">
 <code class="sig-name descname">preProcess</code><span class="sig-paren">(</span><em class="sig-param">variables</em>, <em class="sig-param">domains</em>, <em class="sig-param">constraints</em>, <em class="sig-param">vconstraints</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#NotInSetConstraint.preProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.NotInSetConstraint.preProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preprocess variable domains</p>
@@ -985,6 +1104,23 @@ variables must be present in a given set</p>
 <span class="go">[[(&#39;a&#39;, 1), (&#39;b&#39;, 1)], [(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)]]</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.SomeInSetConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set</em>, <em class="sig-param">n=1</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#SomeInSetConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.SomeInSetConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param set: Set of values to be checked
+&#64;type  set: set
+&#64;param n: Minimum number of assigned values that should be present</p>
+<blockquote>
+<div><p>in set (default is 1)</p>
+</div></blockquote>
+<p>&#64;type  n: int
+&#64;param exact: Whether the number of assigned values which are</p>
+<blockquote>
+<div><p>present in set must be exactly C{n}</p>
+</div></blockquote>
+<p>&#64;type  exact: bool</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -1001,6 +1137,23 @@ variables must not be present in a given set</p>
 <span class="go">[[(&#39;a&#39;, 1), (&#39;b&#39;, 2)], [(&#39;a&#39;, 2), (&#39;b&#39;, 1)], [(&#39;a&#39;, 2), (&#39;b&#39;, 2)]]</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="pycompwa.expertsystem.solvers.constraint.SomeNotInSetConstraint.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set</em>, <em class="sig-param">n=1</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/solvers/constraint.html#SomeNotInSetConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.solvers.constraint.SomeNotInSetConstraint.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#64;param set: Set of values to be checked
+&#64;type  set: set
+&#64;param n: Minimum number of assigned values that should not be present</p>
+<blockquote>
+<div><p>in set (default is 1)</p>
+</div></blockquote>
+<p>&#64;type  n: int
+&#64;param exact: Whether the number of assigned values which are</p>
+<blockquote>
+<div><p>not present in set must be exactly C{n}</p>
+</div></blockquote>
+<p>&#64;type  exact: bool</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>

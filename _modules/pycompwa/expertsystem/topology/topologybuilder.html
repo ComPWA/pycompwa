@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../../../../genindex.html">Index</a>
+    <a href= "../../../../genindex.html">General Index</a>
+    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -177,7 +178,7 @@
 <span class="sd">    open end lines matches the final state lines</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_node_set</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;interaction_node_set must be a list&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">Item</span><span class="p">,</span> <span class="n">InteractionNode</span><span class="p">)</span>
@@ -185,7 +186,7 @@
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                     <span class="s2">&quot;interaction_node_set must be a list of InteractionNode&quot;</span>
                     <span class="s2">&quot; instances&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span> <span class="o">=</span> <span class="n">interaction_node_set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span> <span class="o">=</span> <span class="n">interaction_node_set</span></div>
 
 <div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.build_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">build_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_intial_edges</span><span class="p">,</span> <span class="n">number_of_final_edges</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_intial_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>

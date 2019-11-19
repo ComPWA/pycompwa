@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../../genindex.html">Index</a>
+    <a href= "../../genindex.html">General Index</a>
+    <a href= "../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -164,29 +165,29 @@
 
 
 <div class="viewcode-block" id="PlotData"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.PlotData">[docs]</a><span class="k">class</span> <span class="nc">PlotData</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_record</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span>
+<div class="viewcode-block" id="PlotData.__init__"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.PlotData.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_record</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span>
                  <span class="n">fit_result_data_record</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data_record</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_result_data</span> <span class="o">=</span> <span class="n">fit_result_data_record</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">particle_id_to_name_mapping</span> <span class="o">=</span> <span class="p">{}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">particle_id_to_name_mapping</span> <span class="o">=</span> <span class="p">{}</span></div></div>
 
 
 <div class="viewcode-block" id="Histogram"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.Histogram">[docs]</a><span class="k">class</span> <span class="nc">Histogram</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimensions</span><span class="p">,</span> <span class="n">bin_edges</span><span class="p">,</span> <span class="n">bin_contents</span><span class="p">,</span> <span class="n">bin_errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Histogram.__init__"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.Histogram.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimensions</span><span class="p">,</span> <span class="n">bin_edges</span><span class="p">,</span> <span class="n">bin_contents</span><span class="p">,</span> <span class="n">bin_errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">mpl_kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">dimensions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bin_edges</span> <span class="o">=</span> <span class="n">bin_edges</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bin_contents</span> <span class="o">=</span> <span class="n">bin_contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bin_errors</span> <span class="o">=</span> <span class="n">bin_errors</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mpl_kwargs</span> <span class="o">=</span> <span class="n">mpl_kwargs</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mpl_kwargs</span> <span class="o">=</span> <span class="n">mpl_kwargs</span></div></div>
 
 
 <div class="viewcode-block" id="Dimension"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.Dimension">[docs]</a><span class="k">class</span> <span class="nc">Dimension</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">binary_operator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Dimension.__init__"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.Dimension.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">binary_operator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">secondary_field_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="n">field_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">binary_operator</span> <span class="o">=</span> <span class="n">binary_operator</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_field_name</span> <span class="o">=</span> <span class="n">secondary_field_name</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_field_name</span> <span class="o">=</span> <span class="n">secondary_field_name</span></div></div>
 
 
 <div class="viewcode-block" id="create_nprecord"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.create_nprecord">[docs]</a><span class="k">def</span> <span class="nf">create_nprecord</span><span class="p">(</span><span class="n">column_names</span><span class="p">,</span> <span class="n">data_array</span><span class="p">):</span>

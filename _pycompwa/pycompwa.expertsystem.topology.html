@@ -93,7 +93,8 @@
 
             
           
-    <a href= "../genindex.html">Index</a>
+    <a href= "../genindex.html">General Index</a>
+    <a href= "../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -170,6 +171,12 @@
 <em class="property">class </em><code class="sig-name descname">Edge</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#Edge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.Edge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>struct-like definition of an edge</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.Edge.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#Edge.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.Edge.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -177,6 +184,12 @@
 <em class="property">class </em><code class="sig-name descname">InteractionNode</code><span class="sig-paren">(</span><em class="sig-param">type_name</em>, <em class="sig-param">number_of_ingoing_edges</em>, <em class="sig-param">number_of_outgoing_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#InteractionNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.InteractionNode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>struct-like definition of an interaction node</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.InteractionNode.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">type_name</em>, <em class="sig-param">number_of_ingoing_edges</em>, <em class="sig-param">number_of_outgoing_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#InteractionNode.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.InteractionNode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -189,6 +202,12 @@ to specific nodes (since feynman graphs also have a time axis)
 This class can contain the full information of a state transition from
 a initial state to a final state. This information can be attached to
 the nodes and edges via properties.</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges">
 <code class="sig-name descname">add_edges</code><span class="sig-paren">(</span><em class="sig-param">edge_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.add_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges" title="Permalink to this definition">¶</a></dt>
@@ -326,6 +345,12 @@ responsible for building all possible topologies base on basic user input</p>
 <p>Simple topology builder. Recursively trys to add the interaction nodes
 to available open end edges/lines in all combinations until the number of
 open end lines matches the final state lines</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">interaction_node_set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">
 <code class="sig-name descname">build_graphs</code><span class="sig-paren">(</span><em class="sig-param">number_of_intial_edges</em>, <em class="sig-param">number_of_final_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder.build_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs" title="Permalink to this definition">¶</a></dt>
