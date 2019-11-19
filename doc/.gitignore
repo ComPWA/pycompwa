@@ -1,2 +1,4 @@
-build
-source/examples
+# Build files
+*build/
+source/_examples/
+source/_pycompwa/

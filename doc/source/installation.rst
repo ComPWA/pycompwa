@@ -1,118 +1,55 @@
+.. |br| raw:: html
+
+  <br />
+
+.. _Installation:
+
 Installation
 ============
 
-There are two possibilities to install pycompwa:
+It is best to install the pycompwa framework within a virtual environment, so that all dependencies of pycompwa are contained within there. We recommend to use `Anaconda <https://www.anaconda.com/distribution/>`__.
 
-* install from pypi (releases only)
-* build from source 
+After you have `installed Anaconda <https://docs.anaconda.com/anaconda/install/>`__, create a new environment with the latest version of ``python``, ``pip`` and ``jupyter`` activated:
 
-The detailed steps for these two installation possibilities are explained below.
+.. code-block:: shell
+
+  conda create --name compwa python jupyter
+
+Here, we call the environment ``compwa``, but you can give it any name. Now, go into this environment with ``conda activate compwa``, so we can install pycompwa there:
+
+.. code-block:: shell
+
+  pip install scikit-build
+  pip install pycompwa
+
+Note that ``scikit-build`` has to be installed first.
+
+That's it! You can now go through the :ref:`Quickstart Example <example_quickstart>` to learn how to use pycompwa.
 
 .. tip::
 
-   In either case, it is highly recommended to setup and use a python virtual
-   environment for pycompwa. Use the tool of your liking, popular choices are 
-   `pipenv <https://github.com/pypa/pipenv>`_ and 
-   `venv <https://docs.python.org/3/tutorial/venv.html>`_.
+    Of course, pycompwa can also be used with `jupyter <https://jupyter.org/>`__. You can install jupyter in your virtual Conda environment via ``conda install jupyter``. Then, just navigate to the jupyter examples  ``examples/jupyter`` and run ``jupyter notebook``.
 
 Prerequisites
 -------------
 
-pycompwa is designed to run on most modern unix systems (including MacOS).
-When installing pycompwa from pypi, no precompiled binaries are used, but
-instead the source is downloaded and build. Therefore the following packages
-are mandatory for both installation variants:
+ComPWA and the pycompwa interface have the following dependencies:
 
-* scikit-build (python package)
-
+* ``scikit-build`` (a python package) |br|
   Install via ``pip install scikit-build``
-* requirements of `ComPWA <https://github.com/ComPWA/ComPWA#prerequisites>`_:
-  
-  * cmake
-  * gcc or clang
-  * Boost
-  * optional libraries: ROOT, Geneva, ...
+* requirements of `ComPWA <https://github.com/ComPWA/ComPWA#prerequisites>`__:
 
-.. note::
-   
-   Since pycompwa uses and builds ComPWA in the background, all requirements of
-   ComPWA are inherited. 
+  * Build tool: `cmake <https://cmake.org/>`__
+  * Compiler: ``gcc`` or ``clang``
+  * `Boost <https://www.boost.org/>`__
+  * optional libraries: |br|
+    `ROOT <https://root.cern.ch/downloading-root>`__ and/or `Minuit <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`__,
+    `Geneva <https://www.gemfony.eu/>`__, and
+    `GSL <https://www.gnu.org/software/gsl/>`__
 
-
-Installation from pypi
-----------------------
-
-If you plan to only work with a release version, this variant is the easiest and most convenient.
-Make sure your virtual environment is activated, then simply run
-
-.. code-block:: shell
-
-   pip install pycompwa
+More information on how to install these can be found by following the links.
 
 Installation from source
 ------------------------
 
-Getting the source
-^^^^^^^^^^^^^^^^^^
-
-To get the most recent version of pycompwa, clone its GitHub repository:
-
-.. code-block:: shell
-
-   git clone --recurse-submodules git@github.com:ComPWA/pycompwa.git <PYCOMPWA_SOURCE_PATH>
-
-this will clone the repository to the subfolder ``<PYCOMPWA_SOURCE_PATH>``
-within the current directory. pycompwa includes several, submodules
-
-Building & Installing
-^^^^^^^^^^^^^^^^^^^^^
-
-First navigate into the source directory of pycompwa
-
-.. code-block:: shell
-
-  cd <PYCOMPWA_SOURCE_PATH>
-
-Make sure the virtual environment is setup and activated. Then the building and
-installation of pycompwa is also simply:
-
-.. code-block:: shell
-
-   python setup.py install -j4
-   
-This will build ComPWA and all submodules via cmake and install all necessary
-files into the python environment. Alternatively you can run ``pip install .``.
-This does not build multithreaded though...
-
-That's it. On how to use ComPWA please refer to the 
-:ref:`Quickstart Example <example_quickstart>`.
-
-.. tip::
-
-   Of course pycompwa can also be used with `jupyter <https://jupyter.org/>`_.
-   You can install jupyter into your virtual environment via ``pip install jupyter``
-   Then just navigate to the jupyter examples subdirectory ``examples/jupyter``
-   and run ``jupyter notebook``. 
-
-Testing the pycompwa installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can run the test suite in the pycompwa source directory via
-
-.. code-block:: shell
-   
-   cd tests
-   python -m pytest
-
-
-Updating pycompwa
------------------
-
-You can update to newer versions of pycompwa via
-
-.. code-block:: shell
-
-   pip install pycompwa --upgrade
-
-
-We would be happy to recieve some feedback or contributions ;)!
+If you are a pycompwa developer, you will have to build the framework from source instead of using the pycompwa release that is distributed through ``conda``. See :ref:`Developer Mode <DeveloperMode>` for the installation instructions.

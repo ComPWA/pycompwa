@@ -1,0 +1,11 @@
+scikit-build
+ipython
+numpy
+pandas
+progress
+matplotlib
+xmltodict
+pytest
+uproot
+scipy
+ipykernel
