@@ -175,7 +175,7 @@ expert system.</p>
 <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="k">import</span> <span class="p">(</span>
     <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="k">import</span> <span class="p">(</span>
-    <span class="n">get_particle_with_name</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
+    <span class="n">particle_list</span><span class="p">)</span>
 
 <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
 <span class="n">final_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
@@ -186,7 +186,7 @@ expert system.</p>
 
 <span class="c1"># The omega is so narrow that the hit&amp;miss generation takes way too long.</span>
 <span class="c1"># Therefore we increase the width artificially in this example!</span>
-<span class="n">omega</span> <span class="o">=</span> <span class="n">get_particle_with_name</span><span class="p">(</span><span class="s1">&#39;omega&#39;</span><span class="p">)</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">particle_list</span><span class="p">[</span><span class="s2">&quot;omega&quot;</span><span class="p">]</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">par</span><span class="p">[</span><span class="s1">&#39;@Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Width&#39;</span><span class="p">:</span>
@@ -219,9 +219,9 @@ intensity. This can easily be achieved by using the
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pycompwa is the python interface to ComPWA&#39;s c++ modules</span>
 <span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
 
-<span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
+<span class="n">particles</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
 
-<span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
+<span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particles</span><span class="p">)</span>
 
 <span class="c1"># generate phase space sample (flat) used for amplitude normalization</span>
 <span class="n">gen</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span><span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
@@ -231,7 +231,7 @@ intensity. This can easily be achieved by using the
 <span class="n">phsp_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
 
 <span class="c1"># create intensity</span>
-<span class="n">intensity</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
+<span class="n">intensity</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particles</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
 
 <span class="c1"># generate importance sampled phase space sample</span>
 <span class="n">phsp_sample_importance</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_importance_sampled_phsp</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>

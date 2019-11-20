@@ -777,7 +777,7 @@ things related to this</p>
 <dt id="pycompwa.expertsystem.state.particle.Spin">
 <em class="property">class </em><code class="sig-name descname">Spin</code><span class="sig-paren">(</span><em class="sig-param">mag</em>, <em class="sig-param">proj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Simple struct-like class defining spin as a magintude plus the projection</p>
+<p>Simple struct-like class defining spin as a magnitude plus the projection</p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.particle.Spin.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">mag</em>, <em class="sig-param">proj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.__init__" title="Permalink to this definition">¶</a></dt>
@@ -973,6 +973,15 @@ things related to this</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="pycompwa.expertsystem.state.particle.add_to_particle_list">
+<code class="sig-name descname">add_to_particle_list</code><span class="sig-paren">(</span><em class="sig-param">particle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#add_to_particle_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.add_to_particle_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a particle dictionary object to the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> dictionary.
+The key will be extracted from the <code class="docutils literal notranslate"><span class="pre">particle</span></code> name (XML tag <code class="docutils literal notranslate"><span class="pre">&#64;Name</span></code>).
+If the key already exists, the entry in <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> will be overwritten
+by this one.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.calculate_combinatorics">
 <code class="sig-name descname">calculate_combinatorics</code><span class="sig-paren">(</span><em class="sig-param">edges</em>, <em class="sig-param">state_particles</em>, <em class="sig-param">attached_external_edges_per_node</em>, <em class="sig-param">allowed_particle_groupings=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#calculate_combinatorics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.calculate_combinatorics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1008,6 +1017,13 @@ things related to this</p>
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="pycompwa.expertsystem.state.particle.get_particle_copy_by_name">
+<code class="sig-name descname">get_particle_copy_by_name</code><span class="sig-paren">(</span><em class="sig-param">particle_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_copy_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_copy_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <cite>deepcopy</cite> of a particle from the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> dictionary so you can manipulate it and
+add it to the particle data base.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.get_particle_property">
 <code class="sig-name descname">get_particle_property</code><span class="sig-paren">(</span><em class="sig-param">particle_properties</em>, <em class="sig-param">qn_name</em>, <em class="sig-param">converter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_property" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1015,13 +1031,16 @@ things related to this</p>
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.get_particle_with_name">
 <code class="sig-name descname">get_particle_with_name</code><span class="sig-paren">(</span><em class="sig-param">particle_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_with_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_with_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.2.0.</span></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">particle_list</span></code> has become a dictionary, so you can already access its entries with a string index.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.get_xml_label">
 <code class="sig-name descname">get_xml_label</code><span class="sig-paren">(</span><em class="sig-param">enum</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_xml_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_xml_label" title="Permalink to this definition">¶</a></dt>
-<dd><p>return the the correctly formatted xml label
-as required by ComPWA and xmltodict</p>
+<dd><p>Return the the correctly formatted XML label as required by ComPWA and xmltodict</p>
 </dd></dl>
 
 <dl class="function">
@@ -1057,7 +1076,13 @@ as required by ComPWA and xmltodict</p>
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.load_particle_list_from_xml">
 <code class="sig-name descname">load_particle_list_from_xml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#load_particle_list_from_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.load_particle_list_from_xml" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>By default, the expert system loads the <code class="docutils literal notranslate"><span class="pre">particle_database</span></code>
+from the XML file <code class="docutils literal notranslate"><span class="pre">particle_list.xml</span></code> located in the ComPWA module.
+Use <code class="docutils literal notranslate"><span class="pre">load_particle_list_from_xml</span></code> to append to the <code class="docutils literal notranslate"><span class="pre">particle_database</span></code>.
+.. note::
+If a particle name in the loaded XML file already exists in the <code class="docutils literal notranslate"><span class="pre">particle_database</span></code>,
+the one in the <code class="docutils literal notranslate"><span class="pre">particle_database</span></code> will be overwritten.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.merge_qn_props">

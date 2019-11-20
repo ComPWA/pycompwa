@@ -272,10 +272,10 @@
 
 
 <div class="viewcode-block" id="remove_duplicate_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions">[docs]</a><span class="k">def</span> <span class="nf">remove_duplicate_solutions</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">remove_qns_list</span><span class="o">=</span><span class="p">[],</span>
-                               <span class="n">ingore_qns_list</span><span class="o">=</span><span class="p">[]):</span>
+                               <span class="n">ignore_qns_list</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;removing duplicate solutions...&quot;</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;removing these qns from graphs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">remove_qns_list</span><span class="p">))</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ignoring qns in graph comparison: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ingore_qns_list</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ignoring qns in graph comparison: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ignore_qns_list</span><span class="p">))</span>
     <span class="n">filtered_results</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">solutions</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">remove_counter</span> <span class="o">=</span> <span class="mi">0</span>
@@ -285,7 +285,7 @@
             <span class="k">for</span> <span class="n">sol_graph</span> <span class="ow">in</span> <span class="n">sol_graphs</span><span class="p">:</span>
                 <span class="n">sol_graph</span> <span class="o">=</span> <span class="n">remove_qns_from_graph</span><span class="p">(</span><span class="n">sol_graph</span><span class="p">,</span> <span class="n">remove_qns_list</span><span class="p">)</span>
                 <span class="n">found_graph</span> <span class="o">=</span> <span class="n">check_equal_ignoring_qns</span><span class="p">(</span><span class="n">sol_graph</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span>
-                                                       <span class="n">ingore_qns_list</span><span class="p">)</span>
+                                                       <span class="n">ignore_qns_list</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">found_graph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">solutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol_graph</span><span class="p">)</span>
                     <span class="n">temp_graphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol_graph</span><span class="p">)</span>
@@ -702,11 +702,11 @@
 <div class="viewcode-block" id="StateTransitionManager.build_topologies"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies">[docs]</a>    <span class="k">def</span> <span class="nf">build_topologies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">all_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span><span class="o">.</span><span class="n">build_graphs</span><span class="p">(</span>
             <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_state</span><span class="p">))</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;number of tolopogy graphs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_graphs</span><span class="p">)))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;number of topology graphs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_graphs</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">all_graphs</span></div>
 
 <div class="viewcode-block" id="StateTransitionManager.create_seed_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">create_seed_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_graphs</span><span class="p">):</span>
-        <span class="c1"># initialize the graph edges (intial and final state)</span>
+        <span class="c1"># initialize the graph edges (initial and final state)</span>
         <span class="n">init_graphs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">tgraph</span> <span class="ow">in</span> <span class="n">topology_graphs</span><span class="p">:</span>
             <span class="n">tgraph</span><span class="o">.</span><span class="n">set_graph_element_properties_comparator</span><span class="p">(</span>

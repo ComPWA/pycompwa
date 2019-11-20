@@ -191,10 +191,9 @@
 
 
 <div class="viewcode-block" id="get_xml_label"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_xml_label">[docs]</a><span class="k">def</span> <span class="nf">get_xml_label</span><span class="p">(</span><span class="n">enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;return the the correctly formatted xml label</span>
-<span class="sd">    as required by ComPWA and xmltodict&quot;&quot;&quot;</span>
-
-    <span class="c1"># the xml attribute prefix is needed as the xmltodict module uses that</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the the correctly formatted XML label as required by ComPWA and xmltodict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">attribute_prefix</span> <span class="o">=</span> <span class="s1">&#39;@&#39;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">enum</span> <span class="ow">in</span> <span class="n">XMLLabelTags</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">enum</span><span class="o">.</span><span class="n">name</span>
@@ -204,7 +203,7 @@
 
 <div class="viewcode-block" id="Spin"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin">[docs]</a><span class="k">class</span> <span class="nc">Spin</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Simple struct-like class defining spin as a magintude plus the projection</span>
+<span class="sd">    Simple struct-like class defining spin as a magnitude plus the projection</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Spin.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
@@ -392,31 +391,54 @@
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span></div>
 
 
-<span class="n">particle_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
 
 
 <div class="viewcode-block" id="load_particle_list_from_xml"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.load_particle_list_from_xml">[docs]</a><span class="k">def</span> <span class="nf">load_particle_list_from_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    By default, the expert system loads the ``particle_database``</span>
+<span class="sd">    from the XML file ``particle_list.xml`` located in the ComPWA module.</span>
+<span class="sd">    Use ``load_particle_list_from_xml`` to append to the ``particle_database``.</span>
+<span class="sd">    .. note::</span>
+<span class="sd">    If a particle name in the loaded XML file already exists in the ``particle_database``,</span>
+<span class="sd">    the one in the ``particle_database`` will be overwritten.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
         <span class="n">full_dict</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">full_dict</span><span class="p">[</span><span class="s1">&#39;ParticleList&#39;</span><span class="p">][</span><span class="s1">&#39;Particle&#39;</span><span class="p">]:</span>
-            <span class="n">particle_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">))</span></div>
+            <span class="n">entry</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">particle_list</span><span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="n">name_label</span><span class="p">]]</span> <span class="o">=</span> <span class="n">entry</span></div>
+
+
+<div class="viewcode-block" id="add_to_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.add_to_particle_list">[docs]</a><span class="k">def</span> <span class="nf">add_to_particle_list</span><span class="p">(</span><span class="n">particle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a particle dictionary object to the ``particle_list`` dictionary.</span>
+<span class="sd">    The key will be extracted from the ``particle`` name (XML tag ``@Name``).</span>
+<span class="sd">    If the key already exists, the entry in ``particle_list`` will be overwritten</span>
+<span class="sd">    by this one.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">particle</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Can only add dictionary entries to particle_list&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">particle_name</span> <span class="o">=</span> <span class="n">particle</span><span class="p">[</span><span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)]</span>
+    <span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">particle</span></div>
 
 
 <div class="viewcode-block" id="get_particle_with_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_with_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_with_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
-    <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
-    <span class="n">found_particles</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_list</span> <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">particle_name</span><span class="p">)</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">name_label</span><span class="p">])]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_particles</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">found_particles</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_list</span> <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">particle_name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="n">name_label</span><span class="p">])]</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_particles</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;No particle with name &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">particle_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; found!&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">found_particles</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;more than one particle with name &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">particle_name</span><span class="p">)</span>
-                <span class="o">+</span> <span class="s2">&quot; found!&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">found_particles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. deprecated:: 0.2.0</span>
+<span class="sd">    ``particle_list`` has become a dictionary, so you can already access its entries with a string index.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_particle_copy_by_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_copy_by_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_copy_by_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get a `deepcopy` of a particle from the ``particle_list`` dictionary so you can manipulate it and</span>
+<span class="sd">    add it to the particle data base.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="get_particle_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_property">[docs]</a><span class="k">def</span> <span class="nf">get_particle_property</span><span class="p">(</span><span class="n">particle_properties</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -438,7 +460,7 @@
                 <span class="k">break</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Parameter&#39;</span> <span class="ow">and</span>
                     <span class="n">val</span><span class="p">[</span><span class="n">type_label</span><span class="p">]</span> <span class="o">==</span> <span class="n">qn_name</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
-                <span class="c1"># parameters have a seperate value tag</span>
+                <span class="c1"># parameters have a separate value tag</span>
                 <span class="n">tagname</span> <span class="o">=</span> <span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="o">.</span><span class="n">name</span>
                 <span class="n">found_prop</span> <span class="o">=</span> <span class="p">{</span><span class="n">value_label</span><span class="p">:</span> <span class="n">val</span><span class="p">[</span><span class="n">tagname</span><span class="p">]}</span>
                 <span class="k">break</span>
@@ -452,7 +474,7 @@
                             <span class="n">decinfo_val</span> <span class="o">=</span> <span class="p">[</span><span class="n">decinfo_val</span><span class="p">]</span>
                         <span class="k">for</span> <span class="n">parval</span> <span class="ow">in</span> <span class="n">decinfo_val</span><span class="p">:</span>
                             <span class="k">if</span> <span class="n">parval</span><span class="p">[</span><span class="n">type_label</span><span class="p">]</span> <span class="o">==</span> <span class="n">qn_name</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-                                <span class="c1"># parameters have a seperate value tag</span>
+                                <span class="c1"># parameters have a separate value tag</span>
                                 <span class="n">tagname</span> <span class="o">=</span> <span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="o">.</span><span class="n">name</span>
                                 <span class="n">found_prop</span> <span class="o">=</span> <span class="p">{</span><span class="n">value_label</span><span class="p">:</span> <span class="n">parval</span><span class="p">[</span><span class="n">tagname</span><span class="p">]}</span>
                                 <span class="k">break</span>
@@ -769,13 +791,13 @@
 <div class="viewcode-block" id="initialize_allowed_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_allowed_particle_list">[docs]</a><span class="k">def</span> <span class="nf">initialize_allowed_particle_list</span><span class="p">(</span><span class="n">allowed_particle_list</span><span class="p">):</span>
     <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allowed_particle_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="n">particle_list</span>
+        <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">particle_list</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allowed_particle_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particle_list</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)]:</span>
-                        <span class="n">mod_allowed_particle_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">particle_list</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                        <span class="n">mod_allowed_particle_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">mod_allowed_particle_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mod_allowed_particle_list</span></div>
