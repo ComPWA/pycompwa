@@ -230,7 +230,7 @@ data samples:</p>
 <li><p>Generating phase space samples based on the Kinematics</p>
 <dl class="function">
 <dt>
-<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: ComPWA::PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: ComPWA::UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
 <dd><p>Generate phase space sample</p>
 </dd></dl>
 
@@ -289,15 +289,15 @@ sampling will be performed.</p>
 <code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic simple">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::PhaseSpaceEventGenerator, intens: pycompwa.ui.Intensity, random_gen: ComPWA::UniformRealNumberGenerator) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.PhaseSpaceEventGenerator, intens: pycompwa.ui.Intensity, random_gen: pycompwa.ui.UniformRealNumberGenerator) -&gt; pycompwa.ui.EventList</p></li>
 </ol>
 <p>Generate sample from an Intensity</p>
 <ol class="arabic simple" start="2">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList) -&gt; pycompwa.ui.EventList</p></li>
 </ol>
 <p>Generate sample from an Intensity, using a given phase space sample.</p>
 <ol class="arabic simple" start="3">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: ComPWA::UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList, toyPhspSample: pycompwa.ui.EventList = None) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList, toyPhspSample: pycompwa.ui.EventList = None) -&gt; pycompwa.ui.EventList</p></li>
 </ol>
 <p>Generate sample from an Intensity. In case that detector reconstruction and selection is considered in the phase space sample a second pure toy sample needs to be passed.</p>
 </dd></dl>
@@ -306,7 +306,7 @@ sampling will be performed.</p>
 <li><p>Generating an importance weighted phase space sample</p>
 <dl class="function">
 <dt>
-<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kin: pycompwa.ui.Kinematics</em>, <em class="sig-param">gen: ComPWA::PhaseSpaceEventGenerator</em>, <em class="sig-param">intens: pycompwa.ui.Intensity</em>, <em class="sig-param">random_gen: ComPWA::UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kin: pycompwa.ui.Kinematics</em>, <em class="sig-param">gen: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">intens: pycompwa.ui.Intensity</em>, <em class="sig-param">random_gen: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
 <dd><p>Generate an Intensity importance weighted phase space sample</p>
 </dd></dl>
 
