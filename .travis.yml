@@ -96,7 +96,7 @@ script:
   - pipenv run python setup.py  --generator "Unix Makefiles" --skip-generator-test install
     -- -- -j2
   - if [ "$TRAVIS_OS_NAME" != "osx" ]; then
-    cd tests; pipenv run python -m pytest;
-    cd $BASEPATH/doc; pipenv run make html; touch build/html/.nojekyll; rm -rf build/html/_sources;
+      cd $BASEPATH/tests && pipenv run python -m pytest || exit 1;
+      cd $BASEPATH/doc && pipenv run make html && touch build/html/.nojekyll && rm -rf build/html/_sources || exit 1;
     fi
   - cd $BASEPATH
