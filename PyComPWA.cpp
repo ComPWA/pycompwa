@@ -320,18 +320,26 @@ PYBIND11_MODULE(ui, m) {
 
   //------- Generate
 
-  py::class_<ComPWA::StdUniformRealGenerator>(m, "StdUniformRealGenerator")
+  py::class_<ComPWA::UniformRealNumberGenerator>(m,
+                                                 "UniformRealNumberGenerator");
+
+  py::class_<ComPWA::StdUniformRealGenerator,
+             ComPWA::UniformRealNumberGenerator>(m, "StdUniformRealGenerator")
       .def(py::init<int>());
 
-  py::class_<ComPWA::Data::Root::RootUniformRealGenerator>(
-      m, "RootUniformRealGenerator")
+  py::class_<ComPWA::Data::Root::RootUniformRealGenerator,
+             ComPWA::UniformRealNumberGenerator>(m, "RootUniformRealGenerator")
       .def(py::init<int>());
 
-  py::class_<ComPWA::Data::Root::RootGenerator>(m, "RootGenerator")
+  py::class_<ComPWA::PhaseSpaceEventGenerator>(m, "PhaseSpaceEventGenerator");
+
+  py::class_<ComPWA::Data::Root::RootGenerator,
+             ComPWA::PhaseSpaceEventGenerator>(m, "RootGenerator")
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>());
 
-  py::class_<ComPWA::Data::EvtGen::EvtGenGenerator>(m, "EvtGenGenerator")
+  py::class_<ComPWA::Data::EvtGen::EvtGenGenerator,
+             ComPWA::PhaseSpaceEventGenerator>(m, "EvtGenGenerator")
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>());
 
