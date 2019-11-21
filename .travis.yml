@@ -59,8 +59,9 @@ jobs:
         - cd $BASEPATH/doc
         - pipenv run make html
       before_deploy:
-        - touch $BASEPATH/doc/build/html/.nojekyll
-        - rm -rf $BASEPATH/doc/build/html/_sources
+        - cd $BASEPATH
+        - touch doc/build/html/.nojekyll
+        - rm -rf doc/build/html/_sources
         - openssl aes-256-cbc -K $encrypted_ffa3dff63372_key -iv $encrypted_ffa3dff63372_iv -in github_deploy_key.enc -out github_deploy_key -d
       deploy:
         provider: pages
