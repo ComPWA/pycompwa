@@ -221,7 +221,7 @@
 <div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">CanonicalAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This class defines a full amplitude in the canonical formalism, using the</span>
-<span class="sd">    heliclty formalism as a foundation.</span>
+<span class="sd">    helicity formalism as a foundation.</span>
 <span class="sd">    The key here is that we take the full helicity intensity as a template, and</span>
 <span class="sd">    just exchange the helicity amplitudes F as a sum of canonical amplitudes a:</span>
 <span class="sd">    F^J_lambda1,lambda2 = sum_LS { norm * a^J_LS * CG * CG }</span>
@@ -240,7 +240,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
-            <span class="n">spinqn</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
+            <span class="n">spin</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
             <span class="n">partial_decay_dict</span> <span class="o">=</span> <span class="n">decay_generate_function</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
             <span class="n">node_props</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
@@ -252,13 +252,13 @@
             <span class="n">in_edge_ids</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
 
             <span class="n">parent_spin</span> <span class="o">=</span> <span class="n">get_particle_property</span><span class="p">(</span>
-                <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">in_edge_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">spinqn</span><span class="p">)</span>
+                <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">in_edge_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">spin</span><span class="p">)</span>
 
             <span class="n">daughter_spins</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="k">for</span> <span class="n">out_edge_id</span> <span class="ow">in</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
                 <span class="n">daughter_spins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_particle_property</span><span class="p">(</span>
-                    <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">out_edge_id</span><span class="p">],</span> <span class="n">spinqn</span><span class="p">)</span>
+                    <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">out_edge_id</span><span class="p">],</span> <span class="n">spin</span><span class="p">)</span>
                 <span class="p">)</span>
 
             <span class="n">decay_particle_lambda</span> <span class="o">=</span> <span class="p">(</span><span class="n">daughter_spins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span> <span class="o">-</span>

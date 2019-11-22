@@ -328,7 +328,7 @@
 <span class="sd">        True</span>
 
 <span class="sd">        @param variables: Any object containing a sequence of objects</span>
-<span class="sd">                          represeting problem variables</span>
+<span class="sd">                          representing problem variables</span>
 <span class="sd">        @type  variables: sequence of hashable objects</span>
 <span class="sd">        @param domain: Set of items defining the possible values that</span>
 <span class="sd">                       the given variables may assume</span>
@@ -382,10 +382,10 @@
 <span class="sd">        @return: Solution for the problem</span>
 <span class="sd">        @rtype: dictionary mapping variables to values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getArgs</span><span class="p">()</span>
+        <span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">v_constraints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getArgs</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">domains</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">getSolution</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">getSolution</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">v_constraints</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Problem.getSolutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.Problem.getSolutions">[docs]</a>    <span class="k">def</span> <span class="nf">getSolutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -469,7 +469,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">arcs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
-        <span class="n">constraint</span><span class="p">,</span> <span class="n">variables</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">variables</span> <span class="o">=</span> <span class="n">x</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">variable1</span><span class="p">,</span> <span class="n">variable2</span> <span class="o">=</span> <span class="n">variables</span>
             <span class="n">arcs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">variable1</span><span class="p">,</span> <span class="p">{})</span>\
@@ -628,10 +628,9 @@
 
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 
-            <span class="c1"># Mix the Degree and Minimum Remaing Values (MRV) heuristics</span>
-            <span class="n">lst</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
-                    <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">]</span>
-            <span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="c1"># Mix the Degree and Minimum Remaining Values (MRV) heuristics</span>
+            <span class="n">lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
+                           <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">])</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
                     <span class="c1"># Found unassigned variable</span>
@@ -747,10 +746,9 @@
 <div class="viewcode-block" id="RecursiveBacktrackingSolver.recursiveBacktracking"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.RecursiveBacktrackingSolver.recursiveBacktracking">[docs]</a>    <span class="k">def</span> <span class="nf">recursiveBacktracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">vconstraints</span><span class="p">,</span>
                               <span class="n">assignments</span><span class="p">,</span> <span class="n">single</span><span class="p">):</span>
 
-        <span class="c1"># Mix the Degree and Minimum Remaing Values (MRV) heuristics</span>
-        <span class="n">lst</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
-                <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">]</span>
-        <span class="n">lst</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="c1"># Mix the Degree and Minimum Remaining Values (MRV) heuristics</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">vconstraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span>
+                       <span class="nb">len</span><span class="p">(</span><span class="n">domains</span><span class="p">[</span><span class="n">variable</span><span class="p">]),</span> <span class="n">variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
                 <span class="c1"># Found an unassigned variable. Let&#39;s go.</span>
@@ -898,6 +896,7 @@
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
 
 <span class="n">Unassigned</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s2">&quot;Unassigned&quot;</span><span class="p">)</span>
 
@@ -1111,13 +1110,13 @@
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
-        <span class="n">parms</span> <span class="o">=</span> <span class="p">[</span><span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
-        <span class="n">missing</span> <span class="o">=</span> <span class="n">parms</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">_unassigned</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">assignments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_unassigned</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">_unassigned</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">parms</span><span class="p">))</span> <span class="ow">and</span>
+            <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_assigned</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">))</span> <span class="ow">and</span>
                     <span class="p">(</span><span class="ow">not</span> <span class="n">forwardcheck</span> <span class="ow">or</span> <span class="n">missing</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span>
                      <span class="bp">self</span><span class="o">.</span><span class="n">forwardCheck</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">parms</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AllDifferentConstraint"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.solvers.constraint.html#pycompwa.expertsystem.solvers.constraint.AllDifferentConstraint">[docs]</a><span class="k">class</span> <span class="nc">AllDifferentConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
@@ -1239,7 +1238,7 @@
             <span class="k">for</span> <span class="n">variable</span><span class="p">,</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">multipliers</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
                     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">*</span> <span class="n">multiplier</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -1256,7 +1255,7 @@
             <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">assignments</span><span class="p">:</span>
                     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">maxsum</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -1326,7 +1325,7 @@
                     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">*</span> <span class="n">multiplier</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">missing</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -1345,7 +1344,7 @@
                     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">missing</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">exactsum</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -1403,7 +1402,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
                     <span class="nb">sum</span> <span class="o">+=</span> <span class="n">assignments</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="nb">sum</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">sum</span> <span class="o">&gt;=</span> <span class="n">minsum</span></div>
 

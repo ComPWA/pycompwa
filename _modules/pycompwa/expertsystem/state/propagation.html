@@ -496,7 +496,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CSPPropagator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_contraints</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_constraints</span><span class="p">()</span>
         <span class="n">solutions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">getSolutions</span><span class="p">()</span>
         <span class="n">solution_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_solutions_to_graph</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">:</span>
@@ -510,7 +510,7 @@
                     <span class="n">constraint</span><span class="o">.</span><span class="n">rule</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">solution_graphs</span></div>
 
-<div class="viewcode-block" id="CSPPropagator.initialize_contraints"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.initialize_contraints">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_contraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CSPPropagator.initialize_constraints"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.initialize_constraints">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes all of the constraints for this graph. For each interaction</span>
 <span class="sd">        node a set of independent constraints/conservation laws are created.</span>
@@ -816,7 +816,7 @@
                 <span class="k">if</span> <span class="s1">&#39;fixed-vars&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]:</span>
                     <span class="n">temp_var_dict</span><span class="p">[</span><span class="n">edge_id</span><span class="p">][</span><span class="s1">&#39;fixed-vars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varlist</span>
 
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">temp_var_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_to_init</span><span class="p">)</span>
             <span class="n">list_to_init</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
             <span class="k">if</span> <span class="s1">&#39;vars&#39;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
