@@ -370,7 +370,7 @@ def make_dalitz_plots(plot_data, var_names, **kwargs):
 def make_difference_plot_2d(plot_data, var_names, **kwargs):
     if not isinstance(var_names, (list, tuple)) or not len(var_names) == 2:
         raise ValueError(
-            "Incorrent number of variable names! Expecting two variables.")
+            "Incorrect number of variable names! Expecting two variables.")
 
     if plot_data.fit_result_data is None:
         raise ValueError("Fit result data has to be present!")
@@ -398,23 +398,23 @@ def plot_distribution_2d(histogram, is_difference=False, zaxis_label=None,
     plot_name = histogram.dimensions[0].field_name + \
         '_vs_' + histogram.dimensions[1].field_name
 
-    minweight = histogram.bin_contents.min()
-    maxweight = histogram.bin_contents.max()
+    min_weight = histogram.bin_contents.min()
+    max_weight = histogram.bin_contents.max()
 
     colormap = plt.get_cmap('viridis')
     if is_difference:
         plot_name += "_diff"
-        maxweight = max([abs(minweight), maxweight])
-        minweight = -maxweight
+        max_weight = max([abs(min_weight), max_weight])
+        min_weight = -max_weight
         colormap = plt.get_cmap('bwr')
 
-    xedges = histogram.bin_edges[0]
-    yedges = histogram.bin_edges[1]
+    x_edges = histogram.bin_edges[0]
+    y_edges = histogram.bin_edges[1]
 
     plt.imshow(histogram.bin_contents.T, interpolation='nearest', origin='low',
-               extent=[xedges[0], xedges[-1], yedges[0],
-                       yedges[-1]], aspect='auto',
-               cmap=colormap, vmin=minweight, vmax=maxweight)
+               extent=[x_edges[0], x_edges[-1], y_edges[0],
+                       y_edges[-1]], aspect='auto',
+               cmap=colormap, vmin=min_weight, vmax=max_weight)
 
     axis = plt.gca()
     if 'xtitle' in kwargs:
