@@ -192,6 +192,18 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="pycompwa.ui.Estimator">
+<em class="property">class </em><code class="sig-name descname">Estimator</code><a class="headerlink" href="#pycompwa.ui.Estimator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<dl class="method">
+<dt id="pycompwa.ui.Estimator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.Estimator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="pycompwa.ui.Event">
 <em class="property">class </em><code class="sig-name descname">Event</code><a class="headerlink" href="#pycompwa.ui.Event" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
@@ -377,7 +389,7 @@
 <dl class="class">
 <dt id="pycompwa.ui.FunctionTreeEstimator">
 <em class="property">class </em><code class="sig-name descname">FunctionTreeEstimator</code><a class="headerlink" href="#pycompwa.ui.FunctionTreeEstimator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#pycompwa.ui.Estimator" title="pycompwa.ui.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.ui.Estimator</span></code></a></p>
 <dl class="method">
 <dt id="pycompwa.ui.FunctionTreeEstimator.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.FunctionTreeEstimator.__init__" title="Permalink to this definition">¶</a></dt>
@@ -522,7 +534,7 @@
 
 <dl class="method">
 <dt id="pycompwa.ui.MinuitIF.optimize">
-<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.MinuitIF, arg0: ComPWA::Estimator::Estimator&lt;double&gt;, arg1: List[pycompwa.ui.FitParameter]</em><span class="sig-paren">)</span> &#x2192; ComPWA::Optimizer::Minuit2::MinuitResult<a class="headerlink" href="#pycompwa.ui.MinuitIF.optimize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.MinuitIF, arg0: pycompwa.ui.Estimator, arg1: List[pycompwa.ui.FitParameter]</em><span class="sig-paren">)</span> &#x2192; ComPWA::Optimizer::Minuit2::MinuitResult<a class="headerlink" href="#pycompwa.ui.MinuitIF.optimize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start minimization.</p>
 </dd></dl>
 
@@ -784,7 +796,7 @@
 
 <dl class="function">
 <dt id="pycompwa.ui.create_rootplotdata">
-<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f17250c5928&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f17250c58f0&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f93f56102d0&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f93f5610298&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">

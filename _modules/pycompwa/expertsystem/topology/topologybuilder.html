@@ -167,7 +167,7 @@
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">.graph</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.graph</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateTransitionGraph</span><span class="p">,</span> <span class="n">InteractionNode</span><span class="p">,</span> <span class="n">are_graphs_isomorphic</span><span class="p">)</span>
 
 
@@ -178,7 +178,7 @@
 <span class="sd">    open end lines matches the final state lines</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_node_set</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;interaction_node_set must be a list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span> <span class="o">=</span> <span class="n">interaction_node_set</span></div>

@@ -168,13 +168,13 @@
 <p>First we create the intensity. If this step looks unfamiliar to you, you
 might want to check other intensity construction examples using the
 expert system.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="k">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateTransitionManager</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">particle_list</span><span class="p">)</span>
 
 <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
@@ -251,7 +251,7 @@ subsystems already exist and this step is redundant.</p>
 </div>
 <p>Now we use the <code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> function to get data, which is
 ready to be put into a numpy record array.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="k">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span>
 <span class="p">)</span>
 

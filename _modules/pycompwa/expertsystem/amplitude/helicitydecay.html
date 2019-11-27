@@ -155,23 +155,23 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pycompwa.expertsystem.amplitude.helicitydecay</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">xmltodict</span>
 
-<span class="kn">from</span> <span class="nn">.abstractgenerator</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.abstractgenerator</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AbstractAmplitudeNameGenerator</span><span class="p">,</span>
     <span class="n">AbstractAmplitudeGenerator</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="k">import</span> <span class="p">(</span><span class="n">get_initial_state_edges</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_initial_state_edges</span><span class="p">,</span>
                               <span class="n">get_final_state_edges</span><span class="p">,</span>
                               <span class="n">get_edges_ingoing_to_node</span><span class="p">,</span>
                               <span class="n">get_edges_outgoing_to_node</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateQuantumNumberNames</span><span class="p">,</span> <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
     <span class="n">XMLLabelConstants</span><span class="p">,</span> <span class="n">get_xml_label</span><span class="p">,</span> <span class="n">get_interaction_property</span><span class="p">,</span>
     <span class="n">get_particle_property</span><span class="p">)</span>
@@ -384,7 +384,7 @@
 
 
 <div class="viewcode-block" id="HelicityAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="n">AbstractAmplitudeNameGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_amp_coefficient_infos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_parity_conservation</span> <span class="o">=</span> <span class="n">use_parity_conservation</span>
 
@@ -502,7 +502,7 @@
 
 
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">AbstractAmplitudeGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">name_generator</span><span class="o">=</span><span class="n">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helicity_amplitudes</span> <span class="o">=</span> <span class="p">{}</span>

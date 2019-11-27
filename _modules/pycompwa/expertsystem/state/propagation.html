@@ -162,26 +162,26 @@
 <span class="sd">The propagator classes (e.g. :class:`.CSPPropagator`) use the implemented</span>
 <span class="sd">conservation rules of :mod:`.conservationrules`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">..solvers.constraint</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..solvers.constraint</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Problem</span><span class="p">,</span>
     <span class="n">Constraint</span><span class="p">,</span>
     <span class="n">Unassigned</span><span class="p">,</span>
     <span class="n">BacktrackingSolver</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_initial_state_edges</span><span class="p">,</span>
     <span class="n">get_final_state_edges</span><span class="p">,</span>
     <span class="n">get_edges_ingoing_to_node</span><span class="p">,</span>
     <span class="n">get_edges_outgoing_to_node</span><span class="p">,</span>
     <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..state.conservationrules</span> <span class="k">import</span> <span class="n">AbstractRule</span>
-<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..state.conservationrules</span> <span class="kn">import</span> <span class="n">AbstractRule</span>
+<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_xml_label</span><span class="p">,</span> <span class="n">XMLLabelConstants</span><span class="p">,</span>
     <span class="n">StateQuantumNumberNames</span><span class="p">,</span>
     <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
@@ -212,12 +212,12 @@
 <span class="sd">      - strength scale parameter (higher value means stronger force)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="InteractionNodeSettings.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.InteractionNodeSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="InteractionNodeSettings.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.InteractionNodeSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conservation_laws</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qn_domains</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_strength</span> <span class="o">=</span> <span class="mf">1.0</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">return_string</span> <span class="o">=</span> <span class="s2">&quot;conservation laws:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
             <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conservation_laws</span><span class="p">)</span>
         <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">quantum number domains:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
@@ -229,7 +229,7 @@
 
 
 <div class="viewcode-block" id="AbstractPropagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator">[docs]</a><span class="k">class</span> <span class="nc">AbstractPropagator</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="AbstractPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -256,7 +256,7 @@
 
 
 <div class="viewcode-block" id="FullPropagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator">[docs]</a><span class="k">class</span> <span class="nc">FullPropagator</span><span class="p">():</span>
-<div class="viewcode-block" id="FullPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">propagation_mode</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="FullPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.FullPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">propagation_mode</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span> <span class="o">=</span> <span class="n">CSPPropagator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">propagation_mode</span> <span class="o">=</span> <span class="n">propagation_mode</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;using CSP propagator&quot;</span><span class="p">)</span>
@@ -337,7 +337,7 @@
 
 
 <div class="viewcode-block" id="ParticleStateTransitionGraphValidator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator">[docs]</a><span class="k">class</span> <span class="nc">ParticleStateTransitionGraphValidator</span><span class="p">(</span><span class="n">AbstractPropagator</span><span class="p">):</span>
-<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ParticleStateTransitionGraphValidator.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -429,7 +429,7 @@
 
 
 <div class="viewcode-block" id="VariableInfo"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.VariableInfo">[docs]</a><span class="k">class</span> <span class="nc">VariableInfo</span><span class="p">():</span>
-<div class="viewcode-block" id="VariableInfo.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.VariableInfo.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
+<div class="viewcode-block" id="VariableInfo.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.VariableInfo.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_type</span> <span class="o">=</span> <span class="n">graph_element_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">element_id</span> <span class="o">=</span> <span class="n">element_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span></div></div>
@@ -487,7 +487,7 @@
 <span class="sd">    special class :class:`.ConservationLawConstraintWrapper`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CSPPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="CSPPropagator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.CSPPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variable_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">solver</span> <span class="o">=</span> <span class="n">BacktrackingSolver</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -746,7 +746,7 @@
 <span class="sd">    user interface.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConservationLawConstraintWrapper.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="p">,</span> <span class="n">name_delimiter</span><span class="p">):</span>
+<div class="viewcode-block" id="ConservationLawConstraintWrapper.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="p">,</span> <span class="n">name_delimiter</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">AbstractRule</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;rule has to be of type AbstractRule!&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rule</span> <span class="o">=</span> <span class="n">rule</span>
@@ -827,7 +827,7 @@
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">[</span><span class="s1">&#39;fixed-vars&#39;</span><span class="p">]:</span>
                     <span class="n">list_to_init</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">domains</span><span class="p">,</span> <span class="n">assignments</span><span class="p">,</span> <span class="n">forwardcheck</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">_unassigned</span><span class="o">=</span><span class="n">Unassigned</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conditions_never_met</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>

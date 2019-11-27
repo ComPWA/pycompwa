@@ -198,14 +198,14 @@ interface. The workflow is:</p>
 </ol>
 <p>Let’s go!</p>
 <p>First we <code class="docutils literal notranslate"><span class="pre">import</span></code> the necessary expert system module parts</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="k">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateTransitionManager</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">)</span>
 
 <span class="c1"># just a little function to print the intermediate states</span>
 <span class="k">def</span> <span class="nf">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intermediate states:&quot;</span><span class="p">)</span>
     <span class="n">intermediate_states</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -483,7 +483,7 @@ hints on the stepsize</p>
 <p>These fit parameters are initialized with the values stated in the xml
 file or default values. But can be changed easily, like fixing certain
 parameters.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">initial_parameters</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this parameter is initially not fixed: &quot;</span><span class="p">,</span> <span class="n">initial_parameters</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
 <span class="n">initial_parameters</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">is_fixed</span> <span class="o">=</span> <span class="kc">True</span>
@@ -561,14 +561,14 @@ function of the python UI. So let’s create a file</p>
 </div>
 <p>Now the <code class="docutils literal notranslate"><span class="pre">rootplotdatareader</span></code> submodule of <code class="docutils literal notranslate"><span class="pre">plotting</span></code> can be used to
 read in the data.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting.rootplotdatareader</span> <span class="k">import</span> <span class="n">open_compwa_plot_data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting.rootplotdatareader</span> <span class="kn">import</span> <span class="n">open_compwa_plot_data</span>
 
 <span class="n">plot_data</span> <span class="o">=</span> <span class="n">open_compwa_plot_data</span><span class="p">(</span><span class="s2">&quot;rootplot.root&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The returned data structure can directly be fed to
 <code class="docutils literal notranslate"><span class="pre">make_dalitz_plots()</span></code></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="k">import</span> <span class="n">make_dalitz_plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="n">make_dalitz_plots</span>
 <span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -581,7 +581,7 @@ datapoins to be exported as two-dimensional lists. These can be used to
 create a numpy record arrays. Then the <strong>plotting</strong> module is able to
 create common plots like the Dalitz plot.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting</span>
-<span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span><span class="p">,</span>
     <span class="n">make_difference_plot_2d</span>
 <span class="p">)</span>
@@ -621,13 +621,13 @@ detailed features of ComPWA.</p>
 <p>First we create the intensity. If this step looks unfamiliar to you, you
 might want to check other intensity construction examples using the
 expert system.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="k">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateTransitionManager</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">particle_list</span><span class="p">)</span>
 
 <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
@@ -704,7 +704,7 @@ subsystems already exist and this step is redundant.</p>
 </div>
 <p>Now we use the <code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> function to get data, which is
 ready to be put into a numpy record array.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="k">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span>
 <span class="p">)</span>
 

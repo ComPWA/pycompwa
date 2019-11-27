@@ -156,37 +156,37 @@
             
   <h1>Source code for pycompwa.expertsystem.ui.system_control</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">permutations</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">Pool</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">permutations</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
 
-<span class="kn">from</span> <span class="nn">progress.bar</span> <span class="k">import</span> <span class="n">IncrementalBar</span>
+<span class="kn">from</span> <span class="nn">progress.bar</span> <span class="kn">import</span> <span class="n">IncrementalBar</span>
 
-<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StateTransitionGraph</span><span class="p">,</span>
     <span class="n">InteractionNode</span><span class="p">,</span>
     <span class="n">get_edges_outgoing_to_node</span><span class="p">,</span>
     <span class="n">get_final_state_edges</span><span class="p">,</span>
     <span class="n">get_initial_state_edges</span><span class="p">,</span>
     <span class="n">get_edges_ingoing_to_node</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..topology.topologybuilder</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..topology.topologybuilder</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">SimpleStateTransitionTopologyBuilder</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..state.particle</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">load_particle_list_from_xml</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">initialize_graph</span><span class="p">,</span>
     <span class="n">get_particle_property</span><span class="p">,</span> <span class="n">get_interaction_property</span><span class="p">,</span>
     <span class="n">XMLLabelConstants</span><span class="p">,</span> <span class="n">get_xml_label</span><span class="p">,</span>
     <span class="n">StateQuantumNumberNames</span><span class="p">,</span> <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
     <span class="n">ParticlePropertyNames</span><span class="p">,</span> <span class="n">CompareGraphElementPropertiesFunctor</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">..state.propagation</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">..state.propagation</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">FullPropagator</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">,</span> <span class="n">InteractionNodeSettings</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">.default_settings</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.default_settings</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">create_default_interaction_settings</span><span class="p">,</span>
     <span class="n">default_particle_list_search_paths</span>
 <span class="p">)</span>
@@ -606,7 +606,7 @@
 
 
 <div class="viewcode-block" id="StateTransitionManager"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionManager</span><span class="p">():</span>
-<div class="viewcode-block" id="StateTransitionManager.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
+<div class="viewcode-block" id="StateTransitionManager.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
                  <span class="n">allowed_intermediate_particles</span><span class="o">=</span><span class="p">[],</span>
                  <span class="n">interaction_type_settings</span><span class="o">=</span><span class="p">{},</span>
                  <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
