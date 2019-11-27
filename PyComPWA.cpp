@@ -390,8 +390,10 @@ PYBIND11_MODULE(ui, m) {
 
   //------- Estimator + Optimizer
 
-  py::class_<ComPWA::FunctionTree::FunctionTreeEstimator>(
-      m, "FunctionTreeEstimator")
+  py::class_<ComPWA::Estimator::Estimator<double>>(m, "Estimator");
+
+  py::class_<ComPWA::FunctionTree::FunctionTreeEstimator,
+             ComPWA::Estimator::Estimator<double>>(m, "FunctionTreeEstimator")
       .def("print", &ComPWA::FunctionTree::FunctionTreeEstimator::print,
            "print function tree");
 
