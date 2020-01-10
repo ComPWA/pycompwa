@@ -147,22 +147,41 @@ PYBIND11_MODULE(ui, m) {
   // ------- Data
 
   py::class_<ComPWA::Particle>(m, "Particle")
-      .def(py::init<std::array<double, 4>, int>(), "", py::arg("p4"),
-           py::arg("pid"))
+      .def(py::init<std::array<double, 4>, int>(),
+           "Construct a Particle from a four vector as a list of the form "
+           "[px, py, pz, E] and a pid.",
+           py::arg("p4"), py::arg("pid"))
       .def("__repr__",
            [](const ComPWA::Particle &p) {
              std::stringstream ss;
              ss << p;
              return ss.str();
            })
-      .def("p4", [](const ComPWA::Particle &p) { return p.fourMomentum()(); });
+      .def_property_readonly(
+          "p4", &ComPWA::Particle::fourMomentum,
+          "The four momentum of the Particle in the form [px, py, pz, "
+          "E]")
+      .def_property_readonly("pid", &ComPWA::Particle::pid);
 
   py::bind_vector<std::vector<ComPWA::Particle>>(m, "ParticleList");
+
+  py::class_<ComPWA::DataPoint>(m, "DataPoint")
+      .def(py::init<std::vector<double>, double>(),
+           py::arg("kinematic_variables"), py::arg("weight") = 1)
+      .def_readonly("kinematic_variables",
+                    &ComPWA::DataPoint::KinematicVariableList,
+                    "The list of kinematic variables which make up this "
+                    "DataPoint. These variables are usually calculated from "
+                    "Event based infromation by Kinematics classes.")
+      .def_readonly("weight", &ComPWA::DataPoint::Weight);
+
   py::class_<ComPWA::Event>(m, "Event")
-      .def(py::init<>())
-      .def("particle_list",
-           [](const ComPWA::Event &ev) { return ev.ParticleList; })
-      .def("weight", [](const ComPWA::Event &ev) { return ev.Weight; });
+      .def(py::init<std::vector<ComPWA::Particle>, double>(),
+           py::arg("particle_list"), py::arg("weight") = 1)
+      .def_readonly("particle_list", &ComPWA::Event::ParticleList,
+                    "The list of particles (four momenta) associated "
+                    "with this event.")
+      .def_readonly("weight", &ComPWA::Event::Weight);
 
   py::bind_vector<std::vector<ComPWA::Event>>(m, "EventList");
 
@@ -243,6 +262,11 @@ PYBIND11_MODULE(ui, m) {
            double>())
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>())
+      .def("convert",
+           py::overload_cast<const ComPWA::Event &>(
+               &ComPWA::Physics::HelicityFormalism::HelicityKinematics::convert,
+               py::const_),
+           py::arg("Event"))
       .def("create_all_subsystems", &ComPWA::Physics::HelicityFormalism::
                                         HelicityKinematics::createAllSubsystems)
       .def("get_particle_state_transition_kinematics_info",
