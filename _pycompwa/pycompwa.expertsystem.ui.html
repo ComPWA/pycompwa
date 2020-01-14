@@ -371,7 +371,7 @@ filtered</p></li>
 <p class="rubric">Example</p>
 <p>Selecting only the solutions, in which the <span class="math notranslate nohighlight">\(\rho\)</span> decays via
 p-wave:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myfilter</span> <span class="o">=</span> <span class="n">require_interaction_property</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myfilter</span> <span class="o">=</span> <span class="n">require_interaction_property</span><span class="p">(</span>
 <span class="go">        &#39;rho&#39;, InteractionQuantumNumberNames.L,</span>
 <span class="go">        create_spin_domain([1], True))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filtered_solutions</span> <span class="o">=</span> <span class="n">filter_graphs</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="p">[</span><span class="n">myfilter</span><span class="p">])</span>
