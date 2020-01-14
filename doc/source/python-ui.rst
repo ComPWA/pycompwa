@@ -28,12 +28,32 @@ wave analysis:
 Read and Write Data Samples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Currently only the reading and writing of ROOT files is supported via the
+For python users it is recommended to first load the data into a common format
+via numpy or pandas and then construct :class:`.Event` s and 
+:class:`.Particle` s.
+
+.. autoclass:: pycompwa.ui.Event
+   :members:
+   :undoc-members:
+   :noindex:
+
+.. autoclass:: pycompwa.ui.Particle
+   :members:
+   :undoc-members:
+   :noindex:
+
+The procedure is explained :ref:`here<example_datainput>` in more detail.
+
+Alternatively, the reading and writing of ROOT files is supported via the
 :class:`.RootDataIO` class.
 
 .. autoclass:: pycompwa.ui.RootDataIO
    :members:
    :noindex:
+
+.. tip::
+   Because this class assumes a predefined structure in the ROOT file, the
+   previous method via Events and Particles is more flexible and recommended.
 
 For the reading of data/events a predefined tree structure is assumed. The name
 of the tree inside the file and the number of events to process can be by 
@@ -113,11 +133,13 @@ Loading and Defining Particles
 Particles can loaded and stored inside a :class:`.PartList`. 
 
 .. autofunction:: pycompwa.ui.read_particles
+   :noindex:
 
 Also particles can be inserted to an existing :class:`.PartList`, overwriting
 already existing particles.
 
 .. autofunction:: pycompwa.ui.insert_particles
+   :noindex:
 
 .. _create-kin-and-intens:
 
