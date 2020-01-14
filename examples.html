@@ -104,6 +104,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-data">Importing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#importance-sampling">Importance Sampling</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#step-1-define-intensity">Step 1: Define intensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-2-create-intensity-and-generate-importance-weighted-phase-space-sample">Step 2: Create intensity and generate importance weighted phase space sample</a></li>
@@ -611,8 +612,90 @@ detailed features of ComPWA.</p>
 </div>
 </div>
 </div>
+<div class="section" id="importing-data">
+<span id="example-datainput"></span><h2>Importing Data<a class="headerlink" href="#importing-data" title="Permalink to this headline">¶</a></h2>
+<p>This notebook shows how to conveniently input your data into ComPWA
+using the python interface! Also it shows how to calculate kinematic
+variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example the data is loaded from a ROOT file via <a class="reference external" href="https://github.com/scikit-hep/uproot">uproot</a>, this part can of course be exchanged by your data format.</p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+<span class="kn">import</span> <span class="nn">uproot</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>Before we can start, a dummy root data file has to be created. Normally
+you would skip the next step, since you already have a data file that
+you want to import.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">uproot</span><span class="o">.</span><span class="n">recreate</span><span class="p">(</span><span class="s2">&quot;tuples.root&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uproot</span><span class="o">.</span><span class="n">newtree</span><span class="p">({</span><span class="s2">&quot;D0.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;D0.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;D0.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;D0.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Dm.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Dm.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Dm.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Dm.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;pip.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;pip.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;pip.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;pip.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span>
+                               <span class="p">})</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">({</span><span class="s2">&quot;D0.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.63207397</span><span class="p">,</span>  <span class="mf">0.11329174</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.32988257</span><span class="p">]),</span>
+                      <span class="s2">&quot;D0.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.02727499</span><span class="p">,</span>  <span class="mf">0.39965045</span><span class="p">,</span> <span class="mf">0.1848439</span> <span class="p">]),</span>
+                      <span class="s2">&quot;D0.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.16475981</span><span class="p">,</span>  <span class="mf">0.28701658</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.37938268</span><span class="p">]),</span>
+                      <span class="s2">&quot;D0.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0180088</span><span class="p">,</span> <span class="mf">1.92316975</span><span class="p">,</span> <span class="mf">1.93920292</span><span class="p">]),</span>
+                      <span class="s2">&quot;Dm.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.48782456</span><span class="p">,</span> <span class="mf">0.08336758</span><span class="p">,</span> <span class="mf">0.10971082</span><span class="p">]),</span>
+                      <span class="s2">&quot;Dm.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.10812153</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.56649819</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13254077</span><span class="p">]),</span>
+                      <span class="s2">&quot;Dm.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.12110724</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.35891476</span><span class="p">,</span> <span class="mf">0.44891566</span><span class="p">]),</span>
+                      <span class="s2">&quot;Dm.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.95351745</span><span class="p">,</span> <span class="mf">1.96315494</span><span class="p">,</span> <span class="mf">1.94968155</span><span class="p">]),</span>
+                      <span class="s2">&quot;pip.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.16118203</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.10011399</span><span class="p">,</span> <span class="mf">0.24527202</span><span class="p">]),</span>
+                      <span class="s2">&quot;pip.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.10152041</span><span class="p">,</span> <span class="mf">0.19745644</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04717316</span><span class="p">]),</span>
+                      <span class="s2">&quot;pip.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.03064159</span><span class="p">,</span> <span class="mf">0.0802533</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04723599</span><span class="p">]),</span>
+                      <span class="s2">&quot;pip.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.23812766</span><span class="p">,</span> <span class="mf">0.27373762</span><span class="p">,</span> <span class="mf">0.28999094</span><span class="p">])</span>
+                     <span class="p">})</span>
+</pre></div>
+</div>
+<p>First load the data from the root file and bundle the 4 vector data in
+numpy arrays</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">uproot</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;tuples.root&quot;</span><span class="p">)[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">arrays</span><span class="p">([</span><span class="s1">&#39;D0*&#39;</span><span class="p">,</span> <span class="s1">&#39;Dm*&#39;</span><span class="p">,</span> <span class="s1">&#39;pip*&#39;</span><span class="p">])</span>
+<span class="n">D0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.px&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.py&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.pz&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">Dms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.px&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.py&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.pz&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">pis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.px&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.py&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.pz&#39;</span><span class="p">],</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<p>Now construct ComPWA <code class="docutils literal notranslate"><span class="pre">Event</span></code>s by handing it a list of
+<code class="docutils literal notranslate"><span class="pre">Particle</span></code>s.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evts</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EventList</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">pwa</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">pwa</span><span class="o">.</span><span class="n">ParticleList</span><span class="p">([</span><span class="n">pwa</span><span class="o">.</span><span class="n">Particle</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">421</span><span class="p">),</span> <span class="n">pwa</span><span class="o">.</span><span class="n">Particle</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">411</span><span class="p">),</span> <span class="n">pwa</span><span class="o">.</span><span class="n">Particle</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">211</span><span class="p">)]))</span>
+     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">D0s</span><span class="p">,</span> <span class="n">Dms</span><span class="p">,</span> <span class="n">pis</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Event 0:&quot;</span><span class="p">,</span><span class="n">evts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">particle_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s it! At this point you successfully imported your data into ComPWA and are ready to do PWA! Alternatively the <cite>RootDataIO</cite> class can be used. More info about this in the <a class="reference internal" href="python-ui.html#dataio"><span class="std std-ref">docs</span></a>.</p>
+<p>You can proceed with other tasks. Below it is shown how to calculate the kinematic variables from an <cite>Event</cite>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partlist</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;../../ComPWA/Physics/particle_list.xml&#39;</span><span class="p">)</span>
+<span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">HelicityKinematics</span><span class="p">(</span><span class="n">partlist</span><span class="p">,</span> <span class="p">[</span><span class="mi">421</span><span class="p">],</span> <span class="p">[</span><span class="mi">421</span><span class="p">,</span> <span class="o">-</span><span class="mi">411</span><span class="p">,</span> <span class="mi">211</span><span class="p">])</span>
+<span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
+
+<span class="n">kin</span><span class="o">.</span><span class="n">get_kinematic_variable_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">Kinematics.convert()</span></code> function the <code class="docutils literal notranslate"><span class="pre">Event</span></code> can be
+converted to a <code class="docutils literal notranslate"><span class="pre">DataPoint</span></code>, which contains all of the kinematic
+variables listed above.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">evts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">kinematic_variables</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="importance-sampling">
-<h2>Importance Sampling<a class="headerlink" href="#importance-sampling" title="Permalink to this headline">¶</a></h2>
+<span id="example-importancesampling"></span><h2>Importance Sampling<a class="headerlink" href="#importance-sampling" title="Permalink to this headline">¶</a></h2>
 <p>The <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> decay is used here
 (which has a narrow <span class="math notranslate nohighlight">\(\omega\)</span> state)</p>
 <p>Let’s go!</p>

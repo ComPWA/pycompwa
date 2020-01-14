@@ -208,7 +208,54 @@ correlation between the two. It’s useful to read more about the
 wave analysis:</p>
 <div class="section" id="read-and-write-data-samples">
 <span id="dataio"></span><h3>Read and Write Data Samples<a class="headerlink" href="#read-and-write-data-samples" title="Permalink to this headline">¶</a></h3>
-<p>Currently only the reading and writing of ROOT files is supported via the
+<p>For python users it is recommended to first load the data into a common format
+via numpy or pandas and then construct <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.Event" title="pycompwa.ui.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a> s and
+<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.Particle" title="pycompwa.ui.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particle</span></code></a> s.</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">Event</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Event</em>, <em class="sig-param">particle_list: pycompwa.ui.ParticleList</em>, <em class="sig-param">weight: float = 1</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">particle_list</code></dt>
+<dd><p>The list of particles (four momenta) associated with this event.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">weight</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="sig-name descname">Particle</code></dt>
+<dd><dl class="method">
+<dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Particle, p4: List[float[4]], pid: int</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Construct a Particle from a four vector as a list of the form [px, py, pz, E] and a pid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">p4</code></dt>
+<dd><p>The four momentum of the Particle in the form [px, py, pz, E]</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property">property </em><code class="sig-name descname">pid</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>The procedure is explained <a class="reference internal" href="examples.html#example-datainput"><span class="std std-ref">here</span></a> in more detail.</p>
+<p>Alternatively, the reading and writing of ROOT files is supported via the
 <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.RootDataIO" title="pycompwa.ui.RootDataIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootDataIO</span></code></a> class.</p>
 <dl class="class">
 <dt>
@@ -238,6 +285,11 @@ wave analysis:</p>
 
 </dd></dl>
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Because this class assumes a predefined structure in the ROOT file, the
+previous method via Events and Particles is more flexible and recommended.</p>
+</div>
 <p>For the reading of data/events a predefined tree structure is assumed. The name
 of the tree inside the file and the number of events to process can be by
 adjusted in the constructor. By default the tree name is <em>“data”</em> and all events
@@ -351,16 +403,16 @@ for a specific reaction.</p>
 <span id="loadparticles"></span><h3>Loading and Defining Particles<a class="headerlink" href="#loading-and-defining-particles" title="Permalink to this headline">¶</a></h3>
 <p>Particles can loaded and stored inside a <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a>.</p>
 <dl class="function">
-<dt id="pycompwa.ui.read_particles">
-<code class="sig-name descname">read_particles</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.PartList<a class="headerlink" href="#pycompwa.ui.read_particles" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">read_particles</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.PartList</dt>
 <dd><p>Read particles from a xml file.</p>
 </dd></dl>
 
 <p>Also particles can be inserted to an existing <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a>, overwriting
 already existing particles.</p>
 <dl class="function">
-<dt id="pycompwa.ui.insert_particles">
-<code class="sig-name descname">insert_particles</code><span class="sig-paren">(</span><em class="sig-param">arg0: pycompwa.ui.PartList</em>, <em class="sig-param">arg1: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.insert_particles" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">insert_particles</code><span class="sig-paren">(</span><em class="sig-param">arg0: pycompwa.ui.PartList</em>, <em class="sig-param">arg1: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
 <dd><p>Insert particles to a list from a xml file. Already defined particles will be overwritten!</p>
 </dd></dl>
 
