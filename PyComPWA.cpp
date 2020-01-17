@@ -172,7 +172,7 @@ PYBIND11_MODULE(ui, m) {
                     &ComPWA::DataPoint::KinematicVariableList,
                     "The list of kinematic variables which make up this "
                     "DataPoint. These variables are usually calculated from "
-                    "Event based infromation by Kinematics classes.")
+                    "Event based information by Kinematics classes.")
       .def_readonly("weight", &ComPWA::DataPoint::Weight);
 
   py::class_<ComPWA::Event>(m, "Event")
@@ -185,16 +185,14 @@ PYBIND11_MODULE(ui, m) {
 
   py::bind_vector<std::vector<ComPWA::Event>>(m, "EventList");
 
-  py::class_<ComPWA::Data::Root::RootDataIO,
-             std::shared_ptr<ComPWA::Data::Root::RootDataIO>>(m, "RootDataIO")
-      .def(py::init<const std::string &, int>(), py::arg("tree_name"),
-           py::arg("number_of_events"))
-      .def(py::init<const std::string &>(), py::arg("tree_name"))
-      .def(py::init<>())
-      .def("readData", &ComPWA::Data::Root::RootDataIO::readData,
-           "Read ROOT tree from file.", py::arg("input_file"))
-      .def("writeData", &ComPWA::Data::Root::RootDataIO::writeData,
-           "Save data as ROOT tree to file.", py::arg("data"), py::arg("file"));
+  // ------- Data I/O ------- //
+  m.def("read_data", &ComPWA::Data::Root::readData,
+        "Read ROOT tree from file to an EventList.", py::arg("input_file"),
+        py::arg("tree_name"), py::arg("number_of_events") = -1);
+  m.def("write_data", &ComPWA::Data::Root::writeData,
+        "Save data as ROOT tree to file.", py::arg("data_list"),
+        py::arg("output_file"), py::arg("tree_name"),
+        py::arg("overwrite") = true);
 
   m.def("log", [](const ComPWA::DataPoint p) { LOG(INFO) << p; });
 
@@ -203,13 +201,13 @@ PYBIND11_MODULE(ui, m) {
       .def_readonly("weights", &ComPWA::Data::DataSet::Weights)
       .def_readonly("variable_names", &ComPWA::Data::DataSet::VariableNames);
 
-  m.def(
-      "convert_events_to_dataset",
-      [](const std::vector<ComPWA::Event> evts, const ComPWA::Kinematics &kin) {
-        return ComPWA::Data::convertEventsToDataSet(evts, kin);
-      },
-      "Internally convert the events to data points.", py::arg("events"),
-      py::arg("kinematics"));
+  m.def("convert_events_to_dataset",
+        [](const std::vector<ComPWA::Event> &events,
+           const ComPWA::Kinematics &kin) {
+          return ComPWA::Data::convertEventsToDataSet(events, kin);
+        },
+        "Internally convert the events to data points.", py::arg("events"),
+        py::arg("kinematics"));
   m.def("add_intensity_weights", &ComPWA::Data::addIntensityWeights,
         "Add the intensity values as weights to this data sample.",
         py::arg("intensity"), py::arg("events"), py::arg("kinematics"));
@@ -381,8 +379,8 @@ PYBIND11_MODULE(ui, m) {
         [](unsigned int n, std::shared_ptr<ComPWA::Kinematics> kin,
            ComPWA::UniformRealNumberGenerator &randgen,
            std::shared_ptr<ComPWA::Intensity> intens,
-           const std::vector<ComPWA::Event> &phspsample) {
-          return ComPWA::Data::generate(n, *kin, randgen, *intens, phspsample);
+           const std::vector<ComPWA::Event> &phsp_sample) {
+          return ComPWA::Data::generate(n, *kin, randgen, *intens, phsp_sample);
         },
         "Generate sample from an Intensity, using a given phase space sample.",
         py::arg("size"), py::arg("kin"), py::arg("gen"), py::arg("intens"),
@@ -392,10 +390,10 @@ PYBIND11_MODULE(ui, m) {
         [](unsigned int n, std::shared_ptr<ComPWA::Kinematics> kin,
            ComPWA::UniformRealNumberGenerator &randgen,
            std::shared_ptr<ComPWA::Intensity> intens,
-           const std::vector<ComPWA::Event> &phspsample,
-           const std::vector<ComPWA::Event> &toyphspsample) {
-          return ComPWA::Data::generate(n, *kin, randgen, *intens, phspsample,
-                                        toyphspsample);
+           const std::vector<ComPWA::Event> &phsp_sample,
+           const std::vector<ComPWA::Event> &toy_phsp_sample) {
+          return ComPWA::Data::generate(n, *kin, randgen, *intens, phsp_sample,
+                                        toy_phsp_sample);
         },
         "Generate sample from an Intensity. In case that detector "
         "reconstruction and selection is considered in the phase space sample "
