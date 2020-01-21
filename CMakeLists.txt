@@ -54,7 +54,7 @@ pybind11_add_module(ui MODULE PyComPWA.cpp)
 target_include_directories(ui PUBLIC ComPWA )
 
 target_link_libraries(ui
-  PRIVATE Core FunctionTree Data RootData EvtGenGenerator MinLogLH 
+  PRIVATE Ascii Core FunctionTree Data RootData EvtGenGenerator MinLogLH 
           Minuit2IF HelicityFormalism Tools Plotting 
   )
 
