@@ -229,35 +229,7 @@ via numpy or pandas and then construct <a class="reference internal" href="_pyco
 
 <p>The procedure is explained <a class="reference internal" href="examples.html#example-datainput"><span class="std std-ref">here</span></a> in more detail.</p>
 <p>Alternatively, the reading and writing of ROOT files is supported via the
-<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.RootDataIO" title="pycompwa.ui.RootDataIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootDataIO</span></code></a> class.</p>
-<dl class="class">
-<dt>
-<em class="property">class </em><code class="sig-name descname">RootDataIO</code></dt>
-<dd><dl class="method">
-<dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
-<dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li><p>__init__(self: pycompwa.ui.RootDataIO, tree_name: str, number_of_events: int) -&gt; None</p></li>
-<li><p>__init__(self: pycompwa.ui.RootDataIO, tree_name: str) -&gt; None</p></li>
-<li><p>__init__(self: pycompwa.ui.RootDataIO) -&gt; None</p></li>
-</ol>
-</dd></dl>
-
-<dl class="method">
-<dt>
-<code class="sig-name descname">readData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">input_file: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
-<dd><p>Read ROOT tree from file.</p>
-</dd></dl>
-
-<dl class="method">
-<dt>
-<code class="sig-name descname">writeData</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.RootDataIO</em>, <em class="sig-param">data: pycompwa.ui.EventList</em>, <em class="sig-param">file: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
-<dd><p>Save data as ROOT tree to file.</p>
-</dd></dl>
-
-</dd></dl>
-
+<code class="xref py py-class docutils literal notranslate"><span class="pre">RootDataIO</span></code> class.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Because this class assumes a predefined structure in the ROOT file, the
