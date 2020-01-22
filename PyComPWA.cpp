@@ -17,6 +17,7 @@
 #include "Core/Kinematics.hpp"
 #include "Core/Particle.hpp"
 #include "Core/Random.hpp"
+#include "Data/Ascii/AsciiDataIO.hpp"
 #include "Data/DataSet.hpp"
 #include "Data/EvtGen/EvtGenGenerator.hpp"
 #include "Data/Generate.hpp"
@@ -186,11 +187,18 @@ PYBIND11_MODULE(ui, m) {
   py::bind_vector<std::vector<ComPWA::Event>>(m, "EventList");
 
   // ------- Data I/O ------- //
-  m.def("read_data", &ComPWA::Data::Root::readData,
+  m.def("read_ascii_data", &ComPWA::Data::Ascii::readData,
+        "Read ROOT tree from file to an EventList.", py::arg("input_file"),
+        py::arg("number_of_events") = -1);
+  m.def("write_ascii_data", &ComPWA::Data::Ascii::writeData,
+        "Save data as ROOT tree to file.", py::arg("event_list"),
+        py::arg("output_file"), py::arg("overwrite") = true);
+
+  m.def("read_root_data", &ComPWA::Data::Root::readData,
         "Read ROOT tree from file to an EventList.", py::arg("input_file"),
         py::arg("tree_name"), py::arg("number_of_events") = -1);
-  m.def("write_data", &ComPWA::Data::Root::writeData,
-        "Save data as ROOT tree to file.", py::arg("data_list"),
+  m.def("write_root_data", &ComPWA::Data::Root::writeData,
+        "Save data as ROOT tree to file.", py::arg("event_list"),
         py::arg("output_file"), py::arg("tree_name"),
         py::arg("overwrite") = true);
 

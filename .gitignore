@@ -6,6 +6,7 @@ MANIFEST
 *.xml
 
 # Python temporary files
+*.pyc
 .eggs
 .ipynb_checkpoints
 .pytest_cache/
