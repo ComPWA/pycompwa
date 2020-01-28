@@ -630,11 +630,6 @@
             <span class="n">name_label</span><span class="p">:</span> <span class="n">amp_name</span><span class="p">,</span>
             <span class="s1">&#39;Amplitude&#39;</span><span class="p">:</span> <span class="n">partial_decays</span>
         <span class="p">}</span>
-        <span class="n">prefactor_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">PreFactor</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">prefactor_label</span> <span class="ow">in</span> <span class="n">amp_coeff_infos</span><span class="p">:</span>
-            <span class="n">sequential_amplitude_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="p">{</span><span class="n">prefactor_label</span><span class="p">:</span>
-                 <span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">prefactor_label</span><span class="p">]})</span>
 
         <span class="n">par_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Parameter</span><span class="p">)</span>
         <span class="n">coefficient_amplitude_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -643,6 +638,11 @@
             <span class="n">par_label</span><span class="p">:</span> <span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">par_label</span><span class="p">],</span>
             <span class="s1">&#39;Amplitude&#39;</span><span class="p">:</span> <span class="n">sequential_amplitude_dict</span>
         <span class="p">}</span>
+
+        <span class="n">prefactor_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">PreFactor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prefactor_label</span> <span class="ow">in</span> <span class="n">amp_coeff_infos</span><span class="p">:</span>
+            <span class="n">coefficient_amplitude_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span><span class="n">prefactor_label</span><span class="p">:</span> <span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">prefactor_label</span><span class="p">]})</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">par_label</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">name_label</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">par_label</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">name_label</span><span class="p">])</span>
