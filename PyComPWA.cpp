@@ -325,28 +325,37 @@ PYBIND11_MODULE(ui, m) {
       .def("print", &ComPWA::FunctionTree::FunctionTreeIntensity::print,
            "print function tree");
 
-  m.def(
-      "create_intensity",
-      [&](const std::string &filename, ComPWA::ParticleList partL,
-          ComPWA::Kinematics &kin,
-          const std::vector<ComPWA::Event> &PhspSample) {
-        boost::property_tree::ptree pt;
-        boost::property_tree::xml_parser::read_xml(filename, pt);
-        auto it = pt.find("Intensity");
-        if (it != pt.not_found()) {
-          ComPWA::Physics::IntensityBuilderXML Builder(partL, kin, it->second,
-                                                       PhspSample);
-          return Builder.createIntensity();
-        } else {
-          throw ComPWA::BadConfig(
-              "pycompwa::create_helicity_kinematics(): "
-              "HelicityKinematics tag not found in xml file!");
-        }
-      },
-      "Create an intensity and a helicity kinematics from a xml file. The file "
-      "should contain a particle list, and a kinematics and intensity section.",
-      py::arg("xml_filename"), py::arg("particle_list"), py::arg("kinematics"),
-      py::arg("phsp_sample"));
+  py::class_<ComPWA::Tools::IntensityComponent>(m, "IntensityComponent");
+
+  py::class_<ComPWA::Physics::IntensityBuilderXML>(m, "IntensityBuilderXML")
+      .def(py::init([](const std::string &filename, ComPWA::ParticleList partL,
+                       ComPWA::Kinematics &kin,
+                       const std::vector<ComPWA::Event> &PhspSample) {
+             boost::property_tree::ptree pt;
+             boost::property_tree::xml_parser::read_xml(filename, pt);
+             auto it = pt.find("Intensity");
+             if (it != pt.not_found()) {
+               ComPWA::Physics::IntensityBuilderXML Builder(
+                   partL, kin, it->second, PhspSample);
+               return Builder;
+             } else {
+               throw ComPWA::BadConfig("pycompwa::IntensityBuilderXML(): "
+                                       "Intensity tag not found in xml file!");
+             }
+           }),
+           "Create an intensity and a helicity kinematics from a xml file. The "
+           "file "
+           "should contain a particle list, and a kinematics and intensity "
+           "section.",
+           py::arg("xml_filename"), py::arg("particle_list"),
+           py::arg("kinematics"), py::arg("phsp_sample"))
+      .def("create_intensity",
+           &ComPWA::Physics::IntensityBuilderXML::createIntensity)
+      .def("create_intensity_components",
+           &ComPWA::Physics::IntensityBuilderXML::createIntensityComponents,
+           py::arg("component_name_lists"))
+      .def("get_all_component_names",
+           &ComPWA::Physics::IntensityBuilderXML::getAllComponentNames);
 
   //------- Generate
 
@@ -481,25 +490,30 @@ PYBIND11_MODULE(ui, m) {
         "Initializes an Intensity with the parameters of a FitResult.",
         py::arg("intensity"), py::arg("fit_result"));
 
-  /*m.def("fit_fractions", &ComPWA::Tools::calculateFitFractions,
-        "Calculates the fit fractions for all components of a given coherent "
-        "intensity.",
-        py::arg("intensity"), py::arg("sample"),
-        py::arg("components") = std::vector<std::string>());
+  py::class_<ComPWA::Tools::FitFraction>(m, "FitFraction")
+      .def("__repr__",
+           [](const ComPWA::Tools::FitFraction &FF) {
+             std::stringstream ss;
+             ss << FF.Name << ": " << FF.Value << " +- " << FF.Error << "\n";
+             return ss.str();
+           })
+      .def_readonly("name", &ComPWA::Tools::FitFraction::Name)
+      .def_readonly("value", &ComPWA::Tools::FitFraction::Value)
+      .def_readonly("error", &ComPWA::Tools::FitFraction::Error);
 
-  m.def(
-      "fit_fractions_with_propagated_errors",
-      [](std::shared_ptr<const ComPWA::Physics::CoherentIntensity> CohIntensity,
-         std::shared_ptr<ComPWA::Data::DataSet> Sample,
-         std::shared_ptr<ComPWA::Optimizer::Minuit2::MinuitResult> Result,
-         const std::vector<std::string> &Components) {
-        ComPWA::Tools::calculateFitFractionsWithCovarianceErrorPropagation(
-            CohIntensity, Sample, Result->covarianceMatrix(), Components);
-      },
-      "Calculates the fit fractions and errors for all components of a given "
-      "coherent intensity.",
-      py::arg("intensity"), py::arg("sample"), py::arg("fit_result"),
-      py::arg("components") = std::vector<std::string>());*/
+  m.def("fit_fractions_with_propagated_errors",
+        [](const std::vector<std::pair<ComPWA::Tools::IntensityComponent,
+                                       ComPWA::Tools::IntensityComponent>>
+               &Components,
+           const ComPWA::Data::DataSet &PhspSample,
+           const ComPWA::FitResult &Result) {
+          ComPWA::Tools::FitFractions FF;
+          return FF.calculateFitFractionsWithCovarianceErrorPropagation(
+              Components, PhspSample, Result);
+        },
+        "Calculates the fit fractions and errors for all given components.",
+        py::arg("intensity_components"), py::arg("sample"),
+        py::arg("fit_result"));
 
   //------- Plotting
 
