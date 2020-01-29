@@ -196,10 +196,10 @@ PYBIND11_MODULE(ui, m) {
 
   m.def("read_root_data", &ComPWA::Data::Root::readData,
         "Read ROOT tree from file to an EventList.", py::arg("input_file"),
-        py::arg("tree_name"), py::arg("number_of_events") = -1);
+        py::arg("tree_name") = "events", py::arg("number_of_events") = -1);
   m.def("write_root_data", &ComPWA::Data::Root::writeData,
         "Save data as ROOT tree to file.", py::arg("event_list"),
-        py::arg("output_file"), py::arg("tree_name"),
+        py::arg("output_file"), py::arg("tree_name") = "events",
         py::arg("overwrite") = true);
 
   m.def("log", [](const ComPWA::DataPoint p) { LOG(INFO) << p; });
