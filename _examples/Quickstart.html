@@ -167,6 +167,7 @@ interface. The workflow is:</p>
 <li><p>Generate a Monte Carlo data sample (hit &amp; miss) using this model.</p></li>
 <li><p>Perform a fit on the data sample using the Minuit2 interface.</p></li>
 <li><p>Visualize the data and the fit result!</p></li>
+<li><p>Calculating fit fractions</p></li>
 </ol>
 <p>Let’s go!</p>
 <p>First we <code class="docutils literal notranslate"><span class="pre">import</span></code> the necessary expert system module parts</p>
@@ -401,7 +402,9 @@ are at hand.</p>
 
 <span class="n">phspsample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 
-<span class="n">intensity</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">phspsample</span><span class="p">)</span>
+<span class="n">intensity_builder</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">IntensityBuilderXML</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">phspsample</span><span class="p">)</span>
+
+<span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">()</span>
 
 <span class="n">datasample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 </pre></div>
@@ -485,7 +488,7 @@ fitting process.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">fit_duration_in_seconds</span>
 </pre></div>
 </div>
-<p>Let’s check if the our fit parameters are “close to” the true values.</p>
+<p>Let’s check if the fit parameters are “close to” the true values.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this should be close to 1.0 again: &quot;</span><span class="p">,</span>
       <span class="n">result</span><span class="o">.</span><span class="n">final_parameters</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
       <span class="s2">&quot; +- &quot;</span><span class="p">,</span>
@@ -577,10 +580,52 @@ difference plot</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_difference_plot_2d</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="step-5-fit-fractions">
+<h2>Step 5: Fit Fractions<a class="headerlink" href="#step-5-fit-fractions" title="Permalink to this headline">¶</a></h2>
+<p>Fit fractions can be calculated using the
+<code class="docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code> function. It requires
+amplitude or Intensity components that can be extracted from the
+<code class="docutils literal notranslate"><span class="pre">IntensityBuilderXML</span></code> instance. A nested list of the component names
+has to be specified. These are the names specified in the component xml
+attributes. If the inner lists contain more than one component, these
+components will be added coherently. In this way you can calculate your
+own customized fit fractions.</p>
+<p>All registered component names can be retrieved via
+<code class="docutils literal notranslate"><span class="pre">get_all_component_names()</span></code>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensity_builder</span><span class="o">.</span><span class="n">get_all_component_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now specify which components you want to get from the builder.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity_components</span><span class="p">([</span>
+    <span class="p">[</span><span class="s1">&#39;coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-2+gamma_-1;f2(1270)_-2_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_0+gamma_-1;f2(1270)_0_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;J/psi_-1_to_f2(1270)_-2+gamma_-1;f2(1270)_-2_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;J/psi_-1_to_f2(1270)_0+gamma_-1;f2(1270)_0_to_pi0_0+pi0_0;&#39;</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>The last part is to call the actual fit fraction calculation function
+<code class="docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code>. Here a list of component
+pairs is the first required argument. Each pair resembles the nominator
+and demoninator of a fit fraction.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_fractions</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">fit_fractions_with_propagated_errors</span><span class="p">([(</span><span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                                          <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                                          <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                                          <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                                         <span class="p">],</span> <span class="n">phspdataset</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fit_fractions</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>That’s it. You can check some of the other examples to learn about more
 detailed features of ComPWA.</p>
 <p>And give us feedback or contribute ;)!</p>
-</div>
 </div>
 </div>
 

@@ -400,13 +400,7 @@ already existing particles.</p>
 <dd><p>Create a helicity kinematics from a xml file. The file should contain a kinematics section.</p>
 </dd></dl>
 
-<p>Analogous a Intensity instance can be created with <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.create_intensity" title="pycompwa.ui.create_intensity"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_intensity()</span></code></a></p>
-<dl class="function">
-<dt>
-<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">phsp_sample: pycompwa.ui.EventList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity</dt>
-<dd><p>Create an intensity and a helicity kinematics from a xml file. The file should contain a particle list, and a kinematics and intensity section.</p>
-</dd></dl>
-
+<p>Analogous a Intensity instance can be created with <code class="xref py py-func docutils literal notranslate"><span class="pre">create_intensity()</span></code></p>
 <p>Here the order of execution is important and can be slightly confusing.
 In order to fit an Intensity to a data sample, the Intensity has to be
 normalized (when using an unbinned log likelihood estimator). Because the

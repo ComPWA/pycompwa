@@ -238,8 +238,7 @@ the decay.</p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names">
 <code class="sig-name descname">generate_amplitude_coefficient_names</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_amplitude_coefficient_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates partial amplitude coefficient name suffixes.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name">
@@ -330,12 +329,6 @@ a coupled coefficient is introduced.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_names">
-<code class="sig-name descname">generate_amplitude_coefficient_names</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates partial amplitude coefficient name suffixes.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_unique_amplitude_name">
 <code class="sig-name descname">generate_unique_amplitude_name</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator.generate_unique_amplitude_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_unique_amplitude_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a unique name for the amplitude corresponding to the given
@@ -343,11 +336,6 @@ a coupled coefficient is introduced.</p>
 generates a unique name for the partial amplitude corresponding to the
 interaction node of the given <code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionGraph</span></code>.</p>
 </dd></dl>
-
-<dl class="method">
-<dt id="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.retrieve_helicity_info">
-<code class="sig-name descname">retrieve_helicity_info</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#HelicityAmplitudeNameGenerator.retrieve_helicity_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.retrieve_helicity_info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -375,6 +363,12 @@ downward (forward in time) for a given edge (resembling the root)</p>
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="pycompwa.expertsystem.amplitude.helicitydecay.generate_amplitude_coefficient_names">
+<code class="sig-name descname">generate_amplitude_coefficient_names</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#generate_amplitude_coefficient_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.generate_amplitude_coefficient_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates partial amplitude coefficient name suffixes.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.generate_kinematics">
 <code class="sig-name descname">generate_kinematics</code><span class="sig-paren">(</span><em class="sig-param">graphs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#generate_kinematics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.generate_kinematics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -386,7 +380,12 @@ downward (forward in time) for a given edge (resembling the root)</p>
 
 <dl class="function">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string">
-<code class="sig-name descname">generate_particles_string</code><span class="sig-paren">(</span><em class="sig-param">name_hel_dict</em>, <em class="sig-param">use_helicity=True</em>, <em class="sig-param">make_parity_partner=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#generate_particles_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_particles_string</code><span class="sig-paren">(</span><em class="sig-param">name_hel_list</em>, <em class="sig-param">use_helicity=True</em>, <em class="sig-param">make_parity_partner=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#generate_particles_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.amplitude.helicitydecay.get_graph_group_unique_label">
+<code class="sig-name descname">get_graph_group_unique_label</code><span class="sig-paren">(</span><em class="sig-param">graph_group</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#get_graph_group_unique_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.get_graph_group_unique_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -457,6 +456,11 @@ the individual amplitude parts.</p>
 <dl class="function">
 <dt id="pycompwa.expertsystem.amplitude.helicitydecay.remove_spin_projection">
 <code class="sig-name descname">remove_spin_projection</code><span class="sig-paren">(</span><em class="sig-param">edge_props</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#remove_spin_projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.remove_spin_projection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.amplitude.helicitydecay.retrieve_helicity_info">
+<code class="sig-name descname">retrieve_helicity_info</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/helicitydecay.html#retrieve_helicity_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.helicitydecay.retrieve_helicity_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

@@ -203,6 +203,18 @@
     <span class="k">return</span> <span class="n">graph_group_list</span></div>
 
 
+<div class="viewcode-block" id="get_graph_group_unique_label"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.get_graph_group_unique_label">[docs]</a><span class="k">def</span> <span class="nf">get_graph_group_unique_label</span><span class="p">(</span><span class="n">graph_group</span><span class="p">):</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">graph_group</span><span class="p">:</span>
+        <span class="n">ise</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="n">graph_group</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">fse</span> <span class="o">=</span> <span class="n">get_final_state_edges</span><span class="p">(</span><span class="n">graph_group</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">is_names</span> <span class="o">=</span> <span class="n">__get_name_hel_list</span><span class="p">(</span><span class="n">graph_group</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ise</span><span class="p">)</span>
+        <span class="n">fs_names</span> <span class="o">=</span> <span class="n">__get_name_hel_list</span><span class="p">(</span><span class="n">graph_group</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fse</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">+=</span> <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">is_names</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_to_&quot;</span> <span class="o">+</span> \
+            <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">fs_names</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">label</span></div>
+
+
 <div class="viewcode-block" id="get_helicity_from_edge_props"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.get_helicity_from_edge_props">[docs]</a><span class="k">def</span> <span class="nf">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">edge_props</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
@@ -368,19 +380,60 @@
     <span class="k">return</span> <span class="n">new_edge_props</span></div>
 
 
-<div class="viewcode-block" id="generate_particles_string"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string">[docs]</a><span class="k">def</span> <span class="nf">generate_particles_string</span><span class="p">(</span><span class="n">name_hel_dict</span><span class="p">,</span> <span class="n">use_helicity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="generate_particles_string"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string">[docs]</a><span class="k">def</span> <span class="nf">generate_particles_string</span><span class="p">(</span><span class="n">name_hel_list</span><span class="p">,</span> <span class="n">use_helicity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">make_parity_partner</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">name_hel_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">hel</span> <span class="ow">in</span> <span class="n">name_hel_list</span><span class="p">:</span>
         <span class="n">string</span> <span class="o">+=</span> <span class="n">name</span>
         <span class="k">if</span> <span class="n">use_helicity</span><span class="p">:</span>
-            <span class="n">hel</span> <span class="o">=</span> <span class="n">name_hel_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">make_parity_partner</span><span class="p">:</span>
                 <span class="n">string</span> <span class="o">+=</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">hel</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">string</span> <span class="o">+=</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hel</span><span class="p">)</span>
         <span class="n">string</span> <span class="o">+=</span> <span class="s1">&#39;+&#39;</span>
     <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<span class="k">def</span> <span class="nf">__get_name_hel_list</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
+    <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
+    <span class="n">name_hel_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
+        <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="c1"># remove .0</span>
+        <span class="k">if</span> <span class="n">temp_hel</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">temp_hel</span><span class="p">)</span>
+        <span class="n">name_hel_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">name_label</span><span class="p">],</span> <span class="n">temp_hel</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">name_hel_list</span>
+
+
+<div class="viewcode-block" id="retrieve_helicity_info"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.retrieve_helicity_info">[docs]</a><span class="k">def</span> <span class="nf">retrieve_helicity_info</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="c1"># get ending node of the edge</span>
+    <span class="c1"># then make name for</span>
+    <span class="n">in_edges</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+    <span class="n">out_edges</span> <span class="o">=</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+
+    <span class="n">in_names_hel_list</span> <span class="o">=</span> <span class="n">__get_name_hel_list</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">)</span>
+    <span class="n">out_names_hel_list</span> <span class="o">=</span> <span class="n">__get_name_hel_list</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">in_names_hel_list</span><span class="p">,</span> <span class="n">out_names_hel_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="generate_amplitude_coefficient_names"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_amplitude_coefficient_names">[docs]</a><span class="k">def</span> <span class="nf">generate_amplitude_coefficient_names</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Generates partial amplitude coefficient name suffixes.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="p">(</span><span class="n">in_hel_info</span><span class="p">,</span> <span class="n">out_hel_info</span><span class="p">)</span> <span class="o">=</span> <span class="n">retrieve_helicity_info</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span>
+                                                         <span class="n">node_id</span><span class="p">)</span>
+    <span class="n">par_name_suffix</span> <span class="o">=</span> <span class="n">generate_particles_string</span><span class="p">(</span>
+        <span class="n">in_hel_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> \
+        <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">out_hel_info</span><span class="p">)</span>
+
+    <span class="n">pp_par_name_suffix</span> <span class="o">=</span> <span class="n">generate_particles_string</span><span class="p">(</span>
+        <span class="n">in_hel_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> \
+        <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">out_hel_info</span><span class="p">,</span>
+                                  <span class="n">make_parity_partner</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">par_name_suffix</span><span class="p">,</span> <span class="n">pp_par_name_suffix</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="HelicityAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="n">AbstractAmplitudeNameGenerator</span><span class="p">):</span>
@@ -408,7 +461,7 @@
         <span class="c1"># loop over decay nodes in time order</span>
         <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
             <span class="p">(</span><span class="n">coeff_suffix</span><span class="p">,</span>
-             <span class="n">pp_coeff_suffix</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_amplitude_coefficient_names</span><span class="p">(</span>
+             <span class="n">pp_coeff_suffix</span><span class="p">)</span> <span class="o">=</span> <span class="n">generate_amplitude_coefficient_names</span><span class="p">(</span>
                 <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">coeff_suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">partial_amp_coefficient_infos</span><span class="p">:</span>
@@ -441,22 +494,6 @@
                     <span class="s1">&#39;@Real&#39;</span><span class="p">:</span> <span class="n">prefactor</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">amplitude_coefficient_infos</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_names"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_names">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_coefficient_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Generates partial amplitude coefficient name suffixes.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="p">(</span><span class="n">in_hel_info</span><span class="p">,</span> <span class="n">out_hel_info</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_helicity_info</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span>
-                                                                  <span class="n">node_id</span><span class="p">)</span>
-        <span class="n">par_name_suffix</span> <span class="o">=</span> <span class="n">generate_particles_string</span><span class="p">(</span>
-            <span class="n">in_hel_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> \
-            <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">out_hel_info</span><span class="p">)</span>
-
-        <span class="n">pp_par_name_suffix</span> <span class="o">=</span> <span class="n">generate_particles_string</span><span class="p">(</span>
-            <span class="n">in_hel_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> \
-            <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">out_hel_info</span><span class="p">,</span>
-                                      <span class="n">make_parity_partner</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">par_name_suffix</span><span class="p">,</span> <span class="n">pp_par_name_suffix</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_unique_amplitude_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_unique_amplitude_name">[docs]</a>    <span class="k">def</span> <span class="nf">generate_unique_amplitude_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Generates a unique name for the amplitude corresponding to the given</span>
@@ -470,35 +507,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">nodelist</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span>
         <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">nodelist</span><span class="p">:</span>
-            <span class="p">(</span><span class="n">in_hel_info</span><span class="p">,</span> <span class="n">out_hel_info</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_helicity_info</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span>
-                                                                      <span class="n">node_id</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">in_hel_info</span><span class="p">,</span> <span class="n">out_hel_info</span><span class="p">)</span> <span class="o">=</span> <span class="n">retrieve_helicity_info</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span>
+                                                                 <span class="n">node_id</span><span class="p">)</span>
 
             <span class="n">name</span> <span class="o">+=</span> <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">in_hel_info</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> \
                 <span class="n">generate_particles_string</span><span class="p">(</span><span class="n">out_hel_info</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span>
-        <span class="k">return</span> <span class="n">name</span></div>
-
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.retrieve_helicity_info"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.retrieve_helicity_info">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_helicity_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
-        <span class="c1"># get ending node of the edge</span>
-        <span class="c1"># then make name for</span>
-        <span class="n">in_edges</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
-        <span class="n">out_edges</span> <span class="o">=</span> <span class="n">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
-        <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
-        <span class="n">in_names_hel_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">out_names_hel_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">in_edges</span><span class="p">:</span>
-            <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-            <span class="c1"># remove .0</span>
-            <span class="k">if</span> <span class="n">temp_hel</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">temp_hel</span><span class="p">)</span>
-            <span class="n">in_names_hel_dict</span><span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">name_label</span><span class="p">]]</span> <span class="o">=</span> <span class="n">temp_hel</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">out_edges</span><span class="p">:</span>
-            <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-            <span class="c1"># remove .0</span>
-            <span class="k">if</span> <span class="n">temp_hel</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">temp_hel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">temp_hel</span><span class="p">)</span>
-            <span class="n">out_names_hel_dict</span><span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">name_label</span><span class="p">]]</span> <span class="o">=</span> <span class="n">temp_hel</span>
-
-        <span class="k">return</span> <span class="p">(</span><span class="n">in_names_hel_dict</span><span class="p">,</span> <span class="n">out_names_hel_dict</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">name</span></div></div>
 
 
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">AbstractAmplitudeGenerator</span><span class="p">):</span>
@@ -548,32 +562,43 @@
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_amplitude_info"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_amplitude_info">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_groups</span><span class="p">):</span>
         <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
         <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
+        <span class="n">component_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Component</span><span class="p">)</span>
         <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
         <span class="n">parameter_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Parameter</span><span class="p">)</span>
 
         <span class="c1"># for each graph group we create a coherent amplitude</span>
-        <span class="n">coherent_amplitudes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">coherent_intensites</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">graph_group</span> <span class="ow">in</span> <span class="n">graph_groups</span><span class="p">:</span>
             <span class="n">seq_partial_decays</span> <span class="o">=</span> <span class="p">[]</span>
+
             <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graph_group</span><span class="p">:</span>
                 <span class="n">seq_partial_decays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">generate_sequential_decay</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
 
             <span class="c1"># in each coherent amplitude we create a product of partial decays</span>
             <span class="n">coherent_amp_name</span> <span class="o">=</span> <span class="s2">&quot;coherent_&quot;</span> <span class="o">+</span> \
-                <span class="nb">str</span><span class="p">(</span><span class="n">graph_groups</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">graph_group</span><span class="p">))</span>
-            <span class="n">coherent_amplitudes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="n">get_graph_group_unique_label</span><span class="p">(</span><span class="n">graph_group</span><span class="p">)</span>
+            <span class="n">coherent_intensites</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
                 <span class="n">class_label</span><span class="p">:</span> <span class="s1">&#39;CoherentIntensity&#39;</span><span class="p">,</span>
-                <span class="n">name_label</span><span class="p">:</span> <span class="n">coherent_amp_name</span><span class="p">,</span>
+                <span class="n">component_label</span><span class="p">:</span> <span class="n">coherent_amp_name</span><span class="p">,</span>
                 <span class="s1">&#39;Amplitude&#39;</span><span class="p">:</span> <span class="n">seq_partial_decays</span>
             <span class="p">})</span>
 
         <span class="c1"># now wrap it with an incoherent intensity</span>
         <span class="n">incoherent_amp_name</span> <span class="o">=</span> <span class="s2">&quot;incoherent&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coherent_intensites</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">coherent_intensites_dict</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;IncoherentIntensity&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="n">coherent_intensites</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">coherent_intensites_dict</span> <span class="o">=</span> <span class="n">coherent_intensites</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">helicity_amplitudes</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;StrengthIntensity&quot;</span><span class="p">,</span>
-                <span class="n">name_label</span><span class="p">:</span> <span class="n">incoherent_amp_name</span> <span class="o">+</span> <span class="s2">&quot;_with_strength&quot;</span><span class="p">,</span>
+                <span class="n">component_label</span><span class="p">:</span> <span class="n">incoherent_amp_name</span> <span class="o">+</span> <span class="s2">&quot;_with_strength&quot;</span><span class="p">,</span>
                 <span class="n">parameter_label</span><span class="p">:</span> <span class="p">{</span><span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">,</span>
                                   <span class="n">type_label</span><span class="p">:</span> <span class="s2">&quot;Strength&quot;</span><span class="p">,</span>
                                   <span class="n">name_label</span><span class="p">:</span> <span class="s2">&quot;strength_&quot;</span> <span class="o">+</span>
@@ -582,12 +607,7 @@
 
                 <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;NormalizedIntensity&quot;</span><span class="p">,</span>
-                    <span class="n">name_label</span><span class="p">:</span> <span class="n">incoherent_amp_name</span> <span class="o">+</span> <span class="s2">&quot;_normalized&quot;</span><span class="p">,</span>
-                    <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;IncoherentIntensity&quot;</span><span class="p">,</span>
-                        <span class="n">name_label</span><span class="p">:</span> <span class="n">incoherent_amp_name</span><span class="p">,</span>
-                        <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="n">coherent_amplitudes</span>
-                    <span class="p">}</span>
+                    <span class="s1">&#39;Intensity&#39;</span><span class="p">:</span> <span class="n">coherent_intensites_dict</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span></div>
@@ -595,6 +615,7 @@
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_sequential_decay"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_sequential_decay">[docs]</a>    <span class="k">def</span> <span class="nf">generate_sequential_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
         <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
+        <span class="n">component_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Component</span><span class="p">)</span>
         <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
         <span class="n">decay_info_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">DecayInfo</span><span class="p">)</span>
         <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
@@ -627,14 +648,13 @@
         <span class="n">amp_coeff_infos</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">generate_amplitude_coefficient_infos</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
         <span class="n">sequential_amplitude_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;SequentialAmplitude&quot;</span><span class="p">,</span>
-            <span class="n">name_label</span><span class="p">:</span> <span class="n">amp_name</span><span class="p">,</span>
             <span class="s1">&#39;Amplitude&#39;</span><span class="p">:</span> <span class="n">partial_decays</span>
         <span class="p">}</span>
 
         <span class="n">par_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Parameter</span><span class="p">)</span>
         <span class="n">coefficient_amplitude_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;CoefficientAmplitude&quot;</span><span class="p">,</span>
-            <span class="n">name_label</span><span class="p">:</span> <span class="n">amp_name</span><span class="p">,</span>
+            <span class="n">component_label</span><span class="p">:</span> <span class="n">amp_name</span><span class="p">,</span>
             <span class="n">par_label</span><span class="p">:</span> <span class="n">amp_coeff_infos</span><span class="p">[</span><span class="n">par_label</span><span class="p">],</span>
             <span class="s1">&#39;Amplitude&#39;</span><span class="p">:</span> <span class="n">sequential_amplitude_dict</span>
         <span class="p">}</span>
@@ -686,10 +706,7 @@
                 <span class="p">})</span>
             <span class="n">recoil_system_dict</span><span class="p">[</span><span class="s1">&#39;RecoilSystem&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tempdict</span>
 
-        <span class="n">amp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_generator</span><span class="o">.</span><span class="n">generate_unique_amplitude_name</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span>
-                                                                      <span class="n">node_id</span><span class="p">)</span>
         <span class="n">partial_decay_dict</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">name_label</span><span class="p">:</span> <span class="n">amp_name</span><span class="p">,</span>
             <span class="n">class_label</span><span class="p">:</span> <span class="s2">&quot;HelicityDecay&quot;</span><span class="p">,</span>
             <span class="s1">&#39;DecayParticle&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="n">name_label</span><span class="p">:</span> <span class="n">dec_part</span><span class="p">[</span><span class="n">name_label</span><span class="p">],</span>

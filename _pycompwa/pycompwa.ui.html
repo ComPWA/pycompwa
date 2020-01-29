@@ -319,6 +319,33 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="pycompwa.ui.FitFraction">
+<em class="property">class </em><code class="sig-name descname">FitFraction</code><a class="headerlink" href="#pycompwa.ui.FitFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<dl class="method">
+<dt id="pycompwa.ui.FitFraction.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.FitFraction.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.FitFraction.error">
+<em class="property">property </em><code class="sig-name descname">error</code><a class="headerlink" href="#pycompwa.ui.FitFraction.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.FitFraction.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#pycompwa.ui.FitFraction.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.FitFraction.value">
+<em class="property">property </em><code class="sig-name descname">value</code><a class="headerlink" href="#pycompwa.ui.FitFraction.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="pycompwa.ui.FitParameter">
 <em class="property">class </em><code class="sig-name descname">FitParameter</code><a class="headerlink" href="#pycompwa.ui.FitParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
@@ -505,6 +532,45 @@
 <dl class="method">
 <dt id="pycompwa.ui.Intensity.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.Intensity.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pycompwa.ui.IntensityBuilderXML">
+<em class="property">class </em><code class="sig-name descname">IntensityBuilderXML</code><a class="headerlink" href="#pycompwa.ui.IntensityBuilderXML" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<dl class="method">
+<dt id="pycompwa.ui.IntensityBuilderXML.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.IntensityBuilderXML</em>, <em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">phsp_sample: pycompwa.ui.EventList</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.IntensityBuilderXML.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an intensity and a helicity kinematics from a xml file. The file should contain a particle list, and a kinematics and intensity section.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.IntensityBuilderXML.create_intensity">
+<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.IntensityBuilderXML</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity<a class="headerlink" href="#pycompwa.ui.IntensityBuilderXML.create_intensity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.IntensityBuilderXML.create_intensity_components">
+<code class="sig-name descname">create_intensity_components</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.IntensityBuilderXML, component_name_lists: List[List[str]]</em><span class="sig-paren">)</span> &#x2192; List[Tuple[str, pycompwa.ui.Intensity]]<a class="headerlink" href="#pycompwa.ui.IntensityBuilderXML.create_intensity_components" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.IntensityBuilderXML.get_all_component_names">
+<code class="sig-name descname">get_all_component_names</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.IntensityBuilderXML</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="headerlink" href="#pycompwa.ui.IntensityBuilderXML.get_all_component_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pycompwa.ui.IntensityComponent">
+<em class="property">class </em><code class="sig-name descname">IntensityComponent</code><a class="headerlink" href="#pycompwa.ui.IntensityComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<dl class="method">
+<dt id="pycompwa.ui.IntensityComponent.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.IntensityComponent.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -795,20 +861,20 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="pycompwa.ui.create_intensity">
-<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.PartList</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">phsp_sample: pycompwa.ui.EventList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity<a class="headerlink" href="#pycompwa.ui.create_intensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an intensity and a helicity kinematics from a xml file. The file should contain a particle list, and a kinematics and intensity section.</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="pycompwa.ui.create_rootplotdata">
-<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f704d099880&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f704d099848&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f164f5e1f80&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f164f5e1f48&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="pycompwa.ui.create_unbinned_log_likelihood_function_tree_estimator">
 <code class="sig-name descname">create_unbinned_log_likelihood_function_tree_estimator</code><span class="sig-paren">(</span><em class="sig-param">intensity: pycompwa.ui.FunctionTreeIntensity</em>, <em class="sig-param">datapoints: pycompwa.ui.DataSet</em><span class="sig-paren">)</span> &#x2192; Tuple[pycompwa.ui.FunctionTreeEstimator, List[pycompwa.ui.FitParameter]]<a class="headerlink" href="#pycompwa.ui.create_unbinned_log_likelihood_function_tree_estimator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.ui.fit_fractions_with_propagated_errors">
+<code class="sig-name descname">fit_fractions_with_propagated_errors</code><span class="sig-paren">(</span><em class="sig-param">intensity_components: List[Tuple[Tuple[str, pycompwa.ui.Intensity], Tuple[str, pycompwa.ui.Intensity]]], sample: pycompwa.ui.DataSet, fit_result: pycompwa.ui.FitResult</em><span class="sig-paren">)</span> &#x2192; List[pycompwa.ui.FitFraction]<a class="headerlink" href="#pycompwa.ui.fit_fractions_with_propagated_errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the fit fractions and errors for all given components.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pycompwa.ui.fix_parameter">
