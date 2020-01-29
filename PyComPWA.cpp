@@ -459,15 +459,7 @@ PYBIND11_MODULE(ui, m) {
       .def_property_readonly(
           "fit_duration_in_seconds",
           [](const ComPWA::FitResult &x) { return x.FitDuration.count(); })
-      .def_readonly("covariance_matrix", &ComPWA::FitResult::CovarianceMatrix);
-
-  py::class_<ComPWA::Optimizer::Minuit2::MinuitResult, ComPWA::FitResult>(
-      m, "MinuitResult")
-      .def("log",
-           [](const ComPWA::Optimizer::Minuit2::MinuitResult &Result) {
-             LOG(INFO) << Result;
-           },
-           "Print fit result to the logging system.")
+      .def_readonly("covariance_matrix", &ComPWA::FitResult::CovarianceMatrix)
       .def("write",
            [](const ComPWA::Optimizer::Minuit2::MinuitResult &r,
               std::string file) {
@@ -476,6 +468,14 @@ PYBIND11_MODULE(ui, m) {
              oa << BOOST_SERIALIZATION_NVP(r);
            },
            py::arg("file"));
+
+  py::class_<ComPWA::Optimizer::Minuit2::MinuitResult, ComPWA::FitResult>(
+      m, "MinuitResult")
+      .def("log",
+           [](const ComPWA::Optimizer::Minuit2::MinuitResult &Result) {
+             LOG(INFO) << Result;
+           },
+           "Print fit result to the logging system.");
 
   m.def("initializeWithFitResult", &ComPWA::initializeWithFitResult,
         "Initializes an Intensity with the parameters of a FitResult.",
