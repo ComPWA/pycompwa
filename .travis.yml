@@ -1,9 +1,12 @@
 language: cpp
+os: linux
+
 branches:
   only:
     - master
     - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
   except: gh-pages
+
 env:
   global:
     - OMP_NUM_THREADS: 1
@@ -13,7 +16,7 @@ env:
 
 jobs:
   include:
-    - os: osx
+    - os: osx # test XCode build
       osx_image: xcode10.2
       addons:
         homebrew:
@@ -30,7 +33,7 @@ jobs:
           -- -- -j2
         # The test fails on mac osx because of a wrong RPATH in the precompiled root binaries
 
-    - os: linux
+    - os: linux # test gcc build (Linux) + deploy pages
       dist: bionic
       compiler: gcc
       env:
@@ -71,7 +74,30 @@ jobs:
         on:
           branch: master
 
-    - os: linux
+    - os: linux # test clang build (Linux) + code coverage
+      dist: bionic
+      compiler: clang
+      env:
+        - TASK="clang, ROOT v6.18 + code coverage"
+        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+      addons:
+        apt:
+          update: true
+          packages:
+            - libboost-all-dev
+            - python3
+            - python3-pip
+            - python3-venv
+      script:
+        - cd $BASEPATH
+        - python setup.py --generator "Unix Makefiles" --skip-generator-test install
+          -- -- -j2
+        - cd $BASEPATH/tests
+        - python -m pytest --cov-config=.coveragerc --cov=pycompwa
+      after_success:
+        - python -m codecov
+
+    - os: linux # deploy pip package
       dist: bionic
       env:
         - TASK="deployment"
@@ -106,6 +132,8 @@ install:
   - pip install scikit-build
   - pip install scipy
   - pip install pytest
+  - pip install pytest-cov
+  - pip install codecov
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
   - cd root

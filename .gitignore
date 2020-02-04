@@ -7,6 +7,7 @@ MANIFEST
 
 # Python temporary files
 *.pyc
+.coverage
 .eggs
 .ipynb_checkpoints
 .pytest_cache/
