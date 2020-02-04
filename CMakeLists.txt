@@ -17,20 +17,18 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/ComPWA/cmake/Modules/")
 # Find python3
 # unfortunately there is a change in the interface of CMake at version 12
 # in which the PythonInterp gets deprecated and FindPython3 should be used
+# BUT actually the cmake 3.12 version FindPython3 is buggy and cannot find
+# python venvs. So the threshold is actually put to 3.13
 set(Python3_FOUND FALSE)
-if (${CMAKE_MAJOR_VERSION} EQUAL 3 AND ${CMAKE_MINOR_VERSION} LESS 12)
-  find_package(PythonInterp)
+if (${CMAKE_MAJOR_VERSION} EQUAL 3 AND ${CMAKE_MINOR_VERSION} LESS 13)
+  find_package(PythonInterp REQUIRED)
   if(${PYTHONINTERP_FOUND} AND ${PYTHON_VERSION_MAJOR} GREATER 2)
     set(Python3_FOUND TRUE)
     set(Python3_EXECUTABLE ${PYTHON_EXECUTABLE})
   endif()
 else()
-  set (CMAKE_FIND_FRAMEWORK NEVER)
-  find_package(Python3)
-endif()
-
-if(NOT ${Python3_FOUND})
-  message( FATAL_ERROR "Python3 not found!")
+  set(CMAKE_FIND_FRAMEWORK NEVER)
+  find_package(Python3 REQUIRED COMPONENTS Interpreter)
 endif()
 
 # # Configure RPATH
