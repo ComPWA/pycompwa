@@ -437,8 +437,8 @@ is used to normalize the Intensity)</p>
 <p>A phase space sample can be generated via the <code class="docutils literal notranslate"><span class="pre">generate_phsp()</span></code>
 function (see above). Since our Intensity is already normalized this is
 not needed here. The data samples can be converted to <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> using
-the <code class="docutils literal notranslate"><span class="pre">convert_events_to_dataset()</span></code> function.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">convert_events_to_dataset</span><span class="p">(</span><span class="n">datasample</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">)</span>
+the <code class="docutils literal notranslate"><span class="pre">convert()</span></code> method of <code class="docutils literal notranslate"><span class="pre">Kinematics</span></code>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">datasample</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now an estimator can be created. Remember that it indicates how well a
@@ -515,8 +515,8 @@ the kinematic variables from the other subsystems are needed. They can
 be created with <code class="docutils literal notranslate"><span class="pre">create_all_subsystems()</span></code>. However the conversion from
 the event samples have to be performed again!</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kinematics</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">convert_events_to_dataset</span><span class="p">(</span><span class="n">datasample</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">)</span>
-<span class="n">phspdataset</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">convert_events_to_dataset</span><span class="p">(</span><span class="n">phspsample</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">datasample</span><span class="p">)</span>
+<span class="n">phspdataset</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">phspsample</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -544,7 +544,7 @@ read in the data.</p>
 <p>The returned data structure can directly be fed to
 <code class="docutils literal notranslate"><span class="pre">make_dalitz_plots()</span></code></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="n">make_dalitz_plots</span>
-<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -572,12 +572,12 @@ create common plots like the Dalitz plot.</p>
 <span class="c1">#plot_data.particle_id_to_name_mapping = data_points.get_finalstate_id_to_name_mapping()</span>
 
 <span class="c1"># plot a 2d histogram</span>
-<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To make the differences more clearly visible we can create a 2d
 difference plot</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_difference_plot_2d</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_difference_plot_2d</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

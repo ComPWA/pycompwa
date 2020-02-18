@@ -186,7 +186,7 @@ expert system.</p>
 
 <span class="c1"># The omega is so narrow that the hit&amp;miss generation takes way too long.</span>
 <span class="c1"># Therefore we increase the width artificially in this example!</span>
-<span class="n">omega</span> <span class="o">=</span> <span class="n">particle_list</span><span class="p">[</span><span class="s2">&quot;omega&quot;</span><span class="p">]</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">particle_list</span><span class="p">[</span><span class="s2">&quot;omega(782)&quot;</span><span class="p">]</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">par</span><span class="p">[</span><span class="s1">&#39;@Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Width&#39;</span><span class="p">:</span>
@@ -231,7 +231,8 @@ intensity. This can easily be achieved by using the
 <span class="n">phsp_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
 
 <span class="c1"># create intensity</span>
-<span class="n">intensity</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particles</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">IntensityBuilderXML</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particles</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
+<span class="n">intensity</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">()</span>
 
 <span class="c1"># generate importance sampled phase space sample</span>
 <span class="n">phsp_sample_importance</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_importance_sampled_phsp</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
@@ -246,7 +247,7 @@ uniform distribution. First create all subsystems. Since in this
 example, we have both <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> resonances, all
 subsystems already exist and this step is redundant.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">convert_events_to_dataset</span><span class="p">(</span><span class="n">phsp_sample_importance</span><span class="p">,</span> <span class="n">kin</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">phsp_sample_importance</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now we use the <code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> function to get data, which is
@@ -269,7 +270,7 @@ ready to be put into a numpy record array.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">(</span><span class="n">data_record</span><span class="o">=</span><span class="n">data_record</span><span class="p">)</span>
 <span class="c1">#plotdata.particle_id_to_name_mapping = data_points.get_finalstate_id_to_name_mapping()</span>
 <span class="c1"># plot a 2d histogram</span>
-<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_3_4_vs_2&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_2_4_vs_3&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -226,17 +226,16 @@ numpy arrays</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partlist</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;../../ComPWA/Physics/particle_list.xml&#39;</span><span class="p">)</span>
 <span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">HelicityKinematics</span><span class="p">(</span><span class="n">partlist</span><span class="p">,</span> <span class="p">[</span><span class="mi">421</span><span class="p">],</span> <span class="p">[</span><span class="mi">421</span><span class="p">,</span> <span class="o">-</span><span class="mi">411</span><span class="p">,</span> <span class="mi">211</span><span class="p">])</span>
 <span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
-
-<span class="n">kin</span><span class="o">.</span><span class="n">get_kinematic_variable_names</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Using the <code class="docutils literal notranslate"><span class="pre">Kinematics.convert()</span></code> function the <code class="docutils literal notranslate"><span class="pre">Event</span></code> can be
-converted to a <code class="docutils literal notranslate"><span class="pre">DataPoint</span></code>, which contains all of the kinematic
-variables listed above.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">evts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">Kinematics.convert()</span></code> function the <code class="docutils literal notranslate"><span class="pre">Event</span></code>s can be
+converted to a <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>, which contains all of the registered
+kinematic variables (in this example all possible kinematic variables).</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">evts</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">kinematic_variables</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kinematic variable names:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
