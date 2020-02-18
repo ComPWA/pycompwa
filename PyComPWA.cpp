@@ -40,7 +40,6 @@ namespace py = pybind11;
 PYBIND11_MAKE_OPAQUE(ComPWA::ParticleList);
 PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::Particle>);
 PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::Event>);
-PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::DataPoint>);
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 PYBIND11_MODULE(ui, m) {
@@ -166,16 +165,6 @@ PYBIND11_MODULE(ui, m) {
 
   py::bind_vector<std::vector<ComPWA::Particle>>(m, "ParticleList");
 
-  py::class_<ComPWA::DataPoint>(m, "DataPoint")
-      .def(py::init<std::vector<double>, double>(),
-           py::arg("kinematic_variables"), py::arg("weight") = 1)
-      .def_readonly("kinematic_variables",
-                    &ComPWA::DataPoint::KinematicVariableList,
-                    "The list of kinematic variables which make up this "
-                    "DataPoint. These variables are usually calculated from "
-                    "Event based information by Kinematics classes.")
-      .def_readonly("weight", &ComPWA::DataPoint::Weight);
-
   py::class_<ComPWA::Event>(m, "Event")
       .def(py::init<std::vector<ComPWA::Particle>, double>(),
            py::arg("particle_list"), py::arg("weight") = 1)
@@ -202,20 +191,10 @@ PYBIND11_MODULE(ui, m) {
         py::arg("output_file"), py::arg("tree_name") = "events",
         py::arg("overwrite") = true);
 
-  m.def("log", [](const ComPWA::DataPoint p) { LOG(INFO) << p; });
-
   py::class_<ComPWA::Data::DataSet>(m, "DataSet")
       .def_readonly("data", &ComPWA::Data::DataSet::Data)
-      .def_readonly("weights", &ComPWA::Data::DataSet::Weights)
-      .def_readonly("variable_names", &ComPWA::Data::DataSet::VariableNames);
+      .def_readonly("weights", &ComPWA::Data::DataSet::Weights);
 
-  m.def("convert_events_to_dataset",
-        [](const std::vector<ComPWA::Event> &events,
-           const ComPWA::Kinematics &kin) {
-          return ComPWA::Data::convertEventsToDataSet(events, kin);
-        },
-        "Internally convert the events to data points.", py::arg("events"),
-        py::arg("kinematics"));
   m.def("add_intensity_weights", &ComPWA::Data::addIntensityWeights,
         "Add the intensity values as weights to this data sample.",
         py::arg("intensity"), py::arg("events"), py::arg("kinematics"));
@@ -245,11 +224,9 @@ PYBIND11_MODULE(ui, m) {
   py::class_<ComPWA::Kinematics, std::shared_ptr<ComPWA::Kinematics>>(
       m, "Kinematics")
       .def("convert", &ComPWA::Kinematics::convert,
-           "Convert event to DataPoint.")
-      .def("get_kinematic_variable_names",
-           &ComPWA::Kinematics::getKinematicVariableNames)
+           "Convert Events to a DataSet.")
       .def("phsp_volume", &ComPWA::Kinematics::phspVolume,
-           "Convert event to DataPoint.");
+           "Get phase space volume defined by the kinematics.");
 
   py::class_<ComPWA::Physics::ParticleStateTransitionKinematicsInfo>(
       m, "ParticleStateTransitionKinematicsInfo");
@@ -269,7 +246,7 @@ PYBIND11_MODULE(ui, m) {
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>())
       .def("convert",
-           py::overload_cast<const ComPWA::Event &>(
+           py::overload_cast<const std::vector<ComPWA::Event> &>(
                &ComPWA::Physics::HelicityFormalism::HelicityKinematics::convert,
                py::const_),
            py::arg("Event"))
@@ -277,16 +254,7 @@ PYBIND11_MODULE(ui, m) {
                                         HelicityKinematics::createAllSubsystems)
       .def("get_particle_state_transition_kinematics_info",
            &ComPWA::Physics::HelicityFormalism::HelicityKinematics::
-               getParticleStateTransitionKinematicsInfo)
-      .def("print_sub_systems",
-           [](const ComPWA::Physics::HelicityFormalism::HelicityKinematics
-                  &kin) {
-             LOG(INFO) << "Subsystems used by HelicityKinematics:";
-             for (auto i : kin.subSystems()) {
-               // Have to add " " here (bug in boost 1.59)
-               LOG(INFO) << " " << i;
-             }
-           });
+               getParticleStateTransitionKinematicsInfo);
 
   m.def("create_helicity_kinematics",
         [&](const std::string &filename, ComPWA::ParticleList partL) {
@@ -519,10 +487,13 @@ PYBIND11_MODULE(ui, m) {
 
   m.def("create_data_array",
         [](ComPWA::Data::DataSet DataSample) {
-          auto KinVarNames = DataSample.VariableNames;
+          std::vector<std::string> KinVarNames;
+          std::vector<std::vector<double>> DataArray;
+          for (auto const &x : DataSample.Data) {
+            KinVarNames.push_back(x.first);
+            DataArray.push_back(x.second);
+          }
           KinVarNames.push_back("weight");
-
-          std::vector<std::vector<double>> DataArray(DataSample.Data);
           DataArray.push_back(DataSample.Weights);
           return std::make_pair(KinVarNames, DataArray);
         },
@@ -531,11 +502,15 @@ PYBIND11_MODULE(ui, m) {
   m.def("create_fitresult_array",
         [](std::shared_ptr<ComPWA::Intensity> Intensity,
            ComPWA::Data::DataSet DataSample) {
-          auto KinVarNames = DataSample.VariableNames;
+          std::vector<std::string> KinVarNames;
+          std::vector<std::vector<double>> DataArray;
+          for (auto const &x : DataSample.Data) {
+            KinVarNames.push_back(x.first);
+            DataArray.push_back(x.second);
+          }
           KinVarNames.push_back("intensity");
           KinVarNames.push_back("weight");
 
-          std::vector<std::vector<double>> DataArray(DataSample.Data);
           DataArray.push_back(DataSample.Weights);
           DataArray.push_back(Intensity->evaluate(DataSample.Data));
           return std::make_pair(KinVarNames, DataArray);
