@@ -10,26 +10,10 @@ project( pycompwa.ui
 cmake_minimum_required (VERSION 3.4 FATAL_ERROR)
 
 set(DEFAULT_BUILD_TYPE "Release")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Need to add this to the top level CMakeLists.txt
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/ComPWA/cmake/Modules/")
-
-# Find python3
-# unfortunately there is a change in the interface of CMake at version 12
-# in which the PythonInterp gets deprecated and FindPython3 should be used
-# BUT actually the cmake 3.12 version FindPython3 is buggy and cannot find
-# python venvs. So the threshold is actually put to 3.13
-set(Python3_FOUND FALSE)
-if (${CMAKE_MAJOR_VERSION} EQUAL 3 AND ${CMAKE_MINOR_VERSION} LESS 13)
-  find_package(PythonInterp REQUIRED)
-  if(${PYTHONINTERP_FOUND} AND ${PYTHON_VERSION_MAJOR} GREATER 2)
-    set(Python3_FOUND TRUE)
-    set(Python3_EXECUTABLE ${PYTHON_EXECUTABLE})
-  endif()
-else()
-  set(CMAKE_FIND_FRAMEWORK NEVER)
-  find_package(Python3 REQUIRED COMPONENTS Interpreter)
-endif()
 
 # # Configure RPATH
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
