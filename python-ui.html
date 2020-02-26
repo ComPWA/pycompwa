@@ -162,8 +162,8 @@
 <span id="id1"></span><h1>Python UI<a class="headerlink" href="#python-ui" title="Permalink to this headline">¶</a></h1>
 <p>The Python User Interface is a python module named <code class="code docutils literal notranslate"><span class="pre">ui</span></code>, built with
 <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a>.
-It is the recommended way to use ComPWA, since the user benefits from the python
-ease of use.</p>
+It is the recommended way to use ComPWA, since the user benefits from the
+python ease of use.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Because the Python UI calls the c++ code in the background, you do not have
@@ -229,7 +229,19 @@ via numpy or pandas and then construct <a class="reference internal" href="_pyco
 
 <p>The procedure is explained <a class="reference internal" href="examples.html#example-datainput"><span class="std std-ref">here</span></a> in more detail.</p>
 <p>Alternatively, the reading and writing of ROOT files is supported via the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">RootDataIO</span></code> class.</p>
+<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.read_root_data" title="pycompwa.ui.read_root_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_root_data()</span></code></a> and <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.write_root_data" title="pycompwa.ui.write_root_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_root_data()</span></code></a> functions.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">read_root_data</code><span class="sig-paren">(</span><em class="sig-param">input_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">number_of_events: int = -1</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<dd><p>Read ROOT tree from file to an EventList.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">write_root_data</code><span class="sig-paren">(</span><em class="sig-param">event_list: pycompwa.ui.EventList</em>, <em class="sig-param">output_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">overwrite: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Save data as ROOT tree to file.</p>
+</dd></dl>
+
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Because this class assumes a predefined structure in the ROOT file, the
@@ -237,8 +249,8 @@ previous method via Events and Particles is more flexible and recommended.</p>
 </div>
 <p>For the reading of data/events a predefined tree structure is assumed. The name
 of the tree inside the file and the number of events to process can be by
-adjusted in the constructor. By default the tree name is <em>“data”</em> and all events
-are processed. Inside the tree a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> with the name
+adjusted in the constructor. By default the tree name is <em>“data”</em> and all
+events are processed. Inside the tree a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> with the name
 <em>“Particles”</em> is expected. This <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> should contain
 <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TParticle</span></code>’s, the final state particles.</p>
 <p>The order of the particles inside the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> can easily be
@@ -373,12 +385,19 @@ already existing particles.</p>
 <dd><p>Create a helicity kinematics from a xml file. The file should contain a kinematics section.</p>
 </dd></dl>
 
-<p>Analogous a Intensity instance can be created with <code class="xref py py-func docutils literal notranslate"><span class="pre">create_intensity()</span></code></p>
+<p>Analogous a Intensity instance can be created with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">IntensityBuilderXML.create_intensity()</span></code></p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">create_intensity</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.IntensityBuilderXML</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.FunctionTreeIntensity</dt>
+<dd></dd></dl>
+
 <p>Here the order of execution is important and can be slightly confusing.
 In order to fit an Intensity to a data sample, the Intensity has to be
 normalized (when using an unbinned log likelihood estimator). Because the
 normalization is performed by MC integration, a phase space sample is needed.
-This however requires a Kinematics instance. Therefore the order of execution is:</p>
+This however requires a Kinematics instance. Therefore the order of execution
+is:</p>
 <ol class="arabic simple">
 <li><p>Create/Load a <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.PartList" title="pycompwa.ui.PartList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartList</span></code></a></p></li>
 <li><p>Create a Kinematics instance</p></li>

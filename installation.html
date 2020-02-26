@@ -166,12 +166,24 @@
             
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>It is best to install the pycompwa framework within a virtual environment, so that all dependencies of pycompwa are contained within there. We recommend to use <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a>.</p>
-<p>After you have <a class="reference external" href="https://docs.anaconda.com/anaconda/install/">installed Anaconda</a>, create a new environment with the latest version of <code class="docutils literal notranslate"><span class="pre">python</span></code>, <code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> activated:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name compwa python jupyter
+<p>It is best to install the pycompwa framework within a virtual environment, so
+that all dependencies of pycompwa are contained within there. We recommend to
+use <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> in combination with
+<a class="reference external" href="https://conda-forge.org/">Conda-Forge</a>.</p>
+<p>After you have <a class="reference external" href="https://docs.anaconda.com/anaconda/install/">installed Anaconda</a>, set Conda-Forge as the
+default channel as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
+conda config --set channel_priority strict
 </pre></div>
 </div>
-<p>Here, we call the environment <code class="docutils literal notranslate"><span class="pre">compwa</span></code>, but you can give it any name. Now, go into this environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">compwa</span></code>, so we can install pycompwa there:</p>
+<p>Now, create a new environment with <a class="reference external" href="https://github.com/ComPWA/pycompwa/blob/master/requirements.txt">all required dependencies</a>
+installed:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create -n compwa --file requirements.txt
+</pre></div>
+</div>
+<p>Here, we call the environment <code class="docutils literal notranslate"><span class="pre">compwa</span></code>, but you can give it any name. Now, go
+into this environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">compwa</span></code>, so we can install
+pycompwa there:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install scikit-build
 pip install pycompwa
 </pre></div>
@@ -180,7 +192,9 @@ pip install pycompwa
 <p>That’s it! You can now go through the <a class="reference internal" href="examples.html#example-quickstart"><span class="std std-ref">Quickstart Example</span></a> to learn how to use pycompwa.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Of course, pycompwa can also be used with <a class="reference external" href="https://jupyter.org/">jupyter</a>. You can install jupyter in your virtual Conda environment via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>. Then, just navigate to the jupyter examples  <code class="docutils literal notranslate"><span class="pre">examples/jupyter</span></code> and run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>.</p>
+<p>Of course, pycompwa can also be used with <a class="reference external" href="https://jupyter.org/">jupyter</a>. You can install jupyter in your virtual Conda
+environment via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>. Then, just navigate to the
+jupyter examples  <code class="docutils literal notranslate"><span class="pre">examples/jupyter</span></code> and run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>.</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -199,12 +213,15 @@ Install via <code class="docutils literal notranslate"><span class="pre">pip</sp
 <a class="reference external" href="https://www.gnu.org/software/gsl/">GSL</a></p></li>
 </ul>
 </li>
+<li><p>The Python requirements listed <a class="reference external" href="https://github.com/ComPWA/pycompwa/blob/master/requirements.txt">here</a></p></li>
 </ul>
-<p>More information on how to install these can be found by following the links.</p>
 </div>
 <div class="section" id="installation-from-source">
 <h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
-<p>If you are a pycompwa developer, you will have to build the framework from source instead of using the pycompwa release that is distributed through <code class="docutils literal notranslate"><span class="pre">conda</span></code>. See <a class="reference internal" href="contribute.html#developermode"><span class="std std-ref">Developer Mode</span></a> for the installation instructions.</p>
+<p>If you are a pycompwa developer, you will have to build the framework from
+source instead of using the pycompwa release that is distributed through
+<code class="docutils literal notranslate"><span class="pre">conda</span></code>. See <a class="reference internal" href="contribute.html#developermode"><span class="std std-ref">Developer Mode</span></a> for the installation
+instructions.</p>
 </div>
 </div>
 
