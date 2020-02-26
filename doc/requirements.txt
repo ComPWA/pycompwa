@@ -1,9 +1,5 @@
-nbconvert>=5.4.1
-ipython>=7.5.0
-numpy>=1.17.2
-progress>=1.5
-matplotlib>=3.1.1
-xmltodict>=0.12.0
-uproot>=3.10.6
-Sphinx>=2.2.0
-sphinx_rtd_theme>=0.4.3
+jupyter
+nbconvert
+sphinx
+sphinx_rtd_theme
+uproot

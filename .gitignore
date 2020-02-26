@@ -8,14 +8,16 @@ MANIFEST
 # Python temporary files
 *.pyc
 .coverage
+.coverage.*
 .eggs
 .ipynb_checkpoints
 .pytest_cache/
 __pycache__
+htmlcov/
 pycompwa.egg-info
 
 # Python virtual environments
-venv/
+*venv/
 
 # Build files
 _skbuild/
