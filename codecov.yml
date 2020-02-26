@@ -4,7 +4,39 @@ codecov:
 coverage:
   precision: 2
   round: down
-  range: "70...100"
+  # everything above 75% will be good (green)
+  range: "75...100"
+
+  status:
+    project:
+      default:
+        # basic
+        target: 75% # can't go below 75%
+        threshold: 3% # allow drops by 3%
+        base: auto 
+        # advanced
+        branches: null
+        if_no_uploads: error
+        if_not_found: success
+        if_ci_failed: error
+        only_pulls: false
+        flags: null
+        paths: null
+    patch:
+      default:
+        # basic
+        target: 0
+        threshold: 0
+        base: auto 
+        # advanced
+        branches: null
+        if_no_uploads: error
+        if_not_found: success
+        if_ci_failed: error
+        only_pulls: false
+        flags: null
+        paths: null
+    changes: no
 
 parsers:
   gcov:
