@@ -11,32 +11,29 @@ Developer mode
 --------------
 
 If you want to develop new functionality for pycompwa, installing pycompwa as a
-Conda package will not suffice: you will have to **build from source**. In this
-'developer mode', you still work in a Conda environment (see :ref:`Installation
-<Installation>`), but now you install the pycompwa package from the cloned
-repository using `conda-develop
+pip or Conda package will not suffice: you will have to **build from source**,
+so that you can continuously implement updates. In this 'developer mode', you
+still work in a Conda environment (see :ref:`Installation <Installation>`,
+especially for the `Conda-Forge <https://conda-forge.org/>`__ instructions),
+but now you install the pycompwa package from the cloned repository using
+`conda-develop
 <https://docs.conda.io/projects/conda-build/en/latest/resources/commands/conda-develop.html>`__,
 so that any changes you make in the source code immediately have effect.
 
-First, create a new Conda environment for pycompwa with the necessary packages:
-
-.. code-block:: shell
-
-  conda create --name compwa python jupyter pytest
-
-Now, clone the pycompwa repository recursively to some suitable folder (you can
-omit the ``<PYCOMPWA_SOURCE_PATH>``):
+First, clone the pycompwa repository recursively to some suitable folder (you
+can omit the ``<PYCOMPWA_SOURCE_PATH>``):
 
 .. code-block:: shell
 
   git clone --recurse-submodules git@github.com:ComPWA/pycompwa.git <PYCOMPWA_SOURCE_PATH>
 
-Then, navigate into the cloned repository under ``<PYCOMPWA_SOURCE_PATH>`` and
-install the required Python packages:
+Now, go into the cloned repository, create a new Conda environment for
+pycompwa with the necessary packages installed, and activate it:
 
 .. code-block:: shell
 
-  pip install -r requirements.txt
+  conda create -n compwa --file requirements.txt
+  conda activate compwa
 
 You can now build the pycompwa package from source:
 
@@ -45,13 +42,13 @@ You can now build the pycompwa package from source:
   mkdir -p build
   cd build
   cmake ..
-  make -j4
+  cmake --build . -- -j4  # adjust 4 to your number of cores
 
 You will then need to set some symbolic links to the Python module of pycompwa:
 
 .. code-block:: shell
 
-  cd pycompwa
+  cd ../pycompwa
   ln -s ../build/ui.*.so .
   ln -s ../ComPWA/Physics/particle_list.xml .
 
@@ -60,10 +57,33 @@ Python interpreter understand the ``import pycompwa`` command. You do this with:
 
 .. code-block:: shell
 
-  conda develop <PATH_TO_pycompwa>
+  conda develop <PYCOMPWA_SOURCE_PATH>
 
-where ``<PATH_TO_pycompwa>`` refers to the absolute or relative path of the
+where ``<PYCOMPWA_SOURCE_PATH>`` refers to the absolute or relative path of the
 cloned pycompwa repository.
+
+Python developer tools
+^^^^^^^^^^^^^^^^^^^^^^
+
+For contributing to pycompwa, we recommend you also install the packages listed
+under `requirements_dev.txt
+<https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt>`__. In
+the Conda environment you created for pycompwa:
+
+.. code-block:: shell
+
+  conda install --file requirements_dev.txt
+
+Now you can for instance test the coverage of the unit tests:
+
+.. code-block:: shell
+
+  cd tests
+  pytest --durations=0 --cov-config=.coveragerc --cov=pycompwa --cov-report html -m "not slow"
+
+Now you can find a nice graphical overview of which parts of the code are not
+covered by the tests by opening ``htmlcov/index.html``!
+
 
 How to contribute through Git
 -----------------------------
@@ -239,7 +259,7 @@ the documentation in sync with the code is crucial, and is a lot of work.
 
 The documentation is built with sphinx using the "read the docs" theme. For the
 python code/modules ``sphinx-apidoc`` is used. The comment style is following
-the ``pep8`` conventions.
+the ``doc8`` conventions.
 
 You can build the documentation locally as follows. In your Conda environment,
 navigate to the pycompwa repository, then do:
@@ -247,7 +267,7 @@ navigate to the pycompwa repository, then do:
 .. code-block:: shell
 
   cd doc
-  pip install -r requirements.txt
+  conda install --file requirements.txt
   make html
 
 Now, open the file ``doc/source/_build/html/index.html``.
