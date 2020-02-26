@@ -25,6 +25,7 @@
 #include "Data/Root/RootGenerator.hpp"
 #include "Estimator/MinLogLH/MinLogLH.hpp"
 #include "Optimizer/Minuit2/MinuitIF.hpp"
+#include "Optimizer/Minuit2/MinuitResult.hpp"
 
 #include "Core/FunctionTree/FunctionTreeIntensity.hpp"
 #include "Physics/BuilderXML.hpp"
@@ -437,14 +438,14 @@ PYBIND11_MODULE(ui, m) {
           "fit_duration_in_seconds",
           [](const ComPWA::FitResult &x) { return x.FitDuration.count(); })
       .def_readonly("covariance_matrix", &ComPWA::FitResult::CovarianceMatrix)
-      .def("write",
-           [](const ComPWA::Optimizer::Minuit2::MinuitResult &r,
-              std::string file) {
-             std::ofstream ofs(file);
-             boost::archive::xml_oarchive oa(ofs);
-             oa << BOOST_SERIALIZATION_NVP(r);
-           },
-           py::arg("file"));
+      .def("write", &ComPWA::FitResult::write,
+           "Write fit result to an xml file.", py::arg("filename"));
+
+  m.def("load", &ComPWA::Optimizer::Minuit2::load,
+        "Load a Minuit2 fit result from a file.", py::arg("filename"));
+
+  m.def("load", &ComPWA::load, "Load a fit result from a file.",
+        py::arg("filename"));
 
   py::class_<ComPWA::Optimizer::Minuit2::MinuitResult, ComPWA::FitResult>(
       m, "MinuitResult")
@@ -452,7 +453,9 @@ PYBIND11_MODULE(ui, m) {
            [](const ComPWA::Optimizer::Minuit2::MinuitResult &Result) {
              LOG(INFO) << Result;
            },
-           "Print fit result to the logging system.");
+           "Print fit result to the logging system.")
+      .def("write", &ComPWA::Optimizer::Minuit2::MinuitResult::write,
+           "Write Minuit2 fit result to an xml file.", py::arg("filename"));
 
   m.def("initializeWithFitResult", &ComPWA::initializeWithFitResult,
         "Initializes an Intensity with the parameters of a FitResult.",

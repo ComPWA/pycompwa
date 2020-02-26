@@ -17,7 +17,7 @@ htmlcov/
 pycompwa.egg-info
 
 # Python virtual environments
-venv/
+*venv/
 
 # Build files
 _skbuild/
