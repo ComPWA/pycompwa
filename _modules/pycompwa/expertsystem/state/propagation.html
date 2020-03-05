@@ -186,6 +186,7 @@
     <span class="n">StateQuantumNumberNames</span><span class="p">,</span>
     <span class="n">InteractionQuantumNumberNames</span><span class="p">,</span>
     <span class="n">ParticlePropertyNames</span><span class="p">,</span>
+    <span class="n">ParticleDecayPropertyNames</span><span class="p">,</span>
     <span class="n">get_particle_property</span><span class="p">,</span>
     <span class="n">get_interaction_property</span><span class="p">,</span>
     <span class="n">QNNameClassMapping</span><span class="p">,</span>
@@ -374,7 +375,8 @@
 
         <span class="n">qn_names</span> <span class="o">=</span> <span class="n">cons_law</span><span class="o">.</span><span class="n">get_required_qn_names</span><span class="p">()</span>
         <span class="n">qn_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
-                                              <span class="n">ParticlePropertyNames</span><span class="p">))</span>
+                                              <span class="n">ParticlePropertyNames</span><span class="p">,</span>
+                                              <span class="n">ParticleDecayPropertyNames</span><span class="p">))</span>
         <span class="n">in_edges_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span><span class="n">in_edges</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">)</span>
         <span class="n">out_edges_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_edge_variables</span><span class="p">(</span><span class="n">out_edges</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">)</span>
 
@@ -529,7 +531,8 @@
                 <span class="c1"># create needed variables for edges state qns</span>
                 <span class="n">part_qn_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_qns</span><span class="p">(</span>
                     <span class="n">qn_names</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="o">.</span><span class="n">qn_domains</span><span class="p">,</span>
-                    <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span> <span class="n">ParticlePropertyNames</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span> <span class="n">ParticlePropertyNames</span><span class="p">,</span>
+                     <span class="n">ParticleDecayPropertyNames</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="n">in_edges</span> <span class="o">=</span> <span class="n">get_edges_ingoing_to_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
 
