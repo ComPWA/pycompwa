@@ -166,11 +166,6 @@ PYBIND11_MODULE(ui, m) {
            py::arg("four_momenta"), py::arg("weight") = 1)
       .def_readonly("weight", &ComPWA::Event::Weight);
 
-  py::class_<ComPWA::Event>(m, "Event")
-      .def(py::init<std::vector<ComPWA::FourMomentum>, double>(),
-           py::arg("four_momenta"), py::arg("weight") = 1)
-      .def_readonly("weight", &ComPWA::Event::Weight);
-
   py::class_<ComPWA::EventCollection>(m, "EventCollection")
       .def(py::init<std::vector<ComPWA::pid>, std::vector<ComPWA::Event>>(),
            py::arg("pids"), py::arg("events"))
@@ -354,13 +349,14 @@ PYBIND11_MODULE(ui, m) {
   m.def("generate",
         [](unsigned int NumberOfEvents,
            std::shared_ptr<ComPWA::Kinematics> Kinematics,
+           const ComPWA::PhaseSpaceEventGenerator &Generator,
            std::shared_ptr<ComPWA::Intensity> Intensity,
            ComPWA::UniformRealNumberGenerator &RandomGenerator) {
-          return ComPWA::Data::generate(NumberOfEvents, *Kinematics, *Intensity,
-                                        RandomGenerator);
+          return ComPWA::Data::generate(NumberOfEvents, *Kinematics, Generator,
+                                        *Intensity, RandomGenerator);
         },
         "Generate sample from an Intensity", py::arg("size"),
-        py::arg("kinematics"), py::arg("intensity"),
+        py::arg("kinematics"), py::arg("phsp_generator"), py::arg("intensity"),
         py::arg("random_generator"));
 
   m.def("generate",
