@@ -39,9 +39,9 @@
 namespace py = pybind11;
 
 PYBIND11_MAKE_OPAQUE(ComPWA::ParticleList);
-PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::pid>);
 PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::FourMomentum>);
 PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::Event>);
+
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 PYBIND11_MODULE(ui, m) {
@@ -164,12 +164,16 @@ PYBIND11_MODULE(ui, m) {
   py::class_<ComPWA::Event>(m, "Event")
       .def(py::init<std::vector<ComPWA::FourMomentum>, double>(),
            py::arg("four_momenta"), py::arg("weight") = 1)
+      .def_readonly("four_momenta", &ComPWA::Event::FourMomenta)
       .def_readonly("weight", &ComPWA::Event::Weight);
+
+  py::bind_vector<std::vector<ComPWA::Event>>(m, "EventList");
 
   py::class_<ComPWA::EventCollection>(m, "EventCollection")
       .def(py::init<std::vector<ComPWA::pid>, std::vector<ComPWA::Event>>(),
            py::arg("pids"), py::arg("events"))
-      .def_readonly("pids", &ComPWA::EventCollection::Pids);
+      .def_readonly("pids", &ComPWA::EventCollection::Pids)
+      .def_readonly("events", &ComPWA::EventCollection::Events);
 
   // ------- Data I/O ------- //
   m.def("read_ascii_data", &ComPWA::Data::Ascii::readData,
