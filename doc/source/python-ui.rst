@@ -28,16 +28,15 @@ wave analysis:
 Read and Write Data Samples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For python users it is recommended to first load the data into a common format
-via numpy or pandas and then construct :class:`.Event` s and
-:class:`.Particle` s.
+For Python users, it is recommended to first load the data into a common format
+via numpy or pandas and then construct :class:`.Event`s.
 
 .. autoclass:: pycompwa.ui.Event
    :members:
    :undoc-members:
    :noindex:
 
-.. autoclass:: pycompwa.ui.Particle
+.. autoclass:: pycompwa.ui.FourMomentum
    :members:
    :undoc-members:
    :noindex:
@@ -45,7 +44,7 @@ via numpy or pandas and then construct :class:`.Event` s and
 The procedure is explained :ref:`here<example_datainput>` in more detail.
 
 Alternatively, the reading and writing of ROOT files is supported via the
-:func:`.read_root_data` and :func:`.write_root_data` functions.
+following functions.
 
 .. autofunction:: pycompwa.ui.read_root_data
    :noindex:
@@ -53,21 +52,11 @@ Alternatively, the reading and writing of ROOT files is supported via the
 .. autofunction:: pycompwa.ui.write_root_data
    :noindex:
 
-.. tip::
-   Because this class assumes a predefined structure in the ROOT file, the
-   previous method via Events and Particles is more flexible and recommended.
+.. autofunction:: pycompwa.ui.read_ascii_data
+   :noindex:
 
-For the reading of data/events a predefined tree structure is assumed. The name
-of the tree inside the file and the number of events to process can be by
-adjusted in the constructor. By default the tree name is *"data"* and all
-events are processed. Inside the tree a :cpp:class:`TClonesArray` with the name
-*"Particles"* is expected. This :cpp:class:`TClonesArray` should contain
-:cpp:class:`TParticle`'s, the final state particles.
-
-The order of the particles inside the :cpp:class:`TClonesArray` can easily be
-adjusted in the Kinematics section of your model xml file. Just use the
-``PositionIndex`` attribute to specify the position inside the
-:cpp:class:`TClonesArray`.
+.. autofunction:: pycompwa.ui.write_ascii_data
+   :noindex:
 
 Generate Data Samples
 ^^^^^^^^^^^^^^^^^^^^^
