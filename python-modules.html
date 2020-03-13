@@ -208,22 +208,20 @@ correlation between the two. It’s useful to read more about the
 wave analysis:</p>
 <div class="section" id="read-and-write-data-samples">
 <span id="dataio"></span><h3>Read and Write Data Samples<a class="headerlink" href="#read-and-write-data-samples" title="Permalink to this headline">¶</a></h3>
-<p>For python users it is recommended to first load the data into a common format
-via numpy or pandas and then construct <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.Event" title="pycompwa.ui.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a> s and
-<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.Particle" title="pycompwa.ui.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particle</span></code></a> s.</p>
+<p>For Python users, it is recommended to first load the data into a common format
+via numpy or pandas and then construct :class:<a href="#id2"><span class="problematic" id="id3">`</span></a>.Event`s.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="sig-name descname">Event</code></dt>
 <dd><dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Event</em>, <em class="sig-param">particle_list: pycompwa.ui.ParticleList</em>, <em class="sig-param">weight: float = 1</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Event</em>, <em class="sig-param">four_momenta: pycompwa.ui.FourMomentumList</em>, <em class="sig-param">weight: float = 1</em><span class="sig-paren">)</span> &#x2192; None</dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt>
-<em class="property">property </em><code class="sig-name descname">particle_list</code></dt>
-<dd><p>The list of particles (four momenta) associated with this event.</p>
-</dd></dl>
+<em class="property">property </em><code class="sig-name descname">four_momenta</code></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt>
@@ -234,56 +232,42 @@ via numpy or pandas and then construct <a class="reference internal" href="_pyco
 
 <dl class="class">
 <dt>
-<em class="property">class </em><code class="sig-name descname">Particle</code></dt>
+<em class="property">class </em><code class="sig-name descname">FourMomentum</code></dt>
 <dd><dl class="method">
 <dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Particle, p4: List[float[4]], pid: int</em><span class="sig-paren">)</span> &#x2192; None</dt>
-<dd><p>Construct a Particle from a four vector as a list of the form [px, py, pz, E] and a pid.</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.FourMomentum, p4: List[float[4]]</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Construct a FourMomentum from a four vector as a list of the form [px, py, pz, E] and a pid.</p>
 </dd></dl>
-
-<dl class="method">
-<dt>
-<em class="property">property </em><code class="sig-name descname">p4</code></dt>
-<dd><p>The four momentum of the Particle in the form [px, py, pz, E]</p>
-</dd></dl>
-
-<dl class="method">
-<dt>
-<em class="property">property </em><code class="sig-name descname">pid</code></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
 <p>The procedure is explained <a class="reference internal" href="examples.html#example-datainput"><span class="std std-ref">here</span></a> in more detail.</p>
 <p>Alternatively, the reading and writing of ROOT files is supported via the
-<a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.read_root_data" title="pycompwa.ui.read_root_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_root_data()</span></code></a> and <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.write_root_data" title="pycompwa.ui.write_root_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_root_data()</span></code></a> functions.</p>
+following functions.</p>
 <dl class="function">
 <dt>
-<code class="sig-name descname">read_root_data</code><span class="sig-paren">(</span><em class="sig-param">input_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">number_of_events: int = -1</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<code class="sig-name descname">read_root_data</code><span class="sig-paren">(</span><em class="sig-param">input_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">number_of_events: int = -1</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventCollection</dt>
 <dd><p>Read ROOT tree from file to an EventList.</p>
 </dd></dl>
 
 <dl class="function">
 <dt>
-<code class="sig-name descname">write_root_data</code><span class="sig-paren">(</span><em class="sig-param">event_list: pycompwa.ui.EventList</em>, <em class="sig-param">output_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">overwrite: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<code class="sig-name descname">write_root_data</code><span class="sig-paren">(</span><em class="sig-param">event_list: pycompwa.ui.EventCollection</em>, <em class="sig-param">output_file: str</em>, <em class="sig-param">tree_name: str = 'events'</em>, <em class="sig-param">overwrite: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
 <dd><p>Save data as ROOT tree to file.</p>
 </dd></dl>
 
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Because this class assumes a predefined structure in the ROOT file, the
-previous method via Events and Particles is more flexible and recommended.</p>
-</div>
-<p>For the reading of data/events a predefined tree structure is assumed. The name
-of the tree inside the file and the number of events to process can be by
-adjusted in the constructor. By default the tree name is <em>“data”</em> and all
-events are processed. Inside the tree a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> with the name
-<em>“Particles”</em> is expected. This <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> should contain
-<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TParticle</span></code>’s, the final state particles.</p>
-<p>The order of the particles inside the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code> can easily be
-adjusted in the Kinematics section of your model xml file. Just use the
-<code class="docutils literal notranslate"><span class="pre">PositionIndex</span></code> attribute to specify the position inside the
-<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">TClonesArray</span></code>.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">read_ascii_data</code><span class="sig-paren">(</span><em class="sig-param">input_file: str</em>, <em class="sig-param">number_of_events: int = -1</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventCollection</dt>
+<dd><p>Read ROOT tree from file to an EventList.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">write_ascii_data</code><span class="sig-paren">(</span><em class="sig-param">event_list: pycompwa.ui.EventCollection</em>, <em class="sig-param">output_file: str</em>, <em class="sig-param">overwrite: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Save data as ROOT tree to file.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="generate-data-samples">
 <h3>Generate Data Samples<a class="headerlink" href="#generate-data-samples" title="Permalink to this headline">¶</a></h3>
@@ -293,7 +277,7 @@ data samples:</p>
 <li><p>Generating phase space samples based on the Kinematics</p>
 <dl class="function">
 <dt>
-<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventCollection</dt>
 <dd><p>Generate phase space sample</p>
 </dd></dl>
 
@@ -352,15 +336,15 @@ sampling will be performed.</p>
 <code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic simple">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.PhaseSpaceEventGenerator, intens: pycompwa.ui.Intensity, random_gen: pycompwa.ui.UniformRealNumberGenerator) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kinematics: pycompwa.ui.Kinematics, phsp_generator: pycompwa.ui.PhaseSpaceEventGenerator, intensity: pycompwa.ui.Intensity, random_generator: pycompwa.ui.UniformRealNumberGenerator) -&gt; pycompwa.ui.EventCollection</p></li>
 </ol>
 <p>Generate sample from an Intensity</p>
 <ol class="arabic simple" start="2">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kinematics: pycompwa.ui.Kinematics, generator: pycompwa.ui.UniformRealNumberGenerator, intensity: pycompwa.ui.Intensity, phsp_sample: pycompwa.ui.EventCollection) -&gt; pycompwa.ui.EventCollection</p></li>
 </ol>
 <p>Generate sample from an Intensity, using a given phase space sample.</p>
 <ol class="arabic simple" start="3">
-<li><p>generate(size: int, kin: pycompwa.ui.Kinematics, gen: pycompwa.ui.UniformRealNumberGenerator, intens: pycompwa.ui.Intensity, phspSample: pycompwa.ui.EventList, toyPhspSample: pycompwa.ui.EventList = None) -&gt; pycompwa.ui.EventList</p></li>
+<li><p>generate(size: int, kinematics: pycompwa.ui.Kinematics, generator: pycompwa.ui.UniformRealNumberGenerator, intensity: pycompwa.ui.Intensity, phsp_sample: pycompwa.ui.EventCollection, toy_phsp_sample: pycompwa.ui.EventCollection = None) -&gt; pycompwa.ui.EventCollection</p></li>
 </ol>
 <p>Generate sample from an Intensity. In case that detector reconstruction and selection is considered in the phase space sample a second pure toy sample needs to be passed.</p>
 </dd></dl>
@@ -369,7 +353,7 @@ sampling will be performed.</p>
 <li><p>Generating an importance weighted phase space sample</p>
 <dl class="function">
 <dt>
-<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kin: pycompwa.ui.Kinematics</em>, <em class="sig-param">gen: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">intens: pycompwa.ui.Intensity</em>, <em class="sig-param">random_gen: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventList</dt>
+<code class="sig-name descname">generate_importance_sampled_phsp</code><span class="sig-paren">(</span><em class="sig-param">size: int</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">generator: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity</em>, <em class="sig-param">random_generator: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventCollection</dt>
 <dd><p>Generate an Intensity importance weighted phase space sample</p>
 </dd></dl>
 
@@ -449,7 +433,7 @@ is:</p>
 </div>
 </div>
 <div class="section" id="plotting">
-<span id="id2"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
 <p>Coming soon …</p>
 </div>
 </div>
