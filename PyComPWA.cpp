@@ -39,8 +39,9 @@
 namespace py = pybind11;
 
 PYBIND11_MAKE_OPAQUE(ComPWA::ParticleList);
-PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::Particle>);
+PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::FourMomentum>);
 PYBIND11_MAKE_OPAQUE(std::vector<ComPWA::Event>);
+
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 PYBIND11_MODULE(ui, m) {
@@ -147,34 +148,32 @@ PYBIND11_MODULE(ui, m) {
 
   // ------- Data
 
-  py::class_<ComPWA::Particle>(m, "Particle")
-      .def(py::init<std::array<double, 4>, int>(),
-           "Construct a Particle from a four vector as a list of the form "
+  py::class_<ComPWA::FourMomentum>(m, "FourMomentum")
+      .def(py::init<std::array<double, 4>>(),
+           "Construct a FourMomentum from a four vector as a list of the form "
            "[px, py, pz, E] and a pid.",
-           py::arg("p4"), py::arg("pid"))
-      .def("__repr__",
-           [](const ComPWA::Particle &p) {
-             std::stringstream ss;
-             ss << p;
-             return ss.str();
-           })
-      .def_property_readonly(
-          "p4", &ComPWA::Particle::fourMomentum,
-          "The four momentum of the Particle in the form [px, py, pz, "
-          "E]")
-      .def_property_readonly("pid", &ComPWA::Particle::pid);
+           py::arg("p4"))
+      .def("__repr__", [](const ComPWA::FourMomentum &p) {
+        std::stringstream ss;
+        ss << p;
+        return ss.str();
+      });
 
-  py::bind_vector<std::vector<ComPWA::Particle>>(m, "ParticleList");
+  py::bind_vector<std::vector<ComPWA::FourMomentum>>(m, "FourMomentumList");
 
   py::class_<ComPWA::Event>(m, "Event")
-      .def(py::init<std::vector<ComPWA::Particle>, double>(),
-           py::arg("particle_list"), py::arg("weight") = 1)
-      .def_readonly("particle_list", &ComPWA::Event::ParticleList,
-                    "The list of particles (four momenta) associated "
-                    "with this event.")
+      .def(py::init<std::vector<ComPWA::FourMomentum>, double>(),
+           py::arg("four_momenta"), py::arg("weight") = 1)
+      .def_readonly("four_momenta", &ComPWA::Event::FourMomenta)
       .def_readonly("weight", &ComPWA::Event::Weight);
 
   py::bind_vector<std::vector<ComPWA::Event>>(m, "EventList");
+
+  py::class_<ComPWA::EventCollection>(m, "EventCollection")
+      .def(py::init<std::vector<ComPWA::pid>, std::vector<ComPWA::Event>>(),
+           py::arg("pids"), py::arg("events"))
+      .def_readonly("pids", &ComPWA::EventCollection::Pids)
+      .def_readonly("events", &ComPWA::EventCollection::Events);
 
   // ------- Data I/O ------- //
   m.def("read_ascii_data", &ComPWA::Data::Ascii::readData,
@@ -247,7 +246,7 @@ PYBIND11_MODULE(ui, m) {
       .def(py::init<
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>())
       .def("convert",
-           py::overload_cast<const std::vector<ComPWA::Event> &>(
+           py::overload_cast<const ComPWA::EventCollection &>(
                &ComPWA::Physics::HelicityFormalism::HelicityKinematics::convert,
                py::const_),
            py::arg("Event"))
@@ -299,7 +298,7 @@ PYBIND11_MODULE(ui, m) {
   py::class_<ComPWA::Physics::IntensityBuilderXML>(m, "IntensityBuilderXML")
       .def(py::init([](const std::string &filename, ComPWA::ParticleList partL,
                        ComPWA::Kinematics &kin,
-                       const std::vector<ComPWA::Event> &PhspSample) {
+                       const ComPWA::EventCollection &PhspSample) {
              boost::property_tree::ptree pt;
              boost::property_tree::xml_parser::read_xml(filename, pt);
              auto it = pt.find("Intensity");
@@ -352,40 +351,49 @@ PYBIND11_MODULE(ui, m) {
            const ComPWA::Physics::ParticleStateTransitionKinematicsInfo &>());
 
   m.def("generate",
-        [](unsigned int n, std::shared_ptr<ComPWA::Kinematics> kin,
-           const ComPWA::PhaseSpaceEventGenerator &gen,
-           std::shared_ptr<ComPWA::Intensity> intens,
-           ComPWA::UniformRealNumberGenerator &randgen) {
-          return ComPWA::Data::generate(n, *kin, gen, *intens, randgen);
+        [](unsigned int NumberOfEvents,
+           std::shared_ptr<ComPWA::Kinematics> Kinematics,
+           const ComPWA::PhaseSpaceEventGenerator &Generator,
+           std::shared_ptr<ComPWA::Intensity> Intensity,
+           ComPWA::UniformRealNumberGenerator &RandomGenerator) {
+          return ComPWA::Data::generate(NumberOfEvents, *Kinematics, Generator,
+                                        *Intensity, RandomGenerator);
         },
-        "Generate sample from an Intensity", py::arg("size"), py::arg("kin"),
-        py::arg("gen"), py::arg("intens"), py::arg("random_gen"));
+        "Generate sample from an Intensity", py::arg("size"),
+        py::arg("kinematics"), py::arg("phsp_generator"), py::arg("intensity"),
+        py::arg("random_generator"));
 
   m.def("generate",
-        [](unsigned int n, std::shared_ptr<ComPWA::Kinematics> kin,
-           ComPWA::UniformRealNumberGenerator &randgen,
-           std::shared_ptr<ComPWA::Intensity> intens,
-           const std::vector<ComPWA::Event> &phsp_sample) {
-          return ComPWA::Data::generate(n, *kin, randgen, *intens, phsp_sample);
+        [](unsigned int NumberOfEvents,
+           std::shared_ptr<ComPWA::Kinematics> Kinematics,
+           ComPWA::UniformRealNumberGenerator &RandomGenerator,
+           std::shared_ptr<ComPWA::Intensity> Intensity,
+           const ComPWA::EventCollection &PhspSample) {
+          return ComPWA::Data::generate(NumberOfEvents, *Kinematics,
+                                        RandomGenerator, *Intensity,
+                                        PhspSample);
         },
         "Generate sample from an Intensity, using a given phase space sample.",
-        py::arg("size"), py::arg("kin"), py::arg("gen"), py::arg("intens"),
-        py::arg("phspSample"));
+        py::arg("size"), py::arg("kinematics"), py::arg("generator"),
+        py::arg("intensity"), py::arg("phsp_sample"));
 
   m.def("generate",
-        [](unsigned int n, std::shared_ptr<ComPWA::Kinematics> kin,
-           ComPWA::UniformRealNumberGenerator &randgen,
-           std::shared_ptr<ComPWA::Intensity> intens,
-           const std::vector<ComPWA::Event> &phsp_sample,
-           const std::vector<ComPWA::Event> &toy_phsp_sample) {
-          return ComPWA::Data::generate(n, *kin, randgen, *intens, phsp_sample,
-                                        toy_phsp_sample);
+        [](unsigned int NumberOfEvents,
+           std::shared_ptr<ComPWA::Kinematics> Kinematics,
+           ComPWA::UniformRealNumberGenerator &RandomGenerator,
+           std::shared_ptr<ComPWA::Intensity> Intensity,
+           const ComPWA::EventCollection &PhspSample,
+           const ComPWA::EventCollection &ToyPhspSample) {
+          return ComPWA::Data::generate(NumberOfEvents, *Kinematics,
+                                        RandomGenerator, *Intensity, PhspSample,
+                                        ToyPhspSample);
         },
         "Generate sample from an Intensity. In case that detector "
         "reconstruction and selection is considered in the phase space sample "
         "a second pure toy sample needs to be passed.",
-        py::arg("size"), py::arg("kin"), py::arg("gen"), py::arg("intens"),
-        py::arg("phspSample"), py::arg("toyPhspSample") = nullptr);
+        py::arg("size"), py::arg("kinematics"), py::arg("generator"),
+        py::arg("intensity"), py::arg("phsp_sample"),
+        py::arg("toy_phsp_sample") = nullptr);
 
   m.def("generate_phsp", &ComPWA::Data::generatePhsp,
         "Generate phase space sample");
@@ -393,8 +401,8 @@ PYBIND11_MODULE(ui, m) {
   m.def("generate_importance_sampled_phsp",
         &ComPWA::Data::generateImportanceSampledPhsp,
         "Generate an Intensity importance weighted phase space sample",
-        py::arg("size"), py::arg("kin"), py::arg("gen"), py::arg("intens"),
-        py::arg("random_gen"));
+        py::arg("size"), py::arg("kinematics"), py::arg("generator"),
+        py::arg("intensity"), py::arg("random_generator"));
 
   //------- Estimator + Optimizer
 
