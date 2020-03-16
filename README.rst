@@ -6,8 +6,8 @@
    :target: https://zenodo.org/badge/latestdoi/212384131
 .. image:: https://badge.fury.io/py/pycompwa.svg
    :target: https://badge.fury.io/py/pycompwa
-.. image:: https://api.codacy.com/project/badge/Grade/7bed0ae71aca43ac945af06c19ea9cae
-   :target: https://www.codacy.com/manual/ComPWA/pycompwa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ComPWA/pycompwa&amp;utm_campaign=Badge_Grade
+.. image:: https://api.codacy.com/project/badge/Grade/adb3ab8d774346b2a3c68f5fa3479c08
+   :target: https://app.codacy.com/gh/ComPWA/pycompwa?utm_source=github.com&utm_medium=referral&utm_content=ComPWA/pycompwa&utm_campaign=Badge_Grade_Dashboard
 
 About pycompwa
 ==============
