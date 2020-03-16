@@ -1,5 +1,6 @@
 jupyter
 nbconvert
+pandas
 sphinx
 sphinx_rtd_theme
 uproot

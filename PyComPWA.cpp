@@ -229,7 +229,11 @@ PYBIND11_MODULE(ui, m) {
            "Get phase space volume defined by the kinematics.");
 
   py::class_<ComPWA::Physics::ParticleStateTransitionKinematicsInfo>(
-      m, "ParticleStateTransitionKinematicsInfo");
+      m, "ParticleStateTransitionKinematicsInfo")
+      .def("get_final_state_id_to_name_mapping",
+           &ComPWA::Physics::ParticleStateTransitionKinematicsInfo::
+               getFinalStateIDToNameMapping,
+           "Get a dictionary for converting a final state ID to a name");
 
   py::class_<
       ComPWA::Physics::HelicityFormalism::HelicityKinematics,
