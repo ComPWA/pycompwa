@@ -66,3 +66,7 @@ Documentation
 =============
 
 The documentation can be found `here <https://compwa.github.io/>`_.
+
+.. image:: https://api.codacy.com/project/badge/Grade/adb3ab8d774346b2a3c68f5fa3479c08
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/gh/ComPWA/pycompwa?utm_source=github.com&utm_medium=referral&utm_content=ComPWA/pycompwa&utm_campaign=Badge_Grade_Dashboard
