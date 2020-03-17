@@ -3,9 +3,9 @@
 Examples
 ========
 
-.. _example_quickstart:
-.. include:: _examples/Quickstart.rst
-.. _example_datainput:
-.. include:: _examples/DataInput.rst
-.. _example_importancesampling:
-.. include:: _examples/ImportanceSampling.rst
+.. toctree::
+   :maxdepth: 2
+
+   _examples/Quickstart.rst
+   _examples/DataInput.rst
+   _examples/ImportanceSampling.rst
