@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="prev" title="Importing Data" href="DataInput.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,11 +83,21 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python-modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Quickstart.html">Quickstart: <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> decay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DataInput.html">Importing Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Importance Sampling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-define-intensity">Step 1: Define intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-create-intensity-and-generate-importance-weighted-phase-space-sample">Step 2: Create intensity and generate importance weighted phase space sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-visualize-the-phase-space-sample">Step 3: Visualize the phase space sample</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
@@ -136,6 +148,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
         
       <li>Importance Sampling</li>
     
@@ -247,30 +261,25 @@ uniform distribution. First create all subsystems. Since in this
 example, we have both <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> resonances, all
 subsystems already exist and this step is redundant.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">phsp_sample_importance</span><span class="p">)</span>
+<span class="n">data_set</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">phsp_sample_importance</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we use the <code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> function to get data, which is
-ready to be put into a numpy record array.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span>
-<span class="p">)</span>
-
-<span class="c1"># use the direct data point access</span>
-<span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_data_array</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="n">data_record</span> <span class="o">=</span> <span class="n">create_nprecord</span><span class="p">(</span><span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">var_names</span><span class="p">)</span>
-<span class="c1"># check that the sum of weights is equal to the number of events!</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sum of weights (should be 2000):&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data_record</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>Finally we create a <code class="docutils literal notranslate"><span class="pre">PlotData</span></code> object and pass it to the
-<code class="docutils literal notranslate"><span class="pre">make_dalitz_plots()</span></code> function.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">(</span><span class="n">data_record</span><span class="o">=</span><span class="n">data_record</span><span class="p">)</span>
-<span class="c1">#plotdata.particle_id_to_name_mapping = data_points.get_finalstate_id_to_name_mapping()</span>
-<span class="c1"># plot a 2d histogram</span>
-<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<p>Then we can use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to create a Dalitz plot:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">id_to_name</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">()</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
+<span class="n">mass_x</span> <span class="o">=</span> <span class="s1">&#39;mSq_(3,4)&#39;</span>
+<span class="n">mass_y</span> <span class="o">=</span> <span class="s1">&#39;mSq_(2,4)&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span>
+    <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">mass_x</span><span class="p">],</span>
+    <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="p">);</span>
+<span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">mass_x</span> <span class="o">=</span> <span class="n">mass_x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">mass_y</span> <span class="o">=</span> <span class="n">mass_x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">mass_x</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">mass_y</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -281,6 +290,15 @@ ready to be put into a numpy record array.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DataInput.html" class="btn btn-neutral float-left" title="Importing Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

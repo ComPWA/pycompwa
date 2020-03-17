@@ -155,13 +155,19 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pycompwa.plotting</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. deprecated::</span>
+<span class="sd">    Will be migrated to `pandas.DataFrame</span>
+<span class="sd">    &lt;https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html&gt;`__</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">copy</span>
 
 
 <div class="viewcode-block" id="PlotData"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.PlotData">[docs]</a><span class="k">class</span> <span class="nc">PlotData</span><span class="p">:</span>
@@ -223,8 +229,7 @@
 
     <span class="n">redchi2</span> <span class="o">=</span> <span class="n">chisquare</span><span class="p">(</span><span class="n">histogram</span><span class="o">.</span><span class="n">bin_contents</span><span class="p">,</span> <span class="n">histogram</span><span class="o">.</span><span class="n">bin_errors</span><span class="p">,</span>
                         <span class="n">function_hist</span><span class="o">.</span><span class="n">bin_contents</span><span class="p">)</span><span class="o">/</span><span class="n">dof</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;chisquare/dof: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">redchi2</span><span class="p">)</span> <span class="o">+</span>
-                 <span class="s2">&quot; +- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">dof</span><span class="p">)))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;chisquare/dof: </span><span class="si">%d</span><span class="s2"> +- </span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">redchi2</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">dof</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">redchi2</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">dof</span><span class="p">)</span></div>
 
@@ -257,7 +262,7 @@
 <div class="viewcode-block" id="scale_to_other_histogram"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.scale_to_other_histogram">[docs]</a><span class="k">def</span> <span class="nf">scale_to_other_histogram</span><span class="p">(</span><span class="n">histogram</span><span class="p">,</span> <span class="n">histogram_reference</span><span class="p">):</span>
     <span class="n">normalization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">histogram_reference</span><span class="o">.</span><span class="n">bin_contents</span><span class="p">)</span> <span class="o">/</span> \
         <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">histogram</span><span class="o">.</span><span class="n">bin_contents</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;calculated normalization:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">normalization</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;calculated normalization: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">normalization</span><span class="p">))</span>
     <span class="n">new_bin_contents</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">normalization</span><span class="p">,</span> <span class="n">histogram</span><span class="o">.</span><span class="n">bin_contents</span><span class="p">)</span>
     <span class="n">new_bin_errors</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">histogram</span><span class="o">.</span><span class="n">bin_errors</span><span class="p">:</span>
@@ -327,9 +332,7 @@
 
 <div class="viewcode-block" id="make_binned_distributions"><a class="viewcode-back" href="../../_pycompwa/pycompwa.plotting.html#pycompwa.plotting.make_binned_distributions">[docs]</a><span class="k">def</span> <span class="nf">make_binned_distributions</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">dimensions_list</span><span class="p">,</span>
                               <span class="n">number_of_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-                              <span class="n">nofit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                              <span class="n">use_cosine_theta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                              <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                              <span class="n">use_cosine_theta</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">binned_distributions</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dimensions_list</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -341,12 +344,12 @@
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dimensions_list</span><span class="p">:</span>
             <span class="n">temp_dim_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
                     <span class="n">temp_dim_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Dimension</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
                         <span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dimensions_list</span><span class="p">])</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">new_dimensions_list</span><span class="p">:</span>
             <span class="n">new_dimensions_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Dimension</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
-                        <span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dimensions_list</span><span class="p">]]</span>
+                <span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dimensions_list</span><span class="p">]]</span>
         <span class="n">dimensions_list</span> <span class="o">=</span> <span class="n">new_dimensions_list</span>
 
     <span class="n">data_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">plot_data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
@@ -356,8 +359,7 @@
         <span class="n">fit_result_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">plot_data</span><span class="o">.</span><span class="n">fit_result_data</span><span class="o">.</span><span class="n">intensity</span> <span class="o">*</span>
                               <span class="n">plot_data</span><span class="o">.</span><span class="n">fit_result_data</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
         <span class="n">scaling_factor</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data_weights</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">fit_result_weights</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;scaling fit to data using factor: &quot;</span> <span class="o">+</span>
-                     <span class="nb">str</span><span class="p">(</span><span class="n">scaling_factor</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;scaling fit to data using factor: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">scaling_factor</span><span class="p">)</span>
         <span class="n">fit_result_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">fit_result_weights</span> <span class="o">*</span> <span class="n">scaling_factor</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">dimensions</span> <span class="ow">in</span> <span class="n">dimensions_list</span><span class="p">:</span>
@@ -470,7 +472,9 @@
         <span class="n">invariant_mass_names</span> <span class="o">=</span> <span class="n">var_names</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">invariant_mass_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">plot_data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
-                                <span class="k">if</span> <span class="s1">&#39;mSq&#39;</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="s1">&#39;_vs_&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+                                <span class="k">if</span> <span class="s1">&#39;mSq&#39;</span> <span class="ow">in</span> <span class="n">x</span>
+                                <span class="ow">and</span> <span class="s1">&#39;_(&#39;</span> <span class="ow">in</span> <span class="n">x</span>
+                                <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)]</span>
 
     <span class="n">data_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">plot_data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
 
@@ -484,9 +488,9 @@
     <span class="n">mass_combinations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">invariant_mass_names</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">fit_result_weights</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass_combinations</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass_combinations</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass_combinations</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass_combinations</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="n">im1</span><span class="p">,</span> <span class="n">im2</span><span class="p">]</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mass_combinations</span><span class="p">):</span>
         <span class="n">msq1</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">im1</span><span class="p">]</span>

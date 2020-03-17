@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Importing Data" href="DataInput.html" />
+    <link rel="prev" title="Examples" href="../examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,11 +83,31 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python-modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quickstart: <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> decay</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-creating-the-amplitude-model">Step 1: Creating the amplitude model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#define-problem-set-for-this-decay">1.1. Define problem set for this decay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preparation">1.2. Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-solutions">1.3. Finding solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-generate-a-data-sample">Step 2: Generate a data sample</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#writing-and-reading-data-samples">2.1 Writing and reading data samples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-fitting">Step 3: Fitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-visualization">Step 4: Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-fit-fractions">Step 5: Fit Fractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DataInput.html">Importing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ImportanceSampling.html">Importance Sampling</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
@@ -136,6 +158,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
         
       <li>Quickstart: <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> decay</li>
     
@@ -563,81 +587,108 @@ the <code class="docutils literal notranslate"><span class="pre">updateParameter
 <div class="section" id="step-4-visualization">
 <h2>Step 4: Visualization<a class="headerlink" href="#step-4-visualization" title="Permalink to this headline">¶</a></h2>
 <p>Let’s go ahead and make a Dalitz plot of the data sample and our fit
-result. ComPWA’s pycompwa package ships with a little plotting module to
-help you generate some common plots using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Before we can
-utilize this, the data has to be extended.</p>
-<p>Since our model only includes one specific decay topology the
+result. It is easiest to visualise your data with
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a>.
+This section illustrates how to do this in combination with ComPWA’s
+functionality.</p>
+<p>Since our model only includes one specific decay topology, the
 <code class="docutils literal notranslate"><span class="pre">HelicityKinematics</span></code> class only generates the kinematic variables
 needed to evaluate the <code class="docutils literal notranslate"><span class="pre">Intensity</span></code>. In order to make a Dalitz plot,
-also the kinematic variables from the other subsystems are needed. They
-can be created with <code class="docutils literal notranslate"><span class="pre">create_all_subsystems()</span></code>. However, the conversion
-from the event samples have to be performed again!</p>
+the kinematic variables from the other subsystems are also needed. They
+can be created with <code class="docutils literal notranslate"><span class="pre">create_all_subsystems()</span></code>. The conversion from the
+event samples have to be performed again, though:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kinematics</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
 <span class="n">data_set</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">data_sample</span><span class="p">)</span>
 <span class="n">phsp_set</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">phsp_sample</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>There are two variants to create plots from data:</p>
-<div class="section" id="variant-1-from-a-root-file">
-<h3>Variant 1: From a ROOT file<a class="headerlink" href="#variant-1-from-a-root-file" title="Permalink to this headline">¶</a></h3>
-<p>The ROOT file can either be generated directly via c++ code
-(<code class="docutils literal notranslate"><span class="pre">RootPlotData</span></code>), or you can use the <code class="docutils literal notranslate"><span class="pre">create_rootplotdata()</span></code> helper
-function of the python UI. So let’s create a file</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">data_set</span></code> and <code class="docutils literal notranslate"><span class="pre">phsp_set</span></code> instances are <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> objects can
+cannot be understood by pandas. Their data members, however, easily
+allow us to make the convertion:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">frame_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">frame_phsp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">frame_data</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">weights</span>
+<span class="n">frame_data</span>
+</pre></div>
+</div>
+<p>We added a weights column here as well, though in this case, all data
+weights are unity.</p>
+<p>To change the number IDs here to the original particle names, you can
+extract a mapping from the <code class="docutils literal notranslate"><span class="pre">Kinematics</span></code> object:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>ComPWA ships with a little python plotting module (<code class="docutils literal notranslate"><span class="pre">plotting</span></code>), which for example helps you to read in ROOT TTree’s and create common plots (e.g. angular distributions, Dalitz plots). It uses matplotlib as a backend. You can either hand it data files, or feed it directly with data.</p>
 <p>Please use it, instead of creating your own visualization scripts!</p>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwa</span><span class="o">.</span><span class="n">create_rootplotdata</span><span class="p">(</span><span class="s2">&quot;rootplot.root&quot;</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">data_sample</span><span class="o">=</span><span class="n">data_set</span><span class="p">,</span>
-                        <span class="n">phsp_sample</span><span class="o">=</span><span class="n">phsp_set</span><span class="p">,</span> <span class="n">intensity</span><span class="o">=</span><span class="n">intensity</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transition_info</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">()</span>
+<span class="n">id_to_name</span> <span class="o">=</span> <span class="n">transition_info</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
+<span class="n">name_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="k">def</span> <span class="nf">replace_ids</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Just some replace lambda&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+       <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
 </pre></div>
 </div>
-<p>Now the <code class="docutils literal notranslate"><span class="pre">rootplotdatareader</span></code> submodule of <code class="docutils literal notranslate"><span class="pre">plotting</span></code> can be used to
-read in the data.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting.rootplotdatareader</span> <span class="kn">import</span> <span class="n">open_compwa_plot_data</span>
-
-<span class="n">plot_data</span> <span class="o">=</span> <span class="n">open_compwa_plot_data</span><span class="p">(</span><span class="s2">&quot;rootplot.root&quot;</span><span class="p">)</span>
+<p>How to visualise the fit? This is where the phase space comes in again.
+By attributing an intensity as a weight to each phase space point, we
+get a point distribution of the fit model over the space spaned by the
+kinematic variables.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensity_set</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intensity_set</span>
 </pre></div>
 </div>
-<p>The returned data structure can directly be fed to
-<code class="docutils literal notranslate"><span class="pre">make_dalitz_plots()</span></code></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="n">make_dalitz_plots</span>
-<span class="c1"># make_dalitz_plots(plot_data, [&quot;mSq_(3,4)&quot;, &quot;mSq_(2,4)&quot;], bins=50)</span>
+<p>Now you can apply the usual <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> tools to plot the
+distributions.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="k">def</span> <span class="nf">plot_1d_comparison</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function for comparing the 1D distributions of fit and data&quot;&quot;&quot;</span>
+    <span class="n">frame_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+    <span class="n">frame_phsp</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span>
+                          <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalized intensity&#39;</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">replace_ids</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="variant-2-by-direct-data-access">
-<h3>Variant 2: By direct data access<a class="headerlink" href="#variant-2-by-direct-data-access" title="Permalink to this headline">¶</a></h3>
-<p>The ComPWA python interface has two helper functions
-<code class="docutils literal notranslate"><span class="pre">create_data_array()</span></code> <code class="docutils literal notranslate"><span class="pre">create_fitresult_array()</span></code> that allow the
-datapoins to be exported as two-dimensional lists. These can be used to
-create a numpy record arrays. Then the <strong>plotting</strong> module is able to
-create common plots like the Dalitz plot.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting</span>
-<span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">make_dalitz_plots</span><span class="p">,</span> <span class="n">PlotData</span><span class="p">,</span> <span class="n">create_nprecord</span><span class="p">,</span>
-    <span class="n">make_difference_plot_2d</span>
-<span class="p">)</span>
-
-<span class="c1"># use the direct data point access</span>
-<span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_data_array</span><span class="p">(</span><span class="n">data_set</span><span class="p">)</span>
-<span class="n">data_record</span> <span class="o">=</span> <span class="n">create_nprecord</span><span class="p">(</span><span class="n">var_names</span><span class="p">,</span> <span class="n">dataarray</span><span class="p">)</span>
-
-<span class="n">fitres_var_names</span><span class="p">,</span> <span class="n">fitres_dataarray</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_fitresult_array</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">phsp_set</span><span class="p">)</span>
-<span class="n">fitresult_record</span> <span class="o">=</span> <span class="n">create_nprecord</span><span class="p">(</span><span class="n">fitres_var_names</span><span class="p">,</span> <span class="n">fitres_dataarray</span><span class="p">)</span>
-
-<span class="n">plot_data</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">(</span><span class="n">data_record</span><span class="o">=</span><span class="n">data_record</span><span class="p">,</span> <span class="n">fit_result_data_record</span><span class="o">=</span><span class="n">fitresult_record</span><span class="p">)</span>
-<span class="c1">#plot_data.particle_id_to_name_mapping = data_points.get_finalstate_id_to_name_mapping()</span>
-
-<span class="c1"># plot a 2d histogram</span>
-<span class="n">make_dalitz_plots</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;theta_2_4_vs_3&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>To make the differences more clearly visible we can create a 2d
-difference plot</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_difference_plot_2d</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">,</span> <span class="s2">&quot;mSq_(2,4)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;mSq_(3,4)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
+<p>Similarly, we can easily create a Dalitz plot:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="k">def</span> <span class="nf">dalitz_plot</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mass_x</span><span class="p">,</span> <span class="n">mass_y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a Dalitz plot with meaningful axis titles&quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span>
+        <span class="n">frame</span><span class="p">[</span><span class="n">mass_x</span><span class="p">],</span>
+        <span class="n">frame</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_x</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_y</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="n">variable_names</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">invariant_masses</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variable_names</span>
+                    <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;mSq_&#39;</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="n">var</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;(2,3,4)&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">comb</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">invariant_masses</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">dalitz_plot</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="o">*</span><span class="n">comb</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">dalitz_plot</span><span class="p">(</span><span class="n">frame_phsp</span><span class="p">,</span> <span class="o">*</span><span class="n">comb</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="step-5-fit-fractions">
@@ -694,6 +745,15 @@ detailed features of ComPWA.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DataInput.html" class="btn btn-neutral float-right" title="Importing Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
