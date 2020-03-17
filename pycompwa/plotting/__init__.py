@@ -1,10 +1,16 @@
+"""
+.. deprecated::
+    Will be migrated to `pandas.DataFrame
+    <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`__
+"""
+
 import logging
+import copy
 from math import cos, pi, sqrt
 import re
 from itertools import combinations
 import numpy as np
 import matplotlib.pyplot as plt
-import copy
 
 
 class PlotData:
@@ -66,8 +72,7 @@ def chisquare_test(histogram, func):
 
     redchi2 = chisquare(histogram.bin_contents, histogram.bin_errors,
                         function_hist.bin_contents)/dof
-    logging.info("chisquare/dof: " + str(redchi2) +
-                 " +- " + str(2.0*sqrt(2/dof)))
+    logging.info("chisquare/dof: %d +- %f", redchi2, 2.0*sqrt(2/dof))
 
     return 1.0, redchi2, 2.0*sqrt(2/dof)
 
@@ -100,7 +105,7 @@ def integrate_row_of_bins(func, integration_ranges):
 def scale_to_other_histogram(histogram, histogram_reference):
     normalization = np.sum(histogram_reference.bin_contents) / \
         np.sum(histogram.bin_contents)
-    logging.info("calculated normalization:" + str(normalization))
+    logging.info("calculated normalization: %s", str(normalization))
     new_bin_contents = np.multiply(normalization, histogram.bin_contents)
     new_bin_errors = None
     if histogram.bin_errors:
@@ -170,9 +175,7 @@ def create_axis_title(dimension, plot_data):
 
 def make_binned_distributions(plot_data, dimensions_list,
                               number_of_bins=50,
-                              nofit=False,
-                              use_cosine_theta=True,
-                              **kwargs):
+                              use_cosine_theta=True):
     binned_distributions = []
 
     if isinstance(dimensions_list, str):
@@ -184,12 +187,12 @@ def make_binned_distributions(plot_data, dimensions_list,
         for x in dimensions_list:
             temp_dim_list = []
             if isinstance(x, list):
-                for y in x:
+                for _ in x:
                     temp_dim_list.append([Dimension(x) if isinstance(
                         x, str) else x for x in dimensions_list])
         if not new_dimensions_list:
             new_dimensions_list = [[Dimension(x) if isinstance(
-                        x, str) else x for x in dimensions_list]]
+                x, str) else x for x in dimensions_list]]
         dimensions_list = new_dimensions_list
 
     data_weights = (plot_data.data.weight)
@@ -199,8 +202,7 @@ def make_binned_distributions(plot_data, dimensions_list,
         fit_result_weights = (plot_data.fit_result_data.intensity *
                               plot_data.fit_result_data.weight)
         scaling_factor = sum(data_weights) / sum(fit_result_weights)
-        logging.info("scaling fit to data using factor: " +
-                     str(scaling_factor))
+        logging.info("scaling fit to data using factor: %d", scaling_factor)
         fit_result_weights = (fit_result_weights * scaling_factor)
 
     for dimensions in dimensions_list:
@@ -313,7 +315,9 @@ def make_dalitz_plots(plot_data, var_names, **kwargs):
         invariant_mass_names = var_names
     else:
         invariant_mass_names = [x for x in list(plot_data.data.dtype.names)
-                                if 'mSq' in x and '_vs_' in x]
+                                if 'mSq' in x
+                                and '_(' in x
+                                and x.endswith(')')]
 
     data_weights = (plot_data.data.weight)
 
@@ -327,9 +331,9 @@ def make_dalitz_plots(plot_data, var_names, **kwargs):
     mass_combinations = list(combinations(invariant_mass_names, 2))
 
     if fit_result_weights.size > 0:
-        fig, axs = plt.subplots(len(mass_combinations), 2, squeeze=False)
+        _, axs = plt.subplots(len(mass_combinations), 2, squeeze=False)
     else:
-        fig, axs = plt.subplots(len(mass_combinations), 1, squeeze=False)
+        _, axs = plt.subplots(len(mass_combinations), 1, squeeze=False)
 
     for i, [im1, im2] in enumerate(mass_combinations):
         msq1 = plot_data.data[im1]
