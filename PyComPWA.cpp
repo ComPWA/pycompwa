@@ -13,9 +13,9 @@
 #include <boost/property_tree/xml_parser.hpp>
 
 #include "Core/Event.hpp"
+#include "Core/FourMomentum.hpp"
 #include "Core/Generator.hpp"
 #include "Core/Kinematics.hpp"
-#include "Core/Particle.hpp"
 #include "Core/Random.hpp"
 #include "Data/Ascii/AsciiDataIO.hpp"
 #include "Data/DataSet.hpp"
