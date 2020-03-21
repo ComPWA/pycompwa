@@ -173,7 +173,48 @@ PYBIND11_MODULE(ui, m) {
       .def(py::init<std::vector<ComPWA::pid>, std::vector<ComPWA::Event>>(),
            py::arg("pids"), py::arg("events"))
       .def_readonly("pids", &ComPWA::EventCollection::Pids)
-      .def_readonly("events", &ComPWA::EventCollection::Events);
+      .def_readonly("events", &ComPWA::EventCollection::Events)
+      .def("to_table",
+           [](const ComPWA::EventCollection &self) {
+             if (!self.checkPidMatchesEvents())
+               throw ComPWA::CorruptFile(
+                   "Number of PIDs in EventCollection does not match the "
+                   "number of four momenta in each of its events");
+             std::vector<std::vector<double>> table;
+             for (const auto &Event : self.Events) {
+               std::vector<double> row;
+               row.reserve(self.Pids.size() * 4);
+               for (const auto &Momentum : Event.FourMomenta) {
+                 row.push_back(Momentum.px());
+                 row.push_back(Momentum.py());
+                 row.push_back(Momentum.pz());
+                 row.push_back(Momentum.e());
+               }
+               table.push_back(std::move(row));
+             }
+             return table;
+           })
+      .def("weights",
+           [](const ComPWA::EventCollection &self) {
+             std::vector<double> Weights;
+             Weights.reserve(self.Events.size());
+             for (const auto &Event : self.Events) {
+               Weights.push_back(Event.Weight);
+             }
+             return Weights;
+           })
+      .def("has_weights", [](const ComPWA::EventCollection &self) {
+        if (!self.Events.size()) {
+          return false;
+        }
+        auto FirstWeight = self.Events.front().Weight;
+        for (const auto &Event : self.Events) {
+          if (Event.Weight != FirstWeight) {
+            return true;
+          }
+        }
+        return false;
+      });
 
   // ------- Data I/O ------- //
   m.def("read_ascii_data", &ComPWA::Data::Ascii::readData,
@@ -193,7 +234,19 @@ PYBIND11_MODULE(ui, m) {
 
   py::class_<ComPWA::Data::DataSet>(m, "DataSet")
       .def_readonly("data", &ComPWA::Data::DataSet::Data)
-      .def_readonly("weights", &ComPWA::Data::DataSet::Weights);
+      .def_readonly("weights", &ComPWA::Data::DataSet::Weights)
+      .def("has_weights", [](const ComPWA::Data::DataSet &self) {
+        if (!self.Weights.size()) {
+          return false;
+        }
+        auto FirstWeight = self.Weights.front();
+        for (auto Weight : self.Weights) {
+          if (Weight != FirstWeight) {
+            return true;
+          }
+        }
+        return false;
+      });
 
   m.def("add_intensity_weights", &ComPWA::Data::addIntensityWeights,
         "Add the intensity values as weights to this data sample.",
@@ -202,11 +255,24 @@ PYBIND11_MODULE(ui, m) {
   // ------- Particles
   py::class_<ComPWA::ParticleList>(m, "ParticleList")
       .def(py::init<>())
-      .def("__repr__", [](const ComPWA::ParticleList &p) {
-        std::stringstream ss;
-        ss << p;
-        return ss.str();
-      });
+      .def("__repr__",
+           [](const ComPWA::ParticleList &p) {
+             std::stringstream ss;
+             ss << p;
+             return ss.str();
+           })
+      .def("name_to_pid",
+           [](const ComPWA::ParticleList &p, std::string name) {
+             return ComPWA::findParticle(p, name).getId();
+           },
+           "Convert a name to a PID as encoded in this ParticleList object",
+           py::arg("name"))
+      .def("pid_to_name",
+           [](const ComPWA::ParticleList &p, int pid) {
+             return ComPWA::findParticle(p, pid).getName();
+           },
+           "Convert a PID to a name as encoded in this ParticleList object",
+           py::arg("pid"));
 
   m.def("read_particles",
         [](std::string filename) { return ComPWA::readParticles(filename); },
@@ -300,27 +366,27 @@ PYBIND11_MODULE(ui, m) {
   py::class_<ComPWA::Tools::IntensityComponent>(m, "IntensityComponent");
 
   py::class_<ComPWA::Physics::IntensityBuilderXML>(m, "IntensityBuilderXML")
-      .def(py::init([](const std::string &filename, ComPWA::ParticleList partL,
-                       ComPWA::Kinematics &kin,
-                       const ComPWA::EventCollection &PhspSample) {
-             boost::property_tree::ptree pt;
-             boost::property_tree::xml_parser::read_xml(filename, pt);
-             auto it = pt.find("Intensity");
-             if (it != pt.not_found()) {
-               ComPWA::Physics::IntensityBuilderXML Builder(
-                   partL, kin, it->second, PhspSample);
-               return Builder;
-             } else {
-               throw ComPWA::BadConfig("pycompwa::IntensityBuilderXML(): "
-                                       "Intensity tag not found in xml file!");
-             }
-           }),
-           "Create an intensity and a helicity kinematics from a xml file. The "
-           "file "
-           "should contain a particle list, and a kinematics and intensity "
-           "section.",
-           py::arg("xml_filename"), py::arg("particle_list"),
-           py::arg("kinematics"), py::arg("phsp_sample"))
+      .def(
+          py::init([](const std::string &filename, ComPWA::ParticleList partL,
+                      ComPWA::Kinematics &kin,
+                      const ComPWA::EventCollection &PhspSample) {
+            boost::property_tree::ptree pt;
+            boost::property_tree::xml_parser::read_xml(filename, pt);
+            auto it = pt.find("Intensity");
+            if (it != pt.not_found()) {
+              ComPWA::Physics::IntensityBuilderXML Builder(
+                  partL, kin, it->second, PhspSample);
+              return Builder;
+            } else {
+              throw ComPWA::BadConfig("pycompwa::IntensityBuilderXML(): "
+                                      "Intensity tag not found in xml file!");
+            }
+          }),
+          "Create an intensity and a helicity kinematics from a xml file. The "
+          "file should contain a particle list, and a kinematics and intensity "
+          "section.",
+          py::arg("xml_filename"), py::arg("particle_list"),
+          py::arg("kinematics"), py::arg("phsp_sample"))
       .def("create_intensity",
            &ComPWA::Physics::IntensityBuilderXML::createIntensity)
       .def("create_intensity_components",
