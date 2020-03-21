@@ -11,6 +11,7 @@ Subpackages
 
 .. toctree::
 
+   pycompwa.data
    pycompwa.expertsystem
    pycompwa.plotting
    pycompwa.ui
