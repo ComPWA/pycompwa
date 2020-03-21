@@ -11,6 +11,7 @@ named ``pwa`` (see :class:`PwaAccessor`).
 __all__ = [
     'PwaAccessor',
     'append',
+    'convert',
     'create',
     'naming',
 ]
@@ -21,6 +22,7 @@ from numpy import sqrt
 import pandas as pd
 
 from . import _labels
+from . import convert
 from . import create
 from . import exception
 from . import naming

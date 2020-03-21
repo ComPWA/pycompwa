@@ -5,7 +5,12 @@ __all__ = [
     'DataException',
     'ConfigurationConflict',
     'InvalidPwaFormat',
+    'MissingParameter',
 ]
+
+
+class MissingParameter(Exception):
+    """One of the function parameters should be specified."""
 
 
 class DataException(Exception):
