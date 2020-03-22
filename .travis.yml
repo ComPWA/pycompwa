@@ -37,7 +37,7 @@ jobs:
       dist: bionic
       compiler: gcc
       env:
-        - TASK="gcc7, ROOT v6.18"
+        - TASK="gcc7, ROOT v6.18 + deploy pages"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
       addons:
         apt:
