@@ -25,12 +25,14 @@ import subprocess
 # build skeleton api docu for python code
 # this does not work for ui, therefore its added already manually
 subprocess.call(
-    'sphinx-apidoc -o _pycompwa/ ../../pycompwa/',
+    'sphinx-apidoc '
+    '-o _pycompwa/ ../../pycompwa/ ',
     shell=True)
 
 subprocess.call(
     'jupyter nbconvert --to rst ../../examples/jupyter/*.ipynb; '
-    'mkdir _examples; mv ../../examples/jupyter/*.rst ./_examples/.',
+    'mkdir _examples; '
+    'mv ../../examples/jupyter/*.rst ./_examples/.; ',
     shell=True)
 
 
@@ -53,14 +55,15 @@ def setup(app):
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.coverage',
-              'sphinx.ext.mathjax',
-              'sphinx.ext.ifconfig',
-              'sphinx.ext.viewcode',
-              'sphinx.ext.napoleon',
-              'sphinx.ext.autosummary',
-              ]
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.coverage',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -128,7 +131,7 @@ html_theme_options = {
     'titles_only': False,
 }
 
-#html_logo = '../images/logo-small.png'
+# html_logo = '../images/logo-small.png'
 
 html_show_sourcelink = False
 
