@@ -74,6 +74,10 @@ the Conda environment you created for pycompwa:
 
   conda install --file requirements_dev.txt
 
+The most general test you can run, is by executing the command ``tox`` from
+anywhere within the source code. This will run a set of tests as defined in the
+``tox.ini`` file in the main directory.
+
 Now you can for instance test the coverage of the unit tests:
 
 .. code-block:: shell
