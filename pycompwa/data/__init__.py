@@ -13,6 +13,7 @@ __all__ = [
     'append',
     'convert',
     'create',
+    'io',
     'naming',
 ]
 
@@ -25,6 +26,7 @@ from . import _labels
 from . import convert
 from . import create
 from . import exception
+from . import io
 from . import naming
 
 
