@@ -20,7 +20,8 @@ def readme():
         return f.read()
 
 
-# Add CMake as a build requirement if cmake is not installed or is too low a version
+# Add CMake as a build requirement if cmake is not installed or is too low a
+# version
 CMAKE_MINIMUM = "3.4"
 SETUP_REQUIRES = []
 try:
