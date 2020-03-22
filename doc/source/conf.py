@@ -63,6 +63,7 @@ def setup(app):
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosectionlabel',
     'sphinx.ext.autosummary',
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
@@ -71,6 +72,10 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
 ]
+
+# Settings for autosectionlabel
+autosectionlabel_prefix_document = False
+autosectionlabel_maxdepth = 1
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
