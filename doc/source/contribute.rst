@@ -196,15 +196,15 @@ Commit conventions
 * Please use `conventional commit messages
   <https://www.conventionalcommits.org/>`__: start the commit subject line with
   a semantic keyword (see e.g. `Angular
-  <https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type>`__
-  or `these examples
-  <https://seesparkbox.com/foundry/semantic_commit_messages>`__, followed by `a
-  column <https://git-scm.com/docs/git-interpret-trailers>`__, then the
-  message. The subject line should be in imperative mood—just imagine the
-  commit to give a command to the code framework. So for instance: ``feat:
-  add coverage report tools`` or ``fix: remove ``. The message should be in
-  present tense, but you can add whatever you want there (like hyperlinks for
-  references).
+  <https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type>`__ or
+  `these examples
+  <https://seesparkbox.com/foundry/semantic_commit_messages>`__,
+  followed by `a column <https://git-scm.com/docs/git-interpret-trailers>`__,
+  then the message. The subject line should be in imperative mood—just imagine
+  the commit to give a command to the code framework. So for instance:
+  ``feat: add coverage report tools`` or ``fix: remove ...``. The message
+  should be in present tense, but you can add whatever you want there (like
+  hyperlinks for references).
 
 
 .. _contribute-report-issues:

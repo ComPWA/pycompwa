@@ -1,8 +1,10 @@
 Modules
 =======
 
-.. include:: expertsystem.rst
 
-.. include:: python-ui.rst
+.. toctree::
+   :maxdepth: 1
 
-.. include:: plotting.rst
+   expertsystem
+   python-ui
+   plotting

@@ -3,8 +3,8 @@
 Python UI
 ---------
 
-The Python User Interface is a python module named :code:`ui`, built with
-`pybind11 <https://pybind11.readthedocs.io/en/stable/index.html>`_.
+The Python User Interface is a python module named :py:mod:`ui <pycompwa.ui>`,
+built with `pybind11 <https://pybind11.readthedocs.io/en/stable/index.html>`_.
 It is the recommended way to use ComPWA, since the user benefits from the
 python ease of use.
 
@@ -12,8 +12,8 @@ python ease of use.
    Because the Python UI calls the c++ code in the background, you do not have
    to worry about speed. It runs just as fast ;)
 
-Since the Python UI just binds to the c++ user interface code, there is a strong
-correlation between the two. It's useful to read more about the
+Since the Python UI just binds to the c++ user interface code, there is a
+strong correlation between the two. It's useful to read more about the
 `ComPWA modules <https://compwa.github.io/ComPWA>`_.
 
 .. hint::
@@ -29,7 +29,7 @@ Read and Write Data Samples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For Python users, it is recommended to first load the data into a common format
-via numpy or pandas and then construct :class:`.Event`s.
+via numpy or pandas and then construct :class:`Event` classes.
 
 .. autoclass:: pycompwa.ui.Event
    :members:
@@ -73,8 +73,8 @@ data samples:
 
   A required argument is a :class:`PhaseSpaceGenerator` instance. There are
   currently two options: :class:`.EvtGenGenerator` and :class:`.RootGenerator`.
-  Using the :class:`.EvtGenGenerator` is recommended, due to numerical precision
-  reasons.
+  Using the :class:`.EvtGenGenerator` is recommended, due to numerical
+  precision reasons.
 
   .. autoclass:: pycompwa.ui.EvtGenGenerator
    :special-members: __init__
@@ -86,8 +86,8 @@ data samples:
   Read :ref:`below<create-kin-and-intens>` on how to create such a Kinematics
   instance.
 
-  The second argument for the :func:`.generate_phsp` function is a random number
-  generator. Here also two options exist:
+  The second argument for the :func:`.generate_phsp` function is a random
+  number generator. Here also two options exist:
 
   *  .. autoclass:: pycompwa.ui.StdUniformRealGenerator
         :special-members: __init__
