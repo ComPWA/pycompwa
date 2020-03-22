@@ -31,6 +31,7 @@ subprocess.call(
     '--module-first '
     '--separate '
     '-o _pycompwa/ ../../pycompwa/ '
+    '../../pycompwa/expertsystem/solvers/constraint '
     '../../pycompwa/ui.*.so; '
     'rm _pycompwa/pycompwa.rst',
     shell=True)
