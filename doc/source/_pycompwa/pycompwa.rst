@@ -1,6 +1,12 @@
 pycompwa package
 ================
 
+.. automodule:: pycompwa
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 Subpackages
 -----------
 
@@ -9,11 +15,3 @@ Subpackages
    pycompwa.expertsystem
    pycompwa.plotting
    pycompwa.ui
-
-Module contents
----------------
-
-.. automodule:: pycompwa
-   :members:
-   :undoc-members:
-   :show-inheritance:

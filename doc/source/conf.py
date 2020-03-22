@@ -26,6 +26,7 @@ import subprocess
 # this does not work for ui, therefore its added already manually
 subprocess.call(
     'sphinx-apidoc '
+    '--module-first '
     '-o _pycompwa/ ../../pycompwa/ ',
     shell=True)
 
