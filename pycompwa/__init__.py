@@ -8,8 +8,13 @@ useful when doing PWA research with Python.
 """
 
 
-__all__ = ['plotting', 'expertsystem', 'ui']
+__all__ = [
+    'expertsystem',
+    'plotting',
+    'ui',
+]
 
-from . import plotting
+
 from . import expertsystem
+from . import plotting
 from . import ui
