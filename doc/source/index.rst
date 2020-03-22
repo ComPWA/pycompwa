@@ -18,6 +18,7 @@ ongoing development!
    faq
    contribute
    documents
+   api
    
 Indices and Tables
 ==================

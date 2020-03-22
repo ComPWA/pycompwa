@@ -1,17 +1,16 @@
-pycompwa package
-================
+API
+===
 
 .. automodule:: pycompwa
    :members:
    :undoc-members:
    :show-inheritance:
 
-
 Subpackages
 -----------
 
 .. toctree::
 
-   pycompwa.expertsystem
-   pycompwa.plotting
-   pycompwa.ui
+   _pycompwa/pycompwa.expertsystem
+   _pycompwa/pycompwa.plotting
+   _pycompwa/pycompwa.ui
