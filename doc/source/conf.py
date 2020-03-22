@@ -27,7 +27,9 @@ import subprocess
 subprocess.call(
     'sphinx-apidoc '
     '--module-first '
-    '-o _pycompwa/ ../../pycompwa/ ',
+    '--separate '
+    '-o _pycompwa/ ../../pycompwa/ '
+    '../../pycompwa/ui.*.so ',
     shell=True)
 
 subprocess.call(
