@@ -17,6 +17,7 @@ htmlcov/
 pycompwa.egg-info
 
 # Python virtual environments
+.tox/
 *venv/
 
 # Build files

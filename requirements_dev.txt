@@ -1,6 +1,8 @@
 autopep8
 doc8
+flake8
 pylint
 pytest
 pytest-cov
 scipy
+tox
