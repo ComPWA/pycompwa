@@ -12,3 +12,8 @@ repos:
     rev: 3.7.9
     hooks:
       - id: flake8
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.3.7
+    hooks:
+      - id: nbstripout
+        files: ".ipynb"
