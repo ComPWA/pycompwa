@@ -225,6 +225,9 @@ the Conda environment you created for pycompwa:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install --file requirements_dev.txt
 </pre></div>
 </div>
+<p>The most general test you can run, is by executing the command <code class="docutils literal notranslate"><span class="pre">tox</span></code> from
+anywhere within the source code. This will run a set of tests as defined in the
+<code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in the main directory.</p>
 <p>Now you can for instance test the coverage of the unit tests:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> tests
 pytest --durations<span class="o">=</span><span class="m">0</span> --cov-config<span class="o">=</span>.coveragerc --cov<span class="o">=</span>pycompwa --cov-report html -m <span class="s2">&quot;not slow&quot;</span>
