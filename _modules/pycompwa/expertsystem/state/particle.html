@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
@@ -190,9 +191,10 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="get_xml_label"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_xml_label">[docs]</a><span class="k">def</span> <span class="nf">get_xml_label</span><span class="p">(</span><span class="n">enum</span><span class="p">):</span>
+<div class="viewcode-block" id="get_xml_label"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_xml_label">[docs]</a><span class="k">def</span> <span class="nf">get_xml_label</span><span class="p">(</span><span class="n">enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the the correctly formatted XML label as required by ComPWA and xmltodict</span>
+<span class="sd">    Return the the correctly formatted XML label as required by ComPWA and</span>
+<span class="sd">    ``xmltodict``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">attribute_prefix</span> <span class="o">=</span> <span class="s1">&#39;@&#39;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">enum</span> <span class="ow">in</span> <span class="n">XMLLabelTags</span><span class="p">):</span>
@@ -201,12 +203,12 @@
         <span class="k">return</span> <span class="n">attribute_prefix</span> <span class="o">+</span> <span class="n">enum</span><span class="o">.</span><span class="n">name</span></div>
 
 
-<div class="viewcode-block" id="Spin"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin">[docs]</a><span class="k">class</span> <span class="nc">Spin</span><span class="p">():</span>
+<div class="viewcode-block" id="Spin"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.Spin">[docs]</a><span class="k">class</span> <span class="nc">Spin</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simple struct-like class defining spin as a magnitude plus the projection</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Spin.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
+<div class="viewcode-block" id="Spin.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.Spin.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__magnitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__projection</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
         <span class="c1"># remove negative zero projections -0.0</span>
@@ -216,10 +218,10 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The spin projection cannot be larger than the&quot;</span>
                              <span class="s2">&quot; magnitude &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Spin.magnitude"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Spin.magnitude"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.Spin.magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__magnitude</span></div>
 
-<div class="viewcode-block" id="Spin.projection"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.Spin.projection">[docs]</a>    <span class="k">def</span> <span class="nf">projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Spin.projection"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.Spin.projection">[docs]</a>    <span class="k">def</span> <span class="nf">projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__projection</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -245,7 +247,7 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="create_spin_domain"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.create_spin_domain">[docs]</a><span class="k">def</span> <span class="nf">create_spin_domain</span><span class="p">(</span><span class="n">list_of_magnitudes</span><span class="p">,</span> <span class="n">set_projection_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="create_spin_domain"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.create_spin_domain">[docs]</a><span class="k">def</span> <span class="nf">create_spin_domain</span><span class="p">(</span><span class="n">list_of_magnitudes</span><span class="p">,</span> <span class="n">set_projection_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">domain_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">mag</span> <span class="ow">in</span> <span class="n">list_of_magnitudes</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">set_projection_zero</span><span class="p">:</span>
@@ -313,54 +315,54 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="AbstractQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.AbstractQNConverter">[docs]</a><span class="k">class</span> <span class="nc">AbstractQNConverter</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="AbstractQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.AbstractQNConverter">[docs]</a><span class="k">class</span> <span class="nc">AbstractQNConverter</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="AbstractQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
         <span class="k">pass</span></div></div>
 
 
-<div class="viewcode-block" id="IntQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.IntQNConverter">[docs]</a><span class="k">class</span> <span class="nc">IntQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
+<div class="viewcode-block" id="IntQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.IntQNConverter">[docs]</a><span class="k">class</span> <span class="nc">IntQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
 
-<div class="viewcode-block" id="IntQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="IntQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">data_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="IntQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
+<div class="viewcode-block" id="IntQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">type_label</span><span class="p">:</span> <span class="n">qn_type</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">class_label</span><span class="p">:</span> <span class="n">QuantumNumberClasses</span><span class="o">.</span><span class="n">Int</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">qn_value</span><span class="p">)}</span></div></div>
 
 
-<div class="viewcode-block" id="FloatQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.FloatQNConverter">[docs]</a><span class="k">class</span> <span class="nc">FloatQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
+<div class="viewcode-block" id="FloatQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.FloatQNConverter">[docs]</a><span class="k">class</span> <span class="nc">FloatQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FloatQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="FloatQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="FloatQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
+<div class="viewcode-block" id="FloatQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">type_label</span><span class="p">:</span> <span class="n">qn_type</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">class_label</span><span class="p">:</span> <span class="n">QuantumNumberClasses</span><span class="o">.</span><span class="n">Float</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">qn_value</span><span class="p">)}</span></div></div>
 
 
-<div class="viewcode-block" id="SpinQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter">[docs]</a><span class="k">class</span> <span class="nc">SpinQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
+<div class="viewcode-block" id="SpinQNConverter"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.SpinQNConverter">[docs]</a><span class="k">class</span> <span class="nc">SpinQNConverter</span><span class="p">(</span><span class="n">AbstractQNConverter</span><span class="p">):</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
     <span class="n">proj_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Projection</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SpinQNConverter.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="SpinQNConverter.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.SpinQNConverter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parse_projection</span> <span class="o">=</span> <span class="n">parse_projection</span></div>
 
-<div class="viewcode-block" id="SpinQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="SpinQNConverter.parse_from_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict">[docs]</a>    <span class="k">def</span> <span class="nf">parse_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
         <span class="n">mag</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">]</span>
         <span class="n">proj</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_projection</span><span class="p">:</span>
@@ -372,7 +374,7 @@
                 <span class="n">proj</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">proj_label</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">Spin</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SpinQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
+<div class="viewcode-block" id="SpinQNConverter.convert_to_dict"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_type</span><span class="p">,</span> <span class="n">qn_value</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">type_label</span><span class="p">:</span> <span class="n">qn_type</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">class_label</span><span class="p">:</span> <span class="n">QuantumNumberClasses</span><span class="o">.</span><span class="n">Spin</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">qn_value</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()),</span>
@@ -386,7 +388,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="is_boson"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.is_boson">[docs]</a><span class="k">def</span> <span class="nf">is_boson</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="is_boson"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.is_boson">[docs]</a><span class="k">def</span> <span class="nf">is_boson</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">):</span>
     <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span></div>
 
@@ -394,14 +396,15 @@
 <span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-<div class="viewcode-block" id="load_particle_list_from_xml"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.load_particle_list_from_xml">[docs]</a><span class="k">def</span> <span class="nf">load_particle_list_from_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="load_particle_list_from_xml"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.load_particle_list_from_xml">[docs]</a><span class="k">def</span> <span class="nf">load_particle_list_from_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    By default, the expert system loads the ``particle_database``</span>
+<span class="sd">    By default, the expert system loads the</span>
+<span class="sd">    ``particle_list``</span>
 <span class="sd">    from the XML file ``particle_list.xml`` located in the ComPWA module.</span>
-<span class="sd">    Use ``load_particle_list_from_xml`` to append to the ``particle_database``.</span>
+<span class="sd">    Use ``load_particle_list_from_xml`` to append to the ``particle_list``.</span>
 <span class="sd">    .. note::</span>
-<span class="sd">    If a particle name in the loaded XML file already exists in the ``particle_database``,</span>
-<span class="sd">    the one in the ``particle_database`` will be overwritten.</span>
+<span class="sd">    If a particle name in the loaded XML file already exists in the</span>
+<span class="sd">    ``particle_list``, the one in the ``particle_list`` will be overwritten.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
@@ -411,12 +414,12 @@
             <span class="n">particle_list</span><span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="n">name_label</span><span class="p">]]</span> <span class="o">=</span> <span class="n">entry</span></div>
 
 
-<div class="viewcode-block" id="add_to_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.add_to_particle_list">[docs]</a><span class="k">def</span> <span class="nf">add_to_particle_list</span><span class="p">(</span><span class="n">particle</span><span class="p">):</span>
+<div class="viewcode-block" id="add_to_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.add_to_particle_list">[docs]</a><span class="k">def</span> <span class="nf">add_to_particle_list</span><span class="p">(</span><span class="n">particle</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add a particle dictionary object to the ``particle_list`` dictionary.</span>
 <span class="sd">    The key will be extracted from the ``particle`` name (XML tag ``@Name``).</span>
-<span class="sd">    If the key already exists, the entry in ``particle_list`` will be overwritten</span>
-<span class="sd">    by this one.</span>
+<span class="sd">    If the key already exists, the entry in ``particle_list`` will be</span>
+<span class="sd">    overwritten by this one.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">particle</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Can only add dictionary entries to particle_list&quot;</span><span class="p">)</span>
@@ -425,23 +428,24 @@
     <span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">particle</span></div>
 
 
-<div class="viewcode-block" id="get_particle_with_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_with_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_with_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
+<div class="viewcode-block" id="get_particle_with_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_with_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_with_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    .. deprecated:: 0.2.0</span>
-<span class="sd">    ``particle_list`` has become a dictionary, so you can already access its entries with a string index.</span>
+<span class="sd">        ``particle_list`` has become a dictionary, so you can already access</span>
+<span class="sd">        its entries with a string index.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="get_particle_copy_by_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_copy_by_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_copy_by_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
+<div class="viewcode-block" id="get_particle_copy_by_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_copy_by_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_copy_by_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get a `deepcopy` of a particle from the ``particle_list`` dictionary so you can manipulate it and</span>
-<span class="sd">    add it to the particle data base.</span>
+<span class="sd">    Get a ``deepcopy`` of a particle from the ``particle_list`` dictionary so</span>
+<span class="sd">    you can manipulate it and add it to the particle data base.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_particle_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_property">[docs]</a><span class="k">def</span> <span class="nf">get_particle_property</span><span class="p">(</span><span class="n">particle_properties</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_particle_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_property">[docs]</a><span class="k">def</span> <span class="nf">get_particle_property</span><span class="p">(</span><span class="n">particle_properties</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
@@ -494,7 +498,7 @@
     <span class="k">return</span> <span class="n">property_value</span></div>
 
 
-<div class="viewcode-block" id="get_interaction_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_interaction_property">[docs]</a><span class="k">def</span> <span class="nf">get_interaction_property</span><span class="p">(</span><span class="n">interaction_properties</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_interaction_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_interaction_property">[docs]</a><span class="k">def</span> <span class="nf">get_interaction_property</span><span class="p">(</span><span class="n">interaction_properties</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
 
@@ -523,14 +527,14 @@
     <span class="k">return</span> <span class="n">property_value</span></div>
 
 
-<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">[docs]</a><span class="k">class</span> <span class="nc">CompareGraphElementPropertiesFunctor</span><span class="p">():</span>
-<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">[docs]</a><span class="k">class</span> <span class="nc">CompareGraphElementPropertiesFunctor</span><span class="p">():</span>
+<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="o">=</span><span class="p">[]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ignored_qn_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ignored_qn_list</span>
                                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
                                               <span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="p">,</span>
                                                <span class="n">InteractionQuantumNumberNames</span><span class="p">))]</span></div>
 
-<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.compare_qn_numbers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">[docs]</a>    <span class="k">def</span> <span class="nf">compare_qn_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qns1</span><span class="p">,</span> <span class="n">qns2</span><span class="p">):</span>
+<div class="viewcode-block" id="CompareGraphElementPropertiesFunctor.compare_qn_numbers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">[docs]</a>    <span class="k">def</span> <span class="nf">compare_qn_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qns1</span><span class="p">,</span> <span class="n">qns2</span><span class="p">):</span>
         <span class="n">new_qns1</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">new_qns2</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
@@ -595,7 +599,7 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="initialize_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_graph">[docs]</a><span class="k">def</span> <span class="nf">initialize_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span> <span class="n">final_state_groupings</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.initialize_graph">[docs]</a><span class="k">def</span> <span class="nf">initialize_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span> <span class="n">final_state_groupings</span><span class="p">):</span>
     <span class="n">is_edges</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">is_edges</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The graph initial state and the supplied initial&quot;</span>
@@ -633,7 +637,7 @@
     <span class="k">return</span> <span class="n">new_graphs</span></div>
 
 
-<div class="viewcode-block" id="check_if_spin_projections_set"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.check_if_spin_projections_set">[docs]</a><span class="k">def</span> <span class="nf">check_if_spin_projections_set</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+<div class="viewcode-block" id="check_if_spin_projections_set"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.check_if_spin_projections_set">[docs]</a><span class="k">def</span> <span class="nf">check_if_spin_projections_set</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
     <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
     <span class="n">mass_label</span> <span class="o">=</span> <span class="n">ParticlePropertyNames</span><span class="o">.</span><span class="n">Mass</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -653,7 +657,7 @@
     <span class="k">return</span> <span class="n">state</span></div>
 
 
-<div class="viewcode-block" id="calculate_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.calculate_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">calculate_combinatorics</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">state_particles</span><span class="p">,</span>
+<div class="viewcode-block" id="calculate_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.calculate_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">calculate_combinatorics</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">state_particles</span><span class="p">,</span>
                             <span class="n">attached_external_edges_per_node</span><span class="p">,</span>
                             <span class="n">allowed_particle_groupings</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">combinatorics_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">particles</span><span class="p">))</span>
@@ -705,7 +709,7 @@
     <span class="k">return</span> <span class="n">combinatorics_list</span></div>
 
 
-<div class="viewcode-block" id="initialize_external_edge_lists"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_external_edge_lists">[docs]</a><span class="k">def</span> <span class="nf">initialize_external_edge_lists</span><span class="p">(</span><span class="n">attached_external_edges_per_node</span><span class="p">,</span>
+<div class="viewcode-block" id="initialize_external_edge_lists"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.initialize_external_edge_lists">[docs]</a><span class="k">def</span> <span class="nf">initialize_external_edge_lists</span><span class="p">(</span><span class="n">attached_external_edges_per_node</span><span class="p">,</span>
                                    <span class="n">edge_particle_mapping</span><span class="p">):</span>
     <span class="n">init_edge_lists</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">edge_list</span> <span class="ow">in</span> <span class="n">attached_external_edges_per_node</span><span class="p">:</span>
@@ -715,7 +719,7 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">init_edge_lists</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="initialize_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_edges">[docs]</a><span class="k">def</span> <span class="nf">initialize_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_particle_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.initialize_edges">[docs]</a><span class="k">def</span> <span class="nf">initialize_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_particle_dict</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">edge</span><span class="p">,</span> <span class="n">particle</span> <span class="ow">in</span> <span class="n">edge_particle_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="c1"># lookup the particle in the list</span>
         <span class="n">found_particle</span> <span class="o">=</span> <span class="n">get_particle_with_name</span><span class="p">(</span><span class="n">particle</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -735,7 +739,7 @@
     <span class="k">return</span> <span class="n">new_graphs</span></div>
 
 
-<div class="viewcode-block" id="populate_edge_with_spin_projections"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections">[docs]</a><span class="k">def</span> <span class="nf">populate_edge_with_spin_projections</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">spin_projections</span><span class="p">):</span>
+<div class="viewcode-block" id="populate_edge_with_spin_projections"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections">[docs]</a><span class="k">def</span> <span class="nf">populate_edge_with_spin_projections</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">spin_projections</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
@@ -759,7 +763,7 @@
     <span class="k">return</span> <span class="n">new_graphs</span></div>
 
 
-<div class="viewcode-block" id="initialize_graphs_with_particles"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_graphs_with_particles">[docs]</a><span class="k">def</span> <span class="nf">initialize_graphs_with_particles</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">allowed_particle_list</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="initialize_graphs_with_particles"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.initialize_graphs_with_particles">[docs]</a><span class="k">def</span> <span class="nf">initialize_graphs_with_particles</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">allowed_particle_list</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">initialized_graphs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="n">initialize_allowed_particle_list</span><span class="p">(</span>
         <span class="n">allowed_particle_list</span><span class="p">)</span>
@@ -788,7 +792,7 @@
     <span class="k">return</span> <span class="n">initialized_graphs</span></div>
 
 
-<div class="viewcode-block" id="initialize_allowed_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.initialize_allowed_particle_list">[docs]</a><span class="k">def</span> <span class="nf">initialize_allowed_particle_list</span><span class="p">(</span><span class="n">allowed_particle_list</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize_allowed_particle_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.initialize_allowed_particle_list">[docs]</a><span class="k">def</span> <span class="nf">initialize_allowed_particle_list</span><span class="p">(</span><span class="n">allowed_particle_list</span><span class="p">):</span>
     <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allowed_particle_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">mod_allowed_particle_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">particle_list</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -803,7 +807,7 @@
     <span class="k">return</span> <span class="n">mod_allowed_particle_list</span></div>
 
 
-<div class="viewcode-block" id="get_particle_candidates_for_state"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.get_particle_candidates_for_state">[docs]</a><span class="k">def</span> <span class="nf">get_particle_candidates_for_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">allowed_particle_list</span><span class="p">):</span>
+<div class="viewcode-block" id="get_particle_candidates_for_state"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_candidates_for_state">[docs]</a><span class="k">def</span> <span class="nf">get_particle_candidates_for_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">allowed_particle_list</span><span class="p">):</span>
     <span class="n">particle_edges</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
 
@@ -817,7 +821,7 @@
     <span class="k">return</span> <span class="n">particle_edges</span></div>
 
 
-<div class="viewcode-block" id="check_qns_equal"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.check_qns_equal">[docs]</a><span class="k">def</span> <span class="nf">check_qns_equal</span><span class="p">(</span><span class="n">qns_state</span><span class="p">,</span> <span class="n">qns_particle</span><span class="p">):</span>
+<div class="viewcode-block" id="check_qns_equal"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.check_qns_equal">[docs]</a><span class="k">def</span> <span class="nf">check_qns_equal</span><span class="p">(</span><span class="n">qns_state</span><span class="p">,</span> <span class="n">qns_particle</span><span class="p">):</span>
     <span class="n">equal</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
@@ -850,7 +854,7 @@
     <span class="k">return</span> <span class="n">equal</span></div>
 
 
-<div class="viewcode-block" id="compare_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.compare_qns">[docs]</a><span class="k">def</span> <span class="nf">compare_qns</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">,</span> <span class="n">qn_dict2</span><span class="p">):</span>
+<div class="viewcode-block" id="compare_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.compare_qns">[docs]</a><span class="k">def</span> <span class="nf">compare_qns</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">,</span> <span class="n">qn_dict2</span><span class="p">):</span>
     <span class="n">qn_class</span> <span class="o">=</span> <span class="n">QuantumNumberClasses</span><span class="p">[</span><span class="n">qn_dict</span><span class="p">[</span><span class="n">get_xml_label</span><span class="p">(</span>
         <span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)]]</span>
     <span class="n">value_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Value</span><span class="p">)</span>
@@ -882,7 +886,7 @@
     <span class="k">return</span> <span class="n">val1</span> <span class="o">==</span> <span class="n">val2</span></div>
 
 
-<div class="viewcode-block" id="merge_qn_props"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.html#pycompwa.expertsystem.state.particle.merge_qn_props">[docs]</a><span class="k">def</span> <span class="nf">merge_qn_props</span><span class="p">(</span><span class="n">qns_state</span><span class="p">,</span> <span class="n">qns_particle</span><span class="p">):</span>
+<div class="viewcode-block" id="merge_qn_props"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.merge_qn_props">[docs]</a><span class="k">def</span> <span class="nf">merge_qn_props</span><span class="p">(</span><span class="n">qns_state</span><span class="p">,</span> <span class="n">qns_particle</span><span class="p">):</span>
     <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">qns</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qns_particle</span><span class="p">)</span>

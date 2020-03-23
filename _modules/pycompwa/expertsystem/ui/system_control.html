@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
@@ -192,14 +193,14 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="change_qn_domain"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.change_qn_domain">[docs]</a><span class="k">def</span> <span class="nf">change_qn_domain</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">new_domain</span><span class="p">):</span>
+<div class="viewcode-block" id="change_qn_domain"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.change_qn_domain">[docs]</a><span class="k">def</span> <span class="nf">change_qn_domain</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">,</span> <span class="n">new_domain</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">InteractionNodeSettings</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="s2">&quot;interaction_settings has to be of type InteractionNodeSettings&quot;</span><span class="p">)</span>
     <span class="n">interaction_settings</span><span class="o">.</span><span class="n">qn_domains</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">qn_name</span><span class="p">:</span> <span class="n">new_domain</span><span class="p">})</span></div>
 
 
-<div class="viewcode-block" id="remove_conservation_law"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.remove_conservation_law">[docs]</a><span class="k">def</span> <span class="nf">remove_conservation_law</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">cons_law</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_conservation_law"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.remove_conservation_law">[docs]</a><span class="k">def</span> <span class="nf">remove_conservation_law</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">cons_law</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_settings</span><span class="p">,</span> <span class="n">InteractionNodeSettings</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="s2">&quot;interaction_settings has to be of type InteractionNodeSettings&quot;</span><span class="p">)</span>
@@ -209,7 +210,7 @@
             <span class="k">break</span></div>
 
 
-<div class="viewcode-block" id="filter_interaction_types"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.filter_interaction_types">[docs]</a><span class="k">def</span> <span class="nf">filter_interaction_types</span><span class="p">(</span><span class="n">valid_determined_interaction_types</span><span class="p">,</span>
+<div class="viewcode-block" id="filter_interaction_types"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.filter_interaction_types">[docs]</a><span class="k">def</span> <span class="nf">filter_interaction_types</span><span class="p">(</span><span class="n">valid_determined_interaction_types</span><span class="p">,</span>
                              <span class="n">allowed_interaction_types</span><span class="p">):</span>
     <span class="n">int_type_intersection</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">allowed_interaction_types</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span>
         <span class="n">valid_determined_interaction_types</span><span class="p">))</span>
@@ -226,16 +227,16 @@
         <span class="k">return</span> <span class="n">valid_determined_interaction_types</span></div>
 
 
-<div class="viewcode-block" id="InteractionDeterminationFunctorInterface"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface">[docs]</a><span class="k">class</span> <span class="nc">InteractionDeterminationFunctorInterface</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="InteractionDeterminationFunctorInterface.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="InteractionDeterminationFunctorInterface"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface">[docs]</a><span class="k">class</span> <span class="nc">InteractionDeterminationFunctorInterface</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="InteractionDeterminationFunctorInterface.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edge_props</span><span class="p">,</span> <span class="n">out_edge_props</span><span class="p">,</span> <span class="n">node_props</span><span class="p">):</span>
         <span class="k">pass</span></div></div>
 
 
-<div class="viewcode-block" id="GammaCheck"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.GammaCheck">[docs]</a><span class="k">class</span> <span class="nc">GammaCheck</span><span class="p">(</span><span class="n">InteractionDeterminationFunctorInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="GammaCheck"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.GammaCheck">[docs]</a><span class="k">class</span> <span class="nc">GammaCheck</span><span class="p">(</span><span class="n">InteractionDeterminationFunctorInterface</span><span class="p">):</span>
     <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="GammaCheck.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.GammaCheck.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edge_props</span><span class="p">,</span> <span class="n">out_edge_props</span><span class="p">,</span> <span class="n">node_props</span><span class="p">):</span>
+<div class="viewcode-block" id="GammaCheck.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.GammaCheck.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edge_props</span><span class="p">,</span> <span class="n">out_edge_props</span><span class="p">,</span> <span class="n">node_props</span><span class="p">):</span>
         <span class="n">int_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">InteractionTypes</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">edge_props</span> <span class="ow">in</span> <span class="n">in_edge_props</span> <span class="o">+</span> <span class="n">out_edge_props</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;gamma&#39;</span> <span class="ow">in</span> <span class="n">edge_props</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name_label</span><span class="p">]):</span>
@@ -245,7 +246,7 @@
         <span class="k">return</span> <span class="n">int_types</span></div></div>
 
 
-<div class="viewcode-block" id="LeptonCheck"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.LeptonCheck">[docs]</a><span class="k">class</span> <span class="nc">LeptonCheck</span><span class="p">(</span><span class="n">InteractionDeterminationFunctorInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="LeptonCheck"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.LeptonCheck">[docs]</a><span class="k">class</span> <span class="nc">LeptonCheck</span><span class="p">(</span><span class="n">InteractionDeterminationFunctorInterface</span><span class="p">):</span>
     <span class="n">lepton_flavour_labels</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">ElectronLN</span><span class="p">,</span>
         <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">MuonLN</span><span class="p">,</span>
@@ -254,7 +255,7 @@
     <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LeptonCheck.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.LeptonCheck.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edge_props</span><span class="p">,</span> <span class="n">out_edge_props</span><span class="p">,</span> <span class="n">node_props</span><span class="p">):</span>
+<div class="viewcode-block" id="LeptonCheck.check"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.LeptonCheck.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_edge_props</span><span class="p">,</span> <span class="n">out_edge_props</span><span class="p">,</span> <span class="n">node_props</span><span class="p">):</span>
         <span class="n">node_interaction_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">InteractionTypes</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">edge_props</span> <span class="ow">in</span> <span class="n">in_edge_props</span> <span class="o">+</span> <span class="n">out_edge_props</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="n">get_particle_property</span><span class="p">(</span><span class="n">edge_props</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -271,7 +272,7 @@
         <span class="k">return</span> <span class="n">node_interaction_types</span></div></div>
 
 
-<div class="viewcode-block" id="remove_duplicate_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions">[docs]</a><span class="k">def</span> <span class="nf">remove_duplicate_solutions</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">remove_qns_list</span><span class="o">=</span><span class="p">[],</span>
+<div class="viewcode-block" id="remove_duplicate_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions">[docs]</a><span class="k">def</span> <span class="nf">remove_duplicate_solutions</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">remove_qns_list</span><span class="o">=</span><span class="p">[],</span>
                                <span class="n">ignore_qns_list</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;removing duplicate solutions...&quot;</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;removing these qns from graphs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">remove_qns_list</span><span class="p">))</span>
@@ -302,7 +303,7 @@
     <span class="k">return</span> <span class="n">filtered_results</span></div>
 
 
-<div class="viewcode-block" id="remove_qns_from_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.remove_qns_from_graph">[docs]</a><span class="k">def</span> <span class="nf">remove_qns_from_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_qns_from_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.remove_qns_from_graph">[docs]</a><span class="k">def</span> <span class="nf">remove_qns_from_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">qn_list</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
 
@@ -344,7 +345,7 @@
     <span class="k">return</span> <span class="n">graph_copy</span></div>
 
 
-<div class="viewcode-block" id="check_equal_ignoring_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns">[docs]</a><span class="k">def</span> <span class="nf">check_equal_ignoring_qns</span><span class="p">(</span><span class="n">ref_graph</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="p">):</span>
+<div class="viewcode-block" id="check_equal_ignoring_qns"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns">[docs]</a><span class="k">def</span> <span class="nf">check_equal_ignoring_qns</span><span class="p">(</span><span class="n">ref_graph</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">ignored_qn_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    defines the equal operator for the graphs ignoring certain quantum numbers</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -365,7 +366,7 @@
     <span class="k">return</span> <span class="n">found_graph</span></div>
 
 
-<div class="viewcode-block" id="filter_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.filter_graphs">[docs]</a><span class="k">def</span> <span class="nf">filter_graphs</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+<div class="viewcode-block" id="filter_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.filter_graphs">[docs]</a><span class="k">def</span> <span class="nf">filter_graphs</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implements filtering of a list of :py:class:`.StateTransitionGraph` &#39;s.</span>
 
@@ -401,7 +402,7 @@
     <span class="k">return</span> <span class="n">filtered_graphs</span></div>
 
 
-<div class="viewcode-block" id="require_interaction_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.require_interaction_property">[docs]</a><span class="k">def</span> <span class="nf">require_interaction_property</span><span class="p">(</span><span class="n">ingoing_particle_name</span><span class="p">,</span>
+<div class="viewcode-block" id="require_interaction_property"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.require_interaction_property">[docs]</a><span class="k">def</span> <span class="nf">require_interaction_property</span><span class="p">(</span><span class="n">ingoing_particle_name</span><span class="p">,</span>
                                  <span class="n">interaction_qn</span><span class="p">,</span> <span class="n">allowed_values</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Closure, which can be used as a filter function in</span>
@@ -453,7 +454,7 @@
     <span class="k">return</span> <span class="n">found_node_ids</span>
 
 
-<div class="viewcode-block" id="analyse_solution_failure"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.analyse_solution_failure">[docs]</a><span class="k">def</span> <span class="nf">analyse_solution_failure</span><span class="p">(</span><span class="n">violated_laws_per_node_and_graph</span><span class="p">):</span>
+<div class="viewcode-block" id="analyse_solution_failure"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.analyse_solution_failure">[docs]</a><span class="k">def</span> <span class="nf">analyse_solution_failure</span><span class="p">(</span><span class="n">violated_laws_per_node_and_graph</span><span class="p">):</span>
     <span class="c1"># try to find rules that are just always violated</span>
     <span class="n">violated_laws</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">scoresheet</span> <span class="o">=</span> <span class="p">{}</span>
@@ -479,19 +480,19 @@
     <span class="k">return</span> <span class="n">violated_laws</span></div>
 
 
-<div class="viewcode-block" id="create_setting_combinations"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.create_setting_combinations">[docs]</a><span class="k">def</span> <span class="nf">create_setting_combinations</span><span class="p">(</span><span class="n">node_settings</span><span class="p">):</span>
+<div class="viewcode-block" id="create_setting_combinations"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.create_setting_combinations">[docs]</a><span class="k">def</span> <span class="nf">create_setting_combinations</span><span class="p">(</span><span class="n">node_settings</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">node_settings</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">x</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">node_settings</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span></div>
 
 
-<div class="viewcode-block" id="calculate_strength"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.calculate_strength">[docs]</a><span class="k">def</span> <span class="nf">calculate_strength</span><span class="p">(</span><span class="n">node_interaction_settings</span><span class="p">):</span>
+<div class="viewcode-block" id="calculate_strength"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.calculate_strength">[docs]</a><span class="k">def</span> <span class="nf">calculate_strength</span><span class="p">(</span><span class="n">node_interaction_settings</span><span class="p">):</span>
     <span class="n">strength</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">for</span> <span class="n">int_setting</span> <span class="ow">in</span> <span class="n">node_interaction_settings</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="n">strength</span> <span class="o">*=</span> <span class="n">int_setting</span><span class="o">.</span><span class="n">interaction_strength</span>
     <span class="k">return</span> <span class="n">strength</span></div>
 
 
-<div class="viewcode-block" id="match_external_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.match_external_edges">[docs]</a><span class="k">def</span> <span class="nf">match_external_edges</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="match_external_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.match_external_edges">[docs]</a><span class="k">def</span> <span class="nf">match_external_edges</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graphs argument is not of type list!&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">graphs</span><span class="p">:</span>
@@ -501,7 +502,7 @@
     <span class="n">match_external_edge_ids</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">ref_graph_id</span><span class="p">,</span> <span class="n">get_initial_state_edges</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="match_external_edge_ids"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.match_external_edge_ids">[docs]</a><span class="k">def</span> <span class="nf">match_external_edge_ids</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">ref_graph_id</span><span class="p">,</span>
+<div class="viewcode-block" id="match_external_edge_ids"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.match_external_edge_ids">[docs]</a><span class="k">def</span> <span class="nf">match_external_edge_ids</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">ref_graph_id</span><span class="p">,</span>
                             <span class="n">external_edge_getter_function</span><span class="p">):</span>
 
     <span class="n">ref_graph</span> <span class="o">=</span> <span class="n">graphs</span><span class="p">[</span><span class="n">ref_graph_id</span><span class="p">]</span>
@@ -532,7 +533,7 @@
             <span class="n">graph</span><span class="o">.</span><span class="n">swap_edges</span><span class="p">(</span><span class="n">edge_id1</span><span class="p">,</span> <span class="n">edge_id2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="calculate_swappings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.calculate_swappings">[docs]</a><span class="k">def</span> <span class="nf">calculate_swappings</span><span class="p">(</span><span class="n">id_mapping</span><span class="p">):</span>
+<div class="viewcode-block" id="calculate_swappings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.calculate_swappings">[docs]</a><span class="k">def</span> <span class="nf">calculate_swappings</span><span class="p">(</span><span class="n">id_mapping</span><span class="p">):</span>
     <span class="c1"># calculate edge id swappings</span>
     <span class="c1"># its important to use an ordered dict as the swappings do not commute!</span>
     <span class="n">swappings</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
@@ -546,13 +547,13 @@
     <span class="k">return</span> <span class="n">swappings</span></div>
 
 
-<div class="viewcode-block" id="create_edge_id_particle_mapping"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping">[docs]</a><span class="k">def</span> <span class="nf">create_edge_id_particle_mapping</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">external_edge_getter_function</span><span class="p">):</span>
+<div class="viewcode-block" id="create_edge_id_particle_mapping"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping">[docs]</a><span class="k">def</span> <span class="nf">create_edge_id_particle_mapping</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">external_edge_getter_function</span><span class="p">):</span>
     <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">graph</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">name_label</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">external_edge_getter_function</span><span class="p">(</span><span class="n">graph</span><span class="p">)}</span></div>
 
 
-<div class="viewcode-block" id="perform_external_edge_identical_particle_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">perform_external_edge_identical_particle_combinatorics</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="perform_external_edge_identical_particle_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">perform_external_edge_identical_particle_combinatorics</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Creates combinatorics clones of the StateTransitionGraph in case of</span>
 <span class="sd">    identical particles in the initial or final state. Only identical</span>
@@ -570,7 +571,7 @@
     <span class="k">return</span> <span class="n">new_graphs</span></div>
 
 
-<div class="viewcode-block" id="external_edge_identical_particle_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">external_edge_identical_particle_combinatorics</span><span class="p">(</span>
+<div class="viewcode-block" id="external_edge_identical_particle_combinatorics"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics">[docs]</a><span class="k">def</span> <span class="nf">external_edge_identical_particle_combinatorics</span><span class="p">(</span>
         <span class="n">graph</span><span class="p">,</span> <span class="n">external_edge_getter_function</span><span class="p">):</span>
     <span class="n">new_graphs</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="p">]</span>
     <span class="n">edge_particle_mapping</span> <span class="o">=</span> <span class="n">create_edge_id_particle_mapping</span><span class="p">(</span>
@@ -605,8 +606,8 @@
     <span class="k">return</span> <span class="n">new_graphs</span></div>
 
 
-<div class="viewcode-block" id="StateTransitionManager"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionManager</span><span class="p">():</span>
-<div class="viewcode-block" id="StateTransitionManager.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
+<div class="viewcode-block" id="StateTransitionManager"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionManager</span><span class="p">():</span>
+<div class="viewcode-block" id="StateTransitionManager.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
                  <span class="n">allowed_intermediate_particles</span><span class="o">=</span><span class="p">[],</span>
                  <span class="n">interaction_type_settings</span><span class="o">=</span><span class="p">{},</span>
                  <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
@@ -666,10 +667,10 @@
                                  <span class="s2">&quot; particles from xml file!&quot;</span><span class="p">)</span>
                     <span class="k">break</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.set_topology_builder"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder">[docs]</a>    <span class="k">def</span> <span class="nf">set_topology_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_builder</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.set_topology_builder"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder">[docs]</a>    <span class="k">def</span> <span class="nf">set_topology_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_builder</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span> <span class="o">=</span> <span class="n">topology_builder</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.add_final_state_grouping"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping">[docs]</a>    <span class="k">def</span> <span class="nf">add_final_state_grouping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs_group</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.add_final_state_grouping"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping">[docs]</a>    <span class="k">def</span> <span class="nf">add_final_state_grouping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs_group</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fs_group</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;The final state grouping has to be of type list.&quot;</span><span class="p">)</span>
@@ -678,7 +679,7 @@
                 <span class="n">fs_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">fs_group</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">final_state_groupings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fs_group</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.set_allowed_interaction_types"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types">[docs]</a>    <span class="k">def</span> <span class="nf">set_allowed_interaction_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allowed_interaction_types</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.set_allowed_interaction_types"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types">[docs]</a>    <span class="k">def</span> <span class="nf">set_allowed_interaction_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allowed_interaction_types</span><span class="p">):</span>
         <span class="c1"># verify order</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allowed_interaction_types</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">):</span>
@@ -690,7 +691,7 @@
                                  <span class="s2">&quot; not found in settings&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">allowed_interaction_types</span> <span class="o">=</span> <span class="n">allowed_interaction_types</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.prepare_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.prepare_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">topology_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_topologies</span><span class="p">()</span>
         <span class="n">init_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_seed_graphs</span><span class="p">(</span><span class="n">topology_graphs</span><span class="p">)</span>
         <span class="n">graph_node_setting_pairs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">determine_node_settings</span><span class="p">(</span><span class="n">init_graphs</span><span class="p">)</span>
@@ -699,13 +700,13 @@
             <span class="n">graph_node_setting_pairs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">graph_settings_groups</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.build_topologies"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies">[docs]</a>    <span class="k">def</span> <span class="nf">build_topologies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.build_topologies"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies">[docs]</a>    <span class="k">def</span> <span class="nf">build_topologies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">all_graphs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span><span class="o">.</span><span class="n">build_graphs</span><span class="p">(</span>
             <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_state</span><span class="p">))</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;number of topology graphs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_graphs</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">all_graphs</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.create_seed_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">create_seed_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.create_seed_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">create_seed_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_graphs</span><span class="p">):</span>
         <span class="c1"># initialize the graph edges (initial and final state)</span>
         <span class="n">init_graphs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">tgraph</span> <span class="ow">in</span> <span class="n">topology_graphs</span><span class="p">:</span>
@@ -718,7 +719,7 @@
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;initialized &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">init_graphs</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; graphs!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">init_graphs</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.determine_node_settings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings">[docs]</a>    <span class="k">def</span> <span class="nf">determine_node_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.determine_node_settings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings">[docs]</a>    <span class="k">def</span> <span class="nf">determine_node_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
         <span class="n">graph_node_setting_pairs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">:</span>
             <span class="n">final_state_edges</span> <span class="o">=</span> <span class="n">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
@@ -758,7 +759,7 @@
             <span class="n">graph_node_setting_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_settings</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">graph_node_setting_pairs</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.create_interaction_setting_groups"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups">[docs]</a>    <span class="k">def</span> <span class="nf">create_interaction_setting_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_node_setting_pairs</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.create_interaction_setting_groups"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups">[docs]</a>    <span class="k">def</span> <span class="nf">create_interaction_setting_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_node_setting_pairs</span><span class="p">):</span>
         <span class="n">graph_settings_groups</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_settings</span><span class="p">)</span> <span class="ow">in</span> <span class="n">graph_node_setting_pairs</span><span class="p">:</span>
             <span class="n">setting_combinations</span> <span class="o">=</span> <span class="n">create_setting_combinations</span><span class="p">(</span><span class="n">node_settings</span><span class="p">)</span>
@@ -769,7 +770,7 @@
                 <span class="n">graph_settings_groups</span><span class="p">[</span><span class="n">strength</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">graph</span><span class="p">,</span> <span class="n">setting</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">graph_settings_groups</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_setting_groups</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.find_solutions"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_setting_groups</span><span class="p">):</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># check for solutions for a specific set of interaction settings</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Number of interaction settings groups being processed: &quot;</span>
@@ -840,14 +841,14 @@
 
         <span class="k">return</span> <span class="p">(</span><span class="n">final_solutions</span><span class="p">,</span> <span class="n">violated_laws</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.propagate_quantum_numbers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers">[docs]</a>    <span class="k">def</span> <span class="nf">propagate_quantum_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_graph_node_settings_pair</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.propagate_quantum_numbers"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers">[docs]</a>    <span class="k">def</span> <span class="nf">propagate_quantum_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_graph_node_settings_pair</span><span class="p">):</span>
         <span class="n">propagator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_qn_propagator</span><span class="p">(</span>
             <span class="n">state_graph_node_settings_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">state_graph_node_settings_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">solutions</span> <span class="o">=</span> <span class="n">propagator</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">propagator</span><span class="o">.</span><span class="n">get_non_satisfied_conservation_laws</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="StateTransitionManager.initialize_qn_propagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_qn_propagator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_graph</span><span class="p">,</span> <span class="n">node_settings</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionManager.initialize_qn_propagator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_qn_propagator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_graph</span><span class="p">,</span> <span class="n">node_settings</span><span class="p">):</span>
         <span class="n">propagator</span> <span class="o">=</span> <span class="n">FullPropagator</span><span class="p">(</span><span class="n">state_graph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagation_mode</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">interaction_settings</span> <span class="ow">in</span> <span class="n">node_settings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">propagator</span><span class="o">.</span><span class="n">assign_settings_to_node</span><span class="p">(</span>

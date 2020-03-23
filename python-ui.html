@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plotting" href="plotting.html" />
+    <link rel="prev" title="The ComPWA Expert System" href="expertsystem.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,14 +83,29 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python-modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python-modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="expertsystem.html">The ComPWA Expert System</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-and-write-data-samples">Read and Write Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-data-samples">Generate Data Samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-and-defining-particles">Loading and Defining Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-kinematics-and-intensity-instance-from-a-description">Create a Kinematics and Intensity Instance from a Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-an-intensity-to-a-data-sample">Fit an Intensity to a Data Sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-a-fit-result">Save a Fit Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-and-initialize-a-previous-fit-result">Load and Initialize a previous Fit Result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Plotting</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Talks and Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
             
@@ -137,6 +154,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="python-modules.html">Modules</a> &raquo;</li>
+        
       <li>Python UI</li>
     
     
@@ -160,8 +179,8 @@
             
   <div class="section" id="python-ui">
 <span id="id1"></span><h1>Python UI<a class="headerlink" href="#python-ui" title="Permalink to this headline">¶</a></h1>
-<p>The Python User Interface is a python module named <code class="code docutils literal notranslate"><span class="pre">ui</span></code>, built with
-<a class="reference external" href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a>.
+<p>The Python User Interface is a python module named <a class="reference internal" href="_pycompwa/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ui</span></code></a>,
+built with <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/index.html">pybind11</a>.
 It is the recommended way to use ComPWA, since the user benefits from the
 python ease of use.</p>
 <div class="admonition note">
@@ -169,8 +188,8 @@ python ease of use.</p>
 <p>Because the Python UI calls the c++ code in the background, you do not have
 to worry about speed. It runs just as fast ;)</p>
 </div>
-<p>Since the Python UI just binds to the c++ user interface code, there is a strong
-correlation between the two. It’s useful to read more about the
+<p>Since the Python UI just binds to the c++ user interface code, there is a
+strong correlation between the two. It’s useful to read more about the
 <a class="reference external" href="https://compwa.github.io/ComPWA">ComPWA modules</a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -182,7 +201,7 @@ wave analysis:</p>
 <div class="section" id="read-and-write-data-samples">
 <span id="dataio"></span><h2>Read and Write Data Samples<a class="headerlink" href="#read-and-write-data-samples" title="Permalink to this headline">¶</a></h2>
 <p>For Python users, it is recommended to first load the data into a common format
-via numpy or pandas and then construct :class:<a href="#id2"><span class="problematic" id="id3">`</span></a>.Event`s.</p>
+via numpy or pandas and then construct <code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code> classes.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="sig-name descname">Event</code></dt>
@@ -214,7 +233,7 @@ via numpy or pandas and then construct :class:<a href="#id2"><span class="proble
 
 </dd></dl>
 
-<p>The procedure is explained <span class="xref std std-ref">here</span> in more detail.</p>
+<p>The procedure is explained <a class="reference internal" href="_examples/DataInput.html#importing-data"><span class="std std-ref">here</span></a> in more detail.</p>
 <p>Alternatively, the reading and writing of ROOT files is supported via the
 following functions.</p>
 <dl class="function">
@@ -256,8 +275,8 @@ data samples:</p>
 
 <p>A required argument is a <code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseSpaceGenerator</span></code> instance. There are
 currently two options: <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.EvtGenGenerator" title="pycompwa.ui.EvtGenGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EvtGenGenerator</span></code></a> and <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.RootGenerator" title="pycompwa.ui.RootGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootGenerator</span></code></a>.
-Using the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.EvtGenGenerator" title="pycompwa.ui.EvtGenGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EvtGenGenerator</span></code></a> is recommended, due to numerical precision
-reasons.</p>
+Using the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.EvtGenGenerator" title="pycompwa.ui.EvtGenGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EvtGenGenerator</span></code></a> is recommended, due to numerical
+precision reasons.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="sig-name descname">EvtGenGenerator</code></dt>
@@ -273,8 +292,8 @@ reaction is required. This can be extracted from the
 <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.HelicityKinematics" title="pycompwa.ui.HelicityKinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">HelicityKinematics</span></code></a>.
 Read <a class="reference internal" href="#create-kin-and-intens"><span class="std std-ref">below</span></a> on how to create such a Kinematics
 instance.</p>
-<p>The second argument for the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.generate_phsp" title="pycompwa.ui.generate_phsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_phsp()</span></code></a> function is a random number
-generator. Here also two options exist:</p>
+<p>The second argument for the <a class="reference internal" href="_pycompwa/pycompwa.ui.html#pycompwa.ui.generate_phsp" title="pycompwa.ui.generate_phsp"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_phsp()</span></code></a> function is a random
+number generator. Here also two options exist:</p>
 <ul>
 <li><dl class="class">
 <dt>
@@ -411,6 +430,15 @@ is:</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plotting.html" class="btn btn-neutral float-right" title="Plotting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="expertsystem.html" class="btn btn-neutral float-left" title="The ComPWA Expert System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

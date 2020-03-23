@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycompwa.expertsystem.topology.graph module &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pycompwa.expertsystem.topology.topologybuilder module" href="pycompwa.expertsystem.topology.topologybuilder.html" />
+    <link rel="prev" title="pycompwa.expertsystem.topology package" href="pycompwa.expertsystem.topology.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pycompwa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycompwa.expertsystem.html">pycompwa.expertsystem package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pycompwa.expertsystem.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycompwa.plotting.html">pycompwa.plotting package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycompwa.ui.html">pycompwa.ui package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+    <a href= "../genindex.html">General Index</a>
+    <a href= "../py-modindex.html">Python Modules Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+          <li><a href="pycompwa.expertsystem.html">pycompwa.expertsystem package</a> &raquo;</li>
+        
+          <li><a href="pycompwa.expertsystem.topology.html">pycompwa.expertsystem.topology package</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.topology.graph module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_pycompwa/pycompwa.expertsystem.topology.graph.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pycompwa.expertsystem.topology.graph">
+<span id="pycompwa-expertsystem-topology-graph-module"></span><h1>pycompwa.expertsystem.topology.graph module<a class="headerlink" href="#module-pycompwa.expertsystem.topology.graph" title="Permalink to this headline">¶</a></h1>
+<p>graph module - some description here.</p>
+<dl class="class">
+<dt id="pycompwa.expertsystem.topology.graph.Edge">
+<em class="property">class </em><code class="sig-name descname">Edge</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#Edge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.Edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>struct-like definition of an edge</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.Edge.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#Edge.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.Edge.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pycompwa.expertsystem.topology.graph.InteractionNode">
+<em class="property">class </em><code class="sig-name descname">InteractionNode</code><span class="sig-paren">(</span><em class="sig-param">type_name</em>, <em class="sig-param">number_of_ingoing_edges</em>, <em class="sig-param">number_of_outgoing_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#InteractionNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.InteractionNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>struct-like definition of an interaction node</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.InteractionNode.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">type_name</em>, <em class="sig-param">number_of_ingoing_edges</em>, <em class="sig-param">number_of_outgoing_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#InteractionNode.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.InteractionNode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph">
+<em class="property">class </em><code class="sig-name descname">StateTransitionGraph</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Graph class which contains edges and nodes, similar to feynman graphs.
+The graphs are directed, meaning the edges are ingoing and outgoing
+to specific nodes (since feynman graphs also have a time axis)
+This class can contain the full information of a state transition from
+a initial state to a final state. This information can be attached to
+the nodes and edges via properties.</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges">
+<code class="sig-name descname">add_edges</code><span class="sig-paren">(</span><em class="sig-param">edge_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.add_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds edges with the ids in the edge_ids list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_node">
+<code class="sig-name descname">add_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.add_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a node with id node_id. Raises an value error,
+if node_id already exists</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_ingoing">
+<code class="sig-name descname">attach_edges_to_node_ingoing</code><span class="sig-paren">(</span><em class="sig-param">ingoing_edge_ids</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.attach_edges_to_node_ingoing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_ingoing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches existing edges to nodes, so that the are ingoing to these
+nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ingoing_edge_ids</strong> (<em>[</em><em>int</em><em>]</em>) – list of edge ids, that will be attached</p></li>
+<li><p><strong>node_id</strong> (<em>int</em>) – id of the node to which the edges will be attached</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_outgoing">
+<code class="sig-name descname">attach_edges_to_node_outgoing</code><span class="sig-paren">(</span><em class="sig-param">outgoing_edge_ids</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.attach_edges_to_node_outgoing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_outgoing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.get_originating_node_list">
+<code class="sig-name descname">get_originating_node_list</code><span class="sig-paren">(</span><em class="sig-param">edge_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.get_originating_node_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.get_originating_node_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of node ids from which the supplied edges originate from</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>edge_ids</strong> (<em>[</em><em>int</em><em>]</em>) – list of edge ids for which the origin node is             searched for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of node ids</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator">
+<code class="sig-name descname">set_graph_element_properties_comparator</code><span class="sig-paren">(</span><em class="sig-param">comparator</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.set_graph_element_properties_comparator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.swap_edges">
+<code class="sig-name descname">swap_edges</code><span class="sig-paren">(</span><em class="sig-param">edge_id1</em>, <em class="sig-param">edge_id2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.swap_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.swap_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.graph.StateTransitionGraph.verify">
+<code class="sig-name descname">verify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#StateTransitionGraph.verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.StateTransitionGraph.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify the graph is connected,
+so no dangling parts which are not connected</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.are_graphs_isomorphic">
+<code class="sig-name descname">are_graphs_isomorphic</code><span class="sig-paren">(</span><em class="sig-param">graph1</em>, <em class="sig-param">graph2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#are_graphs_isomorphic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.are_graphs_isomorphic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the two graphs have a one-to-one mapping
+of the node IDs and edge IDs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.dicts_unequal">
+<code class="sig-name descname">dicts_unequal</code><span class="sig-paren">(</span><em class="sig-param">dict1</em>, <em class="sig-param">dict2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#dicts_unequal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.dicts_unequal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_edges_ingoing_to_node">
+<code class="sig-name descname">get_edges_ingoing_to_node</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_edges_ingoing_to_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_edges_ingoing_to_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_edges_outgoing_to_node">
+<code class="sig-name descname">get_edges_outgoing_to_node</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_edges_outgoing_to_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_edges_outgoing_to_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_final_state_edges">
+<code class="sig-name descname">get_final_state_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_final_state_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_final_state_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_initial_state_edges">
+<code class="sig-name descname">get_initial_state_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_initial_state_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_initial_state_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_intermediate_state_edges">
+<code class="sig-name descname">get_intermediate_state_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_intermediate_state_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_intermediate_state_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_originating_final_state_edges">
+<code class="sig-name descname">get_originating_final_state_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_originating_final_state_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_originating_final_state_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.graph.get_originating_initial_state_edges">
+<code class="sig-name descname">get_originating_initial_state_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/graph.html#get_originating_initial_state_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.graph.get_originating_initial_state_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycompwa.expertsystem.topology.topologybuilder.html" class="btn btn-neutral float-right" title="pycompwa.expertsystem.topology.topologybuilder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycompwa.expertsystem.topology.html" class="btn btn-neutral float-left" title="pycompwa.expertsystem.topology package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ComPWA Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

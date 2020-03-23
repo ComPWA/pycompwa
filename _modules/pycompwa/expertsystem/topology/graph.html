@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
@@ -160,7 +161,7 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 
-<div class="viewcode-block" id="are_graphs_isomorphic"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.are_graphs_isomorphic">[docs]</a><span class="k">def</span> <span class="nf">are_graphs_isomorphic</span><span class="p">(</span><span class="n">graph1</span><span class="p">,</span> <span class="n">graph2</span><span class="p">):</span>
+<div class="viewcode-block" id="are_graphs_isomorphic"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.are_graphs_isomorphic">[docs]</a><span class="k">def</span> <span class="nf">are_graphs_isomorphic</span><span class="p">(</span><span class="n">graph1</span><span class="p">,</span> <span class="n">graph2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the two graphs have a one-to-one mapping</span>
 <span class="sd">    of the node IDs and edge IDs&quot;&quot;&quot;</span>
     <span class="c1"># EdgeIndexMapping = {}</span>
@@ -177,7 +178,7 @@
     <span class="k">return</span> <span class="kc">False</span></div>
 
 
-<div class="viewcode-block" id="get_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="get_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
     <span class="n">is_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -187,7 +188,7 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">is_list</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="get_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="n">fs_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -195,7 +196,7 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs_list</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_intermediate_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_intermediate_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_intermediate_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="get_intermediate_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_intermediate_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_intermediate_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="n">is_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">edge_id</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
@@ -204,7 +205,7 @@
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">is_list</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_edges_ingoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_edges_ingoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_edges_ingoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_edges_ingoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_ingoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
     <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -214,7 +215,7 @@
     <span class="k">return</span> <span class="n">edge_list</span></div>
 
 
-<div class="viewcode-block" id="get_edges_outgoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_edges_outgoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_edges_outgoing_to_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_edges_outgoing_to_node">[docs]</a><span class="k">def</span> <span class="nf">get_edges_outgoing_to_node</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
     <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -224,7 +225,7 @@
     <span class="k">return</span> <span class="n">edge_list</span></div>
 
 
-<div class="viewcode-block" id="get_originating_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_originating_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_originating_final_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_originating_final_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
     <span class="n">fs_edges</span> <span class="o">=</span> <span class="n">get_final_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
@@ -243,7 +244,7 @@
     <span class="k">return</span> <span class="n">edge_list</span></div>
 
 
-<div class="viewcode-block" id="get_originating_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.get_originating_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_originating_initial_state_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.get_originating_initial_state_edges">[docs]</a><span class="k">def</span> <span class="nf">get_originating_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">StateTransitionGraph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;graph must be a StateTransitionGraph&quot;</span><span class="p">)</span>
     <span class="n">is_edges</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
@@ -262,12 +263,12 @@
     <span class="k">return</span> <span class="n">edge_list</span></div>
 
 
-<div class="viewcode-block" id="dicts_unequal"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.dicts_unequal">[docs]</a><span class="k">def</span> <span class="nf">dicts_unequal</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">):</span>
+<div class="viewcode-block" id="dicts_unequal"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.dicts_unequal">[docs]</a><span class="k">def</span> <span class="nf">dicts_unequal</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">dict1</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span> <span class="o">!=</span>
             <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">dict2</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
 
 
-<div class="viewcode-block" id="StateTransitionGraph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionGraph</span><span class="p">:</span>
+<div class="viewcode-block" id="StateTransitionGraph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph">[docs]</a><span class="k">class</span> <span class="nc">StateTransitionGraph</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Graph class which contains edges and nodes, similar to feynman graphs.</span>
 <span class="sd">        The graphs are directed, meaning the edges are ingoing and outgoing</span>
@@ -277,14 +278,14 @@
 <span class="sd">        the nodes and edges via properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StateTransitionGraph.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_props</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.set_graph_element_properties_comparator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator">[docs]</a>    <span class="k">def</span> <span class="nf">set_graph_element_properties_comparator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.set_graph_element_properties_comparator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.set_graph_element_properties_comparator">[docs]</a>    <span class="k">def</span> <span class="nf">set_graph_element_properties_comparator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_properties_comparator</span> <span class="o">=</span> <span class="n">comparator</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -335,7 +336,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-<div class="viewcode-block" id="StateTransitionGraph.add_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_node">[docs]</a>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.add_node"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_node">[docs]</a>    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a node with id node_id. Raises an value error,</span>
 <span class="sd">        if node_id already exists&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
@@ -343,7 +344,7 @@
                              <span class="nb">str</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; already exists!&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.add_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges">[docs]</a>    <span class="k">def</span> <span class="nf">add_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.add_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.add_edges">[docs]</a>    <span class="k">def</span> <span class="nf">add_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds edges with the ids in the edge_ids list&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
@@ -351,7 +352,7 @@
                                  <span class="nb">str</span><span class="p">(</span><span class="n">edge_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; already exists!&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_ingoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_ingoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_ingoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_ingoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_ingoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_ingoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Attaches existing edges to nodes, so that the are ingoing to these</span>
 <span class="sd">        nodes</span>
 
@@ -376,7 +377,7 @@
         <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">ingoing_edge_ids</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_outgoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_outgoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_outgoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outgoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.attach_edges_to_node_outgoing"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.attach_edges_to_node_outgoing">[docs]</a>    <span class="k">def</span> <span class="nf">attach_edges_to_node_outgoing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outgoing_edge_ids</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="c1"># first check if the ingoing edges are all available</span>
         <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">outgoing_edge_ids</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">edge_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
@@ -392,7 +393,7 @@
         <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">outgoing_edge_ids</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.get_originating_node_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.get_originating_node_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_originating_node_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.get_originating_node_list"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.get_originating_node_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_originating_node_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_ids</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get list of node ids from which the supplied edges originate from</span>
 
 <span class="sd">        Args:</span>
@@ -407,7 +408,7 @@
             <span class="n">node_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge_id</span><span class="p">]</span><span class="o">.</span><span class="n">originating_node_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">node_list</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.swap_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.swap_edges">[docs]</a>    <span class="k">def</span> <span class="nf">swap_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_id1</span><span class="p">,</span> <span class="n">edge_id2</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.swap_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.swap_edges">[docs]</a>    <span class="k">def</span> <span class="nf">swap_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_id1</span><span class="p">,</span> <span class="n">edge_id2</span><span class="p">):</span>
         <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id1</span><span class="p">)</span>
         <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_id2</span><span class="p">)</span>
 
@@ -425,17 +426,17 @@
         <span class="k">if</span> <span class="n">val2</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id1</span><span class="p">]</span> <span class="o">=</span> <span class="n">val2</span></div>
 
-<div class="viewcode-block" id="StateTransitionGraph.verify"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="StateTransitionGraph.verify"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Verify the graph is connected,</span>
 <span class="sd">        so no dangling parts which are not connected&quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="kc">True</span></div></div>
 
 
-<div class="viewcode-block" id="InteractionNode"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.InteractionNode">[docs]</a><span class="k">class</span> <span class="nc">InteractionNode</span><span class="p">:</span>
+<div class="viewcode-block" id="InteractionNode"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.InteractionNode">[docs]</a><span class="k">class</span> <span class="nc">InteractionNode</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;struct-like definition of an interaction node&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="InteractionNode.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.InteractionNode.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">number_of_ingoing_edges</span><span class="p">,</span>
+<div class="viewcode-block" id="InteractionNode.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.InteractionNode.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">,</span> <span class="n">number_of_ingoing_edges</span><span class="p">,</span>
                  <span class="n">number_of_outgoing_edges</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_ingoing_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;NumberOfIngoingEdges must be an integer&quot;</span><span class="p">)</span>
@@ -450,10 +451,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">number_of_outgoing_edges</span> <span class="o">=</span> <span class="n">number_of_outgoing_edges</span></div></div>
 
 
-<div class="viewcode-block" id="Edge"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.Edge">[docs]</a><span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
+<div class="viewcode-block" id="Edge"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.Edge">[docs]</a><span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;struct-like definition of an edge&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Edge.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.html#pycompwa.expertsystem.topology.graph.Edge.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Edge.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.Edge.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ending_node_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">originating_node_id</span> <span class="o">=</span> <span class="kc">None</span></div>
 

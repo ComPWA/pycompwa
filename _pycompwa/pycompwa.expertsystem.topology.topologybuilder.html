@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycompwa.expertsystem.solvers package &mdash; pycompwa  documentation</title>
+  <title>pycompwa.expertsystem.topology.topologybuilder module &mdash; pycompwa  documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pycompwa.expertsystem.state package" href="pycompwa.expertsystem.state.html" />
-    <link rel="prev" title="pycompwa.expertsystem.amplitude.helicitydecay module" href="pycompwa.expertsystem.amplitude.helicitydecay.html" /> 
+    <link rel="next" title="pycompwa.expertsystem.ui package" href="pycompwa.expertsystem.ui.html" />
+    <link rel="prev" title="pycompwa.expertsystem.topology.graph module" href="pycompwa.expertsystem.topology.graph.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -155,14 +155,16 @@
         
           <li><a href="pycompwa.expertsystem.html">pycompwa.expertsystem package</a> &raquo;</li>
         
-      <li>pycompwa.expertsystem.solvers package</li>
+          <li><a href="pycompwa.expertsystem.topology.html">pycompwa.expertsystem.topology package</a> &raquo;</li>
+        
+      <li>pycompwa.expertsystem.topology.topologybuilder module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_pycompwa/pycompwa.expertsystem.solvers.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_pycompwa/pycompwa.expertsystem.topology.topologybuilder.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -176,8 +178,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pycompwa.expertsystem.solvers">
-<span id="pycompwa-expertsystem-solvers-package"></span><h1>pycompwa.expertsystem.solvers package<a class="headerlink" href="#module-pycompwa.expertsystem.solvers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-pycompwa.expertsystem.topology.topologybuilder">
+<span id="pycompwa-expertsystem-topology-topologybuilder-module"></span><h1>pycompwa.expertsystem.topology.topologybuilder module<a class="headerlink" href="#module-pycompwa.expertsystem.topology.topologybuilder" title="Permalink to this headline">¶</a></h1>
+<p>module topologybuilder
+responsible for building all possible topologies base on basic user input</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>number of initial state particles</p></li>
+<li><p>number of final state particles</p></li>
+</ul>
+</div></blockquote>
+<dl class="class">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder">
+<em class="property">class </em><code class="sig-name descname">SimpleStateTransitionTopologyBuilder</code><span class="sig-paren">(</span><em class="sig-param">interaction_node_set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple topology builder. Recursively tries to add the interaction nodes
+to available open end edges/lines in all combinations until the number of
+open end lines matches the final state lines</p>
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">interaction_node_set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">
+<code class="sig-name descname">build_graphs</code><span class="sig-paren">(</span><em class="sig-param">number_of_initial_edges</em>, <em class="sig-param">number_of_final_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder.build_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.extend_graph">
+<code class="sig-name descname">extend_graph</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#SimpleStateTransitionTopologyBuilder.extend_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.extend_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.expertsystem.topology.topologybuilder.attach_node_to_edges">
+<code class="sig-name descname">attach_node_to_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">interaction_node</em>, <em class="sig-param">ingoing_edge_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/topology/topologybuilder.html#attach_node_to_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.topology.topologybuilder.attach_node_to_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -188,10 +228,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pycompwa.expertsystem.state.html" class="btn btn-neutral float-right" title="pycompwa.expertsystem.state package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pycompwa.expertsystem.ui.html" class="btn btn-neutral float-right" title="pycompwa.expertsystem.ui package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pycompwa.expertsystem.amplitude.helicitydecay.html" class="btn btn-neutral float-left" title="pycompwa.expertsystem.amplitude.helicitydecay module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pycompwa.expertsystem.topology.graph.html" class="btn btn-neutral float-left" title="pycompwa.expertsystem.topology.graph module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

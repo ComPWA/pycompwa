@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycompwa &mdash; pycompwa  documentation</title>
+  <title>pycompwa.plotting.rootplotdatareader module &mdash; pycompwa  documentation</title>
   
 
   
@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pycompwa.ui package" href="pycompwa.ui.html" />
+    <link rel="prev" title="pycompwa.plotting package" href="pycompwa.plotting.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,7 +83,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python-modules.html">Modules</a></li>
@@ -89,6 +91,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.html">pycompwa.expertsystem package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pycompwa.plotting.html">pycompwa.plotting package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pycompwa.plotting.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycompwa.ui.html">pycompwa.ui package</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -137,14 +151,18 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>pycompwa</li>
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+          <li><a href="pycompwa.plotting.html">pycompwa.plotting package</a> &raquo;</li>
+        
+      <li>pycompwa.plotting.rootplotdatareader module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_pycompwa/modules.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_pycompwa/pycompwa.plotting.rootplotdatareader.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -158,34 +176,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pycompwa">
-<h1>pycompwa<a class="headerlink" href="#pycompwa" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.html">pycompwa package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.html">pycompwa.expertsystem package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.expertsystem.html#subpackages">Subpackages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.expertsystem.html#module-pycompwa.expertsystem">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.plotting.html">pycompwa.plotting package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.plotting.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.plotting.html#module-pycompwa.plotting.rootplotdatareader">pycompwa.plotting.rootplotdatareader module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.plotting.html#module-pycompwa.plotting">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.ui.html">pycompwa.ui package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pycompwa.ui.html#module-pycompwa.ui">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.html#module-pycompwa">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <div class="section" id="module-pycompwa.plotting.rootplotdatareader">
+<span id="pycompwa-plotting-rootplotdatareader-module"></span><h1>pycompwa.plotting.rootplotdatareader module<a class="headerlink" href="#module-pycompwa.plotting.rootplotdatareader" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pycompwa.plotting.rootplotdatareader.load_ttree">
+<code class="sig-name descname">load_ttree</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">treename</em>, <em class="sig-param">branchnames=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting/rootplotdatareader.html#load_ttree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.rootplotdatareader.load_ttree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a root ttree into a numpy record array
+If branchnames is None all branches are read.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.plotting.rootplotdatareader.open_compwa_plot_data">
+<code class="sig-name descname">open_compwa_plot_data</code><span class="sig-paren">(</span><em class="sig-param">input_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting/rootplotdatareader.html#open_compwa_plot_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.rootplotdatareader.open_compwa_plot_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -193,6 +197,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycompwa.ui.html" class="btn btn-neutral float-right" title="pycompwa.ui package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycompwa.plotting.html" class="btn btn-neutral float-left" title="pycompwa.plotting package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
