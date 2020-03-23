@@ -74,11 +74,24 @@ the Conda environment you created for pycompwa:
 
   conda install --file requirements_dev.txt
 
-The most general test you can run, is by executing the command ``tox`` from
-anywhere within the source code. This will run a set of tests as defined in the
-``tox.ini`` file in the main directory.
+An important tool there is `pre-commit <https://pre-commit.com/>`__. This will
+run certain tests locally when you make a Git commit. To activate, run the
+following after cloning:
 
-Now you can for instance test the coverage of the unit tests:
+.. code-block:: shell
+
+  pre-commit install
+
+Now, whenever you commit, all tests defined in the ``.pre-commit-config.yaml``
+fill be run. Any errors will be fixed where possible and you will have to stage
+those new changes. You can also first test all staged files with the command
+``pre-commit``. If, however, you do not want to run these tests upon
+committing, just use the option ``--no-verify``, or ``-n``, skip.
+
+A tool that tests *all* relevant files is ``tox``. The tests that ``tox`` runs
+are defined in the ``tox.ini`` file in the main directory.
+
+You also check the coverage of the unit tests:
 
 .. code-block:: shell
 
