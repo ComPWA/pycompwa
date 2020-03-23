@@ -78,6 +78,9 @@ extensions = [
 autosectionlabel_prefix_document = False
 autosectionlabel_maxdepth = 1
 
+# Settings for linkcheck
+linkcheck_anchors = False
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

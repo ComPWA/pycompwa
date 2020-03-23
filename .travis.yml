@@ -57,6 +57,7 @@ jobs:
         - cd $BASEPATH/examples/jupyter
         - jupyter nbconvert --execute --ExecutePreprocessor.timeout=None *.ipynb
         - cd $BASEPATH/doc
+        - make linkcheck
         - make html
       before_deploy:
         - cd $BASEPATH
