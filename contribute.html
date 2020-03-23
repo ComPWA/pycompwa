@@ -226,10 +226,20 @@ the Conda environment you created for pycompwa:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install --file requirements_dev.txt
 </pre></div>
 </div>
-<p>The most general test you can run, is by executing the command <code class="docutils literal notranslate"><span class="pre">tox</span></code> from
-anywhere within the source code. This will run a set of tests as defined in the
-<code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in the main directory.</p>
-<p>Now you can for instance test the coverage of the unit tests:</p>
+<p>An important tool there is <a class="reference external" href="https://pre-commit.com/">pre-commit</a>. This will
+run certain tests locally when you make a Git commit. To activate, run the
+following after cloning:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pre-commit install
+</pre></div>
+</div>
+<p>Now, whenever you commit, all tests defined in the <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code>
+fill be run. Any errors will be fixed where possible and you will have to stage
+those new changes. You can also first test all staged files with the command
+<code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>. If, however, you do not want to run these tests upon
+committing, just use the option <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code>, or <code class="docutils literal notranslate"><span class="pre">-n</span></code>, skip.</p>
+<p>A tool that tests <em>all</em> relevant files is <code class="docutils literal notranslate"><span class="pre">tox</span></code>. The tests that <code class="docutils literal notranslate"><span class="pre">tox</span></code> runs
+are defined in the <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in the main directory.</p>
+<p>You also check the coverage of the unit tests:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> tests
 pytest --durations<span class="o">=</span><span class="m">0</span> --cov-config<span class="o">=</span>.coveragerc --cov<span class="o">=</span>pycompwa --cov-report html -m <span class="s2">&quot;not slow&quot;</span>
 </pre></div>
