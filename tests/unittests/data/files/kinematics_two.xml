@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<HelicityKinematics>
+  <InitialState>
+    <Particle Name="J/psi" Id="0" PositionIndex="0"></Particle>
+  </InitialState>
+  <FinalState>
+    <Particle Name="gamma" Id="2" PositionIndex="0"></Particle>
+    <Particle Name="pi0" Id="3" PositionIndex="1"></Particle>
+  </FinalState>
+</HelicityKinematics>
+
+<ParticleList>
+  <Particle Name="J/psi">
+    <Pid>443</Pid>
+    <Parameter Type="Mass" Name="Mass_jpsi">
+      <Value>3.096900</Value>
+      <Fix>true</Fix>
+    </Parameter>
+    <QuantumNumber Class="Spin" Type="Spin" Value="1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charge" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Parity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Cparity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Gparity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Spin" Type="IsoSpin" Value="0" Projection="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="BaryonNumber" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charm" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Strangeness" Value="0"></QuantumNumber>
+    <DecayInfo Type="nonResonant"></DecayInfo>
+  </Particle>
+  <Particle Name="gamma">
+    <Pid>22</Pid>
+    <Parameter Type="Mass" Name="Mass_gamma">
+      <Value>0.0</Value>
+    </Parameter>
+    <QuantumNumber Class="Spin" Type="Spin" Value="1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charge" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Parity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Cparity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Spin" Type="IsoSpin" Value="0" Projection="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="BaryonNumber" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charm" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Strangeness" Value="0"></QuantumNumber>
+  </Particle>
+  <Particle Name="pi0">
+    <Pid>111</Pid>
+    <Parameter Type="Mass" Name="Mass_neutralPion">
+      <Value>0.1349766</Value>
+      <Error>0.000006</Error>
+    </Parameter>
+    <QuantumNumber Class="Spin" Type="Spin" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charge" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Parity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Cparity" Value="1"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Gparity" Value="-1"></QuantumNumber>
+    <QuantumNumber Class="Spin" Type="IsoSpin" Value="1" Projection="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="BaryonNumber" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Charm" Value="0"></QuantumNumber>
+    <QuantumNumber Class="Int" Type="Strangeness" Value="0"></QuantumNumber>
+  </Particle>
+</ParticleList>
