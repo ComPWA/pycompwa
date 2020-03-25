@@ -1,6 +1,7 @@
 autopep8
 doc8
 flake8
+jupyter_contrib_nbextensions
 pre-commit
 pylint
 pytest

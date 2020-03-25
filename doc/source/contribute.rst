@@ -62,6 +62,8 @@ Python interpreter understand the ``import pycompwa`` command. You do this with:
 where ``<PYCOMPWA_SOURCE_PATH>`` refers to the absolute or relative path of the
 cloned pycompwa repository.
 
+.. _python-dev-tools:
+
 Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -100,6 +102,29 @@ You also check the coverage of the unit tests:
 
 Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening ``htmlcov/index.html``!
+
+
+Jupyter notebook tools
+^^^^^^^^^^^^^^^^^^^^^^
+
+Jupyter notebooks aren't the most friendly with regard to Version Control
+Systems like Git because in the back-end, a notebook is a JSON file that
+changes for instances when you run a cell. There is no simple solution for this
+other than to clean the cell output upon saving. You can automatize this with
+`nbstripout <https://github.com/kynan/nbstripout>`__ if you have activated
+``pre-commit`` (see :ref:`python-dev-tools`).
+
+Jupyter offers several other useful extensions that can be activate `like this
+<https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`__
+If you want to contribute to the example notebooks, make sure to check out the
+following extensions:
+
+* `jupyter-autopep8
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_autopep8.html>`__
+* `ruler
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/ruler/readme.html>`__
+* `sphellchecker
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html>`__
 
 
 How to contribute through Git
