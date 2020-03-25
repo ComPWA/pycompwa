@@ -29,6 +29,7 @@ subprocess.call(
     '--force '
     '--no-toc '
     '--module-first '
+    '--templatedir _templates '
     '--separate '
     '-o _pycompwa/ ../../pycompwa/ '
     '../../pycompwa/expertsystem/solvers/constraint '
