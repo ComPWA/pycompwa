@@ -3,12 +3,17 @@
 
 __all__ = [
     'DataException',
+    'ConfigurationConflict',
     'InvalidPwaFormat',
 ]
 
 
 class DataException(Exception):
     """General exception for the :mod:`pycompwa.data` module."""
+
+
+class ConfigurationConflict(DataException):
+    """Configuration file (e.g. XML file) conflicts with data input."""
 
 
 class InvalidPwaFormat(DataException):

@@ -11,6 +11,7 @@ named ``pwa`` (see :class:`PwaAccessor`).
 __all__ = [
     'PwaAccessor',
     'append',
+    'naming',
 ]
 
 
@@ -20,6 +21,7 @@ import pandas as pd
 
 from . import _labels
 from . import exception
+from . import naming
 
 
 @pd.api.extensions.register_dataframe_accessor('pwa')
