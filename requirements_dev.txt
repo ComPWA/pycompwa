@@ -1,7 +1,13 @@
 autopep8
 doc8
 flake8
+flake8-blind-except
+flake8-builtins
+flake8-docstrings
+flake8-import-order
+flake8-rst-docstrings
 jupyter_contrib_nbextensions
+pep8-naming
 pre-commit
 pylint
 pytest
