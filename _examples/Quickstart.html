@@ -185,10 +185,9 @@
             
   <div class="section" id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
-<p>In this quickstart example, it is shown how to use ComPWA via the Python
-interface. We use the decay
-<span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> to illustrate the usual
-workflow is:</p>
+<p>In this example, it is shown how to use ComPWA via the Python interface.
+We use the decay <span class="math notranslate nohighlight">\(J/\Psi \rightarrow \gamma \pi^0 \pi^0\)</span> to
+illustrate the usual workflow is:</p>
 <ol class="arabic simple">
 <li><p>Create an amplitude model for the decay.</p></li>
 <li><p>Generate a Monte Carlo data sample (hit &amp; miss) using this model.</p></li>
@@ -205,8 +204,9 @@ a later stage (like after performing a fit that takes several hours).</p>
 <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">)</span>
 
-<span class="c1"># just a little function to print the intermediate states</span>
+
 <span class="k">def</span> <span class="nf">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Just a little function to print the intermediate states&quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">get_intermediate_state_edges</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intermediate states:&quot;</span><span class="p">)</span>
@@ -235,26 +235,28 @@ interface class of the ComPWA expert system.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">StateTransitionManager</span></code> (STM) is the main user interface class of the
-ComPWA expert system. The boundary conditions of your physics problem are
-defined here, such as the initial state, final state, formalism type, …</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">StateTransitionManager</span></code> (STM) is the main user interface class of
+the ComPWA expert system. The boundary conditions of your physics problem
+are defined here, such as the initial state, final state, formalism type,
+etc…</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">prepare_graphs()</span></code> of the STM creates all topology graphs, here using
 the isobar model (a tree of two-body decays). It also initializes the
-graphs with the initial and final state and a set of conservation laws at
-each interaction node.</p></li>
-<li><p>By default, all three interaction types (strong, EM, weak) are used in the
-preparation stage. However, it is also possible to choose the allowed
-interaction types globally via <code class="docutils literal notranslate"><span class="pre">set_allowed_interaction_types()</span></code>.</p></li>
+graphs with the initial and final state and a set of conservation laws
+at each interaction node.</p></li>
+<li><p>By default, all three interaction types (strong, EM, weak) are used in
+the preparation stage. However, it is also possible to choose the
+allowed interaction types globally via
+<code class="docutils literal notranslate"><span class="pre">set_allowed_interaction_types()</span></code>.</p></li>
 </ul>
-<p>After the preparation step, you can modifiy the settings returned by
-<code class="docutils literal notranslate"><span class="pre">prepare_graphs()</span></code> to your liking. Since this output contains quite a lot
-of information, the expertsystem UI aids in the configuration (especially
-the STM).</p>
+<p>After the preparation step, you can modify the settings returned by
+<code class="docutils literal notranslate"><span class="pre">prepare_graphs()</span></code> to your liking. Since this output contains quite a
+lot of information, the <cite>expertsystem UI &lt;pycompwa.expertsystem.ui&gt;</cite> aids
+in the configuration (especially the STM).</p>
 <ul class="simple">
 <li><p>A subset of particles that are allow as intermediate states can also be
-specified in the STM. Either in the <code class="docutils literal notranslate"><span class="pre">init()</span></code> of the STM or setting the
-instance attribute <code class="docutils literal notranslate"><span class="pre">allowed_intermediate_particles</span></code>.</p></li>
+specified in the STM. Either in the <code class="docutils literal notranslate"><span class="pre">init()</span></code> of the STM or setting
+the instance attribute <code class="docutils literal notranslate"><span class="pre">allowed_intermediate_particles</span></code>.</p></li>
 </ul>
 </div>
 </div>
@@ -301,17 +303,18 @@ assigned to each graph and they are grouped according to this strength.</p>
 <code class="docutils literal notranslate"><span class="pre">StateTransitionManager</span></code>, just start with solving directly!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This step takes about 30 sec on a Intel(R) Core(TM) i7-6820HQ CPU &#64; 2.70GHz running multi-threaded</p>
+<p>This step takes about 30 sec on a Intel(R) Core(TM) i7-6820HQ CPU
+&#64; 2.70GHz running multi-threaded</p>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we have a lot of solutions that are actually heavily supressed (they
-involve two weak decays).</p>
+<p>Now we have a lot of solutions that are actually heavily suppressed
+(they involve two weak decays).</p>
 <p>In general, you can modify the dictionary returned by
 <code class="docutils literal notranslate"><span class="pre">prepare_graphs()</span></code> directly, but the STM also comes with functionality
 to globally choose the allowed interaction types
@@ -320,8 +323,8 @@ to globally choose the allowed interaction types
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">(</span>
     <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">])</span>
 <span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
-<span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+<span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -340,8 +343,8 @@ now might be solutions in which both nodes are electromagnetic.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">(</span>
     <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">])</span>
 <span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
-<span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+<span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -378,11 +381,12 @@ into <span class="math notranslate nohighlight">\(\pi^0 + \rho^0\)</span> or <sp
 not <span class="math notranslate nohighlight">\(\gamma+\pi^0\)</span> and is therefore suppressed. This information
 is currently not known to the expert system, but it is possible to hand
 the expert system a list of allowed intermediate states:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># particles are found by name comparison, i.e. f2 will find all f2&#39;s and f all f&#39;s independent of their spin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># particles are found by name comparison,</span>
+<span class="c1"># i.e. f2 will find all f2&#39;s and f all f&#39;s independent of their spin</span>
 <span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
 
-<span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+<span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -426,17 +430,20 @@ the needed subsystems of the decay topology during the creation of the
 
 <span class="n">kinematics</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
 
-<span class="n">generator</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span><span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span>
+    <span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
 
 <span class="n">random_generator</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">StdUniformRealGenerator</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
 
 <span class="n">phsp_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 
-<span class="n">intensity_builder</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">IntensityBuilderXML</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
+<span class="n">intensity_builder</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">IntensityBuilderXML</span><span class="p">(</span>
+    <span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
 
 <span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">()</span>
 
-<span class="n">data_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
+<span class="n">data_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="mi">10000</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="writing-and-reading-data-samples">
@@ -446,14 +453,14 @@ disk, so that you don’t have to perform this step each time you revisit
 the fit. ComPWA provides functions for ROOT and ASCII files, that can be
 used as follows:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to ROOT</span>
-<span class="n">pwa</span><span class="o">.</span><span class="n">write_root_data</span><span class="p">(</span><span class="n">event_list</span><span class="o">=</span><span class="n">data_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_data.root&#39;</span><span class="p">)</span>
-<span class="n">pwa</span><span class="o">.</span><span class="n">write_root_data</span><span class="p">(</span><span class="n">event_list</span><span class="o">=</span><span class="n">phsp_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_phsp.root&#39;</span><span class="p">)</span>
+<span class="n">pwa</span><span class="o">.</span><span class="n">write_root_data</span><span class="p">(</span><span class="n">data_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_data.root&#39;</span><span class="p">)</span>
+<span class="n">pwa</span><span class="o">.</span><span class="n">write_root_data</span><span class="p">(</span><span class="n">phsp_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_phsp.root&#39;</span><span class="p">)</span>
 <span class="c1"># to ASCII</span>
-<span class="n">pwa</span><span class="o">.</span><span class="n">write_ascii_data</span><span class="p">(</span><span class="n">event_list</span><span class="o">=</span><span class="n">data_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_data.dat&#39;</span><span class="p">)</span>
-<span class="n">pwa</span><span class="o">.</span><span class="n">write_ascii_data</span><span class="p">(</span><span class="n">event_list</span><span class="o">=</span><span class="n">phsp_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_phsp.dat&#39;</span><span class="p">)</span>
+<span class="n">pwa</span><span class="o">.</span><span class="n">write_ascii_data</span><span class="p">(</span><span class="n">data_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_data.dat&#39;</span><span class="p">)</span>
+<span class="n">pwa</span><span class="o">.</span><span class="n">write_ascii_data</span><span class="p">(</span><span class="n">phsp_sample</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;generated_phsp.dat&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Importing sytax parallels that:</p>
+<p>Importing syntax parallels that:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imported_data</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_root_data</span><span class="p">(</span><span class="n">input_file</span><span class="o">=</span><span class="s1">&#39;generated_data.root&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imported events:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">imported_data</span><span class="o">.</span><span class="n">events</span><span class="p">))</span>
 <span class="n">first_event</span> <span class="o">=</span> <span class="n">imported_data</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -510,13 +517,14 @@ this is not needed here. The data samples can be converted to
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_set</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">data_sample</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we can create an <strong>estimator</strong>. Remember that an estimater indicates
+<p>Now we can create an <strong>estimator</strong>. Remember that an estimator indicates
 how well a set of model parameters describes a given data set best. In
 this example, we use an unbinned log likelihood estimator. The fit
 calculations are then performed the calculations with the
-<code class="docutils literal notranslate"><span class="pre">FunctionTree</span></code> backend.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span><span class="p">,</span> <span class="n">initial_parameters</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_unbinned_log_likelihood_function_tree_estimator</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span>
-                                                                                           <span class="n">data_set</span><span class="p">)</span>
+<code class="docutils literal notranslate"><span class="pre">FunctionTree</span></code> back-end.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span><span class="p">,</span> <span class="n">initial_parameters</span> <span class="o">=</span> \
+    <span class="n">pwa</span><span class="o">.</span><span class="n">create_unbinned_log_likelihood_function_tree_estimator</span><span class="p">(</span>
+        <span class="n">intensity</span><span class="p">,</span> <span class="n">data_set</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Notice that you not only receive a estimator object, but also a list of
@@ -527,8 +535,8 @@ following info:</p>
 <li><p>the initial values of the parameters</p></li>
 <li><p>fix parameters</p></li>
 <li><p>define boundaries</p></li>
-<li><p>define errors, which can give certain optimizers hints on the
-stepsize</p></li>
+<li><p>define errors, which can give certain optimizers hints on the step
+size</p></li>
 </ul>
 <p>These fit parameters are initialized with the values stated in the XML
 file or with default values if unspecified. But can be changed easily in
@@ -558,7 +566,8 @@ create an optimizer instance of your choice, here Minuit2
 process.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The fit (with 14 free parameters) on a Intel(R) Core(TM) i7-6820HQ CPU &#64; 2.70GHz takes about 15 sec</p>
+<p>The fit (with 14 free parameters) on a Intel(R) Core(TM) i7-6820HQ CPU
+&#64; 2.70GHz takes about 15 sec</p>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">MinuitIF</span><span class="p">()</span>
 <span class="n">fit_result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">initial_parameters</span><span class="p">)</span>
@@ -590,7 +599,7 @@ the <code class="docutils literal notranslate"><span class="pre">updateParameter
 <div class="section" id="step-4-visualization">
 <h2>Step 4: Visualization<a class="headerlink" href="#step-4-visualization" title="Permalink to this headline">¶</a></h2>
 <p>Let’s go ahead and make a Dalitz plot of the data sample and our fit
-result. It is easiest to visualise your data with
+result. It is easiest to visualize your data with
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a>.
 This section illustrates how to do this in combination with ComPWA’s
 functionality.</p>
@@ -607,7 +616,7 @@ event samples have to be performed again, though:</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">data_set</span></code> and <code class="docutils literal notranslate"><span class="pre">phsp_set</span></code> instances are <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> objects can
 cannot be understood by pandas. Their data members, however, easily
-allow us to make the convertion:</p>
+allow us to make the conversion:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">frame_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 <span class="n">frame_phsp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -621,22 +630,28 @@ weights are unity.</p>
 extract a mapping from the <code class="docutils literal notranslate"><span class="pre">Kinematics</span></code> object:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>ComPWA ships with a little python plotting module (<code class="docutils literal notranslate"><span class="pre">plotting</span></code>), which for example helps you to read in ROOT TTree’s and create common plots (e.g. angular distributions, Dalitz plots). It uses matplotlib as a backend. You can either hand it data files, or feed it directly with data.</p>
+<p>ComPWA ships with a little python plotting module (<code class="docutils literal notranslate"><span class="pre">plotting</span></code>), which
+for example helps you to read in ROOT TTree’s and create common plots
+(e.g. angular distributions, Dalitz plots). It uses matplotlib as a
+backend. You can either hand it data files, or feed it directly with
+data.</p>
 <p>Please use it, instead of creating your own visualization scripts!</p>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transition_info</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">()</span>
 <span class="n">id_to_name</span> <span class="o">=</span> <span class="n">transition_info</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
 <span class="n">name_to_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+
 <span class="k">def</span> <span class="nf">replace_ids</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Just some replace lambda&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-       <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">title</span>
 </pre></div>
 </div>
-<p>How to visualise the fit? This is where the phase space comes in again.
+<p>How to visualize the fit? This is where the phase space comes in again.
 By attributing an intensity as a weight to each phase space point, we
-get a point distribution of the fit model over the space spaned by the
+get a point distribution of the fit model over the space spanned by the
 kinematic variables.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensity_set</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 <span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intensity_set</span>
@@ -645,26 +660,32 @@ kinematic variables.</p>
 <p>Now you can apply the usual <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> tools to plot the
 distributions.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
 <span class="k">def</span> <span class="nf">plot_1d_comparison</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Helper function for comparing the 1D distributions of fit and data&quot;&quot;&quot;</span>
-    <span class="n">frame_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+    <span class="n">frame_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">frame_phsp</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span>
-                          <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
+                          <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalized intensity&#39;</span><span class="p">)</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">replace_ids</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;theta_2_4_vs_3&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;mSq_(3,4)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Similarly, we can easily create a Dalitz plot:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
 <span class="k">def</span> <span class="nf">dalitz_plot</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mass_x</span><span class="p">,</span> <span class="n">mass_y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Helper function to create a Dalitz plot with meaningful axis titles&quot;&quot;&quot;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span>
@@ -672,7 +693,7 @@ distributions.</p>
         <span class="n">frame</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span>
         <span class="n">weights</span><span class="o">=</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span>
         <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">);</span>
+    <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_x</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_y</span><span class="p">))</span>
 </pre></div>
@@ -715,22 +736,24 @@ can calculate your own customized fit fractions.</p>
     <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
     <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-2+gamma_-1;f2(1270)_-2_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
     <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_0+gamma_-1;f2(1270)_0_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;J/psi_-1_to_f2(1270)_-2+gamma_-1;f2(1270)_-2_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;J/psi_-1_to_f2(1270)_0+gamma_-1;f2(1270)_0_to_pi0_0+pi0_0;&#39;</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;J/psi_-1_to_f2(1270)_-2+gamma_-1;f2(1270)_-2_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;J/psi_-1_to_f2(1270)_0+gamma_-1;f2(1270)_0_to_pi0_0+pi0_0;&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
 <span class="p">])</span>
 </pre></div>
 </div>
 <p>The last step is to call the actual fit fraction calculation function
 <code class="docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code>. Here, the first required
 argument is a list of component pairs. Each pair resembles the nominator
-and demoninator of a fit fraction.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_fractions</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">fit_fractions_with_propagated_errors</span><span class="p">(</span>
-    <span class="p">[(</span><span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-     <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-     <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-     <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-    <span class="p">],</span> <span class="n">phsp_set</span><span class="p">,</span> <span class="n">fit_result</span><span class="p">)</span>
+and denominator of a fit fraction.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_fractions</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">fit_fractions_with_propagated_errors</span><span class="p">([</span>
+    <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+<span class="p">],</span> <span class="n">phsp_set</span><span class="p">,</span> <span class="n">fit_result</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fit_fractions</span><span class="p">)</span>

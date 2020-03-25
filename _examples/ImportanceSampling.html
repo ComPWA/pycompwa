@@ -211,8 +211,8 @@ expert system.</p>
     <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">])</span>
 <span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f2(1270)&#39;</span><span class="p">,</span> <span class="s1">&#39;omega&#39;</span><span class="p">]</span>
 <span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
-<span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span><span class="p">)</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-        <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+<span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 
@@ -229,7 +229,8 @@ intensity. This can easily be achieved by using the
 <code class="docutils literal notranslate"><span class="pre">generate_importance_sampled_phsp()</span></code> generate helper function.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This takes around 1 min on a Intel(R) Core(TM) i7-6820HQ CPU &#64; 2.70GHz running multi-threaded</p>
+<p>This takes around 1 min on a Intel(R) Core(TM) i7-6820HQ CPU &#64; 2.70GHz
+running multi-threaded</p>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pycompwa is the python interface to ComPWA&#39;s c++ modules</span>
 <span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
@@ -239,7 +240,8 @@ intensity. This can easily be achieved by using the
 <span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particles</span><span class="p">)</span>
 
 <span class="c1"># generate phase space sample (flat) used for amplitude normalization</span>
-<span class="n">gen</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span><span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
+<span class="n">gen</span> <span class="o">=</span> \
+    <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span><span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
 
 <span class="n">rand_gen</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">StdUniformRealGenerator</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
 
@@ -250,7 +252,8 @@ intensity. This can easily be achieved by using the
 <span class="n">intensity</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">()</span>
 
 <span class="c1"># generate importance sampled phase space sample</span>
-<span class="n">phsp_sample_importance</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_importance_sampled_phsp</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
+<span class="n">phsp_sample_importance</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_importance_sampled_phsp</span><span class="p">(</span>
+    <span class="mi">2000</span><span class="p">,</span> <span class="n">kin</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">rand_gen</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -268,19 +271,21 @@ subsystems already exist and this step is redundant.</p>
 <p>Then we can use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to create a Dalitz plot:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">id_to_name</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">()</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
+
+<span class="n">id_to_name</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">(</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
 <span class="n">mass_x</span> <span class="o">=</span> <span class="s1">&#39;mSq_(3,4)&#39;</span>
 <span class="n">mass_y</span> <span class="o">=</span> <span class="s1">&#39;mSq_(2,4)&#39;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span>
     <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">mass_x</span><span class="p">],</span>
     <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span>
     <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-<span class="p">);</span>
+<span class="p">)</span>
 <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">mass_x</span> <span class="o">=</span> <span class="n">mass_x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
     <span class="n">mass_y</span> <span class="o">=</span> <span class="n">mass_x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">mass_x</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">mass_y</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">mass_x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">mass_y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

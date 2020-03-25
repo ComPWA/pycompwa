@@ -92,6 +92,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to contribute</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#developer-mode">Developer mode</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#python-developer-tools">Python developer tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jupyter-notebook-tools">Jupyter notebook tools</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute-through-git">How to contribute through Git</a><ul>
@@ -219,7 +220,7 @@ Python interpreter understand the <code class="docutils literal notranslate"><sp
 <p>where <code class="docutils literal notranslate"><span class="pre">&lt;PYCOMPWA_SOURCE_PATH&gt;</span></code> refers to the absolute or relative path of the
 cloned pycompwa repository.</p>
 <div class="section" id="python-developer-tools">
-<h3>Python developer tools<a class="headerlink" href="#python-developer-tools" title="Permalink to this headline">¶</a></h3>
+<span id="python-dev-tools"></span><h3>Python developer tools<a class="headerlink" href="#python-developer-tools" title="Permalink to this headline">¶</a></h3>
 <p>For contributing to pycompwa, we recommend you also install the packages listed
 under <a class="reference external" href="https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt">requirements_dev.txt</a>. In
 the Conda environment you created for pycompwa:</p>
@@ -246,6 +247,23 @@ pytest --durations<span class="o">=</span><span class="m">0</span> --cov-config<
 </div>
 <p>Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening <code class="docutils literal notranslate"><span class="pre">htmlcov/index.html</span></code>!</p>
+</div>
+<div class="section" id="jupyter-notebook-tools">
+<h3>Jupyter notebook tools<a class="headerlink" href="#jupyter-notebook-tools" title="Permalink to this headline">¶</a></h3>
+<p>Jupyter notebooks aren’t the most friendly with regard to Version Control
+Systems like Git because in the back-end, a notebook is a JSON file that
+changes for instances when you run a cell. There is no simple solution for this
+other than to clean the cell output upon saving. You can automatize this with
+<a class="reference external" href="https://github.com/kynan/nbstripout">nbstripout</a> if you have activated
+<code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> (see <a class="reference internal" href="#python-dev-tools"><span class="std std-ref">Python developer tools</span></a>).</p>
+<p>Jupyter offers several other useful extensions that can be activate <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions">like this</a>
+If you want to contribute to the example notebooks, make sure to check out the
+following extensions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_autopep8.html">jupyter-autopep8</a></p></li>
+<li><p><a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/ruler/readme.html">ruler</a></p></li>
+<li><p><a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">sphellchecker</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="how-to-contribute-through-git">
