@@ -17,8 +17,7 @@ strong correlation between the two. It's useful to read more about the
 `ComPWA modules <https://compwa.github.io/ComPWA>`_.
 
 .. hint::
-   On how to use the Python UI, also refer to the
-   :ref:`examples section<examples>`.
+   On how to use the Python UI, also refer to the :ref:`examples:examples`.
 
 The Python UI enables you to perform all of the tasks needed for your partial
 wave analysis:
@@ -41,7 +40,8 @@ via numpy or pandas and then construct :class:`Event` classes.
    :undoc-members:
    :noindex:
 
-The procedure is explained :ref:`here <Importing Data>` in more detail.
+The procedure is explained :ref:`here <_examples/DataInput:Importing Data>` in
+more detail.
 
 Alternatively, the reading and writing of ROOT files is supported via the
 following functions.

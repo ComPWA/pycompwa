@@ -13,7 +13,7 @@ Developer mode
 If you want to develop new functionality for pycompwa, installing pycompwa as a
 pip or Conda package will not suffice: you will have to **build from source**,
 so that you can continuously implement updates. In this 'developer mode', you
-still work in a Conda environment (see :ref:`Installation <Installation>`,
+still work in a Conda environment (see :ref:`installation:Installation`,
 especially for the `Conda-Forge <https://conda-forge.org/>`__ instructions),
 but now you install the pycompwa package from the cloned repository using
 `conda-develop
