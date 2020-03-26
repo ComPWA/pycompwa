@@ -30,10 +30,10 @@ subprocess.call(
     '--no-toc '
     '--templatedir _templates '
     '--separate '
-    '-o _pycompwa/ ../../pycompwa/ '
+    '-o _api/ ../../pycompwa/ '
     '../../pycompwa/expertsystem/solvers/constraint '
     '../../pycompwa/ui.*.so; '
-    'rm _pycompwa/pycompwa.rst',
+    'cp _api/pycompwa_overwrite _api/pycompwa.rst',
     shell=True)
 
 subprocess.call(

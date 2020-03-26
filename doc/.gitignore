@@ -1,4 +1,8 @@
 # Build files
 *build/
-source/_examples/
-source/_pycompwa/
+
+# Source files
+source/_api/*.rst
+!source/_api/pycompwa.ui.rst
+!source/_api/pycompwa_overwrite
+source/_examples/*.rst
