@@ -87,7 +87,6 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-#source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
 # The master toctree document.
@@ -135,7 +134,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'canonical_url': '',
     'analytics_id': '',
-    'logo_only': False,
+    'logo_only': True,
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
@@ -147,7 +146,7 @@ html_theme_options = {
     'titles_only': False,
 }
 
-# html_logo = '../images/logo-small.png'
+html_logo = '../../ComPWA/doc/images/logo-small.png'
 
 html_show_sourcelink = False
 
