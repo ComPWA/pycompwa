@@ -38,8 +38,8 @@ pycompwa there:
 
 Note that ``scikit-build`` has to be installed first.
 
-That's it! You can now go through the :ref:`examples/Quickstart:Quickstart` to
-learn how to use pycompwa.
+That's it! You can now go through the :ref:`examples/workflow:ComPWA Workflow`
+to learn how to use ``pycompwa``.
 
 .. tip::
 

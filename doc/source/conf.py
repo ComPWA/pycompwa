@@ -38,10 +38,12 @@ subprocess.call(
 
 # -- Generate example pages from Jupyter notebooks ----------------------------
 subprocess.call(
-    'jupyter nbconvert --to rst ../../examples/jupyter/*.ipynb && '
-    'rm -rf examples && '
-    'mkdir -p examples && '
-    'mv ../../examples/jupyter/*.rst ./examples/.',
+    'jupyter nbconvert --to rst ../../examples/*/*.ipynb && '
+    'rm -f examples/*/*.rst && '
+    'mkdir -p examples/workflow && '
+    'mkdir -p examples/tools && '
+    'mv ../../examples/workflow/*.rst ./examples/workflow/. && '
+    'mv ../../examples/tools/*.rst ./examples/tools/.',
     shell=True)
 
 
