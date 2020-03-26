@@ -22,24 +22,26 @@ import subprocess
 # It is assumed that you run sphinx from the virtual environment which
 # includes pycompwa
 
-# build skeleton api docu for python code
-# this does not work for ui, therefore its added already manually
+# -- Generate API skeleton ----------------------------------------------------
 subprocess.call(
+    'rm -f $(ls api/*.rst | grep -v api/pycompwa.ui.rst) && '
     'sphinx-apidoc '
     '--force '
     '--no-toc '
     '--templatedir _templates '
     '--separate '
-    '-o _api/ ../../pycompwa/ '
+    '-o api/ ../../pycompwa/ '
     '../../pycompwa/expertsystem/solvers/constraint '
     '../../pycompwa/ui.*.so; '
-    'cp _api/pycompwa_overwrite _api/pycompwa.rst',
+    'cp api/pycompwa_overwrite api/pycompwa.rst',
     shell=True)
 
+# -- Generate example pages from Jupyter notebooks ----------------------------
 subprocess.call(
-    'jupyter nbconvert --to rst ../../examples/jupyter/*.ipynb; '
-    'mkdir _examples; '
-    'mv ../../examples/jupyter/*.rst ./_examples/.; ',
+    'jupyter nbconvert --to rst ../../examples/jupyter/*.ipynb && '
+    'rm -rf examples && '
+    'mkdir -p examples && '
+    'mv ../../examples/jupyter/*.rst ./examples/.',
     shell=True)
 
 
