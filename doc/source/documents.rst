@@ -82,7 +82,3 @@ Documents
 ================= ===========================
 Requirements 2012 `Requirement Specifications <https://github.com/ComPWA/ComPWA/wiki/pwa_requirements.pdf>`_
 ================= ===========================
-
-Notes
------
-Notes go here...
