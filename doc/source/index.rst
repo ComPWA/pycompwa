@@ -15,7 +15,6 @@ ongoing development!
    installation
    modules
    examples
-   faq
    contribute
    documents
    api
