@@ -1,5 +1,5 @@
-API
-===
+pycompwa
+========
 
 .. automodule:: pycompwa
    :members:
