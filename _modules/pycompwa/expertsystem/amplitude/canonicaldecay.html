@@ -49,9 +49,12 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+            <a href="../../../../index.html">
           
 
+          
+            
+            <img src="../../../../_static/logo-small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -80,22 +83,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
           
+    <a href= "../../../../py-modindex.html">Module Index (API)</a>
     <a href= "../../../../genindex.html">General Index</a>
-    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -172,7 +172,7 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="generate_clebsch_gordan_string"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.generate_clebsch_gordan_string">[docs]</a><span class="k">def</span> <span class="nf">generate_clebsch_gordan_string</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_clebsch_gordan_string"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.generate_clebsch_gordan_string">[docs]</a><span class="k">def</span> <span class="nf">generate_clebsch_gordan_string</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
     <span class="n">node_props</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">node_props</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
     <span class="n">L</span> <span class="o">=</span> <span class="n">get_interaction_property</span><span class="p">(</span><span class="n">node_props</span><span class="p">,</span>
                                  <span class="n">InteractionQuantumNumberNames</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
@@ -181,13 +181,13 @@
     <span class="k">return</span> <span class="s1">&#39;_L_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">magnitude</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39;_S_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">magnitude</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">CanonicalAmplitudeNameGenerator</span><span class="p">(</span><span class="n">HelicityAmplitudeNameGenerator</span><span class="p">):</span>
+<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">CanonicalAmplitudeNameGenerator</span><span class="p">(</span><span class="n">HelicityAmplitudeNameGenerator</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates names for canonical partial decays using the properties of</span>
 <span class="sd">    the decay.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">use_parity_conservation</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_generate_amplitude_coefficient_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
@@ -207,7 +207,7 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">par_name_suffix</span> <span class="o">+</span> <span class="n">cg_suffix</span><span class="p">,</span>
                 <span class="n">pp_par_name_suffix</span> <span class="o">+</span> <span class="n">cg_suffix</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name">[docs]</a>    <span class="k">def</span> <span class="nf">generate_unique_amplitude_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name">[docs]</a>    <span class="k">def</span> <span class="nf">generate_unique_amplitude_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="n">nodelist</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
@@ -220,7 +220,7 @@
         <span class="k">return</span> <span class="n">name</span></div></div>
 
 
-<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">CanonicalAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">):</span>
+<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">CanonicalAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This class defines a full amplitude in the canonical formalism, using the</span>
 <span class="sd">    helicity formalism as a foundation.</span>
@@ -230,7 +230,7 @@
 <span class="sd">    Here CG stands for Clebsch-Gordan factor.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">name_generator</span><span class="o">=</span><span class="n">CanonicalAmplitudeNameGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">top_node_no_dynamics</span><span class="p">,</span>
                          <span class="n">name_generator</span><span class="o">=</span><span class="n">name_generator</span><span class="p">)</span></div>
@@ -296,7 +296,7 @@
 
         <span class="k">return</span> <span class="n">wrapper</span>
 
-<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML.generate_partial_decay"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay">[docs]</a>    <span class="nd">@_clebsch_gordan_decorator</span>
+<div class="viewcode-block" id="CanonicalAmplitudeGeneratorXML.generate_partial_decay"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.canonicaldecay.html#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay">[docs]</a>    <span class="nd">@_clebsch_gordan_decorator</span>
     <span class="k">def</span> <span class="nf">generate_partial_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">generate_partial_decay</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span></div></div>
 </pre></div>

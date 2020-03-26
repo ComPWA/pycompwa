@@ -49,9 +49,12 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+            <a href="../../../../index.html">
           
 
+          
+            
+            <img src="../../../../_static/logo-small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -80,22 +83,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
           
+    <a href= "../../../../py-modindex.html">Module Index (API)</a>
     <a href= "../../../../genindex.html">General Index</a>
-    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -206,7 +206,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="create_default_interaction_settings"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.default_settings.html#pycompwa.expertsystem.ui.default_settings.create_default_interaction_settings">[docs]</a><span class="k">def</span> <span class="nf">create_default_interaction_settings</span><span class="p">(</span><span class="n">formalism_type</span><span class="p">,</span>
+<div class="viewcode-block" id="create_default_interaction_settings"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.ui.default_settings.html#pycompwa.expertsystem.ui.default_settings.create_default_interaction_settings">[docs]</a><span class="k">def</span> <span class="nf">create_default_interaction_settings</span><span class="p">(</span><span class="n">formalism_type</span><span class="p">,</span>
                                         <span class="n">use_mass_conservation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Create a container, which holds the settings for the various interactions</span>
@@ -319,7 +319,7 @@
     <span class="k">return</span> <span class="n">interaction_type_settings</span></div>
 
 
-<div class="viewcode-block" id="reorder_list_by_priority"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.ui.default_settings.html#pycompwa.expertsystem.ui.default_settings.reorder_list_by_priority">[docs]</a><span class="k">def</span> <span class="nf">reorder_list_by_priority</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">priority_mapping</span><span class="p">):</span>
+<div class="viewcode-block" id="reorder_list_by_priority"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.ui.default_settings.html#pycompwa.expertsystem.ui.default_settings.reorder_list_by_priority">[docs]</a><span class="k">def</span> <span class="nf">reorder_list_by_priority</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">priority_mapping</span><span class="p">):</span>
     <span class="c1"># first add priorities to the entries</span>
     <span class="n">priority_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">priority_mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span>
         <span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="n">priority_mapping</span> <span class="k">else</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alist</span><span class="p">]</span>

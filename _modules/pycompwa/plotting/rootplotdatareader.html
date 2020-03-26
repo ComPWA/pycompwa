@@ -49,9 +49,12 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> pycompwa
+            <a href="../../../index.html">
           
 
+          
+            
+            <img src="../../../_static/logo-small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -80,22 +83,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documents.html">Talks and Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
             
           
+    <a href= "../../../py-modindex.html">Module Index (API)</a>
     <a href= "../../../genindex.html">General Index</a>
-    <a href= "../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -161,7 +161,7 @@
 <span></span><span class="kn">import</span> <span class="nn">uproot</span>
 
 
-<div class="viewcode-block" id="open_compwa_plot_data"><a class="viewcode-back" href="../../../_pycompwa/pycompwa.plotting.rootplotdatareader.html#pycompwa.plotting.rootplotdatareader.open_compwa_plot_data">[docs]</a><span class="k">def</span> <span class="nf">open_compwa_plot_data</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="open_compwa_plot_data"><a class="viewcode-back" href="../../../_api/pycompwa.plotting.rootplotdatareader.html#pycompwa.plotting.rootplotdatareader.open_compwa_plot_data">[docs]</a><span class="k">def</span> <span class="nf">open_compwa_plot_data</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">pycompwa.plotting</span> <span class="kn">import</span> <span class="n">PlotData</span>
     <span class="n">pd</span> <span class="o">=</span> <span class="n">PlotData</span><span class="p">()</span>
 
@@ -183,7 +183,7 @@
     <span class="k">return</span> <span class="n">pd</span></div>
 
 
-<div class="viewcode-block" id="load_ttree"><a class="viewcode-back" href="../../../_pycompwa/pycompwa.plotting.rootplotdatareader.html#pycompwa.plotting.rootplotdatareader.load_ttree">[docs]</a><span class="k">def</span> <span class="nf">load_ttree</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">treename</span><span class="p">,</span> <span class="n">branchnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_ttree"><a class="viewcode-back" href="../../../_api/pycompwa.plotting.rootplotdatareader.html#pycompwa.plotting.rootplotdatareader.load_ttree">[docs]</a><span class="k">def</span> <span class="nf">load_ttree</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">treename</span><span class="p">,</span> <span class="n">branchnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Loads a root ttree into a numpy record array</span>
 <span class="sd">    If branchnames is None all branches are read.</span>

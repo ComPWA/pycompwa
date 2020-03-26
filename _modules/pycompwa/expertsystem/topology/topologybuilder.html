@@ -49,9 +49,12 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> pycompwa
+            <a href="../../../../index.html">
           
 
+          
+            
+            <img src="../../../../_static/logo-small.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -80,22 +83,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../python-modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
             
           
+    <a href= "../../../../py-modindex.html">Module Index (API)</a>
     <a href= "../../../../genindex.html">General Index</a>
-    <a href= "../../../../py-modindex.html">Python Modules Index</a>
   
         </div>
       </div>
@@ -172,19 +172,19 @@
     <span class="n">StateTransitionGraph</span><span class="p">,</span> <span class="n">InteractionNode</span><span class="p">,</span> <span class="n">are_graphs_isomorphic</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder">[docs]</a><span class="k">class</span> <span class="nc">SimpleStateTransitionTopologyBuilder</span><span class="p">():</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder">[docs]</a><span class="k">class</span> <span class="nc">SimpleStateTransitionTopologyBuilder</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simple topology builder. Recursively tries to add the interaction nodes</span>
 <span class="sd">    to available open end edges/lines in all combinations until the number of</span>
 <span class="sd">    open end lines matches the final state lines</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.__init__"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.__init__"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_node_set</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interaction_node_set</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;interaction_node_set must be a list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_node_set</span> <span class="o">=</span> <span class="n">interaction_node_set</span></div>
 
-<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.build_graphs"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">build_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_initial_edges</span><span class="p">,</span> <span class="n">number_of_final_edges</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.build_graphs"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.build_graphs">[docs]</a>    <span class="k">def</span> <span class="nf">build_graphs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_initial_edges</span><span class="p">,</span> <span class="n">number_of_final_edges</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number_of_initial_edges</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;number_of_initial_edges must be an integer&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">number_of_initial_edges</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -232,7 +232,7 @@
             <span class="n">result_graph_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">graph_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">result_graph_list</span></div>
 
-<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.extend_graph"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.extend_graph">[docs]</a>    <span class="k">def</span> <span class="nf">extend_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStateTransitionTopologyBuilder.extend_graph"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.SimpleStateTransitionTopologyBuilder.extend_graph">[docs]</a>    <span class="k">def</span> <span class="nf">extend_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="n">extended_graph_list</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">current_open_end_edges</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -260,7 +260,7 @@
         <span class="k">return</span> <span class="n">extended_graph_list</span></div></div>
 
 
-<div class="viewcode-block" id="attach_node_to_edges"><a class="viewcode-back" href="../../../../_pycompwa/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.attach_node_to_edges">[docs]</a><span class="k">def</span> <span class="nf">attach_node_to_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">interaction_node</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">):</span>
+<div class="viewcode-block" id="attach_node_to_edges"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.topology.topologybuilder.html#pycompwa.expertsystem.topology.topologybuilder.attach_node_to_edges">[docs]</a><span class="k">def</span> <span class="nf">attach_node_to_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">interaction_node</span><span class="p">,</span> <span class="n">ingoing_edge_ids</span><span class="p">):</span>
     <span class="n">temp_graph</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">new_open_end_lines</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
