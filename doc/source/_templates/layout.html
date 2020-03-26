@@ -2,6 +2,6 @@
 
   {% block menu %}
     {{ super() }}
+    <a href= "{{pathto('py-modindex.html', 1)}}">Module Index (API)</a>
     <a href= "{{pathto('genindex.html', 1)}}">General Index</a>
-    <a href= "{{pathto('py-modindex.html', 1)}}">Python Modules Index</a>
   {% endblock %}

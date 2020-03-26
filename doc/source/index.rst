@@ -17,10 +17,15 @@ ongoing development!
    examples
    contribute
    documents
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
    api
 
 Indices and Tables
 ==================
 
-* :ref:`General Index<genindex>`
-* :ref:`Python Modules Index<modindex>`
+* :ref:`modindex`
+* :ref:`genindex`
