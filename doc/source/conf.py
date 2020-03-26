@@ -28,7 +28,6 @@ subprocess.call(
     'sphinx-apidoc '
     '--force '
     '--no-toc '
-    '--module-first '
     '--templatedir _templates '
     '--separate '
     '-o _pycompwa/ ../../pycompwa/ '
