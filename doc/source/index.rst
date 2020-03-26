@@ -1,7 +1,3 @@
-.. |br| raw:: html
-
-  <br />
-
 Welcome to the pycompwa website!
 ================================
 
@@ -29,7 +25,7 @@ development.
    api
 
 Indices and Tables
-==================
+------------------
 
-* :ref:`modindex`
-* :ref:`genindex`
+* :ref:`Python Module Index <modindex>`
+* :ref:`General Index <genindex>`
