@@ -3,7 +3,7 @@ ComPWA Workflow
 
 In the following pages, we show how to use ComPWA via the Python interface.
 We illustrate this workflow with the decay
-:math:`J/\psi \rightarrow \gamma \pi^0 \pi^0` using the helicity formalism.
+:math:`J/\psi \rightarrow \gamma \pi^0 \pi^0`, using the helicity formalism.
 
 Usually, you go through the following four steps to perform your analysis:
 
@@ -13,7 +13,7 @@ Usually, you go through the following four steps to perform your analysis:
     workflow/1_create_model
     workflow/2_generate_data
     workflow/3_perform_fit
-    workflow/4_visualize
+    workflow/4_analyze_results
 
 :ref:`Let’s go!
 <examples/workflow/1_create_model:Step 1: Create an amplitude model>`

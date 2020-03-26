@@ -1,3 +1,6 @@
+# nbconvert output
+*.html
+
 # Output files
 *.dat
 *.pkl

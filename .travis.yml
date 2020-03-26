@@ -54,8 +54,8 @@ jobs:
           -- -- -j2
         - cd $BASEPATH/tests
         - python -m pytest
-        - cd $BASEPATH/examples/jupyter
-        - jupyter nbconvert --execute --ExecutePreprocessor.timeout=None *.ipynb
+        - cd $BASEPATH/examples/
+        - jupyter nbconvert --execute --ExecutePreprocessor.timeout=None */*.ipynb
         - cd $BASEPATH/doc
         - make linkcheck
         - make html
