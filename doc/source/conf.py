@@ -28,12 +28,12 @@ subprocess.call(
     'sphinx-apidoc '
     '--force '
     '--no-toc '
-    '--module-first '
+    '--templatedir _templates '
     '--separate '
-    '-o _pycompwa/ ../../pycompwa/ '
+    '-o _api/ ../../pycompwa/ '
     '../../pycompwa/expertsystem/solvers/constraint '
     '../../pycompwa/ui.*.so; '
-    'rm _pycompwa/pycompwa.rst',
+    'cp _api/pycompwa_overwrite _api/pycompwa.rst',
     shell=True)
 
 subprocess.call(
@@ -75,7 +75,7 @@ extensions = [
 ]
 
 # Settings for autosectionlabel
-autosectionlabel_prefix_document = False
+autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 1
 
 # Settings for linkcheck
@@ -87,7 +87,6 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-#source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
 # The master toctree document.
@@ -135,7 +134,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'canonical_url': '',
     'analytics_id': '',
-    'logo_only': False,
+    'logo_only': True,
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
@@ -143,11 +142,11 @@ html_theme_options = {
     'collapse_navigation': True,
     'sticky_navigation': True,
     'navigation_depth': 4,
-    'includehidden': True,
+    'includehidden': False,
     'titles_only': False,
 }
 
-# html_logo = '../images/logo-small.png'
+html_logo = '../../ComPWA/doc/images/logo-small.png'
 
 html_show_sourcelink = False
 

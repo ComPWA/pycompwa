@@ -1,16 +1,8 @@
 API
 ===
 
-.. automodule:: pycompwa
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Subpackages
------------
+See :ref:`modindex`.
 
 .. toctree::
 
-   _pycompwa/pycompwa.expertsystem
-   _pycompwa/pycompwa.plotting
-   _pycompwa/pycompwa.ui
+   _api/pycompwa

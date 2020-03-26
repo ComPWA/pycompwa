@@ -1,27 +1,31 @@
-Welcome to pycompwa's documentation!
-====================================
+Welcome to the pycompwa website!
+================================
 
-``pycompwa`` is a collection of python modules which extend the Common
-Partial-Wave-Analysis Framework (`ComPWA <https://github.com/ComPWA/ComPWA>`__).
-These docs are meant to provide information about the installation, how-tos to
-get things running, information on the design, as well as documentation of the
-ongoing development!
+The ``pycompwa`` package is a collection of python modules that interface and
+extend the "Common Partial-Wave-Analysis Framework"
+(`ComPWA <https://github.com/ComPWA/ComPWA>`__).
+These pages provide information about the installation, how-tos to get things
+running, information on the design, as well as documentation of the ongoing
+development.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
-   overview
    installation
-   python-modules
+   modules
    examples
-   faq
    contribute
    documents
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
    api
 
 Indices and Tables
-==================
+------------------
 
-* :ref:`General Index<genindex>`
-* :ref:`Python Modules Index<modindex>`
+* :ref:`Python Module Index <modindex>`
+* :ref:`General Index <genindex>`

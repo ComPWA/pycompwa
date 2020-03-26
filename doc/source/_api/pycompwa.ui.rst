@@ -1,5 +1,5 @@
-pycompwa.ui package
-===================
+ui
+==
 
 This package defines the interface to the computational backend
 `ComPWA <https://compwa.github.io/ComPWA/>`__. These bindings have been defined
