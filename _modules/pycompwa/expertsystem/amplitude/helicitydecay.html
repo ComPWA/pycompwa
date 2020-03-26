@@ -178,7 +178,7 @@
     <span class="n">get_particle_property</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="group_graphs_same_initial_and_final"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.group_graphs_same_initial_and_final">[docs]</a><span class="k">def</span> <span class="nf">group_graphs_same_initial_and_final</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="group_graphs_same_initial_and_final"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.group_graphs_same_initial_and_final">[docs]</a><span class="k">def</span> <span class="nf">group_graphs_same_initial_and_final</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Each graph corresponds to a specific state transition amplitude.</span>
 <span class="sd">    This function groups together graphs, which have the same initial and</span>
@@ -204,7 +204,7 @@
     <span class="k">return</span> <span class="n">graph_group_list</span></div>
 
 
-<div class="viewcode-block" id="get_graph_group_unique_label"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_graph_group_unique_label">[docs]</a><span class="k">def</span> <span class="nf">get_graph_group_unique_label</span><span class="p">(</span><span class="n">graph_group</span><span class="p">):</span>
+<div class="viewcode-block" id="get_graph_group_unique_label"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_graph_group_unique_label">[docs]</a><span class="k">def</span> <span class="nf">get_graph_group_unique_label</span><span class="p">(</span><span class="n">graph_group</span><span class="p">):</span>
     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">if</span> <span class="n">graph_group</span><span class="p">:</span>
         <span class="n">ise</span> <span class="o">=</span> <span class="n">get_initial_state_edges</span><span class="p">(</span><span class="n">graph_group</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -216,7 +216,7 @@
     <span class="k">return</span> <span class="n">label</span></div>
 
 
-<div class="viewcode-block" id="get_helicity_from_edge_props"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_helicity_from_edge_props">[docs]</a><span class="k">def</span> <span class="nf">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">edge_props</span><span class="p">):</span>
+<div class="viewcode-block" id="get_helicity_from_edge_props"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_helicity_from_edge_props">[docs]</a><span class="k">def</span> <span class="nf">get_helicity_from_edge_props</span><span class="p">(</span><span class="n">edge_props</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
@@ -228,7 +228,7 @@
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not find spin projection quantum number!&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="determine_attached_final_state_string"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.determine_attached_final_state_string">[docs]</a><span class="k">def</span> <span class="nf">determine_attached_final_state_string</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
+<div class="viewcode-block" id="determine_attached_final_state_string"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.determine_attached_final_state_string">[docs]</a><span class="k">def</span> <span class="nf">determine_attached_final_state_string</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
     <span class="n">edge_ids</span> <span class="o">=</span> <span class="n">determine_attached_final_state</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">)</span>
     <span class="n">fs_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">edge_ids</span><span class="p">:</span>
@@ -236,7 +236,7 @@
     <span class="k">return</span> <span class="n">fs_string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span></div>
 
 
-<div class="viewcode-block" id="determine_attached_final_state"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.determine_attached_final_state">[docs]</a><span class="k">def</span> <span class="nf">determine_attached_final_state</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
+<div class="viewcode-block" id="determine_attached_final_state"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.determine_attached_final_state">[docs]</a><span class="k">def</span> <span class="nf">determine_attached_final_state</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines all final state particles of a graph, which are attached</span>
 <span class="sd">    downward (forward in time) for a given edge (resembling the root)</span>
@@ -263,7 +263,7 @@
     <span class="k">return</span> <span class="n">final_state_edge_ids</span></div>
 
 
-<div class="viewcode-block" id="get_recoil_edge"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_recoil_edge">[docs]</a><span class="k">def</span> <span class="nf">get_recoil_edge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_recoil_edge"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_recoil_edge">[docs]</a><span class="k">def</span> <span class="nf">get_recoil_edge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines the id of the recoil edge for the specified edge of a graph.</span>
 
@@ -285,7 +285,7 @@
     <span class="k">return</span> <span class="n">outgoing_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="get_parent_recoil_edge"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_parent_recoil_edge">[docs]</a><span class="k">def</span> <span class="nf">get_parent_recoil_edge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
+<div class="viewcode-block" id="get_parent_recoil_edge"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_parent_recoil_edge">[docs]</a><span class="k">def</span> <span class="nf">get_parent_recoil_edge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Determines the id of the recoil edge of the parent edge for the specified</span>
 <span class="sd">    edge of a graph.</span>
@@ -308,7 +308,7 @@
     <span class="k">return</span> <span class="n">get_recoil_edge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">ingoing_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_prefactor"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_prefactor">[docs]</a><span class="k">def</span> <span class="nf">get_prefactor</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="get_prefactor"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.get_prefactor">[docs]</a><span class="k">def</span> <span class="nf">get_prefactor</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    calculates the product of all prefactors defined in this graph as a double</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -329,7 +329,7 @@
     <span class="k">return</span> <span class="n">prefactor</span></div>
 
 
-<div class="viewcode-block" id="generate_kinematics"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_kinematics">[docs]</a><span class="k">def</span> <span class="nf">generate_kinematics</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_kinematics"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_kinematics">[docs]</a><span class="k">def</span> <span class="nf">generate_kinematics</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
     <span class="n">tempdict</span> <span class="o">=</span> <span class="p">{</span>
         <span class="c1"># &lt;PhspVolume&gt;0.541493&lt;/PhspVolume&gt;</span>
         <span class="s1">&#39;InitialState&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Particle&#39;</span><span class="p">:</span> <span class="p">[]},</span> <span class="s1">&#39;FinalState&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Particle&#39;</span><span class="p">:</span> <span class="p">[]}</span>
@@ -351,7 +351,7 @@
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;HelicityKinematics&#39;</span><span class="p">:</span> <span class="n">tempdict</span><span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="generate_particle_list"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particle_list">[docs]</a><span class="k">def</span> <span class="nf">generate_particle_list</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_particle_list"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particle_list">[docs]</a><span class="k">def</span> <span class="nf">generate_particle_list</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
     <span class="c1"># create particle entries</span>
     <span class="n">temp_particle_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">particles</span> <span class="o">=</span> <span class="p">[]</span>
@@ -365,7 +365,7 @@
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;ParticleList&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Particle&#39;</span><span class="p">:</span> <span class="n">particles</span><span class="p">}}</span></div>
 
 
-<div class="viewcode-block" id="remove_spin_projection"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.remove_spin_projection">[docs]</a><span class="k">def</span> <span class="nf">remove_spin_projection</span><span class="p">(</span><span class="n">edge_props</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_spin_projection"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.remove_spin_projection">[docs]</a><span class="k">def</span> <span class="nf">remove_spin_projection</span><span class="p">(</span><span class="n">edge_props</span><span class="p">):</span>
     <span class="n">qns_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">QuantumNumber</span><span class="p">)</span>
     <span class="n">type_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Type</span><span class="p">)</span>
     <span class="n">spin_label</span> <span class="o">=</span> <span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Spin</span>
@@ -381,7 +381,7 @@
     <span class="k">return</span> <span class="n">new_edge_props</span></div>
 
 
-<div class="viewcode-block" id="generate_particles_string"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string">[docs]</a><span class="k">def</span> <span class="nf">generate_particles_string</span><span class="p">(</span><span class="n">name_hel_list</span><span class="p">,</span> <span class="n">use_helicity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="generate_particles_string"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.generate_particles_string">[docs]</a><span class="k">def</span> <span class="nf">generate_particles_string</span><span class="p">(</span><span class="n">name_hel_list</span><span class="p">,</span> <span class="n">use_helicity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">make_parity_partner</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">hel</span> <span class="ow">in</span> <span class="n">name_hel_list</span><span class="p">:</span>
@@ -408,8 +408,8 @@
     <span class="k">return</span> <span class="n">name_hel_list</span>
 
 
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="n">AbstractAmplitudeNameGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="n">AbstractAmplitudeNameGenerator</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_amp_coefficient_infos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_parity_conservation</span> <span class="o">=</span> <span class="n">use_parity_conservation</span>
 
@@ -419,7 +419,7 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using parity conservation to connect fit &quot;</span>
                           <span class="s2">&quot;parameters together with prefactors.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_coefficient_infos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_coefficient_infos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Generates coefficient info for a sequential amplitude graph.</span>
 
@@ -466,7 +466,7 @@
                     <span class="s1">&#39;@Real&#39;</span><span class="p">:</span> <span class="n">prefactor</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">amplitude_coefficient_infos</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_unique_amplitude_name"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_unique_amplitude_name">[docs]</a>    <span class="k">def</span> <span class="nf">generate_unique_amplitude_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_unique_amplitude_name"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_unique_amplitude_name">[docs]</a>    <span class="k">def</span> <span class="nf">generate_unique_amplitude_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Generates a unique name for the amplitude corresponding to the given</span>
 <span class="sd">        :py:class:`StateTransitionGraph`.</span>
@@ -516,8 +516,8 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">par_name_suffix</span><span class="p">,</span> <span class="n">pp_par_name_suffix</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">AbstractAmplitudeGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">AbstractAmplitudeGenerator</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">name_generator</span><span class="o">=</span><span class="n">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helicity_amplitudes</span> <span class="o">=</span> <span class="p">{}</span>
@@ -526,7 +526,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name_generator</span> <span class="o">=</span> <span class="n">name_generator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">graphs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Number of solution graphs is not larger than zero!&quot;</span><span class="p">)</span>
@@ -552,7 +552,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_amplitude_info</span><span class="p">(</span><span class="n">graph_groups</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously">[docs]</a>    <span class="k">def</span> <span class="nf">fix_parameters_unambiguously</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.fix_parameters_unambiguously">[docs]</a>    <span class="k">def</span> <span class="nf">fix_parameters_unambiguously</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Fix parameters, so that the total amplitude is unambiguous, with regard</span>
 <span class="sd">        to the fit parameters. In other words: all fit parameters per graph,</span>
@@ -560,7 +560,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_amplitude_info"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_amplitude_info">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_groups</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_amplitude_info"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_amplitude_info">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_groups</span><span class="p">):</span>
         <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
         <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
         <span class="n">component_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Component</span><span class="p">)</span>
@@ -613,7 +613,7 @@
             <span class="p">}</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_sequential_decay"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_sequential_decay">[docs]</a>    <span class="k">def</span> <span class="nf">generate_sequential_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_sequential_decay"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_sequential_decay">[docs]</a>    <span class="k">def</span> <span class="nf">generate_sequential_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
         <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
         <span class="n">component_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Component</span><span class="p">)</span>
@@ -670,7 +670,7 @@
 
         <span class="k">return</span> <span class="n">coefficient_amplitude_dict</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_partial_decay"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_partial_decay">[docs]</a>    <span class="k">def</span> <span class="nf">generate_partial_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate_partial_decay"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate_partial_decay">[docs]</a>    <span class="k">def</span> <span class="nf">generate_partial_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="n">class_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Class</span><span class="p">)</span>
         <span class="n">name_label</span> <span class="o">=</span> <span class="n">get_xml_label</span><span class="p">(</span><span class="n">XMLLabelConstants</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
         <span class="n">decay_products</span> <span class="o">=</span> <span class="p">[]</span>
@@ -720,12 +720,12 @@
 
         <span class="k">return</span> <span class="n">partial_decay_dict</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.get_fit_parameters"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.get_fit_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_fit_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.get_fit_parameters"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.get_fit_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_fit_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Number of parameters:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
             <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span></div>
 
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.write_to_file"><a class="viewcode-back" href="../../../../_api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.write_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.write_to_file"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.write_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
             <span class="n">full_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle_list</span>
             <span class="n">full_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span><span class="p">)</span>

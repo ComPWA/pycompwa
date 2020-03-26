@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>expertsystem &mdash; pycompwa  documentation</title>
+  <title>solvers &mdash; pycompwa  documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="amplitude" href="pycompwa.expertsystem.amplitude.html" />
-    <link rel="prev" title="pycompwa" href="pycompwa.html" /> 
+    <link rel="next" title="state" href="pycompwa.expertsystem.state.html" />
+    <link rel="prev" title="helicitydecay" href="pycompwa.expertsystem.amplitude.helicitydecay.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -144,14 +144,16 @@
         
           <li><a href="pycompwa.html">pycompwa</a> &raquo;</li>
         
-      <li>expertsystem</li>
+          <li><a href="pycompwa.expertsystem.html">expertsystem</a> &raquo;</li>
+        
+      <li>solvers</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/_api/pycompwa.expertsystem.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/api/pycompwa.expertsystem.solvers.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -165,59 +167,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="expertsystem">
-<h1>expertsystem<a class="headerlink" href="#expertsystem" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.expertsystem.amplitude.html">amplitude</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.amplitude.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.amplitude.abstractgenerator.html">abstractgenerator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.amplitude.canonicaldecay.html">canonicaldecay</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html">helicitydecay</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.amplitude.html#module-pycompwa.expertsystem.amplitude">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.expertsystem.solvers.html">solvers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.solvers.html#module-pycompwa.expertsystem.solvers">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.expertsystem.state.html">state</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.state.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.state.conservationrules.html">conservationrules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.state.particle.html">particle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.state.propagation.html">propagation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.state.html#module-pycompwa.expertsystem.state">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.expertsystem.topology.html">topology</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.topology.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.topology.graph.html">graph</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.topology.topologybuilder.html">topologybuilder</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.topology.html#module-pycompwa.expertsystem.topology">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pycompwa.expertsystem.ui.html">ui</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.ui.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.ui.default_settings.html">default_settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycompwa.expertsystem.ui.system_control.html">system_control</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="pycompwa.expertsystem.ui.html#module-pycompwa.expertsystem.ui">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="module-pycompwa.expertsystem">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycompwa.expertsystem" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="solvers">
+<h1>solvers<a class="headerlink" href="#solvers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-pycompwa.expertsystem.solvers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycompwa.expertsystem.solvers" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -229,10 +182,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pycompwa.expertsystem.amplitude.html" class="btn btn-neutral float-right" title="amplitude" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pycompwa.expertsystem.state.html" class="btn btn-neutral float-right" title="state" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pycompwa.html" class="btn btn-neutral float-left" title="pycompwa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pycompwa.expertsystem.amplitude.helicitydecay.html" class="btn btn-neutral float-left" title="helicitydecay" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
