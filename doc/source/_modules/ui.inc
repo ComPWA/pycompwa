@@ -182,4 +182,3 @@ Coming soon...
 
 Visualizing of data samples and Intensities can be done via the
 :mod:`pycompwa.plotting module` documented in the next section.
-

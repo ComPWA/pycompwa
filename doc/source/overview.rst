@@ -9,7 +9,7 @@ About pycompwa
 --------------
 
 pycompwa is a collection of python modules and the python interface to
-`ComPWA <https://github.com/ComPWA/ComPWA>`_. ComPWA stands for 
+`ComPWA <https://github.com/ComPWA/ComPWA>`_. ComPWA stands for
 "Common Partial Wave Analysis framework".
 
 Analogous to ComPWA, ``pycompwa``'s focus is also modularity. ``pycompwa``
@@ -20,6 +20,3 @@ extends the ComPWA framework with some useful modules:
 
 * :ref:`ui <python-ui>` |br|
   The python interface to ComPWA
-
-* :ref:`plotting <plotting>` |br|
-  Facilitates the visualization of data and results

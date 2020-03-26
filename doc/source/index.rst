@@ -13,7 +13,7 @@ ongoing development!
 
    overview
    installation
-   python-modules
+   modules
    examples
    faq
    contribute
