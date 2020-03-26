@@ -40,7 +40,7 @@ via numpy or pandas and then construct :class:`Event` classes.
    :undoc-members:
    :noindex:
 
-The procedure is explained :ref:`here <_examples/DataInput:Importing Data>` in
+The procedure is explained :ref:`here <examples/DataInput:Importing Data>` in
 more detail.
 
 Alternatively, the reading and writing of ROOT files is supported via the

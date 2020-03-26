@@ -5,4 +5,4 @@ See :ref:`modindex`.
 
 .. toctree::
 
-   _api/pycompwa
+   api/pycompwa

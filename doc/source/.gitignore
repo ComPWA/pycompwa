@@ -1,4 +1,4 @@
-_api/*.rst
-!_api/pycompwa.ui.rst
-!_api/pycompwa_overwrite
-_examples/*.rst
+api/*.rst
+!api/pycompwa.ui.rst
+!api/pycompwa_overwrite
+examples/*.rst
