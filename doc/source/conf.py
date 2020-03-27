@@ -140,7 +140,7 @@ html_theme_options = {
     'analytics_id': '',
     'logo_only': True,
     'display_version': True,
-    'prev_next_buttons_location': 'bottom',
+    'prev_next_buttons_location': 'both',
     'style_external_links': False,
     # Toc options
     'collapse_navigation': True,
