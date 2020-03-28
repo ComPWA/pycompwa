@@ -167,6 +167,8 @@ html_logo = '../../ComPWA/doc/images/logo-small.png'
 html_copy_source = False  # do not copy rst files
 
 html_show_sourcelink = False
+html_show_copyright = False
+html_show_sphinx = False
 
 html_context = {
     'display_github': True,
