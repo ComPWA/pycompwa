@@ -15,8 +15,7 @@ Usually, you go through the following four steps to perform your analysis:
     workflow/3_perform_fit
     workflow/4_analyze_results
 
-:ref:`Let’s go!
-<examples/workflow/1_create_model:Step 1: Create an amplitude model>`
+:doc:`Let’s go! <workflow/1_create_model>`
 
 .. note::
 
