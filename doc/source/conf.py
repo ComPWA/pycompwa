@@ -164,6 +164,8 @@ html_theme_options = {
 
 html_logo = '../../ComPWA/doc/images/logo-small.png'
 
+html_copy_source = False  # do not copy rst files
+
 html_show_sourcelink = False
 
 html_context = {
