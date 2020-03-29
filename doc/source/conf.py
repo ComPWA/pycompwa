@@ -68,6 +68,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
+    'sphinx_copybutton',
 ]
 
 # Settings for autosectionlabel
