@@ -79,7 +79,7 @@ autosectionlabel_maxdepth = 1
 linkcheck_anchors = False
 
 # Settings for nbsphinx
-if 'TRAVIS' in os.environ:
+if 'TRAVIS' or 'NBSPHINX_EXECUTE' in os.environ:
     nbsphinx_execute = 'always'
 else:
     nbsphinx_execute = 'never'
