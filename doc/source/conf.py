@@ -17,6 +17,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import os
 import subprocess
 
 # It is assumed that you run sphinx from the virtual environment which
@@ -34,16 +35,6 @@ subprocess.call(
     '../../pycompwa/expertsystem/solvers/constraint '
     '../../pycompwa/ui.*.so; '
     'cp api/pycompwa_overwrite api/pycompwa.rst',
-    shell=True)
-
-# -- Generate example pages from Jupyter notebooks ----------------------------
-subprocess.call(
-    'jupyter nbconvert --to rst ../../examples/*/*.ipynb && '
-    'rm -f examples/*/*.rst && '
-    'mkdir -p examples/workflow && '
-    'mkdir -p examples/tools && '
-    'mv ../../examples/workflow/*.rst ./examples/workflow/. && '
-    'mv ../../examples/tools/*.rst ./examples/tools/.',
     shell=True)
 
 
@@ -67,6 +58,7 @@ def setup(app):
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'nbsphinx',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.autosummary',
@@ -85,13 +77,27 @@ autosectionlabel_maxdepth = 1
 # Settings for linkcheck
 linkcheck_anchors = False
 
+# Settings for nbsphinx
+if 'TRAVIS' in os.environ:
+    nbsphinx_execute = 'always'
+else:
+    nbsphinx_execute = 'never'
+nbsphinx_timeout = -1
+nbsphinx_execute_arguments = [
+    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+    "--InlineBackend.rc={'figure.dpi': 96}",
+]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = '.rst'
+source_suffix = [
+    '.rst',
+    '.ipynb',
+]
 
 # The master toctree document.
 master_doc = 'index'
@@ -111,7 +117,12 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['tests']
+exclude_patterns = [
+    '**.ipynb_checkpoints',
+    '_build',
+    'build',
+    'tests',
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

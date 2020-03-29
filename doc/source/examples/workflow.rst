@@ -9,11 +9,9 @@ Usually, you go through the following four steps to perform your analysis:
 
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    workflow/1_create_model
-    workflow/2_generate_data
-    workflow/3_perform_fit
-    workflow/4_analyze_results
+    workflow/*
 
 :doc:`Let’s go! <workflow/1_create_model>`
 
