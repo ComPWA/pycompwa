@@ -1,6 +1,7 @@
 """ sample script for the testing purposes using the decay
     JPsi -> pi0 pi+ pi-
 """
+
 import logging
 
 from pycompwa.expertsystem.ui.system_control import (
@@ -17,7 +18,7 @@ final_state = [("pi0", [0]), ("pi+", [0]), ("pi-", [0])]
 
 tbd_manager = StateTransitionManager(initial_state, final_state,
                                      ['rho'])
-#tbd_manager.number_of_threads = 1
+# tbd_manager.number_of_threads = 1
 tbd_manager.add_final_state_grouping(['pi+', 'pi-'])
 tbd_manager.set_allowed_interaction_types(
     [InteractionTypes.EM])

@@ -3,12 +3,15 @@
 """
 import logging
 
+import pytest
+
 from pycompwa.expertsystem.ui.system_control import StateTransitionManager
 
 from pycompwa.expertsystem.amplitude.helicitydecay import (
     HelicityAmplitudeGeneratorXML)
 
 
+@pytest.mark.slow
 def test_script():
     logging.basicConfig(level=logging.INFO)
     logging.getLogger().setLevel(logging.INFO)

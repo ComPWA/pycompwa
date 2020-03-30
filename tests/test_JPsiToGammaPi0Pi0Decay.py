@@ -3,6 +3,8 @@
 """
 import logging
 
+import pytest
+
 from pycompwa.expertsystem.topology.graph import (
     get_final_state_edges, get_initial_state_edges,
     get_intermediate_state_edges)
@@ -15,6 +17,7 @@ from pycompwa.expertsystem.amplitude.helicitydecay import (
     HelicityAmplitudeGeneratorXML)
 
 
+@pytest.mark.slow
 def test_script():
     logging.basicConfig(level=logging.INFO)
     # initialize the graph edges (initial and final state)
@@ -54,7 +57,3 @@ def test_script():
     xml_generator = HelicityAmplitudeGeneratorXML()
     xml_generator.generate(solutions)
     xml_generator.write_to_file('JPsiToGammaPi0Pi0.xml')
-
-
-if __name__ == '__main__':
-    test_script()

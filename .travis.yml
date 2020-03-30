@@ -95,7 +95,7 @@ jobs:
         - python setup.py --generator "Unix Makefiles" --skip-generator-test install
           -- -- -j2
         - cd $BASEPATH/tests
-        - python -m pytest --cov-config=.coveragerc --cov=pycompwa
+        - python -m pytest
       after_success:
         - python -m codecov
 

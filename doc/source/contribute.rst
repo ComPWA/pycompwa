@@ -98,10 +98,14 @@ You also check the coverage of the unit tests:
 .. code-block:: shell
 
   cd tests
-  pytest --durations=0 --cov-config=.coveragerc --cov=pycompwa --cov-report html -m "not slow"
+  pytest
 
 Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening ``htmlcov/index.html``!
+
+If you want to speed up the tests you can run ``pytest`` with the flag
+``-m "not slow"``. Note, however, that in that case, the test coverage is not
+reliable.
 
 
 Jupyter notebook tools
