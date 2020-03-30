@@ -98,7 +98,7 @@ You also check the coverage of the unit tests:
 .. code-block:: shell
 
   cd tests
-  pytest --durations=0 --cov-report=html
+  pytest
 
 Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening ``htmlcov/index.html``!
