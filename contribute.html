@@ -242,11 +242,14 @@ committing, just use the option <code class="docutils literal notranslate"><span
 are defined in the <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in the main directory.</p>
 <p>You also check the coverage of the unit tests:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> tests
-pytest --durations<span class="o">=</span><span class="m">0</span> --cov-config<span class="o">=</span>.coveragerc --cov<span class="o">=</span>pycompwa --cov-report html -m <span class="s2">&quot;not slow&quot;</span>
+pytest
 </pre></div>
 </div>
 <p>Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening <code class="docutils literal notranslate"><span class="pre">htmlcov/index.html</span></code>!</p>
+<p>If you want to speed up the tests you can run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> with the flag
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;not</span> <span class="pre">slow&quot;</span></code>. Note, however, that in that case, the test coverage is not
+reliable.</p>
 </div>
 <div class="section" id="jupyter-notebook-tools">
 <h3>Jupyter notebook tools<a class="headerlink" href="#jupyter-notebook-tools" title="Permalink to this headline">¶</a></h3>
