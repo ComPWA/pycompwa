@@ -98,7 +98,7 @@ You also check the coverage of the unit tests:
 .. code-block:: shell
 
   cd tests
-  pytest --durations=0 --cov-config=.coveragerc --cov=pycompwa --cov-report html -m "not slow"
+  pytest --durations=0 --cov-report=html
 
 Now you can find a nice graphical overview of which parts of the code are not
 covered by the tests by opening ``htmlcov/index.html``!
