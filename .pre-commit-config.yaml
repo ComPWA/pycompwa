@@ -28,3 +28,11 @@ repos:
     hooks:
       - id: nbstripout
         files: ".ipynb"
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types:
+          - python
