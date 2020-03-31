@@ -77,9 +77,12 @@ autosectionlabel_maxdepth = 1
 
 # Settings for linkcheck
 linkcheck_anchors = False
+linkcheck_ignore = [
+    f'https://www.gemfony.eu/',
+]
 
 # Settings for nbsphinx
-if 'TRAVIS' or 'NBSPHINX_EXECUTE' in os.environ:
+if 'TRAVIS' in os.environ or 'NBSPHINX_EXECUTE' in os.environ:
     nbsphinx_execute = 'always'
 else:
     nbsphinx_execute = 'never'
