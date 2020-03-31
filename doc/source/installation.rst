@@ -7,11 +7,11 @@ Installation
 
 It is best to install the pycompwa framework within a virtual environment, so
 that all dependencies of pycompwa are contained within there. We recommend to
-use `Anaconda <https://www.anaconda.com/distribution/>`__ in combination with
-`Conda-Forge <https://conda-forge.org/>`__.
+use `Anaconda <https://www.anaconda.com/distribution/>`_ in combination with
+`Conda-Forge <https://conda-forge.org/>`_.
 
 After you have `installed Anaconda
-<https://docs.anaconda.com/anaconda/install/>`__, set Conda-Forge as the
+<https://docs.anaconda.com/anaconda/install/>`_, set Conda-Forge as the
 default channel as follows:
 
 .. code-block:: shell
@@ -20,7 +20,7 @@ default channel as follows:
   conda config --set channel_priority strict
 
 Now, create a new environment with `all required dependencies
-<https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`__
+<https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`_
 installed:
 
 .. code-block:: shell
@@ -56,19 +56,19 @@ ComPWA and the pycompwa interface have the following dependencies:
 
 * ``scikit-build`` (a python package) |br|
   Install via ``pip install scikit-build``
-* requirements of `ComPWA <https://github.com/ComPWA/ComPWA#prerequisites>`__:
+* requirements of `ComPWA <https://github.com/ComPWA/ComPWA#prerequisites>`_:
 
-  * Build tool: `cmake <https://cmake.org/>`__
+  * Build tool: `cmake <https://cmake.org/>`_
   * Compiler: ``gcc`` or ``clang``
-  * `Boost <https://www.boost.org/>`__
+  * `Boost <https://www.boost.org/>`_
   * optional libraries: |br|
-    `ROOT <https://root.cern.ch/downloading-root>`__ and/or `Minuit
-    <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`__,
-    `Geneva <https://www.gemfony.eu/>`__, and
-    `GSL <https://www.gnu.org/software/gsl/>`__
+    `ROOT <https://root.cern.ch/downloading-root>`_ and/or `Minuit
+    <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`_,
+    `Geneva <https://www.gemfony.eu/>`_, and
+    `GSL <https://www.gnu.org/software/gsl/>`_
 
 * The Python requirements listed `here
-  <https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`__
+  <https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`_
 
 Installation from source
 ------------------------

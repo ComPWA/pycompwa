@@ -13,11 +13,10 @@ Developer mode
 If you want to develop new functionality for pycompwa, installing pycompwa as a
 pip or Conda package will not suffice: you will have to **build from source**,
 so that you can continuously implement updates. In this 'developer mode', you
-still work in a Conda environment (see :ref:`installation:Installation`,
-especially for the `Conda-Forge <https://conda-forge.org/>`__ instructions),
-but now you install the pycompwa package from the cloned repository using
-`conda-develop
-<https://docs.conda.io/projects/conda-build/en/latest/resources/commands/conda-develop.html>`__,
+still work in a Conda environment (see :doc:`installation`, especially for the
+`Conda-Forge <https://conda-forge.org/>`_ instructions), but now you install
+the :mod:`pycompwa` package from the cloned repository using `conda-develop
+<https://docs.conda.io/projects/conda-build/en/latest/resources/commands/conda-develop.html>`_,
 so that any changes you make in the source code immediately have effect.
 
 First, clone the pycompwa repository recursively to some suitable folder (you
@@ -69,14 +68,14 @@ Python developer tools
 
 For contributing to pycompwa, we recommend you also install the packages listed
 under `requirements_dev.txt
-<https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt>`__. In
+<https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt>`_. In
 the Conda environment you created for pycompwa:
 
 .. code-block:: shell
 
   conda install --file requirements_dev.txt
 
-An important tool there is `pre-commit <https://pre-commit.com/>`__. This will
+An important tool there is `pre-commit <https://pre-commit.com/>`_. This will
 run certain tests locally when you make a Git commit. To activate, run the
 following after cloning:
 
@@ -115,20 +114,20 @@ Jupyter notebooks aren't the most friendly with regard to Version Control
 Systems like Git because in the back-end, a notebook is a JSON file that
 changes for instances when you run a cell. There is no simple solution for this
 other than to clean the cell output upon saving. You can automatize this with
-`nbstripout <https://github.com/kynan/nbstripout>`__ if you have activated
+`nbstripout <https://github.com/kynan/nbstripout>`_ if you have activated
 ``pre-commit`` (see :ref:`python-dev-tools`).
 
 Jupyter offers several other useful extensions that can be activate `like this
-<https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`__
+<https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`_
 If you want to contribute to the example notebooks, make sure to check out the
 following extensions:
 
 * `jupyter-autopep8
-  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_autopep8.html>`__
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_autopep8.html>`_
 * `ruler
-  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/ruler/readme.html>`__
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/ruler/readme.html>`_
 * `sphellchecker
-  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html>`__
+  <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html>`_
 
 
 How to contribute through Git
@@ -141,10 +140,10 @@ How to contribute through Git
 
 If you are new to git, maybe you should read some documentation first, such as
 the
-`Git Manual <https://git-scm.com/docs/user-manual.html>`__,
-`Tutorial <http://rogerdudler.github.io/git-guide/>`__, a
-`CheatSheet <https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf>`__.
-The `Git Pro <https://git-scm.com/book/en/v2>`__ book particularly serves as a
+`Git Manual <https://git-scm.com/docs/user-manual.html>`_,
+`Tutorial <http://rogerdudler.github.io/git-guide/>`_, a
+`CheatSheet <https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf>`_.
+The `Git Pro <https://git-scm.com/book/en/v2>`_ book particularly serves as a
 great, free overview that is a nice read for both beginners and more
 experienced users.
 
@@ -155,7 +154,7 @@ contribute:
 2. Get a local copy of repository: |br|
    ``git clone git@github.com:YOURACCOUNT/pycompwa.git`` |br|
    (this uses the SSH protocol, so you need to `set your SSH keys
-   <https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification>`__
+   <https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification>`_
    first)
 3. Add the main repository as a second remote called ``upstream``: |br|
    ``git remote add upstream git@github.com:ComPWA/pycompwa.git``
@@ -171,7 +170,7 @@ contribute:
 
 You repeat the following steps until your contribution is finished. Only then
 can your contributions be added main repository through a `pull request
-<https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests>`__
+<https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests>`_
 (PR).
 
 * ... edit some files ...
@@ -195,7 +194,7 @@ can your contributions be added main repository through a `pull request
     Otherwise repeat these steps until you're done (you can abort the whole
     rebase process via ``git rebase --abort``):
 
-    + Review the conflicts (`VS Code <https://code.visualstudio.com/>`__ is a
+    + Review the conflicts (`VS Code <https://code.visualstudio.com/>`_ is a
       great tool for this)
     + Mark them as resolved ``git add <filename>``
     + Continue the rebase ``git rebase --continue``
@@ -233,15 +232,15 @@ Commit conventions
 * In the master branch, it should be possible to compile and test the framework
   **in each commit**. In your own topic branches, it is recommended to commit
   frequently (WIP keyword), but `squash those commits
-  <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>`__
+  <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>`_
   to compilable commits upon submitting a merge request.
 * Please use `conventional commit messages
-  <https://www.conventionalcommits.org/>`__: start the commit subject line with
+  <https://www.conventionalcommits.org/>`_: start the commit subject line with
   a semantic keyword (see e.g. `Angular
-  <https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type>`__ or
+  <https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type>`_ or
   `these examples
-  <https://seesparkbox.com/foundry/semantic_commit_messages>`__,
-  followed by `a column <https://git-scm.com/docs/git-interpret-trailers>`__,
+  <https://seesparkbox.com/foundry/semantic_commit_messages>`_,
+  followed by `a column <https://git-scm.com/docs/git-interpret-trailers>`_,
   then the message. The subject line should be in imperative mood—just imagine
   the commit to give a command to the code framework. So for instance:
   ``feat: add coverage report tools`` or ``fix: remove ...``. The message
@@ -254,7 +253,7 @@ Commit conventions
 Reporting Issues
 ----------------
 Use the `pycompwa github issues page
-<https://github.com/ComPWA/pycompwa/issues>`__ to:
+<https://github.com/ComPWA/pycompwa/issues>`_ to:
 
 * report problems/issues
 * file a feature request
@@ -270,14 +269,14 @@ Continuous Integration (CI)
 ---------------------------
 The master branch is automatically build using TravisCI. Probably it is
 interesting to check out the `log file
-<https://travis-ci.com/ComPWA/pycompwa>`__ and the projects TravisCI
+<https://travis-ci.com/ComPWA/pycompwa>`_ and the projects TravisCI
 configuration file `travisCI.yml
-<https://github.com/ComPWA/pycompwa/blob/master/.travis.yml>`__.
+<https://github.com/ComPWA/pycompwa/blob/master/.travis.yml>`_.
 
 A code coverage report is generated for each pull request. Try to keep coverage
 high by writing new tests if coverage decreases. You can see an overview
-pycompwa's coverage `here <https://codecov.io/gh/ComPWA/pycompwa>`__. Under
-`files <https://codecov.io/gh/ComPWA/pycompwa/tree/master/pycompwa>`__ you have
+pycompwa's coverage `here <https://codecov.io/gh/ComPWA/pycompwa>`_. Under
+`files <https://codecov.io/gh/ComPWA/pycompwa/tree/master/pycompwa>`_ you have
 a detailed overview of coverage per module, and you can investigate coverage
 all the way down to the source code.
 
@@ -292,8 +291,7 @@ Try and follow his advice, and keep in mind the 'boy scout rule'::
   "Leave behind the code cleaner, then you found it"
 
 For the python code we follow the `pep8 standard
-<https://www.python.org/dev/peps/pep-0008/>`__. Available automatic source code
-highlighters and formatters are `flake8` and `autopep8`.
+<https://www.python.org/dev/peps/pep-0008/>`_. Available automatic source code
 
 Documentation
 -------------
