@@ -100,6 +100,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
@@ -109,6 +110,16 @@ extensions = [
 # Cross-referencing configuration
 default_role = 'py:obj'
 primary_domain = 'py'
+
+# Settings for intersphinx
+intersphinx_mapping = {
+    'matplotlib': ('https://matplotlib.org/', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+    'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
+    'python': ('https://docs.python.org/3', None),
+    'pybind11': ('https://pybind11.readthedocs.io/en/stable', None),
+}
+
 # Settings for autosectionlabel
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 1
