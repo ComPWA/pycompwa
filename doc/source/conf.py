@@ -27,7 +27,7 @@ import subprocess
 # -- Copy example notebooks ---------------------------------------------------
 print("Copy example notebook files")
 PATH_SOURCE = "../../examples"
-PATH_TARGET = "examples"
+PATH_TARGET = "usage"
 EXAMPLE_FOLDERS_TO_COPY = [
     "tools",
     "workflow",
@@ -47,7 +47,16 @@ for root, dirs, _ in os.walk(PATH_SOURCE):
         path_from = os.path.join(root, directory)
         path_to = os.path.join(PATH_TARGET, directory)
         print("  copy", path_from, "to", path_to)
-        shutil.copytree(path_from, path_to, ignore=IGNORED_PATTERNS)
+        shutil.copytree(
+            path_from, path_to,
+            symlinks=True,
+            ignore=IGNORED_PATTERNS,
+        )
+shutil.copyfile(
+    os.path.join(PATH_SOURCE, "particle_list.xml"),
+    os.path.join(PATH_TARGET, "particle_list.xml"),
+    follow_symlinks=True,
+)
 
 # -- Generate API skeleton ----------------------------------------------------
 subprocess.call(

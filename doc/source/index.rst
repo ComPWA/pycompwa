@@ -14,7 +14,7 @@ development.
 
    installation
    modules
-   examples
+   usage
    contribute
    documents
 

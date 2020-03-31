@@ -38,15 +38,16 @@ pycompwa there:
 
 Note that ``scikit-build`` has to be installed first.
 
-That's it! You can now go through the :ref:`examples/workflow:ComPWA Workflow`
-to learn how to use ``pycompwa``.
+That's it! You can now go through the :doc:`usage/workflow` to learn how to use
+:mod:`pycompwa`.
 
 .. tip::
 
     Of course, pycompwa can also be used with `jupyter
-    <https://jupyter.org/>`__. You can install jupyter in your virtual Conda
+    <https://jupyter.org/>`_. You can install jupyter in your virtual Conda
     environment via ``conda install jupyter``. Then, just navigate to the
-    jupyter examples  ``examples/jupyter`` and run ``jupyter notebook``.
+    `examples <https://github.com/ComPWA/pycompwa/tree/master/examples>`_
+    folder and run ``jupyter notebook``.
 
 Prerequisites
 -------------
