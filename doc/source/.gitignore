@@ -1,4 +1,3 @@
 api/*.rst
 !api/pycompwa.ui.rst
 !api/pycompwa_overwrite
-examples/*.rst

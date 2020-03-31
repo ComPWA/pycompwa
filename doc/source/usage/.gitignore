@@ -1,3 +1,6 @@
+# Copied notebooks
+*.ipynb
+
 # nbconvert output
 *.html
 
