@@ -18,10 +18,36 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import shutil
 import subprocess
 
 # It is assumed that you run sphinx from the virtual environment which
 # includes pycompwa
+
+# -- Copy example notebooks ---------------------------------------------------
+print("Copy example notebook files")
+PATH_SOURCE = "../../examples"
+PATH_TARGET = "examples"
+EXAMPLE_FOLDERS_TO_COPY = [
+    "tools",
+    "workflow",
+]
+IGNORED_PATTERNS = shutil.ignore_patterns(
+    "*/.ipynb_checkpoints/*",
+)
+for root, dirs, _ in os.walk(PATH_TARGET):
+    for directory in dirs:
+        path = os.path.join(root, directory)
+        print("  remove directory", path)
+        shutil.rmtree(path)
+for root, dirs, _ in os.walk(PATH_SOURCE):
+    for directory in dirs:
+        if directory not in EXAMPLE_FOLDERS_TO_COPY:
+            continue
+        path_from = os.path.join(root, directory)
+        path_to = os.path.join(PATH_TARGET, directory)
+        print("  copy", path_from, "to", path_to)
+        shutil.copytree(path_from, path_to, ignore=IGNORED_PATTERNS)
 
 # -- Generate API skeleton ----------------------------------------------------
 subprocess.call(
