@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Importing Data &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Importance Sampling" href="importance_sampling.html" />
+    <link rel="prev" title="Additional Tools" href="../tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Main modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html">ComPWA Workflow</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../tools.html">Additional Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Importing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="importance_sampling.html">Importance Sampling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../py-modindex.html">Module Index (API)</a>
+    <a href= "../../genindex.html">General Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../usage.html">Usage</a> &raquo;</li>
+        
+          <li><a href="../tools.html">Additional Tools</a> &raquo;</li>
+        
+      <li>Importing Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/usage/tools/data_input.ipynb" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="importance_sampling.html" class="btn btn-neutral float-right" title="Importance Sampling" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools.html" class="btn btn-neutral float-left" title="Additional Tools" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Importing-Data">
+<h1>Importing Data<a class="headerlink" href="#Importing-Data" title="Permalink to this headline">¶</a></h1>
+<p>This notebook shows how to conveniently input your data into ComPWA using the Python interface! It also shows how to calculate kinematic variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example the data is loaded from a ROOT file via <a class="reference external" href="https://github.com/scikit-hep/uproot">uproot</a>, this part can of course be
+exchanged by your data format.</p>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+<span class="kn">import</span> <span class="nn">uproot</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<p>Before we can start, a dummy root data file has to be created. Normally you would skip the next step, since you already have a data file that you want to import.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">with</span> <span class="n">uproot</span><span class="o">.</span><span class="n">recreate</span><span class="p">(</span><span class="s2">&quot;tuples.root&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uproot</span><span class="o">.</span><span class="n">newtree</span><span class="p">({</span>
+        <span class="s2">&quot;D0.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D0.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D0.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D0.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Dm.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Dm.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Dm.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Dm.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pip.px&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pip.py&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pip.pz&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pip.E&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">({</span>
+        <span class="s2">&quot;D0.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.63207397</span><span class="p">,</span>  <span class="mf">0.11329174</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.32988257</span><span class="p">]),</span>
+        <span class="s2">&quot;D0.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.02727499</span><span class="p">,</span>  <span class="mf">0.39965045</span><span class="p">,</span> <span class="mf">0.1848439</span><span class="p">]),</span>
+        <span class="s2">&quot;D0.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.16475981</span><span class="p">,</span>  <span class="mf">0.28701658</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.37938268</span><span class="p">]),</span>
+        <span class="s2">&quot;D0.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0180088</span><span class="p">,</span> <span class="mf">1.92316975</span><span class="p">,</span> <span class="mf">1.93920292</span><span class="p">]),</span>
+        <span class="s2">&quot;Dm.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.48782456</span><span class="p">,</span> <span class="mf">0.08336758</span><span class="p">,</span> <span class="mf">0.10971082</span><span class="p">]),</span>
+        <span class="s2">&quot;Dm.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.10812153</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.56649819</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13254077</span><span class="p">]),</span>
+        <span class="s2">&quot;Dm.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.12110724</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.35891476</span><span class="p">,</span> <span class="mf">0.44891566</span><span class="p">]),</span>
+        <span class="s2">&quot;Dm.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.95351745</span><span class="p">,</span> <span class="mf">1.96315494</span><span class="p">,</span> <span class="mf">1.94968155</span><span class="p">]),</span>
+        <span class="s2">&quot;pip.px&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.16118203</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.10011399</span><span class="p">,</span> <span class="mf">0.24527202</span><span class="p">]),</span>
+        <span class="s2">&quot;pip.py&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.10152041</span><span class="p">,</span> <span class="mf">0.19745644</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04717316</span><span class="p">]),</span>
+        <span class="s2">&quot;pip.pz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.03064159</span><span class="p">,</span> <span class="mf">0.0802533</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04723599</span><span class="p">]),</span>
+        <span class="s2">&quot;pip.E&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.23812766</span><span class="p">,</span> <span class="mf">0.27373762</span><span class="p">,</span> <span class="mf">0.28999094</span><span class="p">]),</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>First load the data from the root file and bundle the 4 vector data in numpy arrays.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">uproot</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;tuples.root&quot;</span><span class="p">)[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">arrays</span><span class="p">([</span><span class="s1">&#39;D0*&#39;</span><span class="p">,</span> <span class="s1">&#39;Dm*&#39;</span><span class="p">,</span> <span class="s1">&#39;pip*&#39;</span><span class="p">])</span>
+<span class="n">D0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.px&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.py&#39;</span><span class="p">],</span>
+                <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.pz&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;D0.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">Dms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.px&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.py&#39;</span><span class="p">],</span>
+                <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.pz&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Dm.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">pis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.px&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.py&#39;</span><span class="p">],</span>
+                <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.pz&#39;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;pip.E&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<p>Now construct a list of ComPWA <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Event" title="pycompwa.ui.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a> objects by handing it a list
+of <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.FourMomentum" title="pycompwa.ui.FourMomentum"><code class="xref py py-class docutils literal notranslate"><span class="pre">FourMomentum</span></code></a> objects.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">events</span> <span class="o">=</span> <span class="p">[</span><span class="n">pwa</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">pwa</span><span class="o">.</span><span class="n">FourMomentumList</span><span class="p">([</span>
+    <span class="n">pwa</span><span class="o">.</span><span class="n">FourMomentum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="n">pwa</span><span class="o">.</span><span class="n">FourMomentum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="n">pwa</span><span class="o">.</span><span class="n">FourMomentum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+<span class="p">]))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">D0s</span><span class="p">,</span> <span class="n">Dms</span><span class="p">,</span> <span class="n">pis</span><span class="p">)]</span>
+
+<span class="n">event_collection</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EventCollection</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">421</span><span class="p">,</span> <span class="o">-</span><span class="mi">411</span><span class="p">,</span> <span class="mi">211</span><span class="p">],</span>
+    <span class="n">pwa</span><span class="o">.</span><span class="n">EventList</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Event 0:&quot;</span><span class="p">,</span> <span class="n">event_collection</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">four_momenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Event 0: FourMomentumList[(-0.632074,-0.027275,2.01801), (0.487825,-0.108122,1.95352), (0.161182,0.10152,0.238128)]
+</pre></div></div>
+</div>
+<p>That’s it! At this point you successfully imported your data into ComPWA and
+are ready to do PWA! More info about how to work with data can be found under
+<a class="reference internal" href="../../modules.html#dataio"><span class="std std-ref">Read and Write Data Samples</span></a>.</p>
+<p>You can proceed with other tasks. Below it is shown how to calculate the
+kinematic variables from an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventCollection</span></code></a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;../particle_list.xml&#39;</span><span class="p">)</span>
+<span class="n">kin</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">HelicityKinematics</span><span class="p">(</span><span class="n">particle_list</span><span class="p">,</span> <span class="p">[</span><span class="mi">421</span><span class="p">],</span> <span class="p">[</span><span class="mi">421</span><span class="p">,</span> <span class="o">-</span><span class="mi">411</span><span class="p">,</span> <span class="mi">211</span><span class="p">])</span>
+<span class="n">kin</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2020-03-31 15:37:01,106 [INFO]  Particle a0(980)- with identical ID 9000211 already exists in list with the name a0(980)+ and ID 9000211. Particle properties will be overwritten!
+2020-03-31 15:37:01,108 [INFO]  Particle PatricParticle with identical ID 1234 already exists in list with the name Chic1 and ID 1234. Particle properties will be overwritten!
+2020-03-31 15:37:01,109 [INFO]  Particle nbar with identical ID 2112 already exists in list with the name n and ID 2112. Particle properties will be overwritten!
+2020-03-31 15:37:01,111 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( D0 )-&gt;( D0[ID=0] D-[ID=1] pi+[ID=2] )
+Event position to final state ID mapping:
+0: 0
+1: 1
+2: 2
+
+2020-03-31 15:37:01,113 [INFO] creating all Subsystems!
+</pre></div></div>
+</div>
+<p>Using the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics.convert" title="pycompwa.ui.Kinematics.convert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert()</span></code></a> method, the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventCollection</span></code></a>
+can be converted to a <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>, which contains all of the
+registered kinematic variables (in this example all possible kinematic
+variables).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">kin</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">event_collection</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;phi_02_1&#39;,
+ &#39;theta_02_1&#39;,
+ &#39;theta_0_12&#39;,
+ &#39;theta_1_2_vs_0&#39;,
+ &#39;phi_0_2_vs_1&#39;,
+ &#39;mSq_(0,2)&#39;,
+ &#39;mSq_(0,1)&#39;,
+ &#39;phi_01_2&#39;,
+ &#39;mSq_(0,1,2)&#39;,
+ &#39;phi_0_12&#39;,
+ &#39;theta_01_2&#39;,
+ &#39;phi_1_2_vs_0&#39;,
+ &#39;theta_0_2_vs_1&#39;,
+ &#39;mSq_(1,2)&#39;,
+ &#39;theta_0_1_vs_2&#39;,
+ &#39;phi_0_1_vs_2&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;phi_02_1&#39;: [2.95138723380652, 1.6357001949633267, 2.1989898305091873],
+ &#39;theta_02_1&#39;: [1.3163189423118669, 1.0134368628968178, 2.7781808399748624],
+ &#39;theta_0_12&#39;: [1.328101671947761, 0.94474023306911, 2.359431809284036],
+ &#39;theta_1_2_vs_0&#39;: [2.3383862457306104, 0.518132248700785, 1.8577502412492581],
+ &#39;phi_0_2_vs_1&#39;: [1.5380834709116604, -1.9672694162978688, 2.4065009207580226],
+ &#39;mSq_(0,2)&#39;: [4.844912427657423, 4.334804536424567, 4.761189598045681],
+ &#39;mSq_(0,1)&#39;: [15.731975097658, 15.031837191330313, 15.067376368793639],
+ &#39;phi_01_2&#39;: [-2.568328021181151, -1.0719475265076341, 2.94885356067588],
+ &#39;mSq_(0,1,2)&#39;: [17.719582451928932, 17.29579072179182, 17.46184619639333],
+ &#39;phi_0_12&#39;: [-3.1243690623173674, 1.3944020217047697, 2.650939926722521],
+ &#39;theta_01_2&#39;: [1.4077262219070348, 1.9146817586783584, 1.3766789967388011],
+ &#39;phi_1_2_vs_0&#39;: [-1.486876987903377, 1.8321463115593553, -2.7965509151063594],
+ &#39;theta_0_2_vs_1&#39;: [0.5840389174806245,
+  2.4949116986820825,
+  1.2582435108915695],
+ &#39;mSq_(1,2)&#39;: [4.35902745213186, 4.789563860203071, 4.69647639184098],
+ &#39;theta_0_1_vs_2&#39;: [0.6384091290227959,
+  2.6102380409321047,
+  1.2373291170602045],
+ &#39;phi_0_1_vs_2&#39;: [-1.7696963839491957,
+  2.1597860942742546,
+  -0.24540865118372385]}
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="importance_sampling.html" class="btn btn-neutral float-right" title="Importance Sampling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools.html" class="btn btn-neutral float-left" title="Additional Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

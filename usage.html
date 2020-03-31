@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Examples &mdash; pycompwa  documentation</title>
+  <title>Usage &mdash; pycompwa  documentation</title>
   
 
   
@@ -25,7 +25,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,9 +38,10 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Quickstart" href="examples/Quickstart.html" />
+    <link rel="next" title="ComPWA Workflow" href="usage/workflow.html" />
     <link rel="prev" title="Main modules" href="modules.html" /> 
 </head>
 
@@ -89,10 +94,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html">Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/DataInput.html">Importing Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/ImportanceSampling.html">Importance Sampling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/workflow.html">ComPWA Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/tools.html">Additional Tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute</a></li>
@@ -145,14 +149,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Examples</li>
+      <li>Usage</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/usage.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -161,28 +165,62 @@
   </ul>
 
   
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="usage/workflow.html" class="btn btn-neutral float-right" title="ComPWA Workflow" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="Main modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>The examples in the following pages illustrate how to use the tools that
+<a class="reference internal" href="api/pycompwa.html#module-pycompwa" title="pycompwa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa</span></code></a> offers. The examples were written as Jupyter notebooks and can
+be downloaded
+<a class="reference external" href="https://github.com/ComPWA/pycompwa/tree/master/examples">here</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/Quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html#step-1-creating-the-amplitude-model">Step 1: Creating the amplitude model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html#step-2-generate-a-data-sample">Step 2: Generate a data sample</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html#step-3-fitting">Step 3: Fitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html#step-4-visualization">Step 4: Visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/Quickstart.html#step-5-fit-fractions">Step 5: Fit Fractions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/workflow.html">ComPWA Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/workflow/1_create_model.html">Step 1: Create an amplitude model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/workflow/2_generate_data.html">Step 2: Generate data samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/workflow/3_perform_fit.html">Step 3: Perform fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/workflow/4_analyze_results.html">Step 4: Analyze results</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples/DataInput.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/ImportanceSampling.html">Importance Sampling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples/ImportanceSampling.html#step-1-define-intensity">Step 1: Define intensity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/ImportanceSampling.html#step-2-create-intensity-and-generate-importance-weighted-phase-space-sample">Step 2: Create intensity and generate importance weighted phase space sample</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/ImportanceSampling.html#step-3-visualize-the-phase-space-sample">Step 3: Visualize the phase space sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/tools.html">Additional Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/tools/data_input.html">Importing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/tools/importance_sampling.html">Importance Sampling</a></li>
 </ul>
 </li>
 </ul>
@@ -197,7 +235,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="examples/Quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="usage/workflow.html" class="btn btn-neutral float-right" title="ComPWA Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral float-left" title="Main modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -209,11 +247,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, ComPWA Team
 
     </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
 
