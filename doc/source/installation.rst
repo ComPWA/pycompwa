@@ -74,6 +74,6 @@ Installation from source
 ------------------------
 
 If you are a pycompwa developer, you will have to build the framework from
-source instead of using the pycompwa release that is distributed through
-``conda``. See :ref:`Developer Mode <DeveloperMode>` for the installation
-instructions.
+source instead of using the :mod:`pycompwa` release that is distributed through
+`Conda <https://docs.conda.io/>`_. See :ref:`Developer Mode` for the
+installation instructions.

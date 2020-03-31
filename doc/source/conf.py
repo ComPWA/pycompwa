@@ -106,6 +106,9 @@ extensions = [
     'sphinx_copybutton',
 ]
 
+# Cross-referencing configuration
+default_role = 'py:obj'
+primary_domain = 'py'
 # Settings for autosectionlabel
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 1

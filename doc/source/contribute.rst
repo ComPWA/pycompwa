@@ -5,9 +5,9 @@
 How to contribute
 =================
 
-.. _DeveloperMode:
+.. _Developer Mode:
 
-Developer mode
+Developer Mode
 --------------
 
 If you want to develop new functionality for pycompwa, installing pycompwa as a
@@ -292,6 +292,7 @@ Try and follow his advice, and keep in mind the 'boy scout rule'::
 
 For the python code we follow the `pep8 standard
 <https://www.python.org/dev/peps/pep-0008/>`_. Available automatic source code
+highlighters and formatters are ``flake8`` and ``autopep8``.
 
 Documentation
 -------------

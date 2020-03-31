@@ -1,7 +1,7 @@
 Welcome to the pycompwa website!
 ================================
 
-The ``pycompwa`` package is a collection of python modules that interface and
+The :mod:`pycompwa` package is a collection of python modules that interface and
 extend the "Common Partial-Wave-Analysis Framework"
 (`ComPWA <https://github.com/ComPWA/ComPWA>`_).
 These pages provide information about the installation, how-tos to get things
