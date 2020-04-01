@@ -373,22 +373,22 @@
 
 <div class="viewcode-block" id="filter_graphs"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.filter_graphs">[docs]</a><span class="k">def</span> <span class="nf">filter_graphs</span><span class="p">(</span><span class="n">graphs</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implements filtering of a list of :py:class:`.StateTransitionGraph` &#39;s.</span>
+<span class="sd">    Implements filtering of a list of :class:`.StateTransitionGraph` &#39;s.</span>
 
 <span class="sd">    This function can be used to select a subset of</span>
-<span class="sd">    :py:class:`.StateTransitionGraph` &#39;s from a list. Only the graphs passing</span>
+<span class="sd">    :class:`.StateTransitionGraph` &#39;s from a list. Only the graphs passing</span>
 <span class="sd">    all supplied filters will be returned.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        For the more advanced user, lambda functions can be used as filters.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        graphs ([:py:class:`.StateTransitionGraph`]): list of graphs to be</span>
+<span class="sd">        graphs ([:class:`.StateTransitionGraph`]): list of graphs to be</span>
 <span class="sd">            filtered</span>
 <span class="sd">        filters ([function]): list of functions, which take a single</span>
-<span class="sd">            :py:class:`.StateTransitionGraph` as an argument</span>
+<span class="sd">            :class:`.StateTransitionGraph` as an argument</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        [:py:class:`.StateTransitionGraph`]: filtered list of graphs</span>
+<span class="sd">        [:class:`.StateTransitionGraph`]: filtered list of graphs</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        Selecting only the solutions, in which the :math:`\\rho` decays via</span>
@@ -411,7 +411,7 @@
                                  <span class="n">interaction_qn</span><span class="p">,</span> <span class="n">allowed_values</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Closure, which can be used as a filter function in</span>
-<span class="sd">    :py:func:`.filter_graphs`.</span>
+<span class="sd">    :func:`.filter_graphs`.</span>
 
 <span class="sd">    It selects graphs based on a requirement on the property of specific</span>
 <span class="sd">    interaction nodes.</span>
@@ -419,7 +419,7 @@
 <span class="sd">    Args:</span>
 <span class="sd">        ingoing_particle_name (str): name of particle, used to find nodes which</span>
 <span class="sd">            have a particle with this name as &quot;ingoing&quot;</span>
-<span class="sd">        interaction_qn (:py:class:`.InteractionQuantumNumberNames`):</span>
+<span class="sd">        interaction_qn (:class:`.InteractionQuantumNumberNames`):</span>
 <span class="sd">            interaction quantum number</span>
 <span class="sd">        allowed_values (list): list of allowed values, that the interaction</span>
 <span class="sd">            quantum number may take</span>

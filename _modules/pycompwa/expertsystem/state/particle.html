@@ -183,7 +183,6 @@
     <span class="n">get_originating_initial_state_edges</span><span class="p">,</span>
     <span class="n">get_originating_final_state_edges</span><span class="p">)</span>
 
-
 <span class="n">XMLLabelConstants</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;XMLLabelConstants&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;Name Pid Type Value QuantumNumber Class Projection </span><span class="se">\</span>
 <span class="s1">                          Component Parameter PreFactor DecayInfo&#39;</span><span class="p">)</span>
@@ -398,15 +397,14 @@
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">qn_dict</span><span class="p">[</span><span class="n">spin_label</span><span class="p">]</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span></div>
 
 
-<span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">particle_list</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="load_particle_list_from_xml"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.load_particle_list_from_xml">[docs]</a><span class="k">def</span> <span class="nf">load_particle_list_from_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    By default, the expert system loads the</span>
-<span class="sd">    ``particle_list``</span>
+<span class="sd">    By default, the expert system loads the ``particle_list``</span>
 <span class="sd">    from the XML file ``particle_list.xml`` located in the ComPWA module.</span>
-<span class="sd">    Use ``load_particle_list_from_xml`` to append to the ``particle_list``.</span>
+<span class="sd">    Use `.load_particle_list_from_xml` to append to the ``particle_list``.</span>
 <span class="sd">    .. note::</span>
 <span class="sd">    If a particle name in the loaded XML file already exists in the</span>
 <span class="sd">    ``particle_list``, the one in the ``particle_list`` will be overwritten.</span>
@@ -444,8 +442,8 @@
 
 <div class="viewcode-block" id="get_particle_copy_by_name"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_copy_by_name">[docs]</a><span class="k">def</span> <span class="nf">get_particle_copy_by_name</span><span class="p">(</span><span class="n">particle_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get a ``deepcopy`` of a particle from the ``particle_list`` dictionary so</span>
-<span class="sd">    you can manipulate it and add it to the particle data base.</span>
+<span class="sd">    Get a `~copy.deepcopy` of a particle from the ``particle_list``</span>
+<span class="sd">    dictionary so you can manipulate it and add it to the particle data base.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">particle_list</span><span class="p">[</span><span class="n">particle_name</span><span class="p">])</span></div>
 

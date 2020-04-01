@@ -482,14 +482,15 @@ define an estimator before loading the fit result to the intensity.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-03-31 15:39:32,845 [INFO] Logging to file disabled!
+2020-04-01 12:30:18,633 [INFO] Logging to file disabled!
 </pre></div></div>
 </div>
 <div class="section" id="4.1-Convert-to-pandas">
 <h2>4.1 Convert to pandas<a class="headerlink" href="#4.1-Convert-to-pandas" title="Permalink to this headline">¶</a></h2>
-<p>It is easiest to analyze your data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a>.
+<p>It is easiest to analyze your data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>.
 We are mostly interested in the distributions of the kinematic variables, so
-we first have to convert the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> instances to a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">DataFrame</a>:</p>
+we first have to convert the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> instances to a
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -804,7 +805,10 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
 </div></div>
 </div>
 <p>We added a weights column here as well, though in this case, all data weights are unity.</p>
-<p>Also note that we converted the phase space data set. This is because the phase space serves as a uniform space over which to evaluate the intensity. We therefore attribute an intensity as a weight to each entry in the phase space <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
+<p>Also note that we converted the phase space data set. This is because the
+phase space serves as a uniform space over which to evaluate the intensity.
+We therefore attribute an intensity as a weight to each entry in the phase
+space <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -818,14 +822,16 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
 </div>
 <div class="section" id="4.2-Visualize">
 <h2>4.2 Visualize<a class="headerlink" href="#4.2-Visualize" title="Permalink to this headline">¶</a></h2>
-<p>Now that we converted our data to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a>, we can use its full potential! For instance, we can easily bin the distributions into histograms.</p>
+<p>Now that we converted our data to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>,
+we can use its full potential! For instance, we can easily bin the
+distributions into histograms.</p>
 <div class="section" id="Kinematic-variables">
 <h3>Kinematic variables<a class="headerlink" href="#Kinematic-variables" title="Permalink to this headline">¶</a></h3>
-<p>Currently, the columns of the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> created above contain final state
-IDs. Of course, you would rather see particle names there, but we need to use
-unique IDs in case there are identical particle names. To convert the number
-IDs to particle names in the eventual plots, we first extract a mapping from
-the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> object:</p>
+<p>Currently, the columns of the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> created above
+contain final state IDs. Of course, you would rather see particle names
+there, but we need to use unique IDs in case there are identical particle
+names. To convert the number IDs to particle names in the eventual plots, we
+first extract a mapping from the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> object:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -843,7 +849,8 @@ the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.K
 </pre></div>
 </div>
 </div>
-<p>Now you can apply the usual <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html">matplotlib.pyplot</a> tools to plot the distributions.</p>
+<p>Now you can apply the usual <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.2.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> tools to plot the
+distributions.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -887,16 +894,19 @@ the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.K
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7fc79a0fe588&gt;
+&lt;matplotlib.legend.Legend at 0x7f3161575588&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_19_1.svg" src="../../_images/usage_workflow_4_analyze_results_19_1.svg" /></div>
+<img alt="../../_images/usage_workflow_4_analyze_results_20_1.svg" src="../../_images/usage_workflow_4_analyze_results_20_1.svg" /></div>
 </div>
-<p>Applying a transformation to one of the columns is also easily done for a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. For instance, if you are interested in the invariant mass (and not the <strong>square value</strong> of the invariant mass), simply do:</p>
+<p>Applying a transformation to one of the columns is also easily done for a
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. For instance, if you are interested in the
+invariant mass (and not the <strong>square value</strong> of the invariant mass), simply
+use <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.sqrt.html#numpy.sqrt" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sqrt</span></code></a>:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -918,14 +928,14 @@ the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.K
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7fc79a16f0b8&gt;
+&lt;matplotlib.legend.Legend at 0x7f3198c65dd8&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_21_1.svg" src="../../_images/usage_workflow_4_analyze_results_21_1.svg" /></div>
+<img alt="../../_images/usage_workflow_4_analyze_results_22_1.svg" src="../../_images/usage_workflow_4_analyze_results_22_1.svg" /></div>
 </div>
 </div>
 <div class="section" id="Dalitz-plots">
@@ -950,7 +960,7 @@ the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.K
 [&#39;mSq_(2,4)&#39;, &#39;mSq_(3,4)&#39;, &#39;mSq_(2,3)&#39;, &#39;mSq_(2,3,4)&#39;]
 </pre></div></div>
 </div>
-<p>We now use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html">matplotlib.pyplot.hist2d</a> to generate the Dalitz plots:</p>
+<p>We now use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html#matplotlib.pyplot.hist2d" title="(in Matplotlib v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hist2d</span></code></a> to generate the Dalitz plots:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -993,7 +1003,7 @@ the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.K
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_27_0.svg" src="../../_images/usage_workflow_4_analyze_results_27_0.svg" /></div>
+<img alt="../../_images/usage_workflow_4_analyze_results_28_0.svg" src="../../_images/usage_workflow_4_analyze_results_28_0.svg" /></div>
 </div>
 </div>
 </div>
@@ -1123,17 +1133,17 @@ and denominator of a fit fraction.</p>
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.005501850829946637 +/- 0.002218390371972463
+0.005501850830743269 +/- 0.0022183924303909148
 
 J/psi_-1_to_f2(1270)_-2+gamma_-1
   f2(1270)_-2_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.012420672414146615 +/- 0.002653438557392768
+0.012420672414482687 +/- 0.0026534347954750297
 
 J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.010391539895359243 +/- 0.0021907263254390148
+0.010391539896277328 +/- 0.002190664619120161
 
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
@@ -1142,11 +1152,12 @@ J/psi_-1_to_f2(1270)_-1+gamma_-1
   _J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.02824129233379248 +/- 0.0029959336585970047
+0.028241292335843333 +/- 0.002995912537785985
 
 </pre></div></div>
 </div>
-<p>That’s it! You can check some of the other examples to learn about more detailed features of ComPWA.</p>
+<p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html#usage"><span class="std std-ref">examples</span></a> to
+learn about more detailed features of ComPWA.</p>
 <p>And, please, feel free to <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues/new">provide feedback</a> or <a class="reference external" href="https://compwa.github.io/contribute.html">contribute</a> ;)</p>
 </div>
 </div>

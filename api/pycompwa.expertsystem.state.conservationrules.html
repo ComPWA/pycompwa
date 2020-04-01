@@ -209,10 +209,11 @@
 </style>
 <div class="section" id="module-pycompwa.expertsystem.state.conservationrules">
 <span id="conservationrules"></span><h1>conservationrules<a class="headerlink" href="#module-pycompwa.expertsystem.state.conservationrules" title="Permalink to this headline">¶</a></h1>
+<p>Functors for quantum number condition checks</p>
 <dl class="class">
 <dt id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor">
 <em class="property">class </em><code class="sig-name descname">AbstractConditionFunctor</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check">
 <em class="property">abstract </em><code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check" title="Permalink to this definition">¶</a></dt>
@@ -223,7 +224,7 @@
 <dl class="class">
 <dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule">
 <em class="property">class </em><code class="sig-name descname">AbstractRule</code><span class="sig-paren">(</span><em class="sig-param">rule_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">rule_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.__init__" title="Permalink to this definition">¶</a></dt>
@@ -300,7 +301,7 @@ charge, baryon number, lepton number</p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.CParityConservation.check">
 <code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>implements <span class="math notranslate nohighlight">\(C_{in} = C_{out}\)</span></p>
+<dd><p>Implements <span class="math notranslate nohighlight">\(C_{in} = C_{out}\)</span>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -414,7 +415,7 @@ canonical amplitude sums</p>
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.GParityConservation.check">
 <code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>implements <span class="math notranslate nohighlight">\(G_{in} = G_{out}\)</span></p>
+<dd><p>Implements <span class="math notranslate nohighlight">\(G_{in} = G_{out}\)</span>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -549,7 +550,7 @@ the width <span class="math notranslate nohighlight">\(W\)</span> of the states 
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.ParityConservation.check">
 <code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>implements <span class="math notranslate nohighlight">\(P_{in} = P_{out} \cdot (-1)^L\)</span></p>
+<dd><p>Implements <span class="math notranslate nohighlight">\(P_{in} = P_{out} \cdot (-1)^L\)</span> .</p>
 </dd></dl>
 
 <dl class="method">
@@ -572,7 +573,7 @@ the width <span class="math notranslate nohighlight">\(W\)</span> of the states 
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check">
 <code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements the check</p>
+<dd><p>Implements the check.</p>
 <p><span class="math notranslate nohighlight">\(A_{-\lambda_1-\lambda_2} = P_1 P_2 P_3 (-1)^{S_2+S_3-S_1} A_{\lambda_1\lambda_2}\)</span></p>
 <p>Notice that only the special case <span class="math notranslate nohighlight">\(\lambda_1=\lambda_2=0\)</span>
 may return False</p>
@@ -642,7 +643,10 @@ may return False</p>
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair">
 <code class="sig-name descname">is_particle_antiparticle_pair</code><span class="sig-paren">(</span><em class="sig-param">pid1</em>, <em class="sig-param">pid2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#is_particle_antiparticle_pair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Check if PID is opposite sign.</p>
+<p>We just check if the pid is opposite in sign, this is a requirement of
+the pid numbers of course</p>
+</dd></dl>
 
 </div>
 
