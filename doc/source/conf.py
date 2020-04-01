@@ -100,11 +100,32 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx_copybutton',
 ]
+
+# Cross-referencing configuration
+default_role = 'py:obj'
+primary_domain = 'py'
+nitpicky = True  # warn if cross-references are missing
+nitpick_ignore = [
+    ('py:class', 'function'),
+    ('py:class', 'pycompwa.expertsystem.solvers.constraint.Constraint'),
+    ('py:class', 'pycompwa.expertsystem.state.propagation.GraphElementTypes'),
+    ('py:class', 'pybind11_builtins.pybind11_object'),
+]
+
+# Settings for intersphinx
+intersphinx_mapping = {
+    'matplotlib': ('https://matplotlib.org/', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+    'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
+    'python': ('https://docs.python.org/3', None),
+    'pybind11': ('https://pybind11.readthedocs.io/en/stable', None),
+}
 
 # Settings for autosectionlabel
 autosectionlabel_prefix_document = True

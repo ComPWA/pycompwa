@@ -1,3 +1,6 @@
+''' Functors for quantum number condition checks '''
+
+
 from abc import ABC, abstractmethod
 from functools import reduce
 from copy import deepcopy
@@ -14,9 +17,6 @@ from .particle import (
     QuantumNumberClasses,
     is_boson,
     Spin)
-
-
-''' Functors for quantum number condition checks '''
 
 
 class AbstractConditionFunctor(ABC):
@@ -102,8 +102,11 @@ class DefinedIfOtherQnNotDefinedInOutSeparate(AbstractConditionFunctor):
 
 
 def is_particle_antiparticle_pair(pid1, pid2):
-    # we just check if the pid is opposite in sign
-    # this is a requirement of the pid numbers of course
+    """Check if PID is opposite sign.
+
+    We just check if the pid is opposite in sign, this is a requirement of
+    the pid numbers of course
+    """
     return pid1 == -pid2
 
 
@@ -199,7 +202,7 @@ class ParityConservation(AbstractRule):
             DefinedForInteractionNode()])
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """ implements :math:`P_{in} = P_{out} \\cdot (-1)^L` """
+        """Implements :math:`P_{in} = P_{out} \\cdot (-1)^L` ."""
         # is this valid for two outgoing particles only?
         parity_label = StateQuantumNumberNames.Parity
         parity_in = reduce(
@@ -225,8 +228,7 @@ class ParityConservationHelicity(AbstractRule):
                              [DefinedForInteractionNode()])
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """
-        Implements the check
+        """Implements the check.
 
         :math:`A_{-\\lambda_1-\\lambda_2} = P_1 P_2 P_3 (-1)^{S_2+S_3-S_1} A_{\\lambda_1\\lambda_2}`
 
@@ -279,7 +281,7 @@ class CParityConservation(AbstractRule):
                                  [StateQuantumNumberNames.Cparity])])
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """ implements :math:`C_{in} = C_{out}` """
+        """Implements :math:`C_{in} = C_{out}`."""
         cparity_in = self.get_cparity_multiparticle(
             ingoing_part_qns, interaction_qns)
         if cparity_in is None:
@@ -357,7 +359,7 @@ class GParityConservation(AbstractRule):
                                  [StateQuantumNumberNames.Gparity])])
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """ implements :math:`G_{in} = G_{out}` """
+        """Implements :math:`G_{in} = G_{out}`."""
         gparity_label = StateQuantumNumberNames.Gparity
         no_gpar_inpart = [ingoing_part_qns.index(x)
                           for x in ingoing_part_qns if gparity_label not in x
@@ -459,7 +461,7 @@ class IdenticalParticleSymmetrization(AbstractRule):
 class SpinConservation(AbstractRule):
     """
     Implements conservation of a spin-like quantum number for a two body decay
-    (coupling of two particle states). See :py:meth:`check` for details.
+    (coupling of two particle states). See :meth:`check` for details.
     """
 
     def __init__(self, spinlike_qn, use_projection=True):

@@ -20,7 +20,6 @@ from ..topology.graph import (
     get_originating_initial_state_edges,
     get_originating_final_state_edges)
 
-
 XMLLabelConstants = Enum('XMLLabelConstants',
                          'Name Pid Type Value QuantumNumber Class Projection \
                           Component Parameter PreFactor DecayInfo')
@@ -235,15 +234,14 @@ def is_boson(qn_dict):
     return abs(qn_dict[spin_label].magnitude() % 1) < 0.01
 
 
-particle_list = {}
+particle_list = dict()
 
 
 def load_particle_list_from_xml(file_path):
     """
-    By default, the expert system loads the
-    ``particle_list``
+    By default, the expert system loads the ``particle_list``
     from the XML file ``particle_list.xml`` located in the ComPWA module.
-    Use ``load_particle_list_from_xml`` to append to the ``particle_list``.
+    Use `.load_particle_list_from_xml` to append to the ``particle_list``.
     .. note::
     If a particle name in the loaded XML file already exists in the
     ``particle_list``, the one in the ``particle_list`` will be overwritten.
@@ -281,8 +279,8 @@ def get_particle_with_name(particle_name):
 
 def get_particle_copy_by_name(particle_name):
     """
-    Get a ``deepcopy`` of a particle from the ``particle_list`` dictionary so
-    you can manipulate it and add it to the particle data base.
+    Get a `~copy.deepcopy` of a particle from the ``particle_list``
+    dictionary so you can manipulate it and add it to the particle data base.
     """
     return deepcopy(particle_list[particle_name])
 

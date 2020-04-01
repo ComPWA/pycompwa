@@ -2,8 +2,8 @@ ui
 ==
 
 This package defines the interface to the computational backend
-`ComPWA <https://compwa.github.io/ComPWA/>`__. These bindings have been defined
-with `pybind11 <https://pybind11.readthedocs.io/>`__.
+`ComPWA <https://compwa.github.io/ComPWA/>`_. These bindings have been defined
+with `pybind11 <https://pybind11.readthedocs.io/>`_.
 
 Module contents
 ---------------

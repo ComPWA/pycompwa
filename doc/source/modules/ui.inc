@@ -1,9 +1,7 @@
-.. _python-ui:
-
 Python UI
 ---------
 
-The Python User Interface is a python module named :py:mod:`ui <pycompwa.ui>`,
+The Python User Interface is a python module named :mod:`~pycompwa.ui`,
 built with `pybind11 <https://pybind11.readthedocs.io/en/stable/index.html>`_.
 It is the recommended way to use ComPWA, since the user benefits from the
 python ease of use.
@@ -28,7 +26,7 @@ Read and Write Data Samples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For Python users, it is recommended to first load the data into a common format
-via numpy or pandas and then construct :class:`Event` classes.
+via numpy or pandas and then construct :class:`~.Event` classes.
 
 .. autoclass:: pycompwa.ui.Event
    :members:
@@ -70,10 +68,10 @@ data samples:
   .. autofunction:: pycompwa.ui.generate_phsp
      :noindex:
 
-  A required argument is a :class:`PhaseSpaceGenerator` instance. There are
-  currently two options: :class:`.EvtGenGenerator` and :class:`.RootGenerator`.
-  Using the :class:`.EvtGenGenerator` is recommended, due to numerical
-  precision reasons.
+  A required argument is a :class:`~.PhaseSpaceEventGenerator` instance. There
+  are currently two options: :class:`~.EvtGenGenerator` and
+  :class:`~.RootGenerator`. Using the :class:`~.EvtGenGenerator` is
+  recommended, due to numerical precision.
 
   .. autoclass:: pycompwa.ui.EvtGenGenerator
    :special-members: __init__
@@ -81,8 +79,8 @@ data samples:
 
   To initialize such a PhaseSpaceGenerator the Kinematics information of the
   reaction is required. This can be extracted from the
-  :class:`.HelicityKinematics`.
-  Read :ref:`below<create-kin-and-intens>` on how to create such a Kinematics
+  :class:`~.HelicityKinematics`.
+  Read :ref:`below <create-kin-and-intens>` on how to create such a Kinematics
   instance.
 
   The second argument for the :func:`.generate_phsp` function is a random
@@ -97,7 +95,7 @@ data samples:
 
 * Generating data samples based on a Intensity
 
-  The usage is similar to the :ref:`phase space generation<generatephsp>`. Now
+  The usage is similar to the :ref:`phase space generation <generatephsp>`. Now
   the Intensity has to be given as an additional argument. A hit-or-miss based
   sampling will be performed.
 
@@ -120,12 +118,12 @@ data samples:
 Loading and Defining Particles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Particles can loaded and stored inside a :class:`.PartList`.
+Particles can loaded and stored inside a ``PartList``.
 
 .. autofunction:: pycompwa.ui.read_particles
    :noindex:
 
-Also particles can be inserted to an existing :class:`.PartList`, overwriting
+Also particles can be inserted to an existing ``PartList``, overwriting
 already existing particles.
 
 .. autofunction:: pycompwa.ui.insert_particles
@@ -136,16 +134,16 @@ already existing particles.
 Create a Kinematics and Intensity Instance from a Description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As a prerequisite a :class:`.PartList` has to be already loaded.
+As a prerequisite a ``PartList`` has to be already loaded.
 
 A HelicityKinematics instance can be created with
-:func:`.create_helicity_kinematics`
+:func:`~.create_helicity_kinematics`
 
 .. autofunction:: pycompwa.ui.create_helicity_kinematics
    :noindex:
 
 Analogous a Intensity instance can be created with
-:func:`.IntensityBuilderXML.create_intensity`
+:meth:`~.IntensityBuilderXML.create_intensity`:
 
 .. autofunction:: pycompwa.ui.IntensityBuilderXML.create_intensity
    :noindex:
@@ -157,10 +155,10 @@ normalization is performed by MC integration, a phase space sample is needed.
 This however requires a Kinematics instance. Therefore the order of execution
 is:
 
-1. Create/Load a :class:`.PartList`
+1. Create/Load a ``PartList``
 2. Create a Kinematics instance
 3. Create a phase space sample (alternatively: the data can also be
-   :ref:`read from file<dataio>`)
+   :ref:`read from file <dataio>`)
 4. Create an Intensity using the phase space sample and the Kinematics instance
 
 
@@ -180,4 +178,4 @@ Load and Initialize a previous Fit Result
 Coming soon...
 
 Visualizing of data samples and Intensities can be done via the
-:mod:`pycompwa.plotting module` documented in the next section.
+:mod:`~.plotting` module documented in the next section.

@@ -210,22 +210,22 @@ def check_equal_ignoring_qns(ref_graph, solutions, ignored_qn_list):
 
 def filter_graphs(graphs, filters):
     """
-    Implements filtering of a list of :py:class:`.StateTransitionGraph` 's.
+    Implements filtering of a list of :class:`.StateTransitionGraph` 's.
 
     This function can be used to select a subset of
-    :py:class:`.StateTransitionGraph` 's from a list. Only the graphs passing
+    :class:`.StateTransitionGraph` 's from a list. Only the graphs passing
     all supplied filters will be returned.
 
     Note:
         For the more advanced user, lambda functions can be used as filters.
 
     Args:
-        graphs ([:py:class:`.StateTransitionGraph`]): list of graphs to be
+        graphs ([:class:`.StateTransitionGraph`]): list of graphs to be
             filtered
         filters ([function]): list of functions, which take a single
-            :py:class:`.StateTransitionGraph` as an argument
+            :class:`.StateTransitionGraph` as an argument
     Returns:
-        [:py:class:`.StateTransitionGraph`]: filtered list of graphs
+        [:class:`.StateTransitionGraph`]: filtered list of graphs
 
     Example:
         Selecting only the solutions, in which the :math:`\\rho` decays via
@@ -248,7 +248,7 @@ def require_interaction_property(ingoing_particle_name,
                                  interaction_qn, allowed_values):
     """
     Closure, which can be used as a filter function in
-    :py:func:`.filter_graphs`.
+    :func:`.filter_graphs`.
 
     It selects graphs based on a requirement on the property of specific
     interaction nodes.
@@ -256,7 +256,7 @@ def require_interaction_property(ingoing_particle_name,
     Args:
         ingoing_particle_name (str): name of particle, used to find nodes which
             have a particle with this name as "ingoing"
-        interaction_qn (:py:class:`.InteractionQuantumNumberNames`):
+        interaction_qn (:class:`.InteractionQuantumNumberNames`):
             interaction quantum number
         allowed_values (list): list of allowed values, that the interaction
             quantum number may take
