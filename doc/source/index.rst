@@ -9,11 +9,10 @@ running, information on the design, as well as documentation of the ongoing
 development.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents
 
    installation
-   modules
    usage
    contribute
    documents
