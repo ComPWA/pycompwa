@@ -254,6 +254,15 @@ def load_particle_list_from_xml(file_path):
             particle_list[entry[name_label]] = entry
 
 
+def write_particle_list_to_xml(file_path: str):
+    """Write ``particle_list`` instance to XML file."""
+    entries = [entry for entry in particle_list.values()]
+    particle_dict = {'ParticleList': {'Particle': entries}}
+    with open('new_particle_list.xml', 'w') as output_file:
+        output_file.write(xmltodict.unparse(
+            particle_dict, full_document=False, pretty=True))
+
+
 def add_to_particle_list(particle):
     """
     Add a particle dictionary object to the ``particle_list`` dictionary.
