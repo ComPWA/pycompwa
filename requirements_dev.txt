@@ -1,6 +1,6 @@
-autopep8
+autopep8==1.5
 doc8
-flake8
+flake8==3.7.9
 flake8-blind-except
 flake8-builtins
 flake8-docstrings
@@ -8,7 +8,7 @@ flake8-import-order
 flake8-rst-docstrings
 jupyter_contrib_nbextensions
 pep8-naming
-pre-commit
+pre-commit==2.2.0
 pylint==2.4.4
 pytest
 pytest-cov
