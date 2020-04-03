@@ -127,11 +127,9 @@ before_install:
 install:
   - cd $BASEPATH
   - cmake --version
-  - pip install -r doc/requirements.txt
   - pip install scikit-build
-  - pip install scipy
-  - pip install pytest
-  - pip install pytest-cov
+  - pip install -r doc/requirements.txt
+  - pip install -r requirements_dev.txt
   - pip install codecov
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
