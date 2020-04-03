@@ -200,7 +200,7 @@ PYBIND11_MODULE(ui, m) {
         py::arg("intensity"), py::arg("events"), py::arg("kinematics"));
 
   // ------- Particles
-  py::class_<ComPWA::ParticleList>(m, "PartList")
+  py::class_<ComPWA::ParticleList>(m, "ParticleList")
       .def(py::init<>())
       .def("__repr__", [](const ComPWA::ParticleList &p) {
         std::stringstream ss;
