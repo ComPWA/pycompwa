@@ -7,3 +7,6 @@ extension-pkg-whitelist=pycompwa.ui
 
 [VARIABLES]
 init-import=yes
+
+[MESSAGES CONTROL]
+disable=RST203, RST301
