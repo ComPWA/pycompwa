@@ -8,12 +8,30 @@ repos:
       - id: mixed-line-ending
       - id: requirements-txt-fixer
       - id: trailing-whitespace
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
-    hooks:
-      - id: flake8
+
   - repo: https://github.com/kynan/nbstripout
     rev: 0.3.7
     hooks:
       - id: nbstripout
         files: ".ipynb"
+
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        types:
+          - python
+      - id: autopep8
+        name: autopep8
+        entry: autopep8 --in-place
+        language: system
+        types:
+          - python
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types:
+          - python

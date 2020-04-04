@@ -1,3 +1,4 @@
+doc8
 jupyter
 nbsphinx
 sphinx-copybutton
