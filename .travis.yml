@@ -28,6 +28,7 @@ addons:
       - python3
       - python3-pip
       - python3-venv
+      - pandoc
 
 before_install:
   - cd $BASEPATH
@@ -62,15 +63,6 @@ jobs:
       env:
         - TASK="gcc7, ROOT v6.18 + deploy pages"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      addons:
-        apt:
-          update: true
-          packages:
-            - libboost-all-dev
-            - python3
-            - python3-pip
-            - python3-venv
-            - pandoc
       install:
         - python3 -m pip install scikit-build
         - python3 -m pip install pytest==5.4.1
