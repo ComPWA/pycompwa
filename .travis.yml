@@ -56,17 +56,40 @@ jobs:
       script:
         - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
 
-    - os: linux # test gcc build (Linux) + deploy pages
+    - os: linux # test gcc build (Linux)
       dist: bionic
       compiler: gcc
       env:
-        - TASK="gcc7, ROOT v6.18 + deploy pages"
+        - TASK="gcc7, ROOT v6.18"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      before_script:
-        - python3 -m pip install -r doc/requirements.txt
       script:
         - cd $BASEPATH/tests
         - python -m pytest
+
+    - os: linux # test and deploy documentation
+      dist: bionic
+      compiler: gcc
+      env:
+        - TASK="test and deploy documentation"
+        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+      install:
+        - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
+        - tar xpvfz root_*.tar.gz > /dev/null 2>&1
+        - source root/bin/thisroot.sh
+        - cd $BASEPATH
+        - python3 -m pip install -r requirements.txt
+        - python3 -m pip install -r doc/requirements.txt
+        - python3 -m pip install virtualenvwrapper
+      script: # developer mode install
+        - cd $BASEPATH
+        - source venv/bin/virtualenvwrapper.sh
+        - add2virtualenv $BASEPATH
+        - mkdir build
+        - cd build
+        - cmake .. -DUSE_GENEVA=OFF -DPYTHON_EXECUTABLE=$(which python)
+        - make -j2
+        - cd $BASEPATH/pycompwa
+        - ln -s ../build/ui*.so
         - cd $BASEPATH/doc
         - make linkcheck
         - make html
@@ -106,7 +129,9 @@ jobs:
       env:
         - TASK="deployment"
       install: echo "Skipping install stage!"
+      before_install: echo "Skipping before_install stage!"
       script: echo "Skipping script stage!"
+      before_script: echo "Skipping before_script stage!"
       deploy:
         - provider: pypi # Upload new release on pypi for each tagged commit
           on: # Make sure that the version number in setup.py is
