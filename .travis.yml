@@ -43,6 +43,8 @@ install:
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
   - source root/bin/thisroot.sh
+  - cd $BASEPATH
+  - python3 setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
 
 jobs:
   include:
@@ -52,10 +54,7 @@ jobs:
         - TASK="clang, ROOT v6.18"
         - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
       script:
-        - cd $BASEPATH
-        - python setup.py  --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
-        # The test fails on mac osx because of a wrong RPATH in the precompiled root binaries
+        - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
 
     - os: linux # test gcc build (Linux) + deploy pages
       dist: bionic
@@ -66,9 +65,6 @@ jobs:
       before_script:
         - python3 -m pip install -r doc/requirements.txt
       script:
-        - cd $BASEPATH
-        - python setup.py  --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
         - cd $BASEPATH/tests
         - python -m pytest
         - cd $BASEPATH/doc
@@ -100,9 +96,6 @@ jobs:
       before_script:
         - python3 -m pip install codecov
       script:
-        - cd $BASEPATH
-        - python setup.py --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
         - cd $BASEPATH/tests
         - python -m pytest
       after_success:
