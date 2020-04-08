@@ -48,8 +48,7 @@ You will then need to set some symbolic links to the Python module of pycompwa:
 .. code-block:: shell
 
   cd ../pycompwa
-  ln -s ../build/ui.*.so .
-  ln -s ../ComPWA/Physics/particle_list.xml .
+  ln -s ../build/ui.*.so
 
 Finally, you can tell Conda where to locate the pycompwa package, so that the
 Python interpreter understand the ``import pycompwa`` command. You do this with:
