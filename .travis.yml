@@ -63,14 +63,7 @@ jobs:
       env:
         - TASK="gcc7, ROOT v6.18 + deploy pages"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      install:
-        - python3 -m pip install scikit-build
-        - python3 -m pip install pytest==5.4.1
-        - python3 -m pip install pytest-cov
-        - python3 -m pip install scipy
-        - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-        - tar xpvfz root_*.tar.gz > /dev/null 2>&1
-        - source root/bin/thisroot.sh
+      before_script:
         - python3 -m pip install -r doc/requirements.txt
       script:
         - cd $BASEPATH
@@ -104,14 +97,7 @@ jobs:
       env:
         - TASK="clang, ROOT v6.18 + code coverage"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      install:
-        - python3 -m pip install scikit-build
-        - python3 -m pip install pytest==5.4.1
-        - python3 -m pip install pytest-cov
-        - python3 -m pip install scipy
-        - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-        - tar xpvfz root_*.tar.gz > /dev/null 2>&1
-        - source root/bin/thisroot.sh
+      before_script:
         - python3 -m pip install codecov
       script:
         - cd $BASEPATH
