@@ -15,6 +15,20 @@ env:
     - BASEPATH: "$TRAVIS_BUILD_DIR"
     - ROOTSYS: "$BASEPATH/root"
 
+addons:
+  homebrew:
+    packages:
+      - boost
+      - python3
+      - pip3
+  apt:
+    update: true
+    packages:
+      - libboost-all-dev
+      - python3
+      - python3-pip
+      - python3-venv
+
 before_install:
   - cd $BASEPATH
   - python3 -m venv venv
@@ -33,12 +47,6 @@ jobs:
   include:
     - os: osx # test XCode build
       osx_image: xcode10.2
-      addons:
-        homebrew:
-          packages:
-            - boost
-            - python3
-            - pip3
       env:
         - TASK="clang, ROOT v6.18"
         - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
@@ -104,14 +112,6 @@ jobs:
       env:
         - TASK="clang, ROOT v6.18 + code coverage"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      addons:
-        apt:
-          update: true
-          packages:
-            - libboost-all-dev
-            - python3
-            - python3-pip
-            - python3-venv
       install:
         - python3 -m pip install scikit-build
         - python3 -m pip install pytest==5.4.1
@@ -134,13 +134,6 @@ jobs:
       dist: bionic
       env:
         - TASK="deployment"
-      addons:
-        apt:
-          update: true
-          packages:
-            - python3
-            - python3-pip
-            - python3-venv
       install: echo "Skipping install stage!"
       script: echo "Skipping script stage!"
       deploy:
