@@ -1,5 +1,6 @@
 language: cpp
 os: linux
+dist: bionic # default
 
 branches:
   only:
@@ -14,53 +15,92 @@ env:
     - BASEPATH: "$TRAVIS_BUILD_DIR"
     - ROOTSYS: "$BASEPATH/root"
 
+addons:
+  homebrew:
+    packages:
+      - boost
+      - python3
+      - pip3
+  apt:
+    update: true
+    packages:
+      - libboost-all-dev
+      - python3
+      - python3-pip
+      - python3-venv
+      - pandoc
+
+before_install: # activate virtual environment
+  - cd $BASEPATH
+  - python3 -m venv venv
+  - source ./venv/bin/activate
+
+install: # install dependencies
+  - python3 -m pip install scikit-build
+  - python3 -m pip install pytest==5.4.1
+  - python3 -m pip install pytest-cov
+  - python3 -m pip install scipy
+  - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
+  - tar xpvfz root_*.tar.gz > /dev/null 2>&1
+  - source root/bin/thisroot.sh
+
+before_script: # build the project
+  - cd $BASEPATH
+  - python3 setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
+
 jobs:
   include:
     - os: osx # test XCode build
       osx_image: xcode10.2
-      addons:
-        homebrew:
-          packages:
-            - boost
-            - python3
-            - pip3
       env:
         - TASK="clang, ROOT v6.18"
         - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
       script:
-        - cd $BASEPATH
-        - python setup.py  --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
-        # The test fails on mac osx because of a wrong RPATH in the precompiled root binaries
+        - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
 
-    - os: linux # test gcc build (Linux) + deploy pages
+    - os: linux # test gcc build (Linux)
       dist: bionic
       compiler: gcc
       env:
-        - TASK="gcc7, ROOT v6.18 + deploy pages"
+        - TASK="gcc7, ROOT v6.18"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      addons:
-        apt:
-          update: true
-          packages:
-            - libboost-all-dev
-            - python3
-            - python3-pip
-            - python3-venv
-            - pandoc
       script:
-        - cd $BASEPATH
-        - python setup.py  --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
         - cd $BASEPATH/tests
         - python -m pytest
+
+    - os: linux # test and deploy documentation
+      dist: bionic
+      compiler: gcc
+      env:
+        - TASK="test and deploy documentation"
+        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+      install:
+        - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
+        - tar xpvfz root_*.tar.gz > /dev/null 2>&1
+        - source root/bin/thisroot.sh
+        - cd $BASEPATH
+        - python3 -m pip install -r requirements.txt
+        - python3 -m pip install -r doc/requirements.txt
+        - python3 -m pip install virtualenvwrapper
+      before_script: echo "Running developer mode installation"
+      script: # developer mode build
+        - cd $BASEPATH
+        - source venv/bin/virtualenvwrapper.sh
+        - add2virtualenv $BASEPATH
+        - mkdir build
+        - cd build
+        - cmake .. -DUSE_GENEVA=OFF -DPYTHON_EXECUTABLE=$(which python)
+        - make -j2
+        - cd $BASEPATH/pycompwa
+        - ln -s ../build/ui*.so
         - cd $BASEPATH/doc
         - make linkcheck
-        - make html
+        - NBSPHINX_EXECUTE='' make html
       before_deploy:
         - cd $BASEPATH
         - openssl aes-256-cbc -K $encrypted_ffa3dff63372_key -iv $encrypted_ffa3dff63372_iv -in github_deploy_key.enc -out github_deploy_key -d
       deploy:
+        strategy: git # default
         provider: pages
         keep_history: true
         deploy_key: github_deploy_key
@@ -79,36 +119,21 @@ jobs:
       env:
         - TASK="clang, ROOT v6.18 + code coverage"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      addons:
-        apt:
-          update: true
-          packages:
-            - libboost-all-dev
-            - python3
-            - python3-pip
-            - python3-venv
       script:
-        - cd $BASEPATH
-        - python setup.py --generator "Unix Makefiles" --skip-generator-test install
-          -- -- -j2
         - cd $BASEPATH/tests
         - python -m pytest
       after_success:
-        - python -m codecov
+        - python3 -m pip install codecov
+        - python3 -m codecov
 
     - os: linux # deploy pip package
       dist: bionic
       env:
         - TASK="deployment"
-      addons:
-        apt:
-          update: true
-          packages:
-            - python3
-            - python3-pip
-            - python3-venv
       install: echo "Skipping install stage!"
+      before_install: echo "Skipping before_install stage!"
       script: echo "Skipping script stage!"
+      before_script: echo "Skipping before_script stage!"
       deploy:
         - provider: pypi # Upload new release on pypi for each tagged commit
           on: # Make sure that the version number in setup.py is
@@ -118,21 +143,3 @@ jobs:
           username: __token__
           password:
             secure: bvlu0vG8oOYgLbNRkbZT5QO8AQDRlMuHPUn4U7PIECzQNjFC31Y8ugXTQOPdcNsACc8TR3z52uZ1JmuK4XI9++7HuzRwhMgKziCEwD/fBdZETxXq95LorbMaD8qOY43v5vJAeFDzouDoP3iBVTpJG3dZPk7OrHy0uSSGYnC0M/WqoFg/3Lfg5tlKz8doBbgGVG/vY/58GyDxu3GcSVg7c3A4CNYKk6FwXwbWo7itTzXMJFjWmlolFtNv9m4b4gLrPSvUf7A/BrovC9IYic2N+T/KnbVOBopQ9ggk+uf1eMv1emruNiqUaJ963DMPjE154hbR7Ykvz4ng/CsvI8enmiPg18RoS1DLGxe7LVr0RzZaGsW0gw8q6H6Noc0FzNXwLb5+fDWHJtz87rrVmZZz+ofVpo370Q9y7B6joJ5EBDxPwi/Ef9MBZMEMR1pArX9rnlkVpPit0nvsb+R4e5ZS5CHj7ArSxio5pXLMrEtJyJKpnaeCbjIp5b+UfsVwSbY6i3UpE0HSHDW/Nic02/d9PfgxuBkEp6jb30yajsfWroMpJQyKD/X1qIUO48deUO79Mnu33EGWnccYBbmhMxFNCQnfLVPwKAQm7YM1/WlUa6ictifxlLouG8wZjAUviBcvTjzDY53UUpS/PIkGPL9MrqjLJbsR0XwAwp4leprngyY=
-
-before_install:
-  - cd $BASEPATH
-  - python3 -m venv python-venv
-  - source ./python-venv/bin/activate
-
-install:
-  - cd $BASEPATH
-  - cmake --version
-  - pip install scikit-build
-  - pip install -r doc/requirements.txt
-  - pip install -r requirements_dev.txt
-  - pip install codecov
-  - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-  - tar xpvfz root_*.tar.gz > /dev/null 2>&1
-  - cd root
-  - source bin/thisroot.sh
-  - cd $BASEPATH

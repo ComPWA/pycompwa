@@ -138,7 +138,7 @@ linkcheck_ignore = [
 ]
 
 # Settings for nbsphinx
-if 'TRAVIS' in os.environ or 'NBSPHINX_EXECUTE' in os.environ:
+if 'NBSPHINX_EXECUTE' in os.environ:
     nbsphinx_execute = 'always'
 else:
     nbsphinx_execute = 'never'
