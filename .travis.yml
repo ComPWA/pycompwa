@@ -30,12 +30,12 @@ addons:
       - python3-venv
       - pandoc
 
-before_install:
+before_install: # activate virtual environment
   - cd $BASEPATH
   - python3 -m venv venv
   - source ./venv/bin/activate
 
-install:
+install: # install dependencies
   - python3 -m pip install scikit-build
   - python3 -m pip install pytest==5.4.1
   - python3 -m pip install pytest-cov
@@ -43,6 +43,8 @@ install:
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
   - source root/bin/thisroot.sh
+
+before_script: # build the project
   - cd $BASEPATH
   - python3 setup.py  --generator "Unix Makefiles" --skip-generator-test install -- -- -j2
 
@@ -80,7 +82,8 @@ jobs:
         - python3 -m pip install -r requirements.txt
         - python3 -m pip install -r doc/requirements.txt
         - python3 -m pip install virtualenvwrapper
-      script: # developer mode install
+      before_script: echo "Running developer mode installation"
+      script: # developer mode build
         - cd $BASEPATH
         - source venv/bin/virtualenvwrapper.sh
         - add2virtualenv $BASEPATH
@@ -116,13 +119,12 @@ jobs:
       env:
         - TASK="clang, ROOT v6.18 + code coverage"
         - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
-      before_script:
-        - python3 -m pip install codecov
       script:
         - cd $BASEPATH/tests
         - python -m pytest
       after_success:
-        - python -m codecov
+        - python3 -m pip install codecov
+        - python3 -m codecov
 
     - os: linux # deploy pip package
       dist: bionic
