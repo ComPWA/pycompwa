@@ -245,8 +245,7 @@ cmake --build . -- -j4  <span class="c1"># adjust 4 to your number of cores</spa
 </div>
 <p>You will then need to set some symbolic links to the Python module of pycompwa:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../pycompwa
-ln -s ../build/ui.*.so .
-ln -s ../ComPWA/Physics/particle_list.xml .
+ln -s ../build/ui.*.so
 </pre></div>
 </div>
 <p>Finally, you can tell Conda where to locate the pycompwa package, so that the
