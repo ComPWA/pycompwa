@@ -94,5 +94,13 @@ directory. Then, simply launch launch a Python interpreter and run:
 
 If you don't get any error messages, all worked out nicely!
 
+For more thorough testing you can run the unit tests:
+
+.. code-block:: shell
+
+  cd tests
+  pip install -r requirements.txt
+  pytest -m "not slow"
+
 You can now go through the :doc:`/usage/workflow` to learn how to use
 :mod:`pycompwa`.
