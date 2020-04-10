@@ -11,13 +11,12 @@ Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
 For contributing to pycompwa, we recommend you also install the packages listed
-under `requirements_dev.txt
-<https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt>`_. In
-the Conda environment you created for pycompwa:
+under :download:`requirements-dev.txt <../../requirements-dev.txt>`. In the
+Conda environment you created for pycompwa:
 
 .. code-block:: shell
 
-  conda install --file requirements_dev.txt
+  conda install --file requirements-dev.txt
 
 An important tool there is `pre-commit <https://pre-commit.com/>`_. This will
 run certain tests locally when you make a Git commit. To activate, run the

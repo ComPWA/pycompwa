@@ -1,15 +1,15 @@
+-r doc/requirements.txt
+-r tests/requirements.txt
 autopep8==1.5
-flake8==3.7.9
 flake8-blind-except
 flake8-builtins
 flake8-docstrings
 flake8-import-order
 flake8-rst-docstrings
+flake8==3.7.9
+flake8==3.7.9
 jupyter_contrib_nbextensions
 pep8-naming
 pre-commit==2.2.0
 pylint==2.4.4
-pytest==5.4.1
-pytest-cov
-scipy
 tox==3.14.6

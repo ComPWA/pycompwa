@@ -37,9 +37,7 @@ before_install: # activate virtual environment
 
 install: # install dependencies
   - python3 -m pip install scikit-build
-  - python3 -m pip install pytest==5.4.1
-  - python3 -m pip install pytest-cov
-  - python3 -m pip install scipy
+  - python3 -m pip install -r tests/requirements.txt
   - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
   - tar xpvfz root_*.tar.gz > /dev/null 2>&1
   - source root/bin/thisroot.sh
