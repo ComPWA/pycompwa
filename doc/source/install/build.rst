@@ -33,8 +33,8 @@ This is easy-peasy! Just navigate to the :doc:`local repository
   python setup.py install -- -- -j2
 
 where you may change 2 to to the number of cores on your system. The build
-output is written to a folder :file:`_skbuild` and copied to an installation
-folder known to the virtual environment.
+output is written to a folder :file:`_skbuild` and copied to the virtual
+environment directory.
 
 
 Developer Mode
