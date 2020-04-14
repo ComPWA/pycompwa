@@ -5,74 +5,18 @@
 How to contribute
 =================
 
-.. _Developer Mode:
-
-Developer Mode
---------------
-
-If you want to develop new functionality for pycompwa, installing pycompwa as a
-pip or Conda package will not suffice: you will have to **build from source**,
-so that you can continuously implement updates. In this 'developer mode', you
-still work in a Conda environment (see :doc:`installation`, especially for the
-`Conda-Forge <https://conda-forge.org/>`_ instructions), but now you install
-the :mod:`pycompwa` package from the cloned repository using `conda-develop
-<https://docs.conda.io/projects/conda-build/en/latest/resources/commands/conda-develop.html>`_,
-so that any changes you make in the source code immediately have effect.
-
-First, clone the pycompwa repository recursively to some suitable folder (you
-can omit the ``<PYCOMPWA_SOURCE_PATH>``):
-
-.. code-block:: shell
-
-  git clone --recurse-submodules git@github.com:ComPWA/pycompwa.git <PYCOMPWA_SOURCE_PATH>
-
-Now, go into the cloned repository, create a new Conda environment for
-pycompwa with the necessary packages installed, and activate it:
-
-.. code-block:: shell
-
-  conda create -n compwa --file requirements.txt
-  conda activate compwa
-
-You can now build the pycompwa package from source:
-
-.. code-block:: shell
-
-  mkdir -p build
-  cd build
-  cmake ..
-  cmake --build . -- -j4  # adjust 4 to your number of cores
-
-You will then need to set some symbolic links to the Python module of pycompwa:
-
-.. code-block:: shell
-
-  cd ../pycompwa
-  ln -s ../build/ui.*.so
-
-Finally, you can tell Conda where to locate the pycompwa package, so that the
-Python interpreter understand the ``import pycompwa`` command. You do this with:
-
-.. code-block:: shell
-
-  conda develop <PYCOMPWA_SOURCE_PATH>
-
-where ``<PYCOMPWA_SOURCE_PATH>`` refers to the absolute or relative path of the
-cloned pycompwa repository.
-
 .. _python-dev-tools:
 
 Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
 For contributing to pycompwa, we recommend you also install the packages listed
-under `requirements_dev.txt
-<https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt>`_. In
-the Conda environment you created for pycompwa:
+under :download:`requirements-dev.txt <../../requirements-dev.txt>`. In the
+Conda environment you created for pycompwa:
 
 .. code-block:: shell
 
-  conda install --file requirements_dev.txt
+  conda install --file requirements-dev.txt
 
 An important tool there is `pre-commit <https://pre-commit.com/>`_. This will
 run certain tests locally when you make a Git commit. To activate, run the
