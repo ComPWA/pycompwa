@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Particle database &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to contribute" href="../../contribute.html" />
+    <link rel="prev" title="Generate data samples" href="generate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html">ComPWA Workflow</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../tools.html">Additional Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_input.html">Importing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generate.html">Generate data samples</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Particle database</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pycompwa-particle-list">pycompwa particle list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ComPWA-particle-list">ComPWA particle list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../py-modindex.html">Module Index (API)</a>
+    <a href= "../../genindex.html">General Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../usage.html">Usage</a> &raquo;</li>
+        
+          <li><a href="../tools.html">Additional Tools</a> &raquo;</li>
+        
+      <li>Particle database</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/usage/tools/particles.ipynb" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../../contribute.html" class="btn btn-neutral float-right" title="How to contribute" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="generate.html" class="btn btn-neutral float-left" title="Generate data samples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/182735af75d35ab4958dc44bda4af37d/particles.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<div class="section" id="Particle-database">
+<h1>Particle database<a class="headerlink" href="#Particle-database" title="Permalink to this headline">¶</a></h1>
+<p>This notebook explains the difference between the particle list in <code class="docutils literal notranslate"><span class="pre">pycompwa</span></code> and the list used in the ComPWA C++ back-end. The two are only related the way they import and export XML files.</p>
+<div class="section" id="pycompwa-particle-list">
+<h2>pycompwa particle list<a class="headerlink" href="#pycompwa-particle-list" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#module-pycompwa.expertsystem.state.particle" title="pycompwa.expertsystem.state.particle"><code class="xref py py-mod docutils literal notranslate"><span class="pre">particle</span></code></a> module is required for the expert system (see
+<a class="reference internal" href="../workflow/1_create_model.html"><span class="doc">Step 1: Create an amplitude model</span></a>): when you create an instance of the
+<a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a>, it loads the <a class="reference external" href="https://github.com/ComPWA/ComPWA/blob/master/Physics/particle_list.xml">default list of particles
+that is shipped with ComPWA</a>.
+This default list is loaded into a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> called <code class="docutils literal notranslate"><span class="pre">particle_list</span></code>
+and is <strong>used internally by the expert system</strong>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> <span class="n">StateTransitionManager</span>
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="kn">import</span> <span class="n">particle_list</span>
+
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;gamma&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">)]</span>
+<span class="n">tbd_manager</span> <span class="o">=</span> <span class="n">StateTransitionManager</span><span class="p">(</span>
+    <span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
+    <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
+    <span class="n">topology_building</span><span class="o">=</span><span class="s1">&#39;isobar&#39;</span><span class="p">)</span>
+<span class="n">original_number_of_entries</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">particle_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loaded&#39;</span><span class="p">,</span> <span class="n">original_number_of_entries</span><span class="p">,</span> <span class="s1">&#39;particles&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+loaded 70 particles
+</pre></div></div>
+</div>
+<p>In PWA research, it is quite likely that this particle list is incomplete,
+particularly if you search for rare resonances or if you analyze a
+<span class="math notranslate nohighlight">\(e^+e^-\)</span> collision of a particular energy as the initial state. You may
+therefore want to manipulate this particle list before you do call
+<a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateTransitionManager.find_solutions()</span></code></a>. There are two ways to do
+this: (1) through Python or (2) by modifying a copy of the default XML file.</p>
+<div class="section" id="(1)-through-Python">
+<h3>(1) through Python<a class="headerlink" href="#(1)-through-Python" title="Permalink to this headline">¶</a></h3>
+<p>The particle list instance is a tree of <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrderedDict</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> instances that represent the structure of the XML file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle_list</span><span class="p">[</span><span class="s1">&#39;D*(2010)+&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;@Name&#39;: &#39;D*(2010)+&#39;,
+ &#39;Pid&#39;: &#39;413&#39;,
+ &#39;Parameter&#39;: OrderedDict([(&#39;@Type&#39;, &#39;Mass&#39;),
+              (&#39;@Name&#39;, &#39;Mass_D*(2010)+&#39;),
+              (&#39;Value&#39;, &#39;2.01&#39;),
+              (&#39;Fix&#39;, &#39;true&#39;)]),
+ &#39;QuantumNumber&#39;: [OrderedDict([(&#39;@Class&#39;, &#39;Spin&#39;),
+               (&#39;@Type&#39;, &#39;Spin&#39;),
+               (&#39;@Value&#39;, &#39;1&#39;)]),
+  OrderedDict([(&#39;@Class&#39;, &#39;Int&#39;), (&#39;@Type&#39;, &#39;Charge&#39;), (&#39;@Value&#39;, &#39;1&#39;)]),
+  OrderedDict([(&#39;@Class&#39;, &#39;Int&#39;), (&#39;@Type&#39;, &#39;Parity&#39;), (&#39;@Value&#39;, &#39;-1&#39;)]),
+  OrderedDict([(&#39;@Class&#39;, &#39;Spin&#39;),
+               (&#39;@Type&#39;, &#39;IsoSpin&#39;),
+               (&#39;@Value&#39;, &#39;0.5&#39;),
+               (&#39;@Projection&#39;, &#39;0.5&#39;)]),
+  OrderedDict([(&#39;@Class&#39;, &#39;Int&#39;), (&#39;@Type&#39;, &#39;Charm&#39;), (&#39;@Value&#39;, &#39;1&#39;)]),
+  OrderedDict([(&#39;@Class&#39;, &#39;Int&#39;),
+               (&#39;@Type&#39;, &#39;BaryonNumber&#39;),
+               (&#39;@Value&#39;, &#39;0&#39;)])],
+ &#39;DecayInfo&#39;: OrderedDict([(&#39;@Type&#39;, &#39;relativisticBreitWigner&#39;),
+              (&#39;FormFactor&#39;, OrderedDict([(&#39;@Type&#39;, &#39;BlattWeisskopf&#39;)])),
+              (&#39;Parameter&#39;,
+               [OrderedDict([(&#39;@Type&#39;, &#39;Width&#39;),
+                             (&#39;@Name&#39;, &#39;Width_D*(2010)+&#39;),
+                             (&#39;Value&#39;, &#39;83.4E-6&#39;),
+                             (&#39;Fix&#39;, &#39;true&#39;)]),
+                OrderedDict([(&#39;@Type&#39;, &#39;MesonRadius&#39;),
+                             (&#39;@Name&#39;, &#39;Radius_D*(2010)+&#39;),
+                             (&#39;Value&#39;, &#39;2.5&#39;),
+                             (&#39;Fix&#39;, &#39;true&#39;),
+                             (&#39;Min&#39;, &#39;2.0&#39;),
+                             (&#39;Max&#39;, &#39;3.0&#39;)])])])}
+</pre></div></div>
+</div>
+<p>Although this is a bit arduous to work with, it is possible to directly manipulate the entries in there through Python. Whatever modifications to the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> instance are later on also used in the expert system. In this case, for instance, we can set a wider width for the <span class="math notranslate nohighlight">\(D^*\)</span>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle_list</span><span class="p">[</span><span class="s1">&#39;D*(2010)+&#39;</span><span class="p">][</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+<p>It can also happen that you want to add new particles. Because of the
+hierarchical structure of entries in the <code class="docutils literal notranslate"><span class="pre">particle_lsit</span></code>, it is best to
+work with a <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deepcopy</span></code></a> of a similar particle that is already in that
+list. You can get such a copy with <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.get_particle_copy_by_name" title="pycompwa.expertsystem.state.particle.get_particle_copy_by_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_particle_copy_by_name()</span></code></a> and add
+it back with <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.add_to_particle_list" title="pycompwa.expertsystem.state.particle.add_to_particle_list"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_to_particle_list()</span></code></a>. This can for instance come in
+handy if you want to work with several <span class="math notranslate nohighlight">\(e^+e^-\)</span> collision energies:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state</span> <span class="kn">import</span> <span class="n">particle</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">energies</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4180</span><span class="p">,</span> <span class="mi">4220</span><span class="p">,</span> <span class="mi">4420</span><span class="p">,</span> <span class="mi">4600</span><span class="p">]</span>  <span class="c1"># MeV</span>
+
+<span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">energy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">energies</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">new_particle</span> <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">get_particle_copy_by_name</span><span class="p">(</span><span class="s2">&quot;EpEm&quot;</span><span class="p">)</span>
+    <span class="n">new_particle</span><span class="p">[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">][</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">/</span> <span class="mf">1e3</span>  <span class="c1"># GeV</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">new_particle</span><span class="p">[</span><span class="s1">&#39;Pid&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">counter</span>
+    <span class="n">new_particle</span><span class="p">[</span><span class="s2">&quot;@Name&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>  <span class="c1"># new name to not overwrite the old</span>
+    <span class="n">new_particle</span><span class="p">[</span><span class="s2">&quot;Pid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="c1"># set unique PID</span>
+    <span class="n">particle</span><span class="o">.</span><span class="n">add_to_particle_list</span><span class="p">(</span><span class="n">new_particle</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">original_number_of_entries</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">particle_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">particle</span><span class="o">.</span><span class="n">particle_list</span><span class="p">[</span><span class="s2">&quot;EpEm&quot;</span><span class="p">][</span><span class="s2">&quot;Parameter&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">particle</span><span class="o">.</span><span class="n">particle_list</span><span class="p">[</span><span class="s2">&quot;EpEm4180&quot;</span><span class="p">][</span><span class="s2">&quot;Parameter&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([(&#39;@Type&#39;, &#39;Mass&#39;),
+             (&#39;@Name&#39;, &#39;Mass_epem&#39;),
+             (&#39;Value&#39;, &#39;4.300&#39;),
+             (&#39;Fix&#39;, &#39;true&#39;)])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([(&#39;@Type&#39;, &#39;Mass&#39;),
+             (&#39;@Name&#39;, &#39;Mass_epem&#39;),
+             (&#39;Value&#39;, 4.18),
+             (&#39;Fix&#39;, &#39;true&#39;)])
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle</span><span class="o">.</span><span class="n">particle_list</span><span class="p">[</span><span class="s1">&#39;D*(2010)+&#39;</span><span class="p">][</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, you can write particle to another XML file, so that you can have this particle list manipulation in a separate Python script:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle</span><span class="o">.</span><span class="n">write_particle_list_to_xml</span><span class="p">(</span><span class="s1">&#39;new_particle_list.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="(2)-through-XML">
+<h3>(2) through XML<a class="headerlink" href="#(2)-through-XML" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, you can copy the default XML file and manipulate it by hand (copy a section, tweak some names, change some parameters) and load it as follows:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle</span><span class="o">.</span><span class="n">load_particle_list_from_xml</span><span class="p">(</span><span class="s1">&#39;../particle_list.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Note that duplicate values in the particle list are overwritten, but that old values are kept:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of entries in particle_list&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  old:&#39;</span><span class="p">,</span> <span class="n">original_number_of_entries</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  new:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">particle</span><span class="o">.</span><span class="n">particle_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of entries in particle_list
+  old: 70
+  new: 74
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle_list</span><span class="p">[</span><span class="s1">&#39;D*(2010)+&#39;</span><span class="p">][</span><span class="s1">&#39;DecayInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;83.4E-6&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">particle_list</span><span class="p">[</span><span class="s1">&#39;EpEm4420&#39;</span><span class="p">][</span><span class="s1">&#39;Parameter&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([(&#39;@Type&#39;, &#39;Mass&#39;),
+             (&#39;@Name&#39;, &#39;Mass_epem&#39;),
+             (&#39;Value&#39;, 4.42),
+             (&#39;Fix&#39;, &#39;true&#39;)])
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="ComPWA-particle-list">
+<h2>ComPWA particle list<a class="headerlink" href="#ComPWA-particle-list" title="Permalink to this headline">¶</a></h2>
+<p>ComPWA, which we manage through the <a class="reference internal" href="../../api/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> module, works with a
+different particle list than the one discussed in the
+<a class="reference internal" href="#pycompwa-particle-list"><span class="std std-ref">previous section</span></a>,
+because ComPWA’s objects ‘live’ in the C++ backend. We saw this
+<a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleList</span></code></a> class before, for instance when,
+<a class="reference internal" href="../workflow/2_generate_data.html"><span class="doc">generating data</span></a>. A
+<a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.ui.ParticleList</span></code></a> can be created from an XML file as follows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span>
+
+<span class="n">particles</span> <span class="o">=</span> <span class="n">pycompwa</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;../particle_list.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2020-04-14 15:57:13,493 [INFO]  Particle a0(980)- with identical ID 9000211 already exists in list with the name a0(980)+ and ID 9000211. Particle properties will be overwritten!
+2020-04-14 15:57:13,495 [INFO]  Particle PatricParticle with identical ID 1234 already exists in list with the name Chic1 and ID 1234. Particle properties will be overwritten!
+2020-04-14 15:57:13,495 [INFO]  Particle nbar with identical ID 2112 already exists in list with the name n and ID 2112. Particle properties will be overwritten!
+</pre></div></div>
+</div>
+<p>You can append particles to this instance from another list with</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pycompwa</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">Logging</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>  <span class="c1"># switch off overwrite warnings</span>
+<span class="n">pycompwa</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">insert_particles</span><span class="p">(</span><span class="n">particles</span><span class="p">,</span> <span class="s1">&#39;../particle_list.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2020-04-14 15:57:13,504 [INFO] Logging to file disabled!
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../contribute.html" class="btn btn-neutral float-right" title="How to contribute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="generate.html" class="btn btn-neutral float-left" title="Generate data samples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

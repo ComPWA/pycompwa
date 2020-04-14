@@ -91,7 +91,6 @@
               <p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documents.html">Talks and Documents</a></li>
@@ -415,6 +414,15 @@
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">full_dict</span><span class="p">[</span><span class="s1">&#39;ParticleList&#39;</span><span class="p">][</span><span class="s1">&#39;Particle&#39;</span><span class="p">]:</span>
             <span class="n">entry</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
             <span class="n">particle_list</span><span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="n">name_label</span><span class="p">]]</span> <span class="o">=</span> <span class="n">entry</span></div>
+
+
+<div class="viewcode-block" id="write_particle_list_to_xml"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.write_particle_list_to_xml">[docs]</a><span class="k">def</span> <span class="nf">write_particle_list_to_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write ``particle_list`` instance to XML file.&quot;&quot;&quot;</span>
+    <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">particle_list</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+    <span class="n">particle_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ParticleList&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Particle&#39;</span><span class="p">:</span> <span class="n">entries</span><span class="p">}}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;new_particle_list.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">xmltodict</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span>
+            <span class="n">particle_dict</span><span class="p">,</span> <span class="n">full_document</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pretty</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="add_to_particle_list"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.particle.html#pycompwa.expertsystem.state.particle.add_to_particle_list">[docs]</a><span class="k">def</span> <span class="nf">add_to_particle_list</span><span class="p">(</span><span class="n">particle</span><span class="p">):</span>

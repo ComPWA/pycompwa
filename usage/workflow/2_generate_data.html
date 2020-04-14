@@ -93,7 +93,6 @@
               <p class="caption"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Main modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../workflow.html">ComPWA Workflow</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="1_create_model.html">Step 1: Create an amplitude model</a></li>
@@ -447,12 +446,14 @@ div.rendered_html tbody tr:hover {
 <li><p>Build a <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> object following the specifications of the
 dynamics in the XML model file (in this case, the helicity formalism).
 The second argument of this function is a particle list.</p></li>
-<li><p>Use this <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> object to generate a phase space sample as
-well. This sample defines the space on which to evaluate the intensities
-of the amplitude model.</p></li>
-<li><p>Build an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> object from the amplitude model. Because we
-want the intensities to be normalized, you have to pass the intensity
-builder function a phase space sample as an argument. Note that during the
+<li><p>The information in the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> instance is sufficient for
+generating a phase space sample. This sample defines the space on which to
+evaluate the intensities of the amplitude model.</p></li>
+<li><p>For generating a data sample, you require an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> profile
+for this specific decay. You can construct such an object from the model
+XML file using the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.IntensityBuilderXML" title="pycompwa.ui.IntensityBuilderXML"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntensityBuilderXML</span></code></a>. Because we want the
+intensities to be normalized, you have to pass the generated phase space
+sample as an argument to the intensity builder. Note that during the
 creation of the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> object, the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a>
 instance is updated with the subsystems required for the decay topology.</p></li>
 </ol>
@@ -471,22 +472,24 @@ instance is updated with the subsystems required for the decay topology.</p></li
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
-
+<span></span><span class="c1"># specify kinematics</span>
+<span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
 <span class="n">kinematics</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
 
+<span class="c1"># specify generators</span>
 <span class="n">generator</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">EvtGenGenerator</span><span class="p">(</span>
     <span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">())</span>
-
 <span class="n">random_generator</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">StdUniformRealGenerator</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
 
+<span class="c1"># generate phase space sample</span>
 <span class="n">phsp_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate_phsp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">generator</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 
+<span class="c1"># create intensity profile</span>
 <span class="n">intensity_builder</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">IntensityBuilderXML</span><span class="p">(</span>
     <span class="s1">&#39;model.xml&#39;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">phsp_sample</span><span class="p">)</span>
-
 <span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity</span><span class="p">()</span>
 
+<span class="c1"># generate data</span>
 <span class="n">data_sample</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
     <span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">kinematics</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="n">intensity</span><span class="p">,</span> <span class="n">random_generator</span><span class="p">)</span>
 </pre></div>
@@ -497,22 +500,22 @@ instance is updated with the subsystems required for the decay topology.</p></li
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-14 13:50:06,307 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+2020-04-14 15:58:34,125 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 
-2020-04-14 13:50:06,309 [INFO] Generating phase-space MC: [100000 events]
+2020-04-14 15:58:34,127 [INFO] Generating phase-space MC: [100000 events]
 
 
-2020-04-14 13:50:06,393 [INFO] Setting phase space sample weights...
-2020-04-14 13:50:06,401 [INFO] Updating data container content...
-2020-04-14 13:50:08,221 [INFO] Generating hit-and-miss sample: [10000 events]
+2020-04-14 15:58:34,212 [INFO] Setting phase space sample weights...
+2020-04-14 15:58:34,219 [INFO] Updating data container content...
+2020-04-14 15:58:35,996 [INFO] Generating hit-and-miss sample: [10000 events]
 
-2020-04-14 13:50:08,888 [INFO] Tools::generate() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 9.92631 value and restart generation!
+2020-04-14 15:58:36,646 [INFO] Tools::generate() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 9.92631 value and restart generation!
 
-2020-04-14 13:50:11,211 [INFO] Successfully generated 10000 with an efficiency of 0.0740741
+2020-04-14 15:58:38,907 [INFO] Successfully generated 10000 with an efficiency of 0.0740741
 
 </pre></div></div>
 </div>
@@ -538,7 +541,9 @@ this computation with the
 <a class="reference internal" href="4_analyze_results.html"><span class="doc">Step 4: Analyze results</span></a>).</p></li>
 </ul>
 </div>
-</div>
+.. hint::
+    For more complicated data sample structures, see
+    :ref:`../tools/generate:Importance Sampling`.</div>
 <div class="section" id="2.2-Exporting-and-importing">
 <h2>2.2 Exporting and importing<a class="headerlink" href="#2.2-Exporting-and-importing" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="../../api/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> module allows you to export the data samples to two
@@ -562,9 +567,9 @@ different file formats: <a class="reference external" href="https://root.cern.ch
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-14 13:50:11,372 [INFO] Root::writeData(): writing vector of 10000 events to file generated_data.root
-2020-04-14 13:50:11,503 [INFO] Root::writeData(): writing vector of 100000 events to file generated_phsp.root
-2020-04-14 13:50:11,987 [INFO] Logging to file disabled!
+2020-04-14 15:58:39,060 [INFO] Root::writeData(): writing vector of 10000 events to file generated_data.root
+2020-04-14 15:58:39,185 [INFO] Root::writeData(): writing vector of 100000 events to file generated_phsp.root
+2020-04-14 15:58:39,653 [INFO] Logging to file disabled!
 </pre></div></div>
 </div>
 <p>The syntax for importing parallels that:</p>
