@@ -480,15 +480,15 @@ so that it matches the distribution of our data sample. This is what we call
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-09 15:34:23,106 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+2020-04-14 13:50:15,218 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 
-2020-04-09 15:34:23,107 [INFO] creating all Subsystems!
-2020-04-09 15:34:23,499 [INFO] Setting phase space sample weights...
-2020-04-09 15:34:23,508 [INFO] Updating data container content...
+2020-04-14 13:50:15,219 [INFO] creating all Subsystems!
+2020-04-14 13:50:15,630 [INFO] Setting phase space sample weights...
+2020-04-14 13:50:15,639 [INFO] Updating data container content...
 </pre></div></div>
 </div>
 <div class="section" id="3.1-Define-estimator">
@@ -698,8 +698,8 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-09 15:34:26,096 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
-2020-04-09 15:34:26,096 [INFO] Minuit2 strategy: medium
+2020-04-14 13:50:18,211 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
+2020-04-14 13:50:18,212 [INFO] Minuit2 strategy: medium
        GradientNCycles: 3
        GradientStepTolerance: 0.3
        GradientTolerance: 0.05
@@ -707,11 +707,11 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
        HessianGradientNCycles: 2
        HessianStepTolerance: 0.3
        HessianG2Tolerance: 0.05
-2020-04-09 15:34:26,097 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
-2020-04-09 15:34:58,253 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
-2020-04-09 15:34:58,254 [INFO] MinuitIF::optimize() | Starting hesse
-2020-04-09 15:35:04,637 [INFO] MinuitIF::optimize() | Hesse finished
-2020-04-09 15:35:04,638 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086088
+2020-04-14 13:50:18,213 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
+2020-04-14 13:50:51,063 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
+2020-04-14 13:50:51,064 [INFO] MinuitIF::optimize() | Starting hesse
+2020-04-14 13:50:57,460 [INFO] MinuitIF::optimize() | Hesse finished
+2020-04-14 13:50:57,462 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086088
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -729,7 +729,7 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-38
+39
 </pre></div></div>
 </div>
 <p>Let’s check whether the fit parameters are close to the true values.</p>
@@ -754,7 +754,7 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 This value is close to 1.0 again:
-0.9747981228635143 +- 0.10721142088623928
+0.974798122878151 +- 0.10721249827205023
 </pre></div></div>
 </div>
 <div class="admonition warning">
@@ -806,7 +806,7 @@ of parameters. They can be applied with <a class="reference internal" href="../.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.107211
+Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.107212
 </pre></div></div>
 </div>
 </div>

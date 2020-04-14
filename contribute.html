@@ -96,19 +96,18 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#developer-mode">Developer Mode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#python-developer-tools">Python developer tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#jupyter-notebook-tools">Jupyter notebook tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-developer-tools">Python developer tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-notebook-tools">Jupyter notebook tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-contribute-through-git">How to contribute through Git</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-contribute-through-git">How to contribute through Git</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#commit-conventions">Commit conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commit-conventions">Commit conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reporting-issues">Reporting Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-integration-ci">Continuous Integration (CI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-quality-conventions">Code Quality &amp; Conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#reporting-issues">Reporting Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#continuous-integration-ci">Continuous Integration (CI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-quality-conventions">Code Quality &amp; Conventions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Talks and Documents</a></li>
@@ -216,51 +215,12 @@
 </style>
 <div class="section" id="how-to-contribute">
 <h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="developer-mode">
-<span id="id1"></span><h2>Developer Mode<a class="headerlink" href="#developer-mode" title="Permalink to this headline">¶</a></h2>
-<p>If you want to develop new functionality for pycompwa, installing pycompwa as a
-pip or Conda package will not suffice: you will have to <strong>build from source</strong>,
-so that you can continuously implement updates. In this ‘developer mode’, you
-still work in a Conda environment (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>, especially for the
-<a class="reference external" href="https://conda-forge.org/">Conda-Forge</a> instructions), but now you install
-the <a class="reference internal" href="api/pycompwa.html#module-pycompwa" title="pycompwa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa</span></code></a> package from the cloned repository using <a class="reference external" href="https://docs.conda.io/projects/conda-build/en/latest/resources/commands/conda-develop.html">conda-develop</a>,
-so that any changes you make in the source code immediately have effect.</p>
-<p>First, clone the pycompwa repository recursively to some suitable folder (you
-can omit the <code class="docutils literal notranslate"><span class="pre">&lt;PYCOMPWA_SOURCE_PATH&gt;</span></code>):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:ComPWA/pycompwa.git &lt;PYCOMPWA_SOURCE_PATH&gt;
-</pre></div>
-</div>
-<p>Now, go into the cloned repository, create a new Conda environment for
-pycompwa with the necessary packages installed, and activate it:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create -n compwa --file requirements.txt
-conda activate compwa
-</pre></div>
-</div>
-<p>You can now build the pycompwa package from source:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir -p build
-<span class="nb">cd</span> build
-cmake ..
-cmake --build . -- -j4  <span class="c1"># adjust 4 to your number of cores</span>
-</pre></div>
-</div>
-<p>You will then need to set some symbolic links to the Python module of pycompwa:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../pycompwa
-ln -s ../build/ui.*.so
-</pre></div>
-</div>
-<p>Finally, you can tell Conda where to locate the pycompwa package, so that the
-Python interpreter understand the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pycompwa</span></code> command. You do this with:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda develop &lt;PYCOMPWA_SOURCE_PATH&gt;
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;PYCOMPWA_SOURCE_PATH&gt;</span></code> refers to the absolute or relative path of the
-cloned pycompwa repository.</p>
 <div class="section" id="python-developer-tools">
-<span id="python-dev-tools"></span><h3>Python developer tools<a class="headerlink" href="#python-developer-tools" title="Permalink to this headline">¶</a></h3>
+<span id="python-dev-tools"></span><h2>Python developer tools<a class="headerlink" href="#python-developer-tools" title="Permalink to this headline">¶</a></h2>
 <p>For contributing to pycompwa, we recommend you also install the packages listed
-under <a class="reference external" href="https://github.com/ComPWA/pycompwa/blob/master/requirements_dev.txt">requirements_dev.txt</a>. In
-the Conda environment you created for pycompwa:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install --file requirements_dev.txt
+under <a class="reference download internal" download="" href="_downloads/aaa729b942a4cb3696f64095066a907a/requirements-dev.txt"><code class="xref download docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code></a>. In the
+Conda environment you created for pycompwa:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install --file requirements-dev.txt
 </pre></div>
 </div>
 <p>An important tool there is <a class="reference external" href="https://pre-commit.com/">pre-commit</a>. This will
@@ -288,7 +248,7 @@ covered by the tests by opening <code class="docutils literal notranslate"><span
 reliable.</p>
 </div>
 <div class="section" id="jupyter-notebook-tools">
-<h3>Jupyter notebook tools<a class="headerlink" href="#jupyter-notebook-tools" title="Permalink to this headline">¶</a></h3>
+<h2>Jupyter notebook tools<a class="headerlink" href="#jupyter-notebook-tools" title="Permalink to this headline">¶</a></h2>
 <p>Jupyter notebooks aren’t the most friendly with regard to Version Control
 Systems like Git because in the back-end, a notebook is a JSON file that
 changes for instances when you run a cell. There is no simple solution for this
@@ -303,10 +263,8 @@ following extensions:</p>
 <li><p><a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/ruler/readme.html">ruler</a></p></li>
 <li><p><a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">sphellchecker</a></p></li>
 </ul>
-</div>
-</div>
 <div class="section" id="how-to-contribute-through-git">
-<h2>How to contribute through Git<a class="headerlink" href="#how-to-contribute-through-git" title="Permalink to this headline">¶</a></h2>
+<h3>How to contribute through Git<a class="headerlink" href="#how-to-contribute-through-git" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Note that most of the following instructions are general and independent of
@@ -403,8 +361,10 @@ ComPWA repository.</p></li>
 <li><p>While the PR is open, commits pushed to the fork branch behind your PR will
 immediately appear in the PR.</p></li>
 </ul>
+</div>
+</div>
 <div class="section" id="commit-conventions">
-<h3>Commit conventions<a class="headerlink" href="#commit-conventions" title="Permalink to this headline">¶</a></h3>
+<h2>Commit conventions<a class="headerlink" href="#commit-conventions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>In the master branch, it should be possible to compile and test the framework
 <strong>in each commit</strong>. In your own topic branches, it is recommended to commit
@@ -420,10 +380,8 @@ the commit to give a command to the code framework. So for instance:
 should be in present tense, but you can add whatever you want there (like
 hyperlinks for references).</p></li>
 </ul>
-</div>
-</div>
 <div class="section" id="reporting-issues">
-<span id="contribute-report-issues"></span><h2>Reporting Issues<a class="headerlink" href="#reporting-issues" title="Permalink to this headline">¶</a></h2>
+<span id="contribute-report-issues"></span><h3>Reporting Issues<a class="headerlink" href="#reporting-issues" title="Permalink to this headline">¶</a></h3>
 <p>Use the <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues">pycompwa github issues page</a> to:</p>
 <ul class="simple">
 <li><p>report problems/issues</p></li>
@@ -436,7 +394,7 @@ duplicates.</p>
 to (py)ComPWA!</p>
 </div>
 <div class="section" id="continuous-integration-ci">
-<h2>Continuous Integration (CI)<a class="headerlink" href="#continuous-integration-ci" title="Permalink to this headline">¶</a></h2>
+<h3>Continuous Integration (CI)<a class="headerlink" href="#continuous-integration-ci" title="Permalink to this headline">¶</a></h3>
 <p>The master branch is automatically build using TravisCI. Probably it is
 interesting to check out the <a class="reference external" href="https://travis-ci.com/ComPWA/pycompwa">log file</a> and the projects TravisCI
 configuration file <a class="reference external" href="https://github.com/ComPWA/pycompwa/blob/master/.travis.yml">travisCI.yml</a>.</p>
@@ -448,7 +406,7 @@ a detailed overview of coverage per module, and you can investigate coverage
 all the way down to the source code.</p>
 </div>
 <div class="section" id="code-quality-conventions">
-<h2>Code Quality &amp; Conventions<a class="headerlink" href="#code-quality-conventions" title="Permalink to this headline">¶</a></h2>
+<h3>Code Quality &amp; Conventions<a class="headerlink" href="#code-quality-conventions" title="Permalink to this headline">¶</a></h3>
 <p>A highly recommended read for learning how to write good code: <br />
 <strong>Clean Code, by Robert C. Martin</strong></p>
 <p>Try and follow his advice, and keep in mind the ‘boy scout rule’:</p>
@@ -459,7 +417,7 @@ all the way down to the source code.</p>
 highlighters and formatters are <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">autopep8</span></code>.</p>
 </div>
 <div class="section" id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <p>Generally try to code in such a way that it is self explanatory and its
 documentation is not necessary. Of course this ideal case is not achieved in
 reality, but avoid useless comments such as <code class="docutils literal notranslate"><span class="pre">getValue()</span> <span class="pre">#</span> <span class="pre">gets</span> <span class="pre">value</span></code>. Also
@@ -476,6 +434,7 @@ make html
 </pre></div>
 </div>
 <p>Now, open the file <code class="docutils literal notranslate"><span class="pre">doc/source/_build/html/index.html</span></code>.</p>
+</div>
 </div>
 </div>
 
