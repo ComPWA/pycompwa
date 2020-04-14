@@ -41,9 +41,10 @@ Developer Mode
 ~~~~~~~~~~~~~~
 
 In this set-up, we first tell the virtual environment to monitor the source
-code directory as an install directory. So, navigate to the :doc:`local
-repository <get-the-source-code>` then, depending on which :doc:`virtual
-environment </install/virtual-environment>` you chose, do the following:
+code directory as an install directory. So, navigate to the base folder of the
+:doc:`local repository <get-the-source-code>` then, depending on which
+:doc:`virtual environment </install/virtual-environment>` you chose, do the
+following:
 
 .. code-block:: shell
   :caption: if you :ref:`use a Conda environment
