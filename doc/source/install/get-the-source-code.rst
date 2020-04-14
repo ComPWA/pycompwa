@@ -29,3 +29,20 @@ folder the **local repository**. If you navigate into it, you can see it has:
   <install/build:Developer Mode>`)
 
 These files will be used in the following steps.
+
+.. note::
+
+  When new commits are merged into the `master branch of pycompwa
+  <https://github.com/ComPWA/pycompwa/tree/master>`_, you need to update your
+  local copy of the source code. It's important that you also update the
+  submodules:
+
+  .. code-block:: shell
+
+    git checkout master
+    git pull --recurse-submodules
+
+  It's best to have a clean your working tree before you do a :command:`git
+  pull`. See :doc:`/contribute` for more info.
+
+  Once you have the update, don't forget to :doc:`rebuild pycompwa <build>`!
