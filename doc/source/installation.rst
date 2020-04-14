@@ -65,6 +65,10 @@ Et voilà, that's it! You can try out whether the installation works by running:
 from the Python interpreter. If that works, you can try out some of the
 examples from the :doc:`usage` page.
 
+Note that you can :command:`pip` **only allows you to install specific
+releases**. We therefore recommend following the :ref:`interactive installation
+<installation:Interactive installation>` procedure instead.
+
 
 Interactive installation
 ^^^^^^^^^^^^^^^^^^^^^^^^
