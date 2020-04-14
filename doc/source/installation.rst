@@ -1,79 +1,94 @@
-.. |br| raw:: html
-
-  <br />
-
 Installation
 ============
 
-It is best to install the pycompwa framework within a virtual environment, so
-that all dependencies of pycompwa are contained within there. We recommend to
-use `Anaconda <https://www.anaconda.com/distribution/>`_ in combination with
-`Conda-Forge <https://conda-forge.org/>`_.
+Prerequisites
+^^^^^^^^^^^^^
 
-After you have `installed Anaconda
-<https://docs.anaconda.com/anaconda/install/>`_, set Conda-Forge as the
-default channel as follows:
+`pycompwa` is `available as a PyPI package
+<https://pypi.org/project/pycompwa/>`_. However, since the `pycompwa.ui` module
+contains Python bindings to the `ComPWA backend
+<https://github.com/ComPWA/ComPWA>`_, you first need to install certain C++
+prerequisites.
 
-.. code-block:: shell
+What you definitely need to install, is:
 
-  conda config --add channels conda-forge
-  conda config --set channel_priority strict
+* a build tool: `cmake <https://cmake.org/>`_
+* a C++ compiler:
+  `gcc <https://gcc.gnu.org/>`_ or `clang <https://clang.llvm.org/>`_
+* `Boost <https://www.boost.org/>`_
+* `Python3 <https://www.python.org/downloads/>`_
 
-Now, create a new environment with `all required dependencies
-<https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`_
-installed:
+The following package are optional:
 
-.. code-block:: shell
+* `ROOT <https://root.cern.ch/downloading-root>`_ and/or `Minuit2
+  <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`_
+* `GSL <https://www.gnu.org/software/gsl/>`_
+* `Geneva <https://www.gemfony.eu/>`_
 
-  conda create -n compwa --file requirements.txt
+It is highly recommended to install ROOT `with Minuit2 enabled
+<https://root.cern.ch/building-root>`_. Without it, ComPWA will have only
+limited functionality.
 
-Here, we call the environment ``compwa``, but you can give it any name. Now, go
-into this environment with ``conda activate compwa``, so we can install
-pycompwa there:
+.. hint::
+
+  If you have a Linux machine with `apt <https://wiki.debian.org/Apt>`_ and
+  with administrator rights, you can run the following:
+
+  .. code-block:: shell
+
+    sudo apt update -y
+    sudo apt install -y cmake gcc git libboost-all-dev python3
+
+  ROOT with Minuit2 can be most easily installed by `downloading a suitable
+  binary for your machine <https://root.cern.ch/downloading-root>`_.
+
+
+Installation through pip
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once you have these dependencies installed, you can install `pycompwa` through
+`pip <https://pypi.org/project/pip/>`_. You also need to install `scikit-build
+<https://scikit-build.readthedocs.io/en/latest/>`_, because it is used as a
+build tool for the ComPWA backend:
 
 .. code-block:: shell
 
   pip install scikit-build
   pip install pycompwa
 
-Note that ``scikit-build`` has to be installed first.
+Et voilà, that's it! You can try out whether the installation works by running:
 
-That's it! You can now go through the :doc:`usage/workflow` to learn how to use
-:mod:`pycompwa`.
+.. code-block:: python
 
-.. tip::
+  import pycompwa
 
-    Of course, pycompwa can also be used with `jupyter
-    <https://jupyter.org/>`_. You can install jupyter in your virtual Conda
-    environment via ``conda install jupyter``. Then, just navigate to the
-    `examples <https://github.com/ComPWA/pycompwa/tree/master/examples>`_
-    folder and run ``jupyter notebook``.
+from the Python interpreter. If that works, you can try out some of the
+examples from the :doc:`usage` page.
 
-Prerequisites
--------------
+Note that :command:`pip` **only allows you to install specific releases**. We
+therefore recommend following the :ref:`interactive installation
+<installation:Interactive installation>` procedure instead.
 
-ComPWA and the pycompwa interface have the following dependencies:
 
-* ``scikit-build`` (a python package) |br|
-  Install via ``pip install scikit-build``
-* requirements of `ComPWA <https://github.com/ComPWA/ComPWA#prerequisites>`_:
+Interactive installation
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * Build tool: `cmake <https://cmake.org/>`_
-  * Compiler: ``gcc`` or ``clang``
-  * `Boost <https://www.boost.org/>`_
-  * optional libraries: |br|
-    `ROOT <https://root.cern.ch/downloading-root>`_ and/or `Minuit
-    <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`_,
-    `Geneva <https://www.gemfony.eu/>`_, and
-    `GSL <https://www.gnu.org/software/gsl/>`_
+`pycompwa` is an academic research project and is bound to continuously evolve.
+We therefore highly recommend installing `pycompwa` from `the source code
+<https://github.com/ComPWA/pycompwa>`_, so that you work with the latest
+version.
 
-* The Python requirements listed `here
-  <https://github.com/ComPWA/pycompwa/blob/master/requirements.txt>`_
+Moreover, since you read as far as this, you must have an interest in
+partial-wave analysis, and it is researchers like you who can help bring this
+project further! So please, have a look through the following sections to set
+up this 'interactive installation':
 
-Installation from source
-------------------------
+.. toctree::
+  :maxdepth: 2
 
-If you are a pycompwa developer, you will have to build the framework from
-source instead of using the :mod:`pycompwa` release that is distributed through
-`Conda <https://docs.conda.io/>`_. See :ref:`Developer Mode` for the
-installation instructions.
+  install/get-the-source-code
+  install/virtual-environment
+  install/build
+
+After that, it's worth having a look at the :doc:`contribute tutorials
+<contribute>`!

@@ -129,7 +129,6 @@ intersphinx_mapping = {
 
 # Settings for autosectionlabel
 autosectionlabel_prefix_document = True
-autosectionlabel_maxdepth = 1
 
 # Settings for linkcheck
 linkcheck_anchors = False

@@ -2,4 +2,5 @@ matplotlib
 numpy
 pandas
 progress
+uproot
 xmltodict
