@@ -25,8 +25,9 @@ The following package are optional:
 * `GSL <https://www.gnu.org/software/gsl/>`_
 * `Geneva <https://www.gemfony.eu/>`_
 
-For basic fitting functionality, it is easiest to install ROOT `with Minuit2
-enabled <https://root.cern.ch/building-root>`_.
+It is highly recommended to install ROOT `with Minuit2 enabled
+<https://root.cern.ch/building-root>`_. Without it, ComPWA will have only
+limited functionality.
 
 .. hint::
 
