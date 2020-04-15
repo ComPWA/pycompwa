@@ -63,7 +63,7 @@ Et voilà, that's it! You can try out whether the installation works by running:
   import pycompwa
 
 from the Python interpreter. If that works, you can try out some of the
-examples from the :doc:`usage` page.
+examples from the :doc:`/usage/workflow` page.
 
 Note that :command:`pip` **only allows you to install specific releases**. We
 therefore recommend following the :ref:`interactive installation
