@@ -8,19 +8,32 @@ import pandas as pd
 
 import pytest
 
-from pycompwa.data import _labels, append, exception
+import pycompwa.ui as pwa
+from pycompwa.data import _labels
+from pycompwa.data import append
+from pycompwa.data import convert
+from pycompwa.data import exception
 
 
 SCRIPT_DIR = dirname(realpath(__file__))
 
 
+def create_sample_frame(import_file: str):
+    """Import a file with pycompwa and convert it to a `~pandas.DataFrame`."""
+    events = pwa.read_ascii_data(import_file)
+    frame = convert.events_to_pandas(
+        events=events,
+        model=f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    return frame
+
+
 def import_test_frame(weights: bool = False):
     """Import the pickled frame."""
     if weights:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_weights.pkl'
+        import_file = f'{SCRIPT_DIR}/files/ascii_weights.dat'
     else:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_noweights.pkl'
-    return pd.read_pickle(import_file)
+        import_file = f'{SCRIPT_DIR}/files/ascii_noweights.dat'
+    return create_sample_frame(import_file)
 
 
 @pytest.mark.parametrize("columns,names", [
@@ -69,16 +82,17 @@ def test_labels(has_weights):
     """Test column labels."""
     frame = import_test_frame(weights=has_weights)
 
-    assert frame.pwa.particles == [2, 3, 4]
-    assert frame[2].pwa.particles is None
+    assert frame.pwa.particles == ['gamma', 'pi0-1', 'pi0-2']
 
+    gamma = frame['gamma']
+    assert gamma.pwa.particles is None
     assert frame.pwa.weight_label == _labels.WEIGHT
 
     assert frame.pwa.momentum_labels == _labels.MOMENTA
-    assert frame[2].pwa.momentum_labels == _labels.MOMENTA
+    assert gamma.pwa.momentum_labels == _labels.MOMENTA
 
     assert frame.pwa.other_columns == []
-    assert frame[2].pwa.other_columns == []
+    assert gamma.pwa.other_columns == []
     dummy_list = range(len(frame))
     frame.insert(frame.columns.size, 'col_0', dummy_list)
     frame.insert(frame.columns.size, 'col_n', dummy_list)
@@ -92,12 +106,12 @@ def test_labels(has_weights):
 def test_physics(has_weights):
     """Test physics related accessors."""
     frame = import_test_frame(weights=has_weights)
-    pions = frame[[3, 4]]
+    pions = frame[['pi0-1', 'pi0-2']]
     assert isclose(frame.pwa.energy.mean().sum(axis=0), 3.097, abs_tol=1e-3)
-    assert isclose(frame[2].pwa.energy.mean(axis=0), 1.375, abs_tol=1e-3)
+    assert isclose(frame['gamma'].pwa.energy.mean(axis=0), 1.375, abs_tol=1e-3)
     assert isclose(pions.pwa.mass.mean().sum(axis=0), 0.270, abs_tol=1e-3)
-    assert isclose(pions[3].pwa.mass.mean(axis=0), 0.135, abs_tol=1e-3)
-    assert isclose(pions[3].pwa.rho.mean(axis=0), 1.197, abs_tol=1e-3)
+    assert isclose(pions['pi0-1'].pwa.mass.mean(axis=0), 0.135, abs_tol=1e-3)
+    assert isclose(pions['pi0-1'].pwa.rho.mean(axis=0), 1.197, abs_tol=1e-3)
 
 
 @pytest.mark.parametrize("has_weights", [False, True])
@@ -106,16 +120,18 @@ def test_append(has_weights):
     frame = import_test_frame(weights=has_weights)
 
     frame_pwa = frame.copy()
-    frame_pwa_other = frame_pwa.rename(columns={2: 'two', 3: 'three'})
+    frame_pwa_other = frame_pwa.rename(
+        columns={'gamma': 'two', 'pi0-1': 'three'})
     frame_pwa_other = frame_pwa_other[['two', 'three']]
     frame_result = append(frame_pwa, frame_pwa_other)
-    assert frame_result.pwa.particles == [2, 3, 4, 'two', 'three']
+    assert frame_result.pwa.particles == [
+        'gamma', 'pi0-1', 'pi0-2', 'two', 'three']
     assert not frame_result.pwa.other_columns
 
     frame_pwa = frame.copy()
     frame_single = pd.DataFrame(list(range(4)), columns=['dummy'])
     frame_result = append(frame_pwa, frame_single)
-    assert frame_result.pwa.particles == [2, 3, 4]
+    assert frame_result.pwa.particles == ['gamma', 'pi0-1', 'pi0-2']
     assert frame_result.pwa.other_columns == ['dummy']
 
     frame_wrong = pd.DataFrame(list(range(3)))

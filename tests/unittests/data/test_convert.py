@@ -3,8 +3,6 @@
 from math import isclose, sqrt
 from os.path import dirname, realpath
 
-import pandas as pd
-
 import pytest
 
 import pycompwa.ui as pwa
@@ -12,6 +10,7 @@ from pycompwa.data import _labels
 from pycompwa.data import convert
 from pycompwa.data import exception
 from pycompwa.data import kinematics
+from pycompwa.data import naming
 
 
 SCRIPT_DIR = dirname(realpath(__file__))
@@ -31,11 +30,11 @@ def import_events(weights: bool = False):
 
 def import_pandas(weights: bool = False):
     """Import the pickled frame."""
-    if weights:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_weights.pkl'
-    else:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_noweights.pkl'
-    return pd.read_pickle(import_file)
+    events = import_events(weights)
+    frame = convert.events_to_pandas(
+        events=events,
+        model=f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    return frame
 
 
 @pytest.mark.parametrize("has_weights", [False, True])
@@ -94,12 +93,13 @@ def test_pandas_to_events(has_weights):
     forward_map = {2: 'one', 3: 'two', 4: 'three'}
     backward_map = {value: key for key, value in forward_map.items()}
     frame.rename(columns=forward_map, inplace=True)
+
+    model_file = f'{SCRIPT_DIR}/files/kinematics_three.xml'
     with pytest.raises(Exception):
-        convert.pandas_to_events(
-            frame, f'{SCRIPT_DIR}/files/kinematics_three.xml')
+        convert.pandas_to_events(frame, model_file)
     frame.rename(columns=backward_map, inplace=True)
-    events = convert.pandas_to_events(
-        frame, f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    naming.particle_to_id(frame, model_file)
+    events = convert.pandas_to_events(frame, model_file)
     event_list = events.events
     last_event = event_list[-1]
     if has_weights:

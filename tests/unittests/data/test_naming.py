@@ -1,13 +1,12 @@
-"""Test :mod:`pycompwa.data.rename`."""
+"""Test :mod:`pycompwa.data.naming`."""
 
 from copy import copy
 from os.path import dirname, realpath
 
-import pandas as pd
-
 import pytest
 
 import pycompwa.ui as pwa
+from pycompwa.data import convert
 from pycompwa.data import exception
 from pycompwa.data import naming
 from pycompwa.data.naming import _cast_string
@@ -20,51 +19,67 @@ SCRIPT_DIR = dirname(realpath(__file__))
 pwa.Logging('error')
 
 
+def create_sample_frame(import_file: str):
+    """Import a file with pycompwa and convert it to a `~pandas.DataFrame`."""
+    events = pwa.read_ascii_data(import_file)
+    frame = convert.events_to_pandas(
+        events=events,
+        model=f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    return frame
+
+
 def import_pandas(weights: bool = False):
     """Import the pickled frame."""
     if weights:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_weights.pkl'
+        import_file = f'{SCRIPT_DIR}/files/ascii_weights.dat'
     else:
-        import_file = f'{SCRIPT_DIR}/files/pwa_frame_noweights.pkl'
-    return pd.read_pickle(import_file)
+        import_file = f'{SCRIPT_DIR}/files/ascii_noweights.dat'
+    return create_sample_frame(import_file)
 
 
-@pytest.mark.parametrize("kinematics, ids, pids, particles", [
+@pytest.mark.parametrize("kinematics, ids, pids, particles, selection", [
     (
         f'{SCRIPT_DIR}/files/kinematics_two.xml',
         [2, 3],
         [22, 111],
         ['gamma', 'pi0'],
+        ['gamma', 'pi0-1'],
     ),
     (
         f'{SCRIPT_DIR}/files/kinematics_three.xml',
         [2, 3, 4],
         [22, '111-1', '111-2'],
         ['gamma', 'pi0-1', 'pi0-2'],
+        ['gamma', 'pi0-1', 'pi0-2'],
     ),
 ])
-def test_renames(kinematics, ids, pids, particles):
+def test_renames(kinematics, ids, pids, particles, selection):
     """Test rename functions."""
     frame = import_pandas(weights=True)
-    frame = frame[ids].copy(deep=True)
 
-    assert frame.pwa.particles == ids
-    make_unique = (len(ids) == 3)
-    if make_unique:
+    # Prepare selection
+    frame = frame[selection].copy(deep=True)
+    three_particles = (len(ids) == 3)
+    if three_particles:
         with pytest.raises(exception.ConfigurationConflict):
             naming.id_to_particle(frame, kinematics, make_unique=False)
-
-    naming.id_to_particle(frame, kinematics, make_unique=make_unique)
+    else:
+        frame.rename(columns={'pi0-1': 'pi0'}, inplace=True)
     assert frame.pwa.particles == particles
 
     particle_list = pwa.read_particles(kinematics)
+
     naming.name_to_pid(frame, particle_list)
     assert frame.pwa.particles == pids
+
     naming.pid_to_name(frame, particle_list)
     assert frame.pwa.particles == particles
 
     naming.particle_to_id(frame, kinematics)
     assert frame.pwa.particles == ids
+
+    naming.id_to_particle(frame, kinematics, make_unique=True)
+    assert frame.pwa.particles == particles
 
 
 @pytest.mark.parametrize("input_list, expected", [
