@@ -24,31 +24,28 @@ This page explains some of the tools that we use to work on `pycompwa`.
 .. _python-dev-tools:
 
 Python developer tools
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
-For contributing to pycompwa, we recommend you also install the packages listed
-under `requirements-dev.txt
-<https://github.com/ComPWA/pycompwa/blob/master/requirements-dev.txt>`_. To
-install them, activate the :doc:`virtual environment you created
-</install/virtual-environment>` and run:
+Pre-commit
+^^^^^^^^^^
 
-.. code-block:: shell
-
-  pip install -r requirements-dev.txt
-
-An important tool there is `pre-commit <https://pre-commit.com/>`_. This will
-run certain tests locally when you make a Git commit. To activate, run the
-following after cloning:
+An important tool is `pre-commit <https://pre-commit.com/>`_. This will run
+certain tests whenever you make a Git commit. To activate, you only have to run
+the following once within your virtual environment:
 
 .. code-block:: shell
 
   pre-commit install
 
-Now, whenever you commit, all tests defined in the ``.pre-commit-config.yaml``
-fill be run. Any errors will be fixed where possible and you will have to stage
-those new changes. You can also first test all staged files with the command
-``pre-commit``. If, however, you do not want to run these tests upon
-committing, just use the option ``--no-verify``, or ``-n``, skip.
+Now, whenever you commit, all tests defined in the `.pre-commit-config.yaml
+<https://github.com/ComPWA/pycompwa/blob/master/.pre-commit-config.yaml>`_ file
+will be run. Any errors will be fixed where possible and you will have to stage
+those new changes. If you do not want to run these tests upon committing, just
+use the option :command:`--no-verify`, or :command:`-n`, to skip.
+
+You can also run the checks independently. The command :command:`pre-commit`
+will check all staged files and :command:`pre-commit run --file <some files>`
+will run over whatever files you are interested in.
 
 A tool that tests *all* relevant files is ``tox``. The tests that ``tox`` runs
 are defined in the ``tox.ini`` file in the main directory.
