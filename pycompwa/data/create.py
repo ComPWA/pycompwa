@@ -2,7 +2,7 @@
 
 
 __all__ = [
-    'empty_frame',
+    'pwa_frame',
     'multicolumn',
 ]
 
@@ -13,14 +13,17 @@ from . import _labels
 from . import naming
 
 
-def empty_frame(particle_names: list = None,
-                number_of_rows: int = None) -> pd.DataFrame:
+def pwa_frame(data=None,
+              particle_names: list = None,
+              number_of_rows: int = None) -> pd.DataFrame:
     """Create an :class:`PWA DataFrame <.PwaAccessor>`.
 
     The columns of the :class:`~pandas.DataFrame` are specially formatted so
     that they agree with the ``_validate`` method of the `.PwaAccessor`.
 
     Parameters:
+        data:
+            See :class:`pandas.DataFrame` constructor.
         particle_names (`list`, optional):
             Names that the particle column groups. A simple counter will be
             used if left empty. Note that duplicate particles will receive an
@@ -34,6 +37,7 @@ def empty_frame(particle_names: list = None,
         index = pd.RangeIndex(number_of_rows)
     multi_column = multicolumn(particle_names)
     return pd.DataFrame(
+        data,
         index=index,
         columns=multi_column,
     )

@@ -55,7 +55,7 @@ def read_hists_file(filename: str, type_name: str = 'data'):
 
     # Import tuples as dataframe
     weights = uproot_file[f'{tree_name}/{_labels.WEIGHT}'].array()
-    frame = create.empty_frame(
+    frame = create.pwa_frame(
         particle_names=particles,
         number_of_rows=len(weights),
     )
@@ -157,7 +157,7 @@ def _read_ascii_without_header(filename, particles=None, **kwargs):
         nrows += 1
 
     # Create multi-column pandas.DataFrame
-    frame = create.empty_frame(
+    frame = create.pwa_frame(
         particle_names=particles,
         number_of_rows=len(full_table) // nrows,
     )

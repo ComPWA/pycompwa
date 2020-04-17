@@ -54,8 +54,7 @@ def events_to_pandas(
         pids = [particle_list.name_to_pid(name)
                 for name in id_to_name.values()]
     particles = naming.make_values_unique(pids)
-    columns = create.multicolumn(particles)
-    frame = pd.DataFrame(events.to_table(), columns=columns)
+    frame = create.pwa_frame(events.to_table(), particle_names=particles)
     if model:
         particle_list = pwa.read_particles(model)
         naming.pid_to_name(frame, particle_list)

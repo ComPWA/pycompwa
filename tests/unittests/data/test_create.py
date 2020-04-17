@@ -15,7 +15,7 @@ from pycompwa.data import create
 ])
 def test_empty_frame(particles, number_of_rows):
     """Test creating an empty PWA dataframe."""
-    frame = create.empty_frame(
+    frame = create.pwa_frame(
         particle_names=particles,
         number_of_rows=number_of_rows,
     )
