@@ -47,22 +47,30 @@ You can also run the checks independently. The command :command:`pre-commit`
 will check all staged files and :command:`pre-commit run --file <some files>`
 will run over whatever files you are interested in.
 
-A tool that tests *all* relevant files is ``tox``. The tests that ``tox`` runs
-are defined in the ``tox.ini`` file in the main directory.
+Pytest
+^^^^^^
 
-You also check the coverage of the unit tests:
+We use `pytest <https://docs.pytest.org/>`_ as a testing suite. Simply run:
 
 .. code-block:: shell
 
   cd tests
-  pytest
+  pytest -m "not slow"
 
-Now you can find a nice graphical overview of which parts of the code are not
-covered by the tests by opening ``htmlcov/index.html``!
-
-If you want to speed up the tests you can run ``pytest`` with the flag
-``-m "not slow"``. Note, however, that in that case, the test coverage is not
+Note that we run :command:`pytest` with the flag :command:`-m "not slow"`,
+which speeds up the testing, but will make the computed test coverage less
 reliable.
+
+If you want to generate a nice graphical overview of which parts of the code
+are not covered by the tests, run:
+
+.. code-block:: shell
+
+  pytest --cov-report=html .
+
+and open ``htmlcov/index.html`` in a browser. You can replace the ``.`` with a
+specific test of folder to speed things up a bit; the graphical overview is
+still helpful.
 
 
 Jupyter notebook tools
