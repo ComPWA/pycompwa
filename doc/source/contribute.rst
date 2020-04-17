@@ -5,27 +5,36 @@
 How to contribute
 =================
 
-.. _python-dev-tools:
-
 This page explains some of the tools that we use to work on `pycompwa`.
 
 .. note::
 
   In order to work on the source code, you need to :doc:`work in a virtual
   environment </install/virtual-environment>` and have `pycompwa` installed in
-  :ref:`developer mode <install/build:Developer Mode>`.
+  :ref:`developer mode <install/build:Developer Mode>`. You can then install
+  the developer tools listed under `requirements-dev.txt
+  <https://github.com/ComPWA/pycompwa/blob/master/requirements-dev.txt>`_ as
+  follows:
 
+  .. code-block:: shell
+
+    pip install -r requirements-dev.txt
+
+
+.. _python-dev-tools:
 
 Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
 For contributing to pycompwa, we recommend you also install the packages listed
-under :download:`requirements-dev.txt <../../requirements-dev.txt>`. In the
-Conda environment you created for pycompwa:
+under `requirements-dev.txt
+<https://github.com/ComPWA/pycompwa/blob/master/requirements-dev.txt>`_. To
+install them, activate the :doc:`virtual environment you created
+</install/virtual-environment>` and run:
 
 .. code-block:: shell
 
-  conda install --file requirements-dev.txt
+  pip install -r requirements-dev.txt
 
 An important tool there is `pre-commit <https://pre-commit.com/>`_. This will
 run certain tests locally when you make a Git commit. To activate, run the
@@ -264,7 +273,7 @@ navigate to the pycompwa repository, then do:
 .. code-block:: shell
 
   cd doc
-  conda install --file requirements.txt
+  pip install -r requirements.txt
   make html
 
 Now, open the file ``doc/source/_build/html/index.html``.
