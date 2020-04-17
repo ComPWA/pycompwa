@@ -5,107 +5,128 @@
 How to contribute through Git
 -----------------------------
 
+If you are new to Git, it is highly recommended to read through the first few
+sections of the `Pro Git book <https://git-scm.com/book/en/v2>`_. It's free and
+available in several languages and, most importantly, an easy and worthwhile
+read. Understanding `how Git 'thinks'
+<https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F>`_ is especially
+a huge step towards understanding what Git's terminal commands do, both for
+beginners and the more experienced.
+
+
+Set up your own remote
+^^^^^^^^^^^^^^^^^^^^^^
+
+Assuming that you got the pycompwa source code :doc:`like this
+</install/get-the-source-code>`, your local repository only has the `main
+pycompwa repository <https://github.com/ComPWA/pycompwa>`_ as a `remote
+<https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes>`_. We
+therefore need to the following.
+
+1. `Sign up <https://github.com/join>`_ or `log into
+   <https://github.com/login>`_ GitHub. In the following, we assume that
+   ``$ACCOUNT`` is your account name.
+
+2. `Fork the pycompwa repository <https://github.com/ComPWA/pycompwa/fork>`_ so
+   that you have a copy in your own GitHub account.
+
+3. Navigate to your local pycompwa repository and change the url of the
+   ``origin`` remote: |br|
+   ``git set-url git@github.com:$ACCOUNT/pycompwa.git`` |br|
+   (this uses the SSH protocol, so you also need to `set your SSH keys
+   <https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification>`_)
+
+4. Add the main repository as a second remote named ``upstream``: |br|
+   ``git remote add upstream git@github.com:ComPWA/pycompwa.git`` |br|
+   You can name the repository with any name you wish, but ``upstream`` is just
+   a conventional label for the remote of the main repository in a team
+   project.
+
 .. note::
 
-  Note that most of the following instructions are general and independent of
-  pycompwa, so they are also valid for ComPWA.
+  It's definitely reading `this page
+  <https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project>`_
+  as it explains very well how to work with different remotes!
 
-If you are new to git, maybe you should read some documentation first, such as
-the
-`Git Manual <https://git-scm.com/docs/user-manual.html>`_,
-`Tutorial <http://rogerdudler.github.io/git-guide/>`_, a
-`CheatSheet <https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf>`_.
-The `Git Pro <https://git-scm.com/book/en/v2>`_ book particularly serves as a
-great, free overview that is a nice read for both beginners and more
-experienced users.
 
-For your convenience, here is the Git workflow you should use if you want to
-contribute:
+Creating a pull request
+^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Log into GitHub with your account and fork the ComPWA repository
-2. Get a local copy of repository: |br|
-   ``git clone git@github.com:YOURACCOUNT/pycompwa.git`` |br|
-   (this uses the SSH protocol, so you need to `set your SSH keys
-   <https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification>`_
-   first)
-3. Add the main repository as a second remote called ``upstream``: |br|
-   ``git remote add upstream git@github.com:ComPWA/pycompwa.git``
+The source code of pycompwa is updated through `pull requests
+<https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests>`_.
+For this, it is necessary to know `how to work with Git branches
+<https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell>`_. The
+workflow on GitHub through pull requests is also nicely illustrated in `this
+quick and graphical tutorial <https://guides.github.com/introduction/flow>`_!
 
-.. note::
-  You can name the repository with any name you wish: ``upstream`` is just a
-  common label for the main repository.
+.. topic:: Typical workflow
 
-  Note that the remote from which you cloned the repository is named ``origin``
-  by default (here: your fork). A local ``master`` branch is automatically
-  checked out from the origin after the clone. You can list all branches with
-  ``git branch -a``.
+  Get the latest source code from the ``upstream`` (the :doc:`old update
+  process </install/get-the-source-code>` only gets the updates from the
+  ``origin``):
 
-You repeat the following steps until your contribution is finished. Only then
-can your contributions be added main repository through a `pull request
-<https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests>`_
-(PR).
+  .. code-block:: shell
 
-* ... edit some files ...
-* Check changes: ``git status`` and/or ``git diff``
-* Stage updated files for commit: |br|
-  ``git add -u`` or add new files ``git add <list of files>``
-* Commit changes: ``git commit`` (opens up editor for commit message)
-* Enter a meaningful commit message. First line is a overall summary. Then, if
-  necessary, skip one line and add a more detailed description form the third
-  line on.
-* Synchronize with the changes from the main repository/upstream:
+    git checkout master
+    git fetch --all            # update all remote branches
+    git rebase upstream/master # rebase upstream onto local master
+    git push -f origin master  # optional: update your fork
 
-  - Fetch new changes: |br|
-    ``git fetch upstream``
-  - Re-apply your current branch commits to the head of the ``upstream`` master
-    branch: |br|
-    ``git rebase -i upstream/master``
-  - At this point, conflicts between your changes and those from the main
-    ``upstream`` repository may occur. If no conflicts appeared, then you are
-    finished and you can continue coding or push your work onto you fork.
-    Otherwise repeat these steps until you're done (you can abort the whole
-    rebase process via ``git rebase --abort``):
+  Create a new branch from the updated ``master`` branch:
 
-    + Review the conflicts (`VS Code <https://code.visualstudio.com/>`_ is a
-      great tool for this)
-    + Mark them as resolved ``git add <filename>``
-    + Continue the rebase ``git rebase --continue``
-* Push your changes to your fork: |br|
-  ``git push origin <branchname>`` |br|
-  This step 'synchronizes' your local branch and the branch in your fork. It is
-  not required after every commit, but it is certainly necessary once you are
-  ready to merge your code into ``upstream``.
+  .. code-block:: shell
 
-.. tip::
-  Remember to commit frequently instead of submitting a PR of just one commit.
-  Making frequent snapshots (commits) of your work is safer workflow in
-  general. Later on, rebasing can help you to group and alter commit messages,
-  so don't worry.
+    git checkout -b new_idea master
 
-.. tip::
-  It can be useful to push your local branch to your fork under a different
-  name using: |br|
-  ``git push origin <local-branchname>:<remote-branchname>``
+  Now you can just edit some files and check changes with :command:`git status`
+  and/or :command:`git diff`.
 
-Once you think your contribution is finished and can be merged into the main
-repository:
+  `Stage the modified files
+  <https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_staging_modified_files>`_
+  with either of the following:
 
-* Make sure your the latest commits from the ``upstream/master`` are rebased
-  onto your new branch and pushed to your fork
-* Log into GitHub with your account and create a PR. This is a request to merge
-  the changes in your fork branch with the ``master`` branch of the pycompwa or
-  ComPWA repository.
-* While the PR is open, commits pushed to the fork branch behind your PR will
-  immediately appear in the PR.
+  .. code-block:: shell
+
+    git add <some files>
+    git add -A  # if you want to stage all, including removed files
+
+  Now commit the changes with either of the following commands and enter a
+  meaningful commit message (see :ref:`contribute:Commit conventions`):
+
+  .. code-block:: shell
+
+    git commit  # opens an  editor for commit message
+    git commit -m "some commit message"
+
+  Repeat this process of editing, staging and committing a few times. Once
+  you're satisfied, push the modifications to a new branch on your fork:
+
+  .. code-block:: shell
+
+    git push -u origin new_idea
+
+  You can continue modifying, staging, committing, and pushing. You can even
+  create a new branch to try out some other ideas. Once you're satisfied with
+  your new idea and want to suggest as a modification to the main repository,
+  you're ready to make a pull request. Just go to your fork on GitHub, switch
+  to the ``new_idea`` branch and click "New pull request"!
+
+  While the pull request is open, you can still add commits: any commits that
+  pushed to the fork branch will immediately appear in the PR.
+
+  .. tip::
+    It's safest to commit frequently instead of submitting a PR of just one
+    commit. Making frequent 'snapshots' of your work is a safer workflow in
+    general. In addition, pycompwa follows a `linear commit history
+    <https://help.github.com/en/github/administering-a-repository/requiring-a-linear-commit-history>`_,
+    so all commits of your pull request will be `squashed
+    <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits>`_
+    later on.
+
 
 Commit conventions
 ^^^^^^^^^^^^^^^^^^
 
-* In the master branch, it should be possible to compile and test the framework
-  **in each commit**. In your own topic branches, it is recommended to commit
-  frequently (WIP keyword), but `squash those commits
-  <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>`_
-  to compilable commits upon submitting a merge request.
 * Please use `conventional commit messages
   <https://www.conventionalcommits.org/>`_: start the commit subject line with
   a semantic keyword (see e.g. `Angular
@@ -118,3 +139,9 @@ Commit conventions
   ``feat: add coverage report tools`` or ``fix: remove ...``. The message
   should be in present tense, but you can add whatever you want there (like
   hyperlinks for references).
+* In the master branch, it should be possible to compile and test the framework
+  **in each commit**. In your own `topic branches
+  <https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows#_topic_branch>`_,
+  it is recommended to commit frequently, but `squash or rebase those
+  commits <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>`_ to
+  compilable commits upon submitting a pull request.
