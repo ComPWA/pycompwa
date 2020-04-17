@@ -7,6 +7,15 @@ How to contribute
 
 .. _python-dev-tools:
 
+This page explains some of the tools that we use to work on `pycompwa`.
+
+.. note::
+
+  In order to work on the source code, you need to :doc:`work in a virtual
+  environment </install/virtual-environment>` and have `pycompwa` installed in
+  :ref:`developer mode <install/build:Developer Mode>`.
+
+
 Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -58,7 +67,7 @@ Systems like Git because in the back-end, a notebook is a JSON file that
 changes for instances when you run a cell. There is no simple solution for this
 other than to clean the cell output upon saving. You can automatize this with
 `nbstripout <https://github.com/kynan/nbstripout>`_ if you have activated
-``pre-commit`` (see :ref:`python-dev-tools`).
+``pre-commit`` (see :ref:`contribute:Python developer tools`).
 
 Jupyter offers several other useful extensions that can be activate `like this
 <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`_
