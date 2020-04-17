@@ -290,7 +290,7 @@ PYBIND11_MODULE(ui, m) {
   py::class_<ComPWA::Kinematics, std::shared_ptr<ComPWA::Kinematics>>(
       m, "Kinematics")
       .def("convert", &ComPWA::Kinematics::convert,
-           "Convert Events to a DataSet.")
+           "Convert an `.EventCollection` to a `.DataSet`.")
       .def("phsp_volume", &ComPWA::Kinematics::phspVolume,
            "Get phase space volume defined by the kinematics.");
 
@@ -327,21 +327,45 @@ PYBIND11_MODULE(ui, m) {
                getParticleStateTransitionKinematicsInfo);
 
   m.def("create_helicity_kinematics",
-        [&](const std::string &filename, ComPWA::ParticleList partL) {
-          boost::property_tree::ptree pt;
-          boost::property_tree::xml_parser::read_xml(filename, pt);
-          auto it = pt.find("HelicityKinematics");
-          if (it != pt.not_found()) {
-            return ComPWA::Physics::createHelicityKinematics(partL, it->second);
-          } else {
-            throw ComPWA::BadConfig(
-                "pycompwa::create_helicity_kinematics(): "
-                "HelicityKinematics tag not found in xml file!");
-          }
+        [&](const std::string &XmlFile, ComPWA::ParticleList ParticleList) {
+          return ComPWA::Physics::createHelicityKinematics(ParticleList,
+                                                           XmlFile);
         },
-        "Create a helicity kinematics from a xml file. The file "
-        "should contain a kinematics section.",
+        "Create a helicity kinematics object from an XML file. The file should "
+        "contain a kinematics section.",
         py::arg("xml_filename"), py::arg("particle_list"));
+
+  m.def(
+      "create_helicity_kinematics",
+      [&](const std::string &XmlFile) {
+        return ComPWA::Physics::createHelicityKinematics(XmlFile);
+      },
+      "Create a helicity kinematics object from an XML file. The file should "
+      "contain a kinematics section **and a particle section**.",
+      py::arg("xml_filename"));
+
+  m.def(
+      "compute_kinematic_variables",
+      [&](const ComPWA::EventCollection &Events, const std::string &XmlFile) {
+        auto Kinematics = ComPWA::Physics::createHelicityKinematics(XmlFile);
+        Kinematics.createAllSubsystems();
+        return Kinematics.convert(Events);
+      },
+      "Directly convert an `.EventCollection` to a `.DataSet` using a model "
+      "file. A Kinematics object is created from the XML file, so this is a "
+      "façade to the `.HelicityKinematics` class.",
+      py::arg("event_collection"), py::arg("xml_filename"));
+
+  m.def(
+      "get_final_state_id_to_name_mapping",
+      [&](const std::string &XmlFile) {
+        auto Kinematics = ComPWA::Physics::createHelicityKinematics(XmlFile);
+        auto TransInfo = Kinematics.getParticleStateTransitionKinematicsInfo();
+        return TransInfo.getFinalStateIDToNameMapping();
+      },
+      "Directly get a final state ID to particle name mapping from an XML "
+      "file.",
+      py::arg("xml_filename"));
 
   // ------- Intensity
 

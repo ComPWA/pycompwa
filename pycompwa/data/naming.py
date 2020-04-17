@@ -22,8 +22,9 @@ import re
 
 import pandas as pd
 
+import pycompwa.ui as pwa
+
 from . import exception
-from . import kinematics
 
 
 _SEPARATOR = '-'
@@ -32,7 +33,7 @@ _SEPARATOR = '-'
 def id_to_particle(frame: pd.DataFrame,
                    model: str, make_unique: bool = False) -> pd.DataFrame:
     """Rename columns from final state IDs to particle names."""
-    id_to_name = kinematics.id_to_name_map(model)
+    id_to_name = _id_to_name(model)
     if not make_unique:
         final_states = list(id_to_name.values())
         if len(final_states) != len(set(final_states)):
@@ -50,7 +51,7 @@ def id_to_particle(frame: pd.DataFrame,
 
 def particle_to_id(frame: pd.DataFrame, model: str) -> pd.DataFrame:
     """Rename particles into their final state IDs."""
-    id_to_name = kinematics.id_to_name_map(model)
+    id_to_name = _id_to_name(model)
     name_to_id = invert_dict(id_to_name)
     frame.rename(columns=name_to_id, inplace=True)
     return frame
@@ -90,7 +91,7 @@ def replace_ids(string: str, model: str):
     Only whole words are replaced, so the final state IDs have to be
     separated by word boundaries or underscores.
     """
-    id_to_name = kinematics.id_to_name_map(model)
+    id_to_name = _id_to_name(model)
     new_string = string
     for final_state_id, name in id_to_name.items():
         final_state_id = str(final_state_id)
@@ -165,3 +166,20 @@ def _cast_string(string: str):
                 return complex(string)
             except ValueError:
                 return string
+
+
+def _id_to_name(model):
+    """
+    Extract final state ID to particle name mapping.
+
+    Parameters:
+        model: can be either a `str` with the XML model filename or a
+        `.Kinematics` object directly.
+    """
+    if isinstance(model, str):
+        return pwa.get_final_state_id_to_name_mapping(model)
+    if isinstance(model, pwa.Kinematics):
+        trans = model.get_particle_state_transition_kinematics_info()
+        return trans.get_final_state_id_to_name_mapping()
+    raise exception.MissingParameter(
+        'Parameter model needs to be either a str or a Kinematics instance')

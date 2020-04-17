@@ -9,7 +9,6 @@ import pycompwa.ui as pwa
 from pycompwa.data import _labels
 from pycompwa.data import convert
 from pycompwa.data import exception
-from pycompwa.data import kinematics
 from pycompwa.data import naming
 
 
@@ -41,8 +40,8 @@ def import_pandas(weights: bool = False):
 def test_data_set_to_pandas(has_weights):
     """Test :func:`~.data_set_to_pandas`."""
     events = import_events(has_weights)
-    data_set = kinematics.compute(
-        events, model=f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    data_set = pwa.compute_kinematic_variables(
+        events, xml_filename=f'{SCRIPT_DIR}/files/kinematics_three.xml')
     frame = convert.data_set_to_pandas(data_set)
 
     with pytest.raises(exception.InvalidPwaFormat):

@@ -20,7 +20,6 @@ import pycompwa.ui as pwa
 from . import _labels
 from . import create
 from . import exception
-from . import kinematics
 from . import naming
 
 
@@ -45,7 +44,7 @@ def events_to_pandas(
     """
     pids = events.pids
     if model:
-        id_to_name = kinematics.id_to_name_map(model)
+        id_to_name = pwa.get_final_state_id_to_name_mapping(model)
         if len(id_to_name) != len(pids):
             raise exception.ConfigurationConflict(
                 f'XML file {model} has {len(id_to_name)} final state'
@@ -65,7 +64,7 @@ def events_to_pandas(
             raise exception.MissingParameter(
                 "XML model file required in order to compute kinematic"
                 "variables")
-        data_set = kinematics.compute(events, model)
+        data_set = pwa.compute_kinematic_variables(events, model)
         for var in data_set.data.keys():
             frame[var] = data_set.data[var]
     return frame
@@ -79,7 +78,7 @@ def pandas_to_events(
     :class:`~.EventCollection` object.
     """
     particle_list = pwa.read_particles(model)
-    id_to_name = kinematics.id_to_name_map(model)
+    id_to_name = pwa.get_final_state_id_to_name_mapping(model)
     ids = list(id_to_name.keys())
     pids = [particle_list.name_to_pid(name) for name in id_to_name.values()]
     if not set(ids) <= set(frame.pwa.particles):
