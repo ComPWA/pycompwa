@@ -24,8 +24,7 @@ from . import naming
 
 
 def events_to_pandas(
-        events: pwa.EventCollection, model: str = None,
-        compute_kinematics: bool = False) -> pd.DataFrame:
+        events: pwa.EventCollection, model: str = None) -> pd.DataFrame:
     """Convert an `~.EventCollection` to a  `~pandas.DataFrame`.
 
     Create a PWA formatted `~pandas.DataFrame` from an
@@ -34,13 +33,11 @@ def events_to_pandas(
     Parameters:
         events: The `~.EventCollection` that you want to convert.
         model: Name of the XML file containing the kinematic info or a
-            `.Kinematics` instance.
-        compute_kinematics: Directly compute the kinematic variables for each
-            momentum tuple. If ``True``, you have to specify ``model``!
+            `.Kinematics` instance. **Required if you want to rename the
+            PIDs!**
     Raises:
         ConfigurationConflict: Number of final state particles in XML does not
             agree with number of final state particles in `~.PwaAccessor`.
-        MissingParameter: If ``model`` was not specified.
     """
     pids = events.pids
     if model:
@@ -59,14 +56,6 @@ def events_to_pandas(
         naming.pid_to_name(frame, particle_list)
     if events.has_weights():
         frame[_labels.WEIGHT] = events.weights()
-    if compute_kinematics:
-        if model is None:
-            raise exception.MissingParameter(
-                "XML model file required in order to compute kinematic"
-                "variables")
-        data_set = pwa.compute_kinematic_variables(events, model)
-        for var in data_set.data.keys():
-            frame[var] = data_set.data[var]
     return frame
 
 

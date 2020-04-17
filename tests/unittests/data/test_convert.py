@@ -7,6 +7,7 @@ import pytest
 
 import pycompwa.ui as pwa
 from pycompwa.data import _labels
+from pycompwa.data import append
 from pycompwa.data import convert
 from pycompwa.data import exception
 from pycompwa.data import naming
@@ -60,9 +61,7 @@ def test_data_set_to_pandas(has_weights):
 def test_events_to_pandas(has_weights):
     """Test :func:`~.events_to_pandas`."""
     events = import_events(has_weights)
-    with pytest.raises(Exception):
-        convert.events_to_pandas(events, compute_kinematics=True)
-    with pytest.raises(Exception):
+    with pytest.raises(exception.ConfigurationConflict):
         convert.events_to_pandas(
             events, f'{SCRIPT_DIR}/files/kinematics_two.xml')
 
@@ -70,16 +69,13 @@ def test_events_to_pandas(has_weights):
     assert frame.pwa.particles == [22, '111-1', '111-2']
     del frame
 
-    frame = convert.events_to_pandas(
-        events, f'{SCRIPT_DIR}/files/kinematics_three.xml')
+    xml_filename = f'{SCRIPT_DIR}/files/kinematics_three.xml'
+    frame = convert.events_to_pandas(events, model=xml_filename)
     assert frame.pwa.particles == ['gamma', 'pi0-1', 'pi0-2']
-    del frame
 
-    frame = convert.events_to_pandas(
-        events,
-        model=f'{SCRIPT_DIR}/files/kinematics_three.xml',
-        compute_kinematics=True)
-    assert frame.pwa.particles == ['gamma', 'pi0-1', 'pi0-2']
+    data_set = pwa.compute_kinematic_variables(events, xml_filename)
+    frame_kinematics = convert.data_set_to_pandas(data_set)
+    append(frame, frame_kinematics)
     assert len(frame.pwa.other_columns) == 16
     assert 'theta_2_4_vs_3' in frame.pwa.other_columns
     assert isclose(sqrt(frame['mSq_(2,3,4)'].mean()), 3.097, abs_tol=1e-3)
