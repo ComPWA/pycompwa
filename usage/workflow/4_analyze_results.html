@@ -481,7 +481,7 @@ define an estimator before loading the fit result to the intensity.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-14 15:59:23,128 [INFO] Logging to file disabled!
+2020-04-17 14:45:31,423 [INFO] Logging to file disabled!
 </pre></div></div>
 </div>
 <div class="section" id="4.1-Convert-to-pandas">
@@ -489,13 +489,14 @@ define an estimator before loading the fit result to the intensity.</p>
 <p>It is easiest to analyze your data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>.
 We are mostly interested in the distributions of the kinematic variables, so
 we first have to convert the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> instances to a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. We can do this with the <a class="reference internal" href="../../api/pycompwa.data.convert.html#module-pycompwa.data.convert" title="pycompwa.data.convert"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.convert</span></code></a>
+module:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">convert</span>
 </pre></div>
 </div>
 </div>
@@ -504,9 +505,8 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">frame_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">frame_phsp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">frame_data</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">weights</span>
+<span></span><span class="n">frame_data</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">data_set</span><span class="p">)</span>
+<span class="n">frame_phsp</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">phsp_set</span><span class="p">)</span>
 <span class="n">frame_data</span>
 </pre></div>
 </div>
@@ -552,7 +552,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <th>theta_2_34</th>
       <th>phi_3_4_vs_2</th>
       <th>theta_2_4_vs_3</th>
-      <th>weights</th>
     </tr>
   </thead>
   <tbody>
@@ -576,7 +575,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>1.002477</td>
       <td>0.463670</td>
       <td>0.915063</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -598,7 +596,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>2.604591</td>
       <td>0.040498</td>
       <td>1.424155</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -620,7 +617,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>2.297602</td>
       <td>-2.095938</td>
       <td>0.938116</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -642,7 +638,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>1.385250</td>
       <td>2.245262</td>
       <td>1.827414</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -664,11 +659,9 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>1.157882</td>
       <td>-2.962439</td>
       <td>1.918852</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -708,7 +701,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>2.257719</td>
       <td>1.101634</td>
       <td>1.600783</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>9996</th>
@@ -730,7 +722,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>0.886257</td>
       <td>-0.390363</td>
       <td>0.879317</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>9997</th>
@@ -752,7 +743,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>0.627246</td>
       <td>1.715182</td>
       <td>1.026751</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>9998</th>
@@ -774,7 +764,6 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>1.459895</td>
       <td>2.836304</td>
       <td>2.694432</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>9999</th>
@@ -796,18 +785,16 @@ we first have to convert the <a class="reference internal" href="../../api/pycom
       <td>2.271190</td>
       <td>-1.532029</td>
       <td>0.881110</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
-<p>10000 rows × 19 columns</p>
+<p>10000 rows × 18 columns</p>
 </div></div>
 </div>
-<p>We added a weights column here as well, though in this case, all data weights are unity.</p>
-<p>Also note that we converted the phase space data set. This is because the
-phase space serves as a uniform space over which to evaluate the intensity.
-We therefore attribute an intensity as a weight to each entry in the phase
-space <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
+<p>We converted the phase space sample as well, because it serves as a uniform
+space over which to evaluate the intensity model. We therefore attribute an
+intensity as a weight to each entry in the phase space
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -818,35 +805,48 @@ space <a class="reference external" href="https://pandas.pydata.org/pandas-docs/
 </pre></div>
 </div>
 </div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.data</span></code></a> contains several tools for converting from and
+to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. There is also a <a class="reference internal" href="../../api/pycompwa.data.io.html#module-pycompwa.data.io" title="pycompwa.data.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.io</span></code></a> submodule,
+which allows you to import form and export to file formats of other PWA
+frameworks. A demonstration of this module can be found under
+<a class="reference internal" href="../tools/data_module.html"><span class="doc">Data module</span></a>.</p>
+</div>
 </div>
 <div class="section" id="4.2-Visualize">
 <h2>4.2 Visualize<a class="headerlink" href="#4.2-Visualize" title="Permalink to this headline">¶</a></h2>
 <p>Now that we converted our data to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>,
-we can use its full potential! For instance, we can easily bin the
-distributions into histograms.</p>
+we can use its full potential! In this section, we will use some of that
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> functionality to create histograms of the distributions
+of the kinematic variables and will have a look at the Dalitz plots both
+data and fit result.</p>
 <div class="section" id="Kinematic-variables">
 <h3>Kinematic variables<a class="headerlink" href="#Kinematic-variables" title="Permalink to this headline">¶</a></h3>
 <p>Currently, the columns of the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> created above
 contain final state IDs. Of course, you would rather see particle names
 there, but we need to use unique IDs in case there are identical particle
-names. To convert the number IDs to particle names in the eventual plots, we
-first extract a mapping from the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Kinematics" title="pycompwa.ui.Kinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kinematics</span></code></a> object:</p>
-<div class="nbinput nblast docutils container">
+names. The <a class="reference internal" href="../../api/pycompwa.data.naming.html#module-pycompwa.data.naming" title="pycompwa.data.naming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.naming</span></code></a> module provides a tool that can convert the
+final state IDs to recognisable names:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">transition_info</span> <span class="o">=</span> <span class="n">kinematics</span><span class="o">.</span><span class="n">get_particle_state_transition_kinematics_info</span><span class="p">()</span>
-<span class="n">id_to_name</span> <span class="o">=</span> <span class="n">transition_info</span><span class="o">.</span><span class="n">get_final_state_id_to_name_mapping</span><span class="p">()</span>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">naming</span>
 
-
-<span class="k">def</span> <span class="nf">replace_ids</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Replace all IDs in a string by particle names.&quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">id_to_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">title</span>
+<span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="s1">&#39;2,3&#39;</span><span class="p">,</span> <span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;gamma,pi0&#39;
+</pre></div></div>
 </div>
 <p>Now you can apply the usual <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.2.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> tools to plot the
 distributions.</p>
@@ -872,7 +872,7 @@ distributions.</p>
                           <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;normalized intensity&#39;</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">replace_ids</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -883,24 +883,15 @@ distributions.</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;theta_2_4_vs_3&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f0722568400&gt;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_20_1.svg" src="../../_images/usage_workflow_4_analyze_results_20_1.svg" /></div>
+<img alt="../../_images/usage_workflow_4_analyze_results_20_0.svg" src="../../_images/usage_workflow_4_analyze_results_20_0.svg" /></div>
 </div>
 <p>Applying a transformation to one of the columns is also easily done for a
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. For instance, if you are interested in the
@@ -917,24 +908,15 @@ use <a class="reference external" href="https://docs.scipy.org/doc/numpy/referen
 <span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;M(3,4)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;mSq_(3,4)&#39;</span><span class="p">])</span>
 
 <span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s1">&#39;M(3,4)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f07251822b0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_22_1.svg" src="../../_images/usage_workflow_4_analyze_results_22_1.svg" /></div>
+<img alt="../../_images/usage_workflow_4_analyze_results_22_0.svg" src="../../_images/usage_workflow_4_analyze_results_22_0.svg" /></div>
 </div>
 </div>
 <div class="section" id="Dalitz-plots">
@@ -970,11 +952,10 @@ use <a class="reference external" href="https://docs.scipy.org/doc/numpy/referen
     <span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span>
         <span class="n">frame</span><span class="p">[</span><span class="n">mass_x</span><span class="p">],</span>
         <span class="n">frame</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span>
-        <span class="n">weights</span><span class="o">=</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">],</span>
         <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_x</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_y</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_x</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_y</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -993,7 +974,8 @@ use <a class="reference external" href="https://docs.scipy.org/doc/numpy/referen
 
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
-<span class="n">dalitz_plot</span><span class="p">(</span><span class="n">frame_phsp</span><span class="p">,</span> <span class="s1">&#39;mSq_(3,4)&#39;</span><span class="p">,</span> <span class="s1">&#39;mSq_(2,4)&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
+<span class="n">dalitz_plot</span><span class="p">(</span><span class="n">frame_phsp</span><span class="p">,</span> <span class="s1">&#39;mSq_(3,4)&#39;</span><span class="p">,</span> <span class="s1">&#39;mSq_(2,4)&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">(),</span>
+            <span class="n">weights</span><span class="o">=</span><span class="n">frame_phsp</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1131,17 +1113,17 @@ and denominator of a fit fraction.</p>
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.005501850829946637 +/- 0.002218390371972463
+0.005501850830255425 +/- 0.0022183906025873886
 
 J/psi_-1_to_f2(1270)_-2+gamma_-1
   f2(1270)_-2_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.012420672414146615 +/- 0.002653438557392768
+0.012420672414582544 +/- 0.002653431595913076
 
 J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.010391539895359243 +/- 0.0021907263254390148
+0.010391539894366328 +/- 0.0021906343885218682
 
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
@@ -1150,11 +1132,11 @@ J/psi_-1_to_f2(1270)_-1+gamma_-1
   _J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.02824129233379248 +/- 0.0029959336585970047
+0.028241292333545154 +/- 0.0029959113671379936
 
 </pre></div></div>
 </div>
-<p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html#usage"><span class="std std-ref">examples</span></a> to
+<p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html"><span class="doc">examples</span></a> to
 learn about more detailed features of ComPWA.</p>
 <p>And, please, feel free to <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues/new">provide feedback</a> or <a class="reference external" href="https://compwa.github.io/contribute.html">contribute</a> ;)</p>
 </div>

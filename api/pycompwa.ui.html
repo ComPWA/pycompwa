@@ -224,6 +224,11 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="pycompwa.ui.DataSet.has_weights">
+<code class="sig-name descname">has_weights</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.DataSet</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#pycompwa.ui.DataSet.has_weights" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.ui.DataSet.weights">
 <em class="property">property </em><code class="sig-name descname">weights</code><a class="headerlink" href="#pycompwa.ui.DataSet.weights" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -278,8 +283,23 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="pycompwa.ui.EventCollection.has_weights">
+<code class="sig-name descname">has_weights</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.EventCollection</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#pycompwa.ui.EventCollection.has_weights" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="pycompwa.ui.EventCollection.pids">
 <em class="property">property </em><code class="sig-name descname">pids</code><a class="headerlink" href="#pycompwa.ui.EventCollection.pids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.EventCollection.to_table">
+<code class="sig-name descname">to_table</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.EventCollection</em><span class="sig-paren">)</span> &#x2192; List[List[float]]<a class="headerlink" href="#pycompwa.ui.EventCollection.to_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.EventCollection.weights">
+<code class="sig-name descname">weights</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.EventCollection</em><span class="sig-paren">)</span> &#x2192; List[float]<a class="headerlink" href="#pycompwa.ui.EventCollection.weights" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -706,7 +726,7 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 <dl class="method">
 <dt id="pycompwa.ui.Kinematics.convert">
 <code class="sig-name descname">convert</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.Kinematics</em>, <em class="sig-param">arg0: pycompwa.ui.EventCollection</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.DataSet<a class="headerlink" href="#pycompwa.ui.Kinematics.convert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert Events to a DataSet.</p>
+<dd><p>Convert an <a class="reference internal" href="#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a> to a <a class="reference internal" href="#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -796,6 +816,18 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.ParticleList</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.ParticleList.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="pycompwa.ui.ParticleList.name_to_pid">
+<code class="sig-name descname">name_to_pid</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.ParticleList</em>, <em class="sig-param">name: str</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#pycompwa.ui.ParticleList.name_to_pid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a name to a PID as encoded in this ParticleList object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycompwa.ui.ParticleList.pid_to_name">
+<code class="sig-name descname">pid_to_name</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.ParticleList</em>, <em class="sig-param">pid: int</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#pycompwa.ui.ParticleList.pid_to_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a PID to a name as encoded in this ParticleList object</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -880,6 +912,12 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 </dd></dl>
 
 <dl class="function">
+<dt id="pycompwa.ui.compute_kinematic_variables">
+<code class="sig-name descname">compute_kinematic_variables</code><span class="sig-paren">(</span><em class="sig-param">event_collection: pycompwa.ui.EventCollection</em>, <em class="sig-param">xml_filename: str</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.DataSet<a class="headerlink" href="#pycompwa.ui.compute_kinematic_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directly convert an <a class="reference internal" href="#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a> to a <a class="reference internal" href="#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSet</span></code></a> using a model file. A Kinematics object is created from the XML file, so this is a façade to the <a class="reference internal" href="#pycompwa.ui.HelicityKinematics" title="pycompwa.ui.HelicityKinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HelicityKinematics</span></code></a> class.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="pycompwa.ui.create_data_array">
 <code class="sig-name descname">create_data_array</code><span class="sig-paren">(</span><em class="sig-param">arg0: pycompwa.ui.DataSet</em><span class="sig-paren">)</span> &#x2192; Tuple[List[str], List[List[float]]]<a class="headerlink" href="#pycompwa.ui.create_data_array" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -891,13 +929,21 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 
 <dl class="function">
 <dt id="pycompwa.ui.create_helicity_kinematics">
-<code class="sig-name descname">create_helicity_kinematics</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em>, <em class="sig-param">particle_list: pycompwa.ui.ParticleList</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.HelicityKinematics<a class="headerlink" href="#pycompwa.ui.create_helicity_kinematics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a helicity kinematics from a xml file. The file should contain a kinematics section.</p>
+<code class="sig-name descname">create_helicity_kinematics</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.ui.create_helicity_kinematics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>create_helicity_kinematics(xml_filename: str, particle_list: pycompwa.ui.ParticleList) -&gt; pycompwa.ui.HelicityKinematics</p></li>
+</ol>
+<p>Create a helicity kinematics object from an XML file. The file should contain a kinematics section.</p>
+<ol class="arabic simple" start="2">
+<li><p>create_helicity_kinematics(xml_filename: str) -&gt; pycompwa.ui.HelicityKinematics</p></li>
+</ol>
+<p>Create a helicity kinematics object from an XML file. The file should contain a kinematics section <strong>and a particle section</strong>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pycompwa.ui.create_rootplotdata">
-<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f47228108b8&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7f47228106c0&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_rootplotdata</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">kinematics: pycompwa.ui.Kinematics</em>, <em class="sig-param">data_sample: pycompwa.ui.DataSet</em>, <em class="sig-param">phsp_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7efe3e756998&gt;</em>, <em class="sig-param">intensity: pycompwa.ui.Intensity = None</em>, <em class="sig-param">intensity_components: Dict[str</em>, <em class="sig-param">pycompwa.ui.Intensity] = {}</em>, <em class="sig-param">hit_and_miss_sample: pycompwa.ui.DataSet = &lt;pycompwa.ui.DataSet object at 0x7efe3e756960&gt;</em>, <em class="sig-param">tfile_option: str = 'RECREATE'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -945,6 +991,12 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 <dt id="pycompwa.ui.generate_phsp">
 <code class="sig-name descname">generate_phsp</code><span class="sig-paren">(</span><em class="sig-param">arg0: int</em>, <em class="sig-param">arg1: pycompwa.ui.PhaseSpaceEventGenerator</em>, <em class="sig-param">arg2: pycompwa.ui.UniformRealNumberGenerator</em><span class="sig-paren">)</span> &#x2192; pycompwa.ui.EventCollection<a class="headerlink" href="#pycompwa.ui.generate_phsp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate phase space sample</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycompwa.ui.get_final_state_id_to_name_mapping">
+<code class="sig-name descname">get_final_state_id_to_name_mapping</code><span class="sig-paren">(</span><em class="sig-param">xml_filename: str</em><span class="sig-paren">)</span> &#x2192; Dict[int, str]<a class="headerlink" href="#pycompwa.ui.get_final_state_id_to_name_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directly get a final state ID to particle name mapping from an XML file.</p>
 </dd></dl>
 
 <dl class="function">

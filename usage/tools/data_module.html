@@ -1,0 +1,1439 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data module &mdash; pycompwa  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generate data samples" href="generate.html" />
+    <link rel="prev" title="Additional Tools" href="../tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html">ComPWA Workflow</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../tools.html">Additional Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PWA-data-frame">PWA data frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Import-and-export-data">Import and export data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Conversion-to-kinematic-variables">Conversion to kinematic variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generate.html">Generate data samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="particles.html">Particle database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
+</ul>
+
+            
+          
+    <a href= "../../py-modindex.html">Module Index (API)</a>
+    <a href= "../../genindex.html">General Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pycompwa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../usage.html">Usage</a> &raquo;</li>
+        
+          <li><a href="../tools.html">Additional Tools</a> &raquo;</li>
+        
+      <li>Data module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/usage/tools/data_module.ipynb" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="generate.html" class="btn btn-neutral float-right" title="Generate data samples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools.html" class="btn btn-neutral float-left" title="Additional Tools" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/1557fb93260135bca52aba5a9a07d70c/data_module.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<div class="section" id="Data-module">
+<h1>Data module<a class="headerlink" href="#Data-module" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.data</span></code></a> module provides several tools for importing,
+exporting, and visualizing data. By data, we mean <em>event-wise collections of
+four-momentum tuples</em>, possibly organised by particle name. We choose to work
+with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a> as a back-end, because it allows fast manipulation and
+visualization of data sets and can import and export to several standard data
+formats.</p>
+<p>This notebook shows how to conveniently manipulate momentum tuple collections
+in such a way that they can be imported into ComPWA. It is also shown how to
+import data from other frameworks and how to do conversions to kinematic
+variables.</p>
+<div class="section" id="PWA-data-frame">
+<h2>PWA data frame<a class="headerlink" href="#PWA-data-frame" title="Permalink to this headline">¶</a></h2>
+<p>Input data for PWA frameworks mainly consists of event-wise four-momentum
+tuples, grouped by particle. The core of the <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code></a> module is therefore
+handled by a specially formatted <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. Such as specific
+format not only allows us to import and export to different file formats, but
+also to convert the data to ComPWA objects, such as an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a>.</p>
+<p>The format is guaranteed through a decorater called
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.extensions.register_dataframe_accessor.html#pandas.api.extensions.register_dataframe_accessor" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_dataframe_accessor</span></code></a>. Such an accessor
+extends a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with several properties, granted that the
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> properly validates according to that accessor. In the
+<a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code></a> module, this accessor is the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. We call a
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> that is formatted according to this accessor a
+<a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>.</p>
+<p>To be sure, all this sounds a bit abstract. To illustrate the usage of this
+accessor, we therefore first have to create a skeleton <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>. This can be done through the <a class="reference internal" href="../../api/pycompwa.data.create.html#module-pycompwa.data.create" title="pycompwa.data.create"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create</span></code></a> module.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">create</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">create</span><span class="o">.</span><span class="n">pwa_frame</span><span class="p">(</span>
+    <span class="n">particle_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;pi0&#39;</span><span class="p">,</span> <span class="s1">&#39;pi0&#39;</span><span class="p">],</span>
+    <span class="n">number_of_rows</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">frame</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>Particle</th>
+      <th colspan="4" halign="left">gamma</th>
+      <th colspan="4" halign="left">pi0-1</th>
+      <th colspan="4" halign="left">pi0-2</th>
+    </tr>
+    <tr>
+      <th>Momentum</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Note that his <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> has hierarchical column name (see
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">multi-indexing</a>):
+the first column layer is the particle name, the second contains the
+four-momentum labels. In addition, duplicate particle names have been made
+unique by adding an index. Values are undefined by default, but you can set
+them later on. Here, we do this manually, but you can use this procedure for
+importing large data sets in your own Python scripts.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;p_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.520903</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.285015</span><span class="p">,</span> <span class="mf">0.632325</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;p_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.885259</span><span class="p">,</span> <span class="mf">0.520381</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.779928</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;p_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.655934</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.996574</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.892786</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.21872</span><span class="p">,</span> <span class="mf">1.15982</span><span class="p">,</span> <span class="mf">1.34357</span><span class="p">]</span>
+
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-1&#39;</span><span class="p">,</span> <span class="s1">&#39;p_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.653672</span><span class="p">,</span> <span class="mf">0.452265</span><span class="p">,</span> <span class="mf">0.113717</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-1&#39;</span><span class="p">,</span> <span class="s1">&#39;p_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.813022</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.76188</span><span class="p">,</span> <span class="mf">0.605441</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-1&#39;</span><span class="p">,</span> <span class="s1">&#39;p_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.01763</span><span class="p">,</span> <span class="mf">0.00723327</span><span class="p">,</span> <span class="mf">0.718613</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-1&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.46359</span><span class="p">,</span> <span class="mf">0.896256</span><span class="p">,</span> <span class="mf">0.956093</span><span class="p">]</span>
+
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-2&#39;</span><span class="p">,</span> <span class="s1">&#39;p_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.132769</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16725</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.746043</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-2&#39;</span><span class="p">,</span> <span class="s1">&#39;p_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.0722372</span><span class="p">,</span> <span class="mf">0.241499</span><span class="p">,</span> <span class="mf">0.174487</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-2&#39;</span><span class="p">,</span> <span class="s1">&#39;p_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.361697</span><span class="p">,</span> <span class="mf">0.989341</span><span class="p">,</span> <span class="mf">0.174172</span><span class="p">]</span>
+<span class="n">frame</span><span class="p">[</span><span class="s1">&#39;pi0-2&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.414596</span><span class="p">,</span> <span class="mf">1.04082</span><span class="p">,</span> <span class="mf">0.797233</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>We can now already have a glance at some of the properties that the
+<a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a> offers. You can access these properties through the <code class="docutils literal notranslate"><span class="pre">pwa</span></code>
+namespace and perform some standard <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a> computation on them:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Particles:&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">particles</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Momentum labels:&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">momentum_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Weights:&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average pi0 mass:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">frame</span><span class="p">[[</span><span class="s1">&#39;pi0-1&#39;</span><span class="p">,</span> <span class="s1">&#39;pi0-2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average gamma 3-momentum:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s1">&#39;+/-&#39;</span><span class="p">,</span>
+      <span class="n">frame</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Particles: [&#39;gamma&#39;, &#39;pi0-1&#39;, &#39;pi0-2&#39;]
+Momentum labels: [&#39;p_x&#39;, &#39;p_y&#39;, &#39;p_z&#39;, &#39;E&#39;]
+Weights: None
+Average pi0 mass:
+ 0.1349838859840143
+Average gamma 3-momentum:
+ 1.2407047361464343 +/- 0.09382756371243478
+</pre></div></div>
+</div>
+<p>We’ll see more of these properties after we import some real data.</p>
+</div>
+<div class="section" id="Import-and-export-data">
+<h2>Import and export data<a class="headerlink" href="#Import-and-export-data" title="Permalink to this headline">¶</a></h2>
+<p>The module <a class="reference internal" href="../../api/pycompwa.data.io.html#module-pycompwa.data.io" title="pycompwa.data.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.io</span></code></a> allows one to import from and to data formats of
+other PWA frameworks. Here’s an example, importing a <code class="docutils literal notranslate"><span class="pre">pawianHists.root</span></code>
+file. Such a file not only contains <a class="reference external" href="https://root.cern.ch/root/htmldoc/guides/users-guide/Histograms.html">ROOT histograms</a>
+of the kinematic distributions, but also two <a class="reference external" href="https://root.cern.ch/doc/master/classTTree.html">TTrees</a> of four-momentum tuples:
+one for data and one for fit intensities.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">io</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">frame_data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">pawian</span><span class="o">.</span><span class="n">read_hists_file</span><span class="p">(</span><span class="s1">&#39;jpsi_f0_gammapipi.root&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">frame_fit</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">pawian</span><span class="o">.</span><span class="n">read_hists_file</span><span class="p">(</span><span class="s1">&#39;jpsi_f0_gammapipi.root&#39;</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">frame_fit</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>Particle</th>
+      <th colspan="4" halign="left">gamma</th>
+      <th colspan="4" halign="left">pi0_1</th>
+      <th colspan="4" halign="left">pi0_2</th>
+      <th>weight</th>
+    </tr>
+    <tr>
+      <th>Momentum</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.053254</td>
+      <td>-0.102226</td>
+      <td>-0.271504</td>
+      <td>0.294959</td>
+      <td>1.305630</td>
+      <td>-0.324557</td>
+      <td>0.223228</td>
+      <td>1.370420</td>
+      <td>-1.358880</td>
+      <td>0.426783</td>
+      <td>0.048276</td>
+      <td>1.43152</td>
+      <td>0.003513</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.233270</td>
+      <td>0.509333</td>
+      <td>0.499320</td>
+      <td>0.750437</td>
+      <td>-0.684387</td>
+      <td>-0.801269</td>
+      <td>0.281889</td>
+      <td>1.099140</td>
+      <td>0.917657</td>
+      <td>0.291936</td>
+      <td>-0.781209</td>
+      <td>1.24733</td>
+      <td>0.008061</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.300303</td>
+      <td>0.284337</td>
+      <td>-0.255063</td>
+      <td>0.485887</td>
+      <td>-1.020240</td>
+      <td>-0.026281</td>
+      <td>0.630984</td>
+      <td>1.207460</td>
+      <td>1.320550</td>
+      <td>-0.258056</td>
+      <td>-0.375920</td>
+      <td>1.40356</td>
+      <td>0.003586</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.555215</td>
+      <td>0.086553</td>
+      <td>0.825067</td>
+      <td>0.998244</td>
+      <td>-0.757501</td>
+      <td>0.411259</td>
+      <td>0.234126</td>
+      <td>0.903313</td>
+      <td>0.202285</td>
+      <td>-0.497813</td>
+      <td>-1.059190</td>
+      <td>1.19534</td>
+      <td>0.025217</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.649631</td>
+      <td>0.057455</td>
+      <td>-0.008806</td>
+      <td>0.652226</td>
+      <td>-0.923858</td>
+      <td>0.799518</td>
+      <td>-0.581799</td>
+      <td>1.359950</td>
+      <td>0.274227</td>
+      <td>-0.856973</td>
+      <td>0.590605</td>
+      <td>1.08473</td>
+      <td>0.004200</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1505</th>
+      <td>-0.469609</td>
+      <td>-0.065891</td>
+      <td>-0.356168</td>
+      <td>0.593068</td>
+      <td>-0.845740</td>
+      <td>-0.168722</td>
+      <td>-0.402724</td>
+      <td>0.961326</td>
+      <td>1.315350</td>
+      <td>0.234614</td>
+      <td>0.758892</td>
+      <td>1.54251</td>
+      <td>0.004934</td>
+    </tr>
+    <tr>
+      <th>1506</th>
+      <td>0.680510</td>
+      <td>0.304596</td>
+      <td>-0.181785</td>
+      <td>0.767410</td>
+      <td>-0.805672</td>
+      <td>0.780103</td>
+      <td>-0.233644</td>
+      <td>1.153460</td>
+      <td>0.125162</td>
+      <td>-1.084700</td>
+      <td>0.415429</td>
+      <td>1.17603</td>
+      <td>0.006227</td>
+    </tr>
+    <tr>
+      <th>1507</th>
+      <td>-0.095390</td>
+      <td>0.716417</td>
+      <td>-1.176800</td>
+      <td>1.381018</td>
+      <td>0.061994</td>
+      <td>0.059014</td>
+      <td>-0.119087</td>
+      <td>0.199315</td>
+      <td>0.033396</td>
+      <td>-0.775431</td>
+      <td>1.295890</td>
+      <td>1.51656</td>
+      <td>19.929375</td>
+    </tr>
+    <tr>
+      <th>1508</th>
+      <td>-1.161710</td>
+      <td>-0.184147</td>
+      <td>0.105635</td>
+      <td>1.180948</td>
+      <td>-0.040109</td>
+      <td>-0.486701</td>
+      <td>-0.161686</td>
+      <td>0.531834</td>
+      <td>1.201820</td>
+      <td>0.670847</td>
+      <td>0.056052</td>
+      <td>1.38411</td>
+      <td>0.052588</td>
+    </tr>
+    <tr>
+      <th>1509</th>
+      <td>-0.062611</td>
+      <td>-0.288004</td>
+      <td>-0.153473</td>
+      <td>0.332296</td>
+      <td>0.192284</td>
+      <td>-0.350495</td>
+      <td>1.339660</td>
+      <td>1.404540</td>
+      <td>-0.129673</td>
+      <td>0.638500</td>
+      <td>-1.186190</td>
+      <td>1.36006</td>
+      <td>0.002482</td>
+    </tr>
+  </tbody>
+</table>
+<p>1510 rows × 13 columns</p>
+</div></div>
+</div>
+<p>Note how, here too, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is formatted in such a way
+that it can be handled by the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. Also note that the
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> for the fit result contains weights. As discussed
+in <a class="reference internal" href="../workflow/4_analyze_results.html"><span class="doc">Step 4: Analyze results</span></a>, these are the fit intensities for
+each data point in the phase space. This allows us to already make some quick
+visualization of invariant mass distribution of the resonance:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">f0_data</span> <span class="o">=</span> <span class="n">frame_data</span><span class="p">[</span><span class="s1">&#39;pi0_1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">frame_data</span><span class="p">[</span><span class="s1">&#39;pi0_2&#39;</span><span class="p">]</span>
+<span class="n">f0_fit</span> <span class="o">=</span> <span class="n">frame_fit</span><span class="p">[</span><span class="s1">&#39;pi0_1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">frame_fit</span><span class="p">[</span><span class="s1">&#39;pi0_2&#39;</span><span class="p">]</span>
+
+<span class="n">f0_data</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                      <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">f0_fit</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span>
+                     <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                     <span class="n">weights</span><span class="o">=</span><span class="n">frame_fit</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">intensities</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$M(\pi^0,\pi^0)$ [GeV]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;f0 resonance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/usage_tools_data_module_18_0.svg" src="../../_images/usage_tools_data_module_18_0.svg" /></div>
+</div>
+<p>You can also easily export the data again after you’ve made some adjustments, like selecting certain events. Just to illustrate the benefits of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a>, we apply some filter on one of the <span class="math notranslate nohighlight">\(\pi^0\)</span> mass, export the frame to an ASCII file and import it again:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">selection</span> <span class="o">=</span> <span class="n">frame_data</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">f0_data</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">mass</span> <span class="o">-</span> <span class="mf">0.990</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="n">io</span><span class="o">.</span><span class="n">pawian</span><span class="o">.</span><span class="n">write_ascii</span><span class="p">(</span><span class="n">selection</span><span class="p">,</span> <span class="s1">&#39;filtered_data.dat&#39;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">pawian</span><span class="o">.</span><span class="n">read_ascii</span><span class="p">(</span><span class="s1">&#39;filtered_data.dat&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;pi0&#39;</span><span class="p">,</span> <span class="s1">&#39;pi0&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>Particle</th>
+      <th colspan="4" halign="left">gamma</th>
+      <th colspan="4" halign="left">pi0-1</th>
+      <th colspan="4" halign="left">pi0-2</th>
+    </tr>
+    <tr>
+      <th>Momentum</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+      <th>p_x</th>
+      <th>p_y</th>
+      <th>p_z</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.182506</td>
+      <td>-0.844948</td>
+      <td>1.076130</td>
+      <td>1.380327</td>
+      <td>0.141731</td>
+      <td>0.873233</td>
+      <td>-1.220080</td>
+      <td>1.513090</td>
+      <td>0.040775</td>
+      <td>-0.028285</td>
+      <td>0.143952</td>
+      <td>0.203479</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.559665</td>
+      <td>-0.873999</td>
+      <td>-0.921926</td>
+      <td>1.388181</td>
+      <td>0.030816</td>
+      <td>0.642806</td>
+      <td>0.822141</td>
+      <td>1.052750</td>
+      <td>-0.590482</td>
+      <td>0.231193</td>
+      <td>0.099785</td>
+      <td>0.655968</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.030480</td>
+      <td>0.892277</td>
+      <td>0.264144</td>
+      <td>1.388459</td>
+      <td>0.681217</td>
+      <td>-1.064850</td>
+      <td>-0.251640</td>
+      <td>1.295960</td>
+      <td>0.349266</td>
+      <td>0.172571</td>
+      <td>-0.012504</td>
+      <td>0.412483</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.116316</td>
+      <td>1.265080</td>
+      <td>-0.564446</td>
+      <td>1.390164</td>
+      <td>0.132802</td>
+      <td>0.100997</td>
+      <td>0.095432</td>
+      <td>0.234868</td>
+      <td>-0.249118</td>
+      <td>-1.366070</td>
+      <td>0.469014</td>
+      <td>1.471870</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.072190</td>
+      <td>-0.141766</td>
+      <td>0.861404</td>
+      <td>1.382645</td>
+      <td>1.230490</td>
+      <td>0.096587</td>
+      <td>-0.605567</td>
+      <td>1.381430</td>
+      <td>-0.158292</td>
+      <td>0.045179</td>
+      <td>-0.255837</td>
+      <td>0.332819</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>1.285130</td>
+      <td>0.549771</td>
+      <td>0.048662</td>
+      <td>1.398633</td>
+      <td>-0.325851</td>
+      <td>-0.492884</td>
+      <td>0.288127</td>
+      <td>0.671081</td>
+      <td>-0.959282</td>
+      <td>-0.056887</td>
+      <td>-0.336789</td>
+      <td>1.027180</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>0.351707</td>
+      <td>0.223883</td>
+      <td>-1.309260</td>
+      <td>1.374039</td>
+      <td>-0.370255</td>
+      <td>0.172147</td>
+      <td>1.221450</td>
+      <td>1.294940</td>
+      <td>0.018548</td>
+      <td>-0.396030</td>
+      <td>0.087812</td>
+      <td>0.427918</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>1.303890</td>
+      <td>0.441621</td>
+      <td>-0.203768</td>
+      <td>1.391646</td>
+      <td>-1.148060</td>
+      <td>-0.246995</td>
+      <td>0.510475</td>
+      <td>1.287580</td>
+      <td>-0.155831</td>
+      <td>-0.194626</td>
+      <td>-0.306707</td>
+      <td>0.417672</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>-0.524492</td>
+      <td>-0.265778</td>
+      <td>1.252710</td>
+      <td>1.383840</td>
+      <td>0.215780</td>
+      <td>-0.239497</td>
+      <td>-0.992715</td>
+      <td>1.052440</td>
+      <td>0.308712</td>
+      <td>0.505275</td>
+      <td>-0.259997</td>
+      <td>0.660624</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>0.545379</td>
+      <td>1.241510</td>
+      <td>0.242481</td>
+      <td>1.377528</td>
+      <td>0.198947</td>
+      <td>-0.082614</td>
+      <td>-0.218520</td>
+      <td>0.335223</td>
+      <td>-0.744326</td>
+      <td>-1.158900</td>
+      <td>-0.023961</td>
+      <td>1.384150</td>
+    </tr>
+  </tbody>
+</table>
+<p>94 rows × 12 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Conversion-to-kinematic-variables">
+<h2>Conversion to kinematic variables<a class="headerlink" href="#Conversion-to-kinematic-variables" title="Permalink to this headline">¶</a></h2>
+<p>Having a <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>, we can use ComPWA to convert
+the momentum tuples to kinematic variables. For that, of course, we first
+need to <a class="reference internal" href="../workflow/1_create_model.html"><span class="doc">create a model file</span></a> for the
+kinematics. As can be seen from the column names of the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> that we imported from the <code class="docutils literal notranslate"><span class="pre">pawianHists.root</span></code> file, we have
+momentum tuples for a <span class="math notranslate nohighlight">\(J/\psi \to \gamma\pi^0\pi^0\)</span> decay and we saw
+that there is only one resonance (:math`f_0(980)`):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+<span class="c1"># not interested in warnings now</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="n">pwa</span><span class="o">.</span><span class="n">Logging</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2020-04-17 14:42:50,710 [INFO] Logging to file disabled!
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> \
+    <span class="n">StateTransitionManager</span><span class="p">,</span> <span class="n">InteractionTypes</span>
+
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;gamma&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">)]</span>
+<span class="n">tbd_manager</span> <span class="o">=</span> <span class="n">StateTransitionManager</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
+                                     <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
+                                     <span class="n">topology_building</span><span class="o">=</span><span class="s1">&#39;isobar&#39;</span><span class="p">)</span>
+
+<span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">([</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">])</span>
+<span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f0(980)&#39;</span><span class="p">]</span>
+
+<span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
+<span class="n">solutions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
+    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> \
+    <span class="n">HelicityAmplitudeGeneratorXML</span>
+
+<span class="n">model_file</span> <span class="o">=</span> <span class="s1">&#39;jpsi_f0_gammapipi.xml&#39;</span>
+<span class="n">xml_generator</span> <span class="o">=</span> <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">()</span>
+<span class="n">xml_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
+<span class="n">xml_generator</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we have an XML model file defining the kinematics and a <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span>
+<span class="pre">DataFrame</span></code></a>, we can use the convert module to convert the
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a>. Note, however, that we will run
+into an exception:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">convert</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">convert</span><span class="o">.</span><span class="n">pandas_to_events</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EXCEPTION:&#39;</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+EXCEPTION:
+  You first have to convert the columns names:
+    [&#39;gamma&#39;, &#39;pi0_1&#39;, &#39;pi0_2&#39;]
+  to the final state IDs:
+    [2, 3, 4]
+  as defined in XML file
+    &#34;jpsi_f0_gammapipi.xml&#34;
+  with e.g. naming.particle_to_id or pandas.DataFrame.rename
+</pre></div></div>
+</div>
+<p>What’s going on here? The kinematics file works with final state IDs, so it
+doesn’t understand the particle names here. Now, we could try to follow the
+first suggestion here, but this won’t work:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">naming</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">naming</span><span class="o">.</span><span class="n">particle_to_id</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="n">frame_data</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">particles</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[2, &#39;pi0_1&#39;, &#39;pi0_2&#39;]
+</pre></div></div>
+</div>
+<p>As you can see, the <span class="math notranslate nohighlight">\(\gamma\)</span> has been nicely renamed to its final state ID, but the renaming failed for the pions (it would have worked if the separator used for the added index for duplicate particles were a <code class="docutils literal notranslate"><span class="pre">-</span></code>). If we follow the second suggestion, it will work:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pi0_1&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;pi0_2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="n">frame_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">mapping</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">frame_fit</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">mapping</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">events_data</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">pandas_to_events</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="n">events_fit</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">pandas_to_events</span><span class="p">(</span><span class="n">frame_fit</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now that you have <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a> instances, you are free to use all
+ComPWA functionality from <a class="reference internal" href="../workflow/3_perform_fit.html"><span class="doc">Step 3: Perform fit</span></a> onwards. If,
+however, you were more interested in the kinematic variables for these
+imported data sets immediately, you can expand the original <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> with the kinematic variables as follows:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">append</span>
+<span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">set_data</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">compute_kinematic_variables</span><span class="p">(</span><span class="n">events_data</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="n">set_fit</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">compute_kinematic_variables</span><span class="p">(</span><span class="n">events_fit</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="n">naming</span><span class="o">.</span><span class="n">id_to_particle</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="n">model_file</span><span class="p">,</span> <span class="n">make_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">naming</span><span class="o">.</span><span class="n">id_to_particle</span><span class="p">(</span><span class="n">frame_fit</span><span class="p">,</span> <span class="n">model_file</span><span class="p">,</span> <span class="n">make_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">append</span><span class="p">(</span><span class="n">frame_data</span><span class="p">,</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">set_data</span><span class="p">))</span>
+<span class="n">append</span><span class="p">(</span><span class="n">frame_fit</span><span class="p">,</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">set_fit</span><span class="p">))</span>
+<span class="n">frame_data</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">other_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;phi_24_3&#39;,
+ &#39;phi_23_4&#39;,
+ &#39;theta_23_4&#39;,
+ &#39;theta_2_34&#39;,
+ &#39;phi_3_4_vs_2&#39;,
+ &#39;theta_3_4_vs_2&#39;,
+ &#39;theta_2_4_vs_3&#39;,
+ &#39;theta_24_3&#39;,
+ &#39;phi_2_34&#39;,
+ &#39;mSq_(2,4)&#39;,
+ &#39;mSq_(2,3,4)&#39;,
+ &#39;mSq_(2,3)&#39;,
+ &#39;phi_2_3_vs_4&#39;,
+ &#39;phi_2_4_vs_3&#39;,
+ &#39;mSq_(3,4)&#39;,
+ &#39;theta_2_3_vs_4&#39;]
+</pre></div></div>
+</div>
+<p>Finally, we can plot the distributions of the kinematic variables (as computed by ComPWA) <strong>of the imported data</strong>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">var</span> <span class="o">=</span> <span class="s1">&#39;theta_2_4_vs_3&#39;</span>
+<span class="n">frame_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                     <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">frame_fit</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span>
+                    <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                    <span class="n">weights</span><span class="o">=</span><span class="n">frame_fit</span><span class="o">.</span><span class="n">pwa</span><span class="o">.</span><span class="n">intensities</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">model_file</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/usage_tools_data_module_37_0.svg" src="../../_images/usage_tools_data_module_37_0.svg" /></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generate.html" class="btn btn-neutral float-right" title="Generate data samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools.html" class="btn btn-neutral float-left" title="Additional Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
