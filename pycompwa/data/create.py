@@ -1,4 +1,4 @@
-"""Create an empty `pandas.DataFrame` according to the `~.PwaAccessor`."""
+"""Create a `pandas.DataFrame` according to the `.PwaAccessor`."""
 
 
 __all__ = [
@@ -15,7 +15,10 @@ from . import naming
 
 def empty_frame(particle_names: list = None,
                 number_of_rows: int = None) -> pd.DataFrame:
-    """Create an empty :class:`~pandas.DataFrame`.
+    """Create an :class:`PWA DataFrame <.PwaAccessor>`.
+
+    The columns of the :class:`~pandas.DataFrame` are specially formatted so
+    that they agree with the ``_validate`` method of the `.PwaAccessor`.
 
     Parameters:
         particle_names (`list`, optional):
