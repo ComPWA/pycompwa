@@ -79,14 +79,14 @@ Jupyter notebook tools
 Jupyter notebooks aren't the most friendly with regard to Version Control
 Systems like Git because in the back-end, a notebook is a JSON file that
 changes for instances when you run a cell. There is no simple solution for this
-other than to clean the cell output upon saving. You can automatize this with
-`nbstripout <https://github.com/kynan/nbstripout>`_ if you have activated
-``pre-commit`` (see :ref:`contribute:Python developer tools`).
+other than to clean the cell output upon saving. Cell output will be striped
+automatically with `nbstripout <https://github.com/kynan/nbstripout>`_ upon
+committing if you have :ref:`activated pre-commit <contribute:pre-commit>`.
 
 Jupyter offers several other useful extensions that can be activate `like this
-<https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`_
-If you want to contribute to the example notebooks, make sure to check out the
-following extensions:
+<https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#enabling-disabling-extensions>`_.
+If you want to contribute to the example notebooks, the following extensions
+are highly recommended:
 
 * `jupyter-autopep8
   <https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_autopep8.html>`_
