@@ -105,6 +105,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx_copybutton',
+    'sphinxcontrib.bibtex',
 ]
 
 # Cross-referencing configuration

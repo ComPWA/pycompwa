@@ -31,19 +31,7 @@ to this project.
     contribute/python
     contribute/documentation
     contribute/ci
-
-
-Code Quality & Conventions
---------------------------
-
-A highly recommended read for learning how to write good code is `Clean Code
-<https://www.goodreads.com/book/show/3735293-clean-code>`_ by Robert C. Martin!
-Try and follow his advice, and keep in mind the 'boy scout rule':
-
-    "Leave behind the code cleaner, then you found it"
-
-For the python code we follow the :pep:`8` standard. Available automatic source
-code highlighters and formatters are ``flake8`` and ``autopep8``.
+    contribute/resources
 
 
 Reporting Issues
