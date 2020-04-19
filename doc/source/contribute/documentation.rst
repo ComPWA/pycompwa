@@ -70,11 +70,10 @@ and quite powerful because:
 * They force the developer to consider usage. This is also why we apply
   :pep:`257` and related docstring conventions quite strictly through `flake8
   <https://flake8.pycqa.org/en/latest/>`_ and `pylint
-  <https://www.pylint.org/>`_ at :ref:`pre-commit <contribute:pre-commit>`
-  stage.
+  <https://www.pylint.org/>`_ at :ref:`contribute/python:pre-commit` stage.
 
 * They are rendered in the API that is :ref:`built by sphinx
-  <contribute:Sphinx>`.
+  <contribute/documentation:Sphinx>`.
 
 The latter fact is especially noteworthy: it means that the docstrings can
 reference to pages and sections from the website! For this, the `:doc:

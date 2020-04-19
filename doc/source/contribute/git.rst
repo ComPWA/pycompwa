@@ -91,7 +91,7 @@ quick and graphical tutorial <https://guides.github.com/introduction/flow>`_!
     git add -A  # if you want to stage all, including removed files
 
   Now commit the changes with either of the following commands and enter a
-  meaningful commit message (see :ref:`contribute:Commit conventions`):
+  meaningful commit message (see :ref:`contribute/git:Commit conventions`):
 
   .. code-block:: shell
 

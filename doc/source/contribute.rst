@@ -16,6 +16,22 @@ This page explains some of the tools that we use to work on `pycompwa`.
 
     pip install -r requirements-dev.txt
 
+The ComPWA repositories are bound to continuously evolve as experimental and
+theoretical insights progress. We therefore want the distinction between user
+and developer to be as minimal as possible and aim to maintain an interactive
+and dynamic platform for PWA software development.
+
+The following pages guide you through some of the tools required to contribute
+to this project.
+
+.. toctree::
+    :maxdepth: 2
+
+    contribute/git
+    contribute/python
+    contribute/documentation
+    contribute/ci
+
 
 Code Quality & Conventions
 --------------------------
@@ -28,21 +44,6 @@ Try and follow his advice, and keep in mind the 'boy scout rule':
 
 For the python code we follow the :pep:`8` standard. Available automatic source
 code highlighters and formatters are ``flake8`` and ``autopep8``.
-
-
-.. include:: contribute/git.rst
-.. include:: contribute/python.rst
-.. include:: contribute/documentation.rst
-.. include:: contribute/ci.rst
-
-.. toctree::
-    :maxdepth: 1
-    :hidden:
-
-    contribute/git
-    contribute/python
-    contribute/documentation
-    contribute/ci
 
 
 Reporting Issues
