@@ -58,4 +58,6 @@ Please don't hesitate to report any issues, but try make sure not to post
 duplicates.
 
 We are also very glad if you want to take it into your own hands and contribute
-to (py)ComPWA!
+to one of the ComPWA repositories! It is easiest, however, if you first propose
+the idea as an issue to receive feedback or perhaps even work on an idea
+together.
