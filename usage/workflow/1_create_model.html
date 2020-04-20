@@ -595,7 +595,7 @@ assigned to each graph and they are grouped according to this strength.</p>
 <div class="highlight"><pre>
 found 272 solutions!
 intermediate states:
-{&#39;a2(1320)0&#39;, &#39;f2(1950)&#39;, &#39;omega(782)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;, &#39;D1(2420)0&#39;, &#39;D*(2007)0&#39;, &#39;f2(1270)&#39;, &#39;rho(770)0&#39;, &#39;D*(2007)0bar&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;}
+{&#39;D*(2007)0bar&#39;, &#39;a2(1320)0&#39;, &#39;rho(770)0&#39;, &#39;omega(782)&#39;, &#39;D*(2007)0&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;D1(2420)0&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;}
 </pre></div></div>
 </div>
 <p>Now we have a lot of solutions that are actually heavily suppressed (they involve two weak decays).</p>
@@ -650,7 +650,7 @@ Using valid list instead.
 <div class="highlight"><pre>
 found 48 solutions!
 intermediate states:
-{&#39;f2(1950)&#39;, &#39;f2(1270)&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;}
+{&#39;rho(770)0&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;f0(1500)&#39;}
 </pre></div></div>
 </div>
 <p>Huh, what happened here? Actually, since a <span class="math notranslate nohighlight">\(\gamma\)</span> particle appears in one of the interaction nodes, the expert system knows that this node <strong>must involve EM interactions</strong>! Because the node can be an effective interaction, the weak interaction cannot be excluded, as it contains only a subset of conservation laws.</p>
@@ -679,7 +679,7 @@ intermediate states:
 <div class="highlight"><pre>
 found 96 solutions!
 intermediate states:
-{&#39;a2(1320)0&#39;, &#39;f2(1950)&#39;, &#39;omega(782)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;, &#39;f2(1270)&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;}
+{&#39;a2(1320)0&#39;, &#39;rho(770)0&#39;, &#39;omega(782)&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;}
 </pre></div></div>
 </div>
 <p>Great! Now we selected only the strongest contributions. Be aware, though, that there are more effects that can suppress certain decays, like small branching ratios. In this example, the initial state <span class="math notranslate nohighlight">\(J/\Psi\)</span> can decay into <span class="math notranslate nohighlight">\(\pi^0 + \rho^0\)</span> or <span class="math notranslate nohighlight">\(\pi^0 + \omega\)</span>.</p>
@@ -730,13 +730,13 @@ intermediate states:
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;1.0-&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;1.0-&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;1.0-&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;1.0-&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;, &#39;2.0+&#39;}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -746,7 +746,7 @@ WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;1.0-&#39;, &#39;2.
 <div class="highlight"><pre>
 found 32 solutions!
 intermediate states:
-{&#39;f0(1500)&#39;, &#39;f2(1270)&#39;, &#39;f0(980)&#39;, &#39;f2(1950)&#39;}
+{&#39;f2(1270)&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Now we have selected all amplitudes that involve <strong>f</strong> states. The warnings appear only to notify the user that the list of solutions is not exhaustive: for certain edges in the graph, no suitable particle was found (since only f states were allowed).</p>
