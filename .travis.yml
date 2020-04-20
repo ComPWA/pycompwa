@@ -129,8 +129,8 @@ jobs:
       dist: bionic
       env:
         - TASK="deployment"
-      install: echo "Skipping install stage!"
-      before_install: echo "Skipping before_install stage!"
+      install:
+        - pip install scikit-build
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
       deploy:
