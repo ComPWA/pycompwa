@@ -4,9 +4,8 @@ Installation
 Prerequisites
 ^^^^^^^^^^^^^
 
-`pycompwa` is `available as a PyPI package
-<https://pypi.org/project/pycompwa/>`_. However, since the `pycompwa.ui` module
-contains Python bindings to the `ComPWA backend
+`pycompwa` is `available as a PyPI package <https://pypi.org/>`_. However,
+since the `pycompwa.ui` module contains Python bindings to the `ComPWA backend
 <https://github.com/ComPWA/ComPWA>`_, you first need to install certain C++
 prerequisites.
 
