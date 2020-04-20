@@ -5,7 +5,7 @@ dist: bionic # default
 branches:
   only:
     - master
-    - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
+    - /\d+\.\d+.*/ # Run on tags e.g. 0.1.2
   except: gh-pages
 
 env:
