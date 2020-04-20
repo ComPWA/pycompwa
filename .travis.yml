@@ -126,16 +126,10 @@ jobs:
 
     - os: linux # deploy pip package
       dist: bionic
-      compiler: gcc
       env:
         - TASK="deployment"
-        - ROOTBIN="v6.18.04.Linux-ubuntu18-x86_64-gcc7.4"
+      install: echo "Skipping install stage!"
       before_install: echo "Skipping before_install stage!"
-      install: # install dependencies
-        - python3 -m pip install scikit-build
-        - wget https://root.cern.ch/download/root_${ROOTBIN}.tar.gz
-        - tar xpvfz root_*.tar.gz > /dev/null 2>&1
-        - source root/bin/thisroot.sh
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
       deploy:
