@@ -5,7 +5,7 @@ dist: bionic # default
 branches:
   only:
     - master
-    - /\d+\.\d+\.\d+/ # Run on tags e.g. 0.1.2
+    - /\d+\.\d+.*/ # Run on tags e.g. 0.1.2
   except: gh-pages
 
 env:
@@ -128,8 +128,8 @@ jobs:
       dist: bionic
       env:
         - TASK="deployment"
-      install: echo "Skipping install stage!"
-      before_install: echo "Skipping before_install stage!"
+      install:
+        - pip install scikit-build
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
       deploy:
@@ -140,4 +140,4 @@ jobs:
           skip_existing: true
           username: __token__
           password:
-            secure: bvlu0vG8oOYgLbNRkbZT5QO8AQDRlMuHPUn4U7PIECzQNjFC31Y8ugXTQOPdcNsACc8TR3z52uZ1JmuK4XI9++7HuzRwhMgKziCEwD/fBdZETxXq95LorbMaD8qOY43v5vJAeFDzouDoP3iBVTpJG3dZPk7OrHy0uSSGYnC0M/WqoFg/3Lfg5tlKz8doBbgGVG/vY/58GyDxu3GcSVg7c3A4CNYKk6FwXwbWo7itTzXMJFjWmlolFtNv9m4b4gLrPSvUf7A/BrovC9IYic2N+T/KnbVOBopQ9ggk+uf1eMv1emruNiqUaJ963DMPjE154hbR7Ykvz4ng/CsvI8enmiPg18RoS1DLGxe7LVr0RzZaGsW0gw8q6H6Noc0FzNXwLb5+fDWHJtz87rrVmZZz+ofVpo370Q9y7B6joJ5EBDxPwi/Ef9MBZMEMR1pArX9rnlkVpPit0nvsb+R4e5ZS5CHj7ArSxio5pXLMrEtJyJKpnaeCbjIp5b+UfsVwSbY6i3UpE0HSHDW/Nic02/d9PfgxuBkEp6jb30yajsfWroMpJQyKD/X1qIUO48deUO79Mnu33EGWnccYBbmhMxFNCQnfLVPwKAQm7YM1/WlUa6ictifxlLouG8wZjAUviBcvTjzDY53UUpS/PIkGPL9MrqjLJbsR0XwAwp4leprngyY=
+            secure: NzI1qic8thtf/v2CFd+kc1Zvzi2A+lwsS/z7HXMfrf56tzLHCz7rjw/31M4hRvpx09iN8pxPndD5jchx2s+Yud7ukXopskAulZDwyb9OutfAHeIlJsHLbLg3fJrGs6Fs8ctRZ/NIIVp2WqLk3xbW09FFPQhlcAQttV0E6sVb3ew/DTpps+KsPYThIHbwKOLL4dFjDjGzR8OCDN0KOftSPir0BaYvBu6EWraG0+zpov458nw7XtOY0k7+mDbXo6ZipRBbPLye1JmoeOUrv8CmhpELtFV0GEQMCzzhvTK5cfUg5BgHSntWfZ6z8IofoRCEO8ksRH+UMTSurktXGpakF5VAQ5mmb0c8WxbWPBCuAyFgy3IHS8DjhKp2Y/Bh0mHIE2taYEMkspynAknG36eGt2CJrgkXL5R4I+TT2UikaPge74G4XdCqsKizmbiGN7umWSi7qrYbXadKtofBPh1cWR6JMivH0R9SLoqQ5fIMr6LN3PPG2Lbivs/0JtEtw0lq571gbENgHhHKYQDtpTiwGkoxERekcJJ/Q36jTqd7Ttszpx6TvwXsjmD1dcuPBSXfuEvhYTTv4buDFx06peI/elE2FF8auD3BhZKwz74v4h8ac4i5xWK7QMCtw9WxCxyNYfiNKzliLP/5KpHTnAxy5HKzOjy/3GMuDVFGY7USDOo=
