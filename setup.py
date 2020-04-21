@@ -15,11 +15,6 @@ except ImportError:
     sys.exit(1)
 
 
-def readme():
-    with open('README.rst') as f:
-        return f.read()
-
-
 # Add CMake as a build requirement if cmake is not installed or is too low a
 # version
 CMAKE_MINIMUM = "3.4"
@@ -35,9 +30,10 @@ setup(
     version='0.1-alpha1',
     author='The ComPWA team',
     maintainer_email="compwa-admin@ep1.rub.de",
-    url="https://github.com/ComPWA/pycompwa",
+    url="https://compwa.github.io/",
     description='ComPWA: The Common Partial Wave Analysis framework',
-    long_description=readme(),
+    long_description="pycompwa is the Python interface of `ComPWA <https://github.com/ComPWA/ComPWA>`_",
+    long_description_content_type='text/x-rst',
     license="GPLv3 or later",
     #  cmake_args=['-DSOME_FEATURE:BOOL=OFF'],
     cmake_minimum_required_version=CMAKE_MINIMUM,
