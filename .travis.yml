@@ -1,11 +1,11 @@
 language: cpp
 os: linux
-dist: bionic # default
+dist: bionic
 
 branches:
   only:
     - master
-    - /\d+\.\d+.*/ # Run on tags e.g. 0.1.2
+    - /\d+\.\d+.*/
   except: gh-pages
 
 env:
