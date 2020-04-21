@@ -145,7 +145,7 @@ jobs:
         on:
           tags: true
         distributions: sdist
-        skip_existing: true
+        skip_existing: false
         user: __token__
         password:
           secure: "X7mMu4fGfWdKRro8GGyiZTP3M5bRDVxY3qQj5stgQ/wfvp+am/ObiJ587xk2zfX4upEK81O1xmCZaRwzLAMSJdCERIb8hpMG189inYQ6eWWRCsImAOEsPbEMtOiMYyifwXz1exGgoszJNM72iqLphkSUdCRXiORkyoKhN2XvFTd6m7ABZugT68DlYXoZf9FsfY6xW+7gainnhMtROlcMxT1bNnMqjSAjZehmGjdDRROmOqcN2uc/GlgF/6b5aqUbxdyud9IzFNGw2s5XjIs4FlawF4PYAsWocddXcc0vlclJ40k5mpFezIzkdUHX6OnqGyuxke5/4Lh1NmK35BomKfa0GLABGK3EoBISiE/HvordGRP9Z/1Qo14nMpun00q2Ek8Pz2mmWxtfm4gRbw1UUCrrVErSGW/twvPceo5qlcfzdAx8pncIr1X7Q1ZF4GEdBHNHbgizAw72DPG1iUyu62s7fz6B86XT1RrmO3yWYkOM/bbc5u6C/8DAEeBajmHGaXC9wKR5UDIFeW3BNQ0+zjg4NmPMJ9Aj7yLZYdOA2Oc2mtPvOKf8wX/r75xw6jBHJadqEvtsAw9hr4PaQqY/FbIyzyz1lZkqIOE07SPvscSFSdvJFsj7Q3sR4xMNgL9yO+SfsCGHeNAQd14ZNdlfMGw29x3SMT5TCrgYI4vYEec="
