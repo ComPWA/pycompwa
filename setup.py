@@ -30,7 +30,7 @@ setup(
     version='0.1-alpha2',
     author='The ComPWA team',
     maintainer_email="compwa-admin@ep1.rub.de",
-    url="https://compwa.github.io/",
+    url="https://github.com/ComPWA/pycompwa",
     description='ComPWA: The Common Partial Wave Analysis framework',
     long_description="pycompwa is the Python interface of `ComPWA <https://github.com/ComPWA/ComPWA>`_",
     long_description_content_type='text/x-rst',
