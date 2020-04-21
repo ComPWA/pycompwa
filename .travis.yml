@@ -140,6 +140,7 @@ jobs:
       before_deploy:
         - pip install scikit-build
       deploy:
+        edge: true
         provider: pypi
         on:
           tags: true
