@@ -133,11 +133,11 @@ jobs:
       dist: bionic
       env:
         - TASK="deployment"
-      install:
-        - pip install scikit-build
+      install: echo "Skipping install stage!"
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
       before_deploy:
+        - pip install scikit-build
         - pip install twine
       deploy:
         - provider: pypi # Upload new release on pypi for each tagged commit
