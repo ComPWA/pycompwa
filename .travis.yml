@@ -140,11 +140,11 @@ jobs:
       before_deploy:
         - pip install scikit-build
       deploy:
-        - provider: pypi
-          on:
-            tags: true
-          distributions: sdist
-          skip_existing: true
-          user: __token__
-          password:
-            secure: akD5cYCgdQV1jCMQwzP4zvcEW7OYqL/R2CHMTP5Z3X4hhro5ei5uahjBRCcM4MpQucrRgrLAMKCCmGhmdf7qS0URXzQu8J5tPxVc0pmiczkveIIRTp79OAjDjzcMAxIQbPturBbR5UfOLrzlREMa3ZuUx2JqlEPZAt2siJDbTbi71yhWyGLyxqTqOjcvmYstcZP/IXMs7euen8/kDpgpm/mY/JcBH7XisLV2Yz5KjiHHcLapzg1JVPypxib9pd+gbTRaAzeL4pwrwGtGYNluux/CBLJcYZmDb7dHdcE49ln+Cq5BJPem9uZo0XKcNrnnzmIFMPaJ/zhVxxbLLMJ2EfAcPvnzY9hxtMSMftv2J8WCqu46kL11kHHA6620CMls2iX8tNomq3wV8hbuk1ETb7mrs0/5wVLinkSyEO5MurjaB/1gAC/0BWyRJ4vxckMHQptXowl0RYL0fHPbstRWmDYoBZQMHEfcwLoOapgb9oQaK0QncXbPkw+JnjNeRBwScp6wbSxrsPiw+agJgyNHAmfgrqpteZHqd6WJt+7+JzH9tr0UfcPg9xuMC69VonatrwSceRkvDLCr7u2HMAakitcVmbxKfpptBtC2ja62iocldhXV7ysSrRltyepcxLP3Ilpl2l+nWyzmCDbTaPYJgM41qIoYvaAKuBQJ61PZ6yo=
+        provider: pypi
+        on:
+          tags: true
+        distributions: sdist
+        skip_existing: true
+        user: __token__
+        password:
+          secure: akD5cYCgdQV1jCMQwzP4zvcEW7OYqL/R2CHMTP5Z3X4hhro5ei5uahjBRCcM4MpQucrRgrLAMKCCmGhmdf7qS0URXzQu8J5tPxVc0pmiczkveIIRTp79OAjDjzcMAxIQbPturBbR5UfOLrzlREMa3ZuUx2JqlEPZAt2siJDbTbi71yhWyGLyxqTqOjcvmYstcZP/IXMs7euen8/kDpgpm/mY/JcBH7XisLV2Yz5KjiHHcLapzg1JVPypxib9pd+gbTRaAzeL4pwrwGtGYNluux/CBLJcYZmDb7dHdcE49ln+Cq5BJPem9uZo0XKcNrnnzmIFMPaJ/zhVxxbLLMJ2EfAcPvnzY9hxtMSMftv2J8WCqu46kL11kHHA6620CMls2iX8tNomq3wV8hbuk1ETb7mrs0/5wVLinkSyEO5MurjaB/1gAC/0BWyRJ4vxckMHQptXowl0RYL0fHPbstRWmDYoBZQMHEfcwLoOapgb9oQaK0QncXbPkw+JnjNeRBwScp6wbSxrsPiw+agJgyNHAmfgrqpteZHqd6WJt+7+JzH9tr0UfcPg9xuMC69VonatrwSceRkvDLCr7u2HMAakitcVmbxKfpptBtC2ja62iocldhXV7ysSrRltyepcxLP3Ilpl2l+nWyzmCDbTaPYJgM41qIoYvaAKuBQJ61PZ6yo=
