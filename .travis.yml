@@ -138,7 +138,7 @@ jobs:
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
       before_deploy:
-        - pip3 install scikit-build
+        - pip install scikit-build
       deploy:
         - provider: pypi
           on:
