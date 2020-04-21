@@ -137,6 +137,8 @@ jobs:
         - pip install scikit-build
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
+      before_deploy:
+        - pip install twine
       deploy:
         - provider: pypi # Upload new release on pypi for each tagged commit
           on: # Make sure that the version number in setup.py is
