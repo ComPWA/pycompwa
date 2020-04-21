@@ -138,6 +138,7 @@ jobs:
       before_script: echo "Skipping before_script stage!"
       before_deploy:
         - pip install scikit-build
+        - pip install twine
       deploy:
         edge: true
         provider: pypi
