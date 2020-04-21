@@ -13,14 +13,14 @@ About pycompwa
 ==============
 
 pycompwa is a collection of python modules and the python interface to
-`ComPWA <https://github.com/ComPWA/ComPWA>`_. ComPWA stands for 
+`ComPWA <https://github.com/ComPWA/ComPWA>`_. ComPWA stands for
 "Common Partial Wave Analysis framework".
 
 Analogous to ComPWA, pycompwas highest focus is also modularity. pycompwa
 extends the ComPWA framework with some useful modules:
 
 * `expertsystem <https://compwa.github.io/python-modules.html#the-compwa-expert-system>`_
-  
+
   A python package that can generate amplitude/intensity model files from simple
   user boundary conditions, such as inital and final state. Currently supports
   the helicity and canonical formalism.
@@ -36,8 +36,8 @@ extends the ComPWA framework with some useful modules:
 Installation
 ============
 
-Detailed instructions can be found 
-`here <https://compwa.github.io/installation.html>`_.
+Detailed instructions can be found
+`here <https://compwa.github.io/installation.html>`__.
 Make sure the virtual environment is setup and activated.
 
 Installation via pypi
@@ -59,10 +59,10 @@ Installation from source
 Usage
 =====
 
-On how to use ComPWA please refer to the 
+On how to use ComPWA please refer to the
 `Quickstart Example <https://github.com/ComPWA/pycompwa/blob/master/examples/jupyter/Quickstart.ipynb>`_.
 
 Documentation
 =============
 
-The documentation can be found `here <https://compwa.github.io/>`_.
+The documentation can be found `here <https://compwa.github.io/>`__.
