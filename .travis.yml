@@ -144,6 +144,7 @@ jobs:
           on: # Make sure that the version number in setup.py is
             tags: true # increased before(!) you tag the commit  q
           distributions: sdist
+          cleanup: true
           skip_existing: true
           username: __token__
           password:
