@@ -27,7 +27,7 @@ except SKBuildError:
 
 setup(
     name='pycompwa',
-    version='0.1-alpha1',
+    version='0.1-alpha2',
     author='The ComPWA team',
     maintainer_email="compwa-admin@ep1.rub.de",
     url="https://compwa.github.io/",
