@@ -48,7 +48,8 @@ before_script: # build the project
 
 jobs:
   include:
-    - os: osx # test XCode build
+    - name: Test XCode build
+      os: osx
       osx_image: xcode10.2
       env:
         - TASK="clang, ROOT v6.18"
@@ -56,7 +57,8 @@ jobs:
       script:
         - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
 
-    - os: linux # test gcc build (Linux)
+    - name: Test gcc build (Linux)
+      os: linux
       dist: bionic
       compiler: gcc
       env:
@@ -66,7 +68,8 @@ jobs:
         - cd $BASEPATH/tests
         - python -m pytest
 
-    - os: linux # test and deploy documentation
+    - name: Test and deploy documentation
+      os: linux
       dist: bionic
       compiler: gcc
       env:
@@ -111,7 +114,8 @@ jobs:
         on:
           branch: master
 
-    - os: linux # test clang build (Linux) + code coverage
+    - name: test clang build (Linux) + code coverage
+      os: linux
       dist: bionic
       compiler: clang
       env:
@@ -124,7 +128,8 @@ jobs:
         - python3 -m pip install codecov
         - python3 -m codecov
 
-    - os: linux # deploy pip package
+    - name: Deploy PyPI package
+      os: linux
       dist: bionic
       env:
         - TASK="deployment"
