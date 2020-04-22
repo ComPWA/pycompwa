@@ -1,11 +1,11 @@
 language: cpp
 os: linux
-dist: bionic # default
+dist: bionic
 
 branches:
   only:
     - master
-    - /\d+\.\d+.*/ # Run on tags e.g. 0.1.2
+    - /\d+\.\d+.*/
   except: gh-pages
 
 env:
@@ -48,7 +48,8 @@ before_script: # build the project
 
 jobs:
   include:
-    - os: osx # test XCode build
+    - name: Test XCode build
+      os: osx
       osx_image: xcode10.2
       env:
         - TASK="clang, ROOT v6.18"
@@ -56,7 +57,8 @@ jobs:
       script:
         - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
 
-    - os: linux # test gcc build (Linux)
+    - name: Test gcc build (Linux)
+      os: linux
       dist: bionic
       compiler: gcc
       env:
@@ -66,7 +68,8 @@ jobs:
         - cd $BASEPATH/tests
         - python -m pytest
 
-    - os: linux # test and deploy documentation
+    - name: Test and deploy documentation
+      os: linux
       dist: bionic
       compiler: gcc
       env:
@@ -111,7 +114,8 @@ jobs:
         on:
           branch: master
 
-    - os: linux # test clang build (Linux) + code coverage
+    - name: test clang build (Linux) + code coverage
+      os: linux
       dist: bionic
       compiler: clang
       env:
@@ -124,20 +128,24 @@ jobs:
         - python3 -m pip install codecov
         - python3 -m codecov
 
-    - os: linux # deploy pip package
+    - name: Deploy PyPI package
+      os: linux
       dist: bionic
       env:
         - TASK="deployment"
-      install:
-        - pip install scikit-build
+      install: echo "Skipping install stage!"
       script: echo "Skipping script stage!"
       before_script: echo "Skipping before_script stage!"
+      before_deploy:
+        - pip install scikit-build
+        - pip install twine
       deploy:
-        - provider: pypi # Upload new release on pypi for each tagged commit
-          on: # Make sure that the version number in setup.py is
-            tags: true # increased before(!) you tag the commit  q
-          distributions: sdist
-          skip_existing: true
-          username: __token__
-          password:
-            secure: NzI1qic8thtf/v2CFd+kc1Zvzi2A+lwsS/z7HXMfrf56tzLHCz7rjw/31M4hRvpx09iN8pxPndD5jchx2s+Yud7ukXopskAulZDwyb9OutfAHeIlJsHLbLg3fJrGs6Fs8ctRZ/NIIVp2WqLk3xbW09FFPQhlcAQttV0E6sVb3ew/DTpps+KsPYThIHbwKOLL4dFjDjGzR8OCDN0KOftSPir0BaYvBu6EWraG0+zpov458nw7XtOY0k7+mDbXo6ZipRBbPLye1JmoeOUrv8CmhpELtFV0GEQMCzzhvTK5cfUg5BgHSntWfZ6z8IofoRCEO8ksRH+UMTSurktXGpakF5VAQ5mmb0c8WxbWPBCuAyFgy3IHS8DjhKp2Y/Bh0mHIE2taYEMkspynAknG36eGt2CJrgkXL5R4I+TT2UikaPge74G4XdCqsKizmbiGN7umWSi7qrYbXadKtofBPh1cWR6JMivH0R9SLoqQ5fIMr6LN3PPG2Lbivs/0JtEtw0lq571gbENgHhHKYQDtpTiwGkoxERekcJJ/Q36jTqd7Ttszpx6TvwXsjmD1dcuPBSXfuEvhYTTv4buDFx06peI/elE2FF8auD3BhZKwz74v4h8ac4i5xWK7QMCtw9WxCxyNYfiNKzliLP/5KpHTnAxy5HKzOjy/3GMuDVFGY7USDOo=
+        edge: true
+        provider: pypi
+        on:
+          tags: true
+        distributions: sdist
+        skip_existing: false
+        user: __token__
+        password:
+          secure: "X7mMu4fGfWdKRro8GGyiZTP3M5bRDVxY3qQj5stgQ/wfvp+am/ObiJ587xk2zfX4upEK81O1xmCZaRwzLAMSJdCERIb8hpMG189inYQ6eWWRCsImAOEsPbEMtOiMYyifwXz1exGgoszJNM72iqLphkSUdCRXiORkyoKhN2XvFTd6m7ABZugT68DlYXoZf9FsfY6xW+7gainnhMtROlcMxT1bNnMqjSAjZehmGjdDRROmOqcN2uc/GlgF/6b5aqUbxdyud9IzFNGw2s5XjIs4FlawF4PYAsWocddXcc0vlclJ40k5mpFezIzkdUHX6OnqGyuxke5/4Lh1NmK35BomKfa0GLABGK3EoBISiE/HvordGRP9Z/1Qo14nMpun00q2Ek8Pz2mmWxtfm4gRbw1UUCrrVErSGW/twvPceo5qlcfzdAx8pncIr1X7Q1ZF4GEdBHNHbgizAw72DPG1iUyu62s7fz6B86XT1RrmO3yWYkOM/bbc5u6C/8DAEeBajmHGaXC9wKR5UDIFeW3BNQ0+zjg4NmPMJ9Aj7yLZYdOA2Oc2mtPvOKf8wX/r75xw6jBHJadqEvtsAw9hr4PaQqY/FbIyzyz1lZkqIOE07SPvscSFSdvJFsj7Q3sR4xMNgL9yO+SfsCGHeNAQd14ZNdlfMGw29x3SMT5TCrgYI4vYEec="
