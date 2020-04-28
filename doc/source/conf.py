@@ -114,9 +114,10 @@ primary_domain = 'py'
 nitpicky = True  # warn if cross-references are missing
 nitpick_ignore = [
     ('py:class', 'function'),
+    ('py:class', 'pandas.core.frame.DataFrame'),
+    ('py:class', 'pybind11_builtins.pybind11_object'),
     ('py:class', 'pycompwa.expertsystem.solvers.constraint.Constraint'),
     ('py:class', 'pycompwa.expertsystem.state.propagation.GraphElementTypes'),
-    ('py:class', 'pybind11_builtins.pybind11_object'),
 ]
 
 # Settings for intersphinx
