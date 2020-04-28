@@ -73,16 +73,6 @@ subprocess.call(
     shell=True)
 
 
-def skip(app, what, name, obj, would_skip, options):
-    if name == "__init__":
-        return False
-    return would_skip
-
-
-def setup(app):
-    app.connect("autodoc-skip-member", skip)
-
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -192,6 +182,12 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 add_module_names = False  # True is the default
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True,
+    'special-members': '__eq__',
+}
 modindex_common_prefix = ['pycompwa.']
 
 viewcode_follow_imported_members = True
