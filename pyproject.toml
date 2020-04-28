@@ -1,0 +1,29 @@
+[build-system]
+requires = [
+    "scikit-build",
+    "setuptools",
+    "wheel",
+]
+
+[tool.black]
+line-length = 79
+target-version = [
+    'py35',
+    'py36',
+    'py37',
+]
+include = '\.pyi?$'
+exclude = '''
+/(
+    ComPWA
+  | \.eggs
+  | .*build
+  | \.ComPWA
+  | \.git
+  | \.tox
+  | \.venv
+  | \.vscode
+  | dist
+  | pybind11
+)/
+'''

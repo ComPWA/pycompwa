@@ -15,17 +15,16 @@ repos:
       - id: nbstripout
         files: ".ipynb"
 
+  - repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+      - id: black
+
   - repo: local
     hooks:
       - id: flake8
         name: flake8
         entry: flake8
-        language: system
-        types:
-          - python
-      - id: autopep8
-        name: autopep8
-        entry: autopep8 --in-place
         language: system
         types:
           - python
