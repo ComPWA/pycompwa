@@ -9,10 +9,10 @@ useful when doing PWA research with Python.
 
 
 __all__ = [
-    'data',
-    'expertsystem',
-    'plotting',
-    'ui',
+    "data",
+    "expertsystem",
+    "plotting",
+    "ui",
 ]
 
 

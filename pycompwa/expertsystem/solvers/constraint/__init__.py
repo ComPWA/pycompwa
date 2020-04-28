@@ -47,20 +47,42 @@
 from __future__ import absolute_import, division, print_function
 
 
-from .version import (__author__, __copyright__, __credits__, __license__,  # noqa
-                      __version__, __email__, __status__, __url__)  # noqa
+from .version import (
+    __author__,
+    __copyright__,
+    __credits__,
+    __license__,  # noqa
+    __version__,
+    __email__,
+    __status__,
+    __url__,
+)  # noqa
 
 import random
 import copy
 from .compat import xrange
 
-__all__ = ["Problem", "Variable", "Domain", "Unassigned",
-           "Solver", "BacktrackingSolver", "RecursiveBacktrackingSolver",
-           "MinConflictsSolver", "Constraint", "FunctionConstraint",
-           "AllDifferentConstraint", "AllEqualConstraint", "MaxSumConstraint",
-           "ExactSumConstraint", "MinSumConstraint", "InSetConstraint",
-           "NotInSetConstraint", "SomeInSetConstraint",
-           "SomeNotInSetConstraint"]
+__all__ = [
+    "Problem",
+    "Variable",
+    "Domain",
+    "Unassigned",
+    "Solver",
+    "BacktrackingSolver",
+    "RecursiveBacktrackingSolver",
+    "MinConflictsSolver",
+    "Constraint",
+    "FunctionConstraint",
+    "AllDifferentConstraint",
+    "AllEqualConstraint",
+    "MaxSumConstraint",
+    "ExactSumConstraint",
+    "MinSumConstraint",
+    "InSetConstraint",
+    "NotInSetConstraint",
+    "SomeInSetConstraint",
+    "SomeNotInSetConstraint",
+]
 
 
 class Problem(object):
@@ -145,7 +167,7 @@ class Problem(object):
         if variable in self._variables:
             msg = "Tried to insert duplicated variable %s" % repr(variable)
             raise ValueError(msg)
-        if hasattr(domain, '__getitem__'):
+        if hasattr(domain, "__getitem__"):
             domain = Domain(domain)
         elif isinstance(domain, Domain):
             domain = copy.copy(domain)
@@ -204,8 +226,10 @@ class Problem(object):
             if callable(constraint):
                 constraint = FunctionConstraint(constraint)
             else:
-                msg = "Constraints must be instances of subclasses "\
-                      "of the Constraint class"
+                msg = (
+                    "Constraints must be instances of subclasses "
+                    "of the Constraint class"
+                )
                 raise ValueError(msg)
         self._constraints.append((constraint, variables))
 
@@ -272,8 +296,7 @@ class Problem(object):
         domains, constraints, vconstraints = self._getArgs()
         if not domains:
             return iter(())
-        return self._solver.getSolutionIter(domains, constraints,
-                                            vconstraints)
+        return self._solver.getSolutionIter(domains, constraints, vconstraints)
 
     def _getArgs(self):
         domains = self._variables.copy()
@@ -290,14 +313,16 @@ class Problem(object):
             for variable in variables:
                 vconstraints[variable].append((constraint, variables))
         for constraint, variables in constraints[:]:
-            constraint.preProcess(variables, domains,
-                                  constraints, vconstraints)
+            constraint.preProcess(
+                variables, domains, constraints, vconstraints
+            )
         for domain in domains.values():
             domain.resetState()
             if not domain:
                 return None, None, None
         # doArc8(getArcs(domains, constraints), domains, {})
         return domains, constraints, vconstraints
+
 
 # ----------------------------------------------------------------------
 # Solvers
@@ -315,12 +340,8 @@ def getArcs(domains, constraints):
         variables = x
         if len(variables) == 2:
             variable1, variable2 = variables
-            arcs.setdefault(variable1, {})\
-                .setdefault(variable2, [])\
-                .append(x)
-            arcs.setdefault(variable2, {})\
-                .setdefault(variable1, [])\
-                .append(x)
+            arcs.setdefault(variable1, {}).setdefault(variable2, []).append(x)
+            arcs.setdefault(variable2, {}).setdefault(variable1, []).append(x)
     return arcs
 
 
@@ -351,8 +372,9 @@ def doArc8(arcs, domains, assignments):
                         for othervalue in otherdomain:
                             assignments[othervariable] = othervalue
                             for constraint, variables in arcconstraints:
-                                if not constraint(variables, domains,
-                                                  assignments, True):
+                                if not constraint(
+                                    variables, domains, assignments, True
+                                ):
                                     break
                             else:
                                 # All constraints passed. Value is safe.
@@ -472,16 +494,27 @@ class BacktrackingSolver(Solver):
         while True:
 
             # Mix the Degree and Minimum Remaining Values (MRV) heuristics
-            lst = sorted([(-len(vconstraints[variable]),
-                           len(domains[variable]), variable) for variable in domains])
+            lst = sorted(
+                [
+                    (
+                        -len(vconstraints[variable]),
+                        len(domains[variable]),
+                        variable,
+                    )
+                    for variable in domains
+                ]
+            )
             for item in lst:
                 if item[-1] not in assignments:
                     # Found unassigned variable
                     variable = item[-1]
                     values = domains[variable][:]
                     if forwardcheck:
-                        pushdomains = [domains[x] for x in domains
-                                       if x not in assignments and x != variable]
+                        pushdomains = [
+                            domains[x]
+                            for x in domains
+                            if x not in assignments and x != variable
+                        ]
                     else:
                         pushdomains = None
                     break
@@ -520,8 +553,9 @@ class BacktrackingSolver(Solver):
                         domain.pushState()
 
                 for constraint, variables in vconstraints[variable]:
-                    if not constraint(variables, domains, assignments,
-                                      pushdomains):
+                    if not constraint(
+                        variables, domains, assignments, pushdomains
+                    ):
                         # Value is not good.
                         break
                 else:
@@ -586,12 +620,21 @@ class RecursiveBacktrackingSolver(Solver):
         """
         self._forwardcheck = forwardcheck
 
-    def recursiveBacktracking(self, solutions, domains, vconstraints,
-                              assignments, single):
+    def recursiveBacktracking(
+        self, solutions, domains, vconstraints, assignments, single
+    ):
 
         # Mix the Degree and Minimum Remaining Values (MRV) heuristics
-        lst = sorted([(-len(vconstraints[variable]),
-                       len(domains[variable]), variable) for variable in domains])
+        lst = sorted(
+            [
+                (
+                    -len(vconstraints[variable]),
+                    len(domains[variable]),
+                    variable,
+                )
+                for variable in domains
+            ]
+        )
         for item in lst:
             if item[-1] not in assignments:
                 # Found an unassigned variable. Let's go.
@@ -616,14 +659,16 @@ class RecursiveBacktrackingSolver(Solver):
                 for domain in pushdomains:
                     domain.pushState()
             for constraint, variables in vconstraints[variable]:
-                if not constraint(variables, domains, assignments,
-                                  pushdomains):
+                if not constraint(
+                    variables, domains, assignments, pushdomains
+                ):
                     # Value is not good.
                     break
             else:
                 # Value is good. Recurse and get next variable.
-                self.recursiveBacktracking(solutions, domains, vconstraints,
-                                           assignments, single)
+                self.recursiveBacktracking(
+                    solutions, domains, vconstraints, assignments, single
+                )
                 if solutions and single:
                     return solutions
             if pushdomains:
@@ -633,13 +678,13 @@ class RecursiveBacktrackingSolver(Solver):
         return solutions
 
     def getSolution(self, domains, constraints, vconstraints):
-        solutions = self.recursiveBacktracking([], domains, vconstraints,
-                                               {}, True)
+        solutions = self.recursiveBacktracking(
+            [], domains, vconstraints, {}, True
+        )
         return solutions and solutions[0] or None
 
     def getSolutions(self, domains, constraints, vconstraints):
-        return self.recursiveBacktracking([], domains, vconstraints,
-                                          {}, False)
+        return self.recursiveBacktracking([], domains, vconstraints, {}, False)
 
 
 class MinConflictsSolver(Solver):
@@ -716,6 +761,7 @@ class MinConflictsSolver(Solver):
             if not conflicted:
                 return assignments
         return None
+
 
 # ----------------------------------------------------------------------
 # Variables
@@ -807,6 +853,7 @@ class Domain(list):
         list.remove(self, value)
         self._hidden.append(value)
 
+
 # ----------------------------------------------------------------------
 # Constraints
 # ----------------------------------------------------------------------
@@ -874,8 +921,9 @@ class Constraint(object):
             constraints.remove((self, variables))
             vconstraints[variable].remove((self, variables))
 
-    def forwardCheck(self, variables, domains, assignments,
-                     _unassigned=Unassigned):
+    def forwardCheck(
+        self, variables, domains, assignments, _unassigned=Unassigned
+    ):
         """
         Helper method for generic forward checking
 
@@ -951,14 +999,22 @@ class FunctionConstraint(Constraint):
         self._func = func
         self._assigned = assigned
 
-    def __call__(self, variables, domains, assignments, forwardcheck=False,
-                 _unassigned=Unassigned):
+    def __call__(
+        self,
+        variables,
+        domains,
+        assignments,
+        forwardcheck=False,
+        _unassigned=Unassigned,
+    ):
         params = [assignments.get(x, _unassigned) for x in variables]
         missing = params.count(_unassigned)
         if missing:
-            return ((self._assigned or self._func(*params)) and
-                    (not forwardcheck or missing != 1 or
-                     self.forwardCheck(variables, domains, assignments)))
+            return (self._assigned or self._func(*params)) and (
+                not forwardcheck
+                or missing != 1
+                or self.forwardCheck(variables, domains, assignments)
+            )
         return self._func(*params)
 
 
@@ -975,8 +1031,14 @@ class AllDifferentConstraint(Constraint):
     [[('a', 1), ('b', 2)], [('a', 2), ('b', 1)]]
     """
 
-    def __call__(self, variables, domains, assignments, forwardcheck=False,
-                 _unassigned=Unassigned):
+    def __call__(
+        self,
+        variables,
+        domains,
+        assignments,
+        forwardcheck=False,
+        _unassigned=Unassigned,
+    ):
         seen = {}
         for variable in variables:
             value = assignments.get(variable, _unassigned)
@@ -1009,8 +1071,14 @@ class AllEqualConstraint(Constraint):
     [[('a', 1), ('b', 1)], [('a', 2), ('b', 2)]]
     """
 
-    def __call__(self, variables, domains, assignments, forwardcheck=False,
-                 _unassigned=Unassigned):
+    def __call__(
+        self,
+        variables,
+        domains,
+        assignments,
+        forwardcheck=False,
+        _unassigned=Unassigned,
+    ):
         singlevalue = _unassigned
         for variable in variables:
             value = assignments.get(variable, _unassigned)
@@ -1056,8 +1124,9 @@ class MaxSumConstraint(Constraint):
         self._multipliers = multipliers
 
     def preProcess(self, variables, domains, constraints, vconstraints):
-        Constraint.preProcess(self, variables, domains,
-                              constraints, vconstraints)
+        Constraint.preProcess(
+            self, variables, domains, constraints, vconstraints
+        )
         multipliers = self._multipliers
         maxsum = self._maxsum
         if multipliers:
@@ -1140,8 +1209,9 @@ class ExactSumConstraint(Constraint):
         self._multipliers = multipliers
 
     def preProcess(self, variables, domains, constraints, vconstraints):
-        Constraint.preProcess(self, variables, domains,
-                              constraints, vconstraints)
+        Constraint.preProcess(
+            self, variables, domains, constraints, vconstraints
+        )
         multipliers = self._multipliers
         exactsum = self._exactsum
         if multipliers:
@@ -1456,4 +1526,5 @@ class SomeNotInSetConstraint(Constraint):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

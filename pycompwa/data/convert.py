@@ -7,9 +7,9 @@ This module contains functions that help convertion from ComPWA objects like
 
 
 __all__ = [
-    'data_set_to_pandas',
-    'events_to_pandas',
-    'pandas_to_events',
+    "data_set_to_pandas",
+    "events_to_pandas",
+    "pandas_to_events",
 ]
 
 
@@ -24,7 +24,8 @@ from . import naming
 
 
 def events_to_pandas(
-        events: pwa.EventCollection, model: str = None) -> pd.DataFrame:
+    events: pwa.EventCollection, model: str = None
+) -> pd.DataFrame:
     """Convert an `~.EventCollection` to a  `~pandas.DataFrame`.
 
     Create a PWA formatted `~pandas.DataFrame` from an
@@ -44,11 +45,13 @@ def events_to_pandas(
         id_to_name = pwa.get_final_state_id_to_name_mapping(model)
         if len(id_to_name) != len(pids):
             raise exception.ConfigurationConflict(
-                f'XML file {model} has {len(id_to_name)} final state'
-                f'particles, the event collection has {len(pids)}')
+                f"XML file {model} has {len(id_to_name)} final state"
+                f"particles, the event collection has {len(pids)}"
+            )
         particle_list = pwa.read_particles(model)
-        pids = [particle_list.name_to_pid(name)
-                for name in id_to_name.values()]
+        pids = [
+            particle_list.name_to_pid(name) for name in id_to_name.values()
+        ]
     particles = naming.make_values_unique(pids)
     frame = create.pwa_frame(events.to_table(), particle_names=particles)
     if model:
@@ -59,8 +62,7 @@ def events_to_pandas(
     return frame
 
 
-def pandas_to_events(
-        frame: pd.DataFrame, model: str) -> pwa.EventCollection:
+def pandas_to_events(frame: pd.DataFrame, model: str) -> pwa.EventCollection:
     """Convert :class:`~pandas.DataFrame` to an :class:`~.EventCollection`.
 
     Create a :class:`PWA formatted DataFrame <.PwaAccessor>` from an
@@ -72,25 +74,36 @@ def pandas_to_events(
     pids = [particle_list.name_to_pid(name) for name in id_to_name.values()]
     if not set(ids) <= set(frame.pwa.particles):
         raise exception.DataException(
-            '\n  You first have to convert the columns names:\n'
-            f'    {frame.pwa.particles}\n'
-            '  to the final state IDs:\n'
-            f'    {ids}\n'
-            '  as defined in XML file\n'
-            f'    \"{model}\"\n'
-            '  with e.g. naming.particle_to_id or pandas.DataFrame.rename')
-    numpy_arrays = [frame[particle].to_numpy()
-                    for particle in frame.pwa.particles]
+            "\n  You first have to convert the columns names:\n"
+            f"    {frame.pwa.particles}\n"
+            "  to the final state IDs:\n"
+            f"    {ids}\n"
+            "  as defined in XML file\n"
+            f'    "{model}"\n'
+            "  with e.g. naming.particle_to_id or pandas.DataFrame.rename"
+        )
+    numpy_arrays = [
+        frame[particle].to_numpy() for particle in frame.pwa.particles
+    ]
     if frame.pwa.has_weights:
-        events = [pwa.Event(
-            pwa.FourMomentumList(
-                [pwa.FourMomentum(momentum) for momentum in event[:-1]]),
-            event[-1]
-        ) for event in zip(*numpy_arrays, frame.pwa.weights)]
+        events = [
+            pwa.Event(
+                pwa.FourMomentumList(
+                    [pwa.FourMomentum(momentum) for momentum in event[:-1]]
+                ),
+                event[-1],
+            )
+            for event in zip(*numpy_arrays, frame.pwa.weights)
+        ]
     else:  # default constructor if no weights
-        events = [pwa.Event(pwa.FourMomentumList(
-            [pwa.FourMomentum(momentum)
-             for momentum in event])) for event in zip(*numpy_arrays)]
+        events = [
+            pwa.Event(
+                pwa.FourMomentumList(
+                    [pwa.FourMomentum(momentum) for momentum in event]
+                )
+            )
+            for event in zip(*numpy_arrays)
+        ]
     return pwa.EventCollection(pids, pwa.EventList(events))
 
 

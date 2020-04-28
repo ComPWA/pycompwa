@@ -7,14 +7,14 @@ set by the :class:`~.PwaAccessor`. Also contains tools for inverting
 
 
 __all__ = [
-    'flip_dict',
-    'id_to_particle',
-    'invert_dict',
-    'make_values_unique',
-    'name_to_pid',
-    'particle_to_id',
-    'pid_to_name',
-    'replace_ids',
+    "flip_dict",
+    "id_to_particle",
+    "invert_dict",
+    "make_values_unique",
+    "name_to_pid",
+    "particle_to_id",
+    "pid_to_name",
+    "replace_ids",
 ]
 
 
@@ -27,11 +27,12 @@ import pycompwa.ui as pwa
 from . import exception
 
 
-_SEPARATOR = '-'
+_SEPARATOR = "-"
 
 
-def id_to_particle(frame: pd.DataFrame,
-                   model: str, make_unique: bool = False) -> pd.DataFrame:
+def id_to_particle(
+    frame: pd.DataFrame, model: str, make_unique: bool = False
+) -> pd.DataFrame:
     """Rename columns from final state IDs to particle names."""
     id_to_name = _id_to_name(model)
     if not make_unique:
@@ -39,12 +40,13 @@ def id_to_particle(frame: pd.DataFrame,
         if len(final_states) != len(set(final_states)):
             raise exception.ConfigurationConflict(
                 f"The final state {final_states} defined in XML file "
-                f"\"{model}\" contains identical particles. Use "
-                "make_unique=True to enable applying this mapping.")
+                f'"{model}" contains identical particles. Use '
+                "make_unique=True to enable applying this mapping."
+            )
     else:
-        id_to_name = {value: key
-                      for key, value in
-                      invert_dict(id_to_name).items()}
+        id_to_name = {
+            value: key for key, value in invert_dict(id_to_name).items()
+        }
     frame.rename(columns=id_to_name, inplace=True)
     return frame
 
@@ -95,7 +97,7 @@ def replace_ids(string: str, model: str):
     new_string = string
     for final_state_id, name in id_to_name.items():
         final_state_id = str(final_state_id)
-        match = re.compile(r'(?<![^\W_])' + final_state_id + r'(?![^\W_])')
+        match = re.compile(r"(?<![^\W_])" + final_state_id + r"(?![^\W_])")
         new_string = match.sub(name, new_string)
     return new_string
 
@@ -118,6 +120,7 @@ def invert_dict(mapping: dict) -> dict:
         if stripped_keys.count(stripped_value) > 1:
             return stripped_value
         return value
+
     inversion = dict()
     for key, value_list in flip_dict(mapping).items():
         if len(value_list) == 1:
@@ -182,4 +185,5 @@ def _id_to_name(model):
         trans = model.get_particle_state_transition_kinematics_info()
         return trans.get_final_state_id_to_name_mapping()
     raise exception.MissingParameter(
-        'Parameter model needs to be either a str or a Kinematics instance')
+        "Parameter model needs to be either a str or a Kinematics instance"
+    )

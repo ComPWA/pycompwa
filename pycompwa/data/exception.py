@@ -2,10 +2,10 @@
 
 
 __all__ = [
-    'DataException',
-    'ConfigurationConflict',
-    'InvalidPwaFormat',
-    'MissingParameter',
+    "DataException",
+    "ConfigurationConflict",
+    "InvalidPwaFormat",
+    "MissingParameter",
 ]
 
 
