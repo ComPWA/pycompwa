@@ -57,7 +57,8 @@ jobs:
       script:
         - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
         - python3 -m pip install black
-        - black $BASEPATH
+        - cd $BASEPATH
+        - black .
 
     - name: Test gcc build (Linux)
       os: linux
