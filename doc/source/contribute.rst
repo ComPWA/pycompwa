@@ -234,8 +234,8 @@ Try and follow his advice, and keep in mind the 'boy scout rule'::
   "Leave behind the code cleaner, then you found it"
 
 For the python code we follow the `pep8 standard
-<https://www.python.org/dev/peps/pep-0008/>`_. Available automatic source code
-highlighters and formatters are ``flake8`` and ``autopep8``.
+<https://www.python.org/dev/peps/pep-0008/>`_ and use the strictly opinionated
+`black <https://github.com/psf/black>`_ formatter.
 
 Documentation
 -------------

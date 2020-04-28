@@ -48,7 +48,7 @@ before_script: # build the project
 
 jobs:
   include:
-    - name: Test XCode build
+    - name: Test XCode build + black formatting
       os: osx
       osx_image: xcode10.2
       env:
@@ -56,6 +56,8 @@ jobs:
         - ROOTBIN="v6.18.04.macosx64-10.14-clang100"
       script:
         - echo "The tests can't run on mac osx because of a wrong RPATH in the precompiled root binaries"
+        - python3 -m pip install black
+        - black $BASEPATH
 
     - name: Test gcc build (Linux)
       os: linux
@@ -114,7 +116,7 @@ jobs:
         on:
           branch: master
 
-    - name: test clang build (Linux) + code coverage
+    - name: Test clang build (Linux) + code coverage
       os: linux
       dist: bionic
       compiler: clang

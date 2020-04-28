@@ -1,13 +1,26 @@
-.. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=master
-   :target: https://travis-ci.com/ComPWA/pycompwa
-.. image:: https://codecov.io/gh/ComPWA/pycompwa/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/ComPWA/pycompwa
-.. image:: https://zenodo.org/badge/212384131.svg
-   :target: https://zenodo.org/badge/latestdoi/212384131
 .. image:: https://badge.fury.io/py/pycompwa.svg
+   :alt: PyPI
    :target: https://badge.fury.io/py/pycompwa
+
+.. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=master
+   :alt: Travis CI
+   :target: https://travis-ci.com/ComPWA/pycompwa
+
+.. image:: https://codecov.io/gh/ComPWA/pycompwa/branch/master/graph/badge.svg
+   :alt: Test Coverage
+   :target: https://codecov.io/gh/ComPWA/pycompwa
+
+.. image:: https://zenodo.org/badge/212384131.svg
+   :alt: Zenodo DOI
+   :target: https://zenodo.org/badge/latestdoi/212384131
+
 .. image:: https://api.codacy.com/project/badge/Grade/adb3ab8d774346b2a3c68f5fa3479c08
-   :target: https://app.codacy.com/gh/ComPWA/pycompwa?utm_source=github.com&utm_medium=referral&utm_content=ComPWA/pycompwa&utm_campaign=Badge_Grade_Dashboard
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/gh/ComPWA/pycompwa
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :alt: Code style: black
+   :target: https://github.com/psf/black
 
 About pycompwa
 ==============
