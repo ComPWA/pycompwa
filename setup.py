@@ -25,6 +25,12 @@ try:
 except SKBuildError:
     SETUP_REQUIRES.append('cmake')
 
+DATA_FILES = [
+    ('pycompwa/', [
+        './ComPWA/Physics/particle_list.xml',
+    ]),
+]
+
 setup(
     name='pycompwa',
     version='0.1-alpha2',
@@ -43,7 +49,7 @@ setup(
     ],
     cmake_minimum_required_version=CMAKE_MINIMUM,
     packages=find_packages(),
-    data_files=[('pycompwa/', ['./ComPWA/Physics/particle_list.xml'])],
+    data_files=DATA_FILES,
     zip_safe=False,
     setup_requires=SETUP_REQUIRES,
     tests_require=['pytest'],
