@@ -35,7 +35,9 @@ setup(
     long_description="pycompwa is the Python interface of `ComPWA <https://github.com/ComPWA/ComPWA>`_",
     long_description_content_type='text/x-rst',
     license="GPLv3 or later",
-    #  cmake_args=['-DSOME_FEATURE:BOOL=OFF'],
+    cmake_args=[
+        '-DUSE_GENEVA:BOOL=OFF',
+    ],
     cmake_minimum_required_version=CMAKE_MINIMUM,
     packages=find_packages(),
     data_files=[('pycompwa/', ['./ComPWA/Physics/particle_list.xml'])],
