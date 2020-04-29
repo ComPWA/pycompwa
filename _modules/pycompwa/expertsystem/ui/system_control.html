@@ -662,14 +662,22 @@
         <span class="c1"># load default particles from database/file</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">particle_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">search_path</span> <span class="ow">in</span> <span class="n">default_particle_list_search_paths</span><span class="p">:</span>
-                <span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span>
-                    <span class="n">StateTransitionManager</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">search_path</span> \
-                    <span class="o">+</span> <span class="s2">&quot;/particle_list.xml&quot;</span>
+                <span class="k">if</span> <span class="n">search_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">):</span>  <span class="c1"># absolute path</span>
+                    <span class="n">file_path</span> <span class="o">=</span> <span class="n">search_path</span>
+                <span class="k">else</span><span class="p">:</span>  <span class="c1"># relative path</span>
+                    <span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span>
+                        <span class="n">StateTransitionManager</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">search_path</span>
+                <span class="n">file_path</span> <span class="o">+=</span> <span class="s2">&quot;/particle_list.xml&quot;</span>
                 <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
                     <span class="n">load_particle_list_from_xml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
                     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;loaded &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">particle_list</span><span class="p">))</span> <span class="o">+</span>
                                  <span class="s2">&quot; particles from xml file!&quot;</span><span class="p">)</span>
-                    <span class="k">break</span></div>
+                    <span class="k">break</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">particle_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Failed to load particle_list.xml from search paths!&quot;</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Please contact the developers: https://github.com/ComPWA&quot;</span>
+            <span class="p">)</span></div>
 
 <div class="viewcode-block" id="StateTransitionManager.set_topology_builder"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder">[docs]</a>    <span class="k">def</span> <span class="nf">set_topology_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology_builder</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span> <span class="o">=</span> <span class="n">topology_builder</span></div>
