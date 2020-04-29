@@ -25,20 +25,31 @@ try:
 except SKBuildError:
     SETUP_REQUIRES.append('cmake')
 
+DATA_FILES = [
+    ('pycompwa/', [
+        './ComPWA/Physics/particle_list.xml',
+    ]),
+]
+
 setup(
     name='pycompwa',
-    version='0.1-alpha2',
+    version='0.1-alpha6',
     author='The ComPWA team',
     maintainer_email="compwa-admin@ep1.rub.de",
     url="https://github.com/ComPWA/pycompwa",
     description='ComPWA: The Common Partial Wave Analysis framework',
-    long_description="pycompwa is the Python interface of `ComPWA <https://github.com/ComPWA/ComPWA>`_",
+    long_description="pycompwa is the Python interface of "
+        "`ComPWA <https://github.com/ComPWA/ComPWA>`_. "
+        "All documentation can be found on "
+        "`compwa.github.io <https://compwa.github.io/>`_",
     long_description_content_type='text/x-rst',
     license="GPLv3 or later",
-    #  cmake_args=['-DSOME_FEATURE:BOOL=OFF'],
+    cmake_args=[
+        '-DUSE_GENEVA:BOOL=OFF',
+    ],
     cmake_minimum_required_version=CMAKE_MINIMUM,
     packages=find_packages(),
-    data_files=[('pycompwa/', ['./ComPWA/Physics/particle_list.xml'])],
+    data_files=DATA_FILES,
     zip_safe=False,
     setup_requires=SETUP_REQUIRES,
     tests_require=['pytest'],
