@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Generate data samples" href="generate.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -118,6 +120,7 @@
     <a href= "../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -156,7 +159,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../usage.html">Usage</a> &raquo;</li>
         
@@ -440,7 +443,7 @@ div.rendered_html tbody tr:hover {
 <p>The <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.data</span></code></a> module provides several tools for importing,
 exporting, and visualizing data. By data, we mean <em>event-wise collections of
 four-momentum tuples</em>, possibly organised by particle name. We choose to work
-with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a> as a back-end, because it allows fast manipulation and
+with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.5)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a> as a back-end, because it allows fast manipulation and
 visualization of data sets and can import and export to several standard data
 formats.</p>
 <p>This notebook shows how to conveniently manipulate momentum tuple collections
@@ -451,15 +454,15 @@ variables.</p>
 <h2>PWA data frame<a class="headerlink" href="#PWA-data-frame" title="Permalink to this headline">¶</a></h2>
 <p>Input data for PWA frameworks mainly consists of event-wise four-momentum
 tuples, grouped by particle. The core of the <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code></a> module is therefore
-handled by a specially formatted <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. Such as specific
+handled by a specially formatted <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. Such as specific
 format not only allows us to import and export to different file formats, but
 also to convert the data to ComPWA objects, such as an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a>.</p>
 <p>The format is guaranteed through a decorater called
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.extensions.register_dataframe_accessor.html#pandas.api.extensions.register_dataframe_accessor" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_dataframe_accessor</span></code></a>. Such an accessor
-extends a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with several properties, granted that the
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> properly validates according to that accessor. In the
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.extensions.register_dataframe_accessor.html#pandas.api.extensions.register_dataframe_accessor" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_dataframe_accessor</span></code></a>. Such an accessor
+extends a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with several properties, granted that the
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> properly validates according to that accessor. In the
 <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code></a> module, this accessor is the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. We call a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> that is formatted according to this accessor a
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> that is formatted according to this accessor a
 <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>.</p>
 <p>To be sure, all this sounds a bit abstract. To illustrate the usage of this
 accessor, we therefore first have to create a skeleton <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>. This can be done through the <a class="reference internal" href="../../api/pycompwa.data.create.html#module-pycompwa.data.create" title="pycompwa.data.create"><code class="xref py py-mod docutils literal notranslate"><span class="pre">create</span></code></a> module.</p>
@@ -577,7 +580,7 @@ accessor, we therefore first have to create a skeleton <a class="reference inter
 </table>
 </div></div>
 </div>
-<p>Note that his <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> has hierarchical column name (see
+<p>Note that his <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> has hierarchical column name (see
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">multi-indexing</a>):
 the first column layer is the particle name, the second contains the
 four-momentum labels. In addition, duplicate particle names have been made
@@ -608,7 +611,7 @@ importing large data sets in your own Python scripts.</p>
 </div>
 <p>We can now already have a glance at some of the properties that the
 <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a> offers. You can access these properties through the <code class="docutils literal notranslate"><span class="pre">pwa</span></code>
-namespace and perform some standard <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a> computation on them:</p>
+namespace and perform some standard <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a> computation on them:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -895,9 +898,9 @@ one for data and one for fit intensities.</p>
 <p>1510 rows × 13 columns</p>
 </div></div>
 </div>
-<p>Note how, here too, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is formatted in such a way
+<p>Note how, here too, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is formatted in such a way
 that it can be handled by the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. Also note that the
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> for the fit result contains weights. As discussed
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> for the fit result contains weights. As discussed
 in <a class="reference internal" href="../workflow/4_analyze_results.html"><span class="doc">Step 4: Analyze results</span></a>, these are the fit intensities for
 each data point in the phase space. This allows us to already make some quick
 visualization of invariant mass distribution of the resonance:</p>
@@ -937,7 +940,7 @@ visualization of invariant mass distribution of the resonance:</p>
 <div class="output_area docutils container">
 <img alt="../../_images/usage_tools_data_module_18_0.svg" src="../../_images/usage_tools_data_module_18_0.svg" /></div>
 </div>
-<p>You can also easily export the data again after you’ve made some adjustments, like selecting certain events. Just to illustrate the benefits of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a>, we apply some filter on one of the <span class="math notranslate nohighlight">\(\pi^0\)</span> mass, export the frame to an ASCII file and import it again:</p>
+<p>You can also easily export the data again after you’ve made some adjustments, like selecting certain events. Just to illustrate the benefits of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas</span></code></a>, we apply some filter on one of the <span class="math notranslate nohighlight">\(\pi^0\)</span> mass, export the frame to an ASCII file and import it again:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -1191,7 +1194,7 @@ that there is only one resonance (:math`f_0(980)`):</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:27,164 [INFO] Logging to file disabled!
+2020-06-22 13:22:31,359 [INFO] Logging to file disabled!
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1227,7 +1230,7 @@ that there is only one resonance (:math`f_0(980)`):</p>
 </div>
 <p>Now that we have an XML model file defining the kinematics and a <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span>
 <span class="pre">DataFrame</span></code></a>, we can use the convert module to convert the
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a>. Note, however, that we will run
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventCollection</span></code></a>. Note, however, that we will run
 into an exception:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -1422,7 +1425,6 @@ imported data sets immediately, you can expand the original <a class="reference 
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

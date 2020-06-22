@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="propagation" href="pycompwa.expertsystem.state.propagation.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -104,6 +106,7 @@
     <a href= "../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../api.html">API</a> &raquo;</li>
         
@@ -230,12 +233,6 @@ things related to this</p>
 <dt id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">
 <em class="property">class </em><code class="sig-name descname">CompareGraphElementPropertiesFunctor</code><span class="sig-paren">(</span><em class="sig-param">ignored_qn_list=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ignored_qn_list=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">
 <code class="sig-name descname">compare_qn_numbers</code><span class="sig-paren">(</span><em class="sig-param">qns1</em>, <em class="sig-param">qns2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor.compare_qn_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers" title="Permalink to this definition">¶</a></dt>
@@ -384,9 +381,10 @@ things related to this</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Simple struct-like class defining spin as a magnitude plus the projection</p>
 <dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.Spin.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">mag</em>, <em class="sig-param">proj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dt id="pycompwa.expertsystem.state.particle.Spin.__eq__">
+<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>define the equal operator for the spin class, which is needed for
+equality checks of states in certain rules</p>
 </dd></dl>
 
 <dl class="method">
@@ -405,12 +403,6 @@ things related to this</p>
 <dt id="pycompwa.expertsystem.state.particle.SpinQNConverter">
 <em class="property">class </em><code class="sig-name descname">SpinQNConverter</code><span class="sig-paren">(</span><em class="sig-param">parse_projection=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="pycompwa.expertsystem.state.particle.AbstractQNConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.particle.AbstractQNConverter</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">parse_projection=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.class_label">
 <code class="sig-name descname">class_label</code><em class="property"> = '&#64;Class'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
@@ -707,7 +699,7 @@ If a particle name in the loaded XML file already exists in the
 
 <dl class="function">
 <dt id="pycompwa.expertsystem.state.particle.write_particle_list_to_xml">
-<code class="sig-name descname">write_particle_list_to_xml</code><span class="sig-paren">(</span><em class="sig-param">file_path: str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#write_particle_list_to_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.write_particle_list_to_xml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_particle_list_to_xml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#write_particle_list_to_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.write_particle_list_to_xml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> instance to XML file.</p>
 </dd></dl>
 
@@ -746,7 +738,6 @@ If a particle name in the loaded XML file already exists in the
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

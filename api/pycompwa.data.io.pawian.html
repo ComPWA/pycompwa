@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="convert" href="pycompwa.data.convert.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -104,6 +106,7 @@
     <a href= "../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../api.html">API</a> &raquo;</li>
         
@@ -223,7 +226,7 @@ compatibility to ASCII files without header.</p>
 there are no weights. Provide either the number of particles or a
 list of particles.</p></li>
 <li><p><strong>kwargs</strong> – Optional, additional arguments that are passed on to
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_table.html#pandas.read_table" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.read_table</span></code></a>.</p></li>
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_table.html#pandas.read_table" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.read_table</span></code></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -231,7 +234,7 @@ list of particles.</p></li>
 
 <dl class="function">
 <dt id="pycompwa.data.io.pawian.read_hists_file">
-<code class="sig-name descname">read_hists_file</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">type_name: str = 'data'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data/io/pawian.html#read_hists_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.io.pawian.read_hists_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_hists_file</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">type_name='data'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data/io/pawian.html#read_hists_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.io.pawian.read_hists_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import one of the momentum tuple branches of a <code class="docutils literal notranslate"><span class="pre">pawianHists.root</span></code> file.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -250,18 +253,18 @@ versus those from ROOT6, but this function takes care of that.</p>
 
 <dl class="function">
 <dt id="pycompwa.data.io.pawian.write_ascii">
-<code class="sig-name descname">write_ascii</code><span class="sig-paren">(</span><em class="sig-param">frame: pandas.core.frame.DataFrame</em>, <em class="sig-param">filename: str</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data/io/pawian.html#write_ascii"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.io.pawian.write_ascii" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> to a Pawian-like ASCII file.</p>
+<code class="sig-name descname">write_ascii</code><span class="sig-paren">(</span><em class="sig-param">frame</em>, <em class="sig-param">filename</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data/io/pawian.html#write_ascii"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.io.pawian.write_ascii" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> to a Pawian-like ASCII file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>) – The frame that you want to export.
+<li><p><strong>frame</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>) – The frame that you want to export.
 Should be formatted according to the standards set by the
 <a class="reference internal" href="pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>.</p></li>
 <li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Path of the output file. Usually has the extension
 <code class="docutils literal notranslate"><span class="pre">dat</span></code>.</p></li>
 <li><p><strong>kwargs</strong> – Optional, additional arguments that are passed on to
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="(in pandas v1.0.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.to_csv()</span></code></a>.</p></li>
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="(in pandas v1.0.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.to_csv()</span></code></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -302,7 +305,6 @@ Should be formatted according to the standards set by the
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="topology" href="pycompwa.expertsystem.topology.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -104,6 +106,7 @@
     <a href= "../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../api.html">API</a> &raquo;</li>
         
@@ -218,12 +221,6 @@ conservation rules of <a class="reference internal" href="pycompwa.expertsystem.
 <em class="property">class </em><code class="sig-name descname">AbstractPropagator</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#AbstractPropagator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.AbstractPropagator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.AbstractPropagator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#AbstractPropagator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.AbstractPropagator.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pycompwa.expertsystem.state.propagation.AbstractPropagator.assign_settings_to_all_nodes">
 <code class="sig-name descname">assign_settings_to_all_nodes</code><span class="sig-paren">(</span><em class="sig-param">interaction_settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#AbstractPropagator.assign_settings_to_all_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.AbstractPropagator.assign_settings_to_all_nodes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -261,12 +258,6 @@ composite quantum numbers which are attributed to the interaction nodes
 (such as angular momentum L).
 The conservation laws serve as the constraints and are wrapped with a
 special class <a class="reference internal" href="#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper" title="pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConservationLawConstraintWrapper</span></code></a>.</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.CSPPropagator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#CSPPropagator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.CSPPropagator.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.propagation.CSPPropagator.add_variable">
 <code class="sig-name descname">add_variable</code><span class="sig-paren">(</span><em class="sig-param">var_info</em>, <em class="sig-param">domain</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#CSPPropagator.add_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.CSPPropagator.add_variable" title="Permalink to this definition">¶</a></dt>
@@ -341,12 +332,6 @@ Hence variables are also created within this method.</p>
 customized definition of conservation laws, and hence a cleaner
 user interface.</p>
 <dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">rule</em>, <em class="sig-param">variable_mapping</em>, <em class="sig-param">name_delimiter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#ConservationLawConstraintWrapper.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.initialize_particle_list">
 <code class="sig-name descname">initialize_particle_list</code><span class="sig-paren">(</span><em class="sig-param">variable_set</em>, <em class="sig-param">fixed_variables</em>, <em class="sig-param">list_to_init</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#ConservationLawConstraintWrapper.initialize_particle_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.initialize_particle_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -376,12 +361,6 @@ of the particle list index and the qn name</p>
 <dt id="pycompwa.expertsystem.state.propagation.FullPropagator">
 <em class="property">class </em><code class="sig-name descname">FullPropagator</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">propagation_mode='fast'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#FullPropagator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.FullPropagator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.FullPropagator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">propagation_mode='fast'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#FullPropagator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.FullPropagator.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.propagation.FullPropagator.assign_settings_to_all_nodes">
 <code class="sig-name descname">assign_settings_to_all_nodes</code><span class="sig-paren">(</span><em class="sig-param">interaction_settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#FullPropagator.assign_settings_to_all_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.FullPropagator.assign_settings_to_all_nodes" title="Permalink to this definition">¶</a></dt>
@@ -423,12 +402,6 @@ configuration information which is required for the solution finding, e.g:</p>
 <li><p>strength scale parameter (higher value means stronger force)</p></li>
 </ul>
 </div></blockquote>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.InteractionNodeSettings.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#InteractionNodeSettings.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.InteractionNodeSettings.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -457,12 +430,6 @@ configuration information which is required for the solution finding, e.g:</p>
 <dt id="pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator">
 <em class="property">class </em><code class="sig-name descname">ParticleStateTransitionGraphValidator</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#ParticleStateTransitionGraphValidator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.propagation.AbstractPropagator" title="pycompwa.expertsystem.state.propagation.AbstractPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.propagation.AbstractPropagator</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#ParticleStateTransitionGraphValidator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.create_edge_variables">
 <code class="sig-name descname">create_edge_variables</code><span class="sig-paren">(</span><em class="sig-param">edge_ids</em>, <em class="sig-param">qn_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#ParticleStateTransitionGraphValidator.create_edge_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.create_edge_variables" title="Permalink to this definition">¶</a></dt>
@@ -499,12 +466,6 @@ quantum number.</p>
 <dt id="pycompwa.expertsystem.state.propagation.VariableInfo">
 <em class="property">class </em><code class="sig-name descname">VariableInfo</code><span class="sig-paren">(</span><em class="sig-param">graph_element_type</em>, <em class="sig-param">element_id</em>, <em class="sig-param">qn_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#VariableInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.VariableInfo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.propagation.VariableInfo.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">graph_element_type</em>, <em class="sig-param">element_id</em>, <em class="sig-param">qn_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/propagation.html#VariableInfo.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.propagation.VariableInfo.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="function">
@@ -575,7 +536,6 @@ The variable of type <a class="reference internal" href="#pycompwa.expertsystem.
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

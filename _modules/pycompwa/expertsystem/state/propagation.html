@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -80,6 +81,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -102,6 +104,7 @@
     <a href= "../../../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -140,7 +143,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
@@ -218,10 +221,10 @@
 <span class="sd">      - strength scale parameter (higher value means stronger force)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="InteractionNodeSettings.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.InteractionNodeSettings.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conservation_laws</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qn_domains</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_strength</span> <span class="o">=</span> <span class="mf">1.0</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_strength</span> <span class="o">=</span> <span class="mf">1.0</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">return_string</span> <span class="o">=</span> <span class="s2">&quot;conservation laws:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
@@ -235,12 +238,12 @@
 
 
 <div class="viewcode-block" id="AbstractPropagator"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.AbstractPropagator">[docs]</a><span class="k">class</span> <span class="nc">AbstractPropagator</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="AbstractPropagator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_settings</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_postponed_conservation_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
 
 <div class="viewcode-block" id="AbstractPropagator.find_solutions"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.AbstractPropagator.find_solutions">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -262,12 +265,12 @@
 
 
 <div class="viewcode-block" id="FullPropagator"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.FullPropagator">[docs]</a><span class="k">class</span> <span class="nc">FullPropagator</span><span class="p">():</span>
-<div class="viewcode-block" id="FullPropagator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.FullPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">propagation_mode</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">propagation_mode</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span> <span class="o">=</span> <span class="n">CSPPropagator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">propagation_mode</span> <span class="o">=</span> <span class="n">propagation_mode</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;using CSP propagator&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_non_satisfied_laws</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FullPropagator.assign_settings_to_all_nodes"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.FullPropagator.assign_settings_to_all_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">assign_settings_to_all_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_settings</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagator</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
@@ -343,8 +346,8 @@
 
 
 <div class="viewcode-block" id="ParticleStateTransitionGraphValidator"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator">[docs]</a><span class="k">class</span> <span class="nc">ParticleStateTransitionGraphValidator</span><span class="p">(</span><span class="n">AbstractPropagator</span><span class="p">):</span>
-<div class="viewcode-block" id="ParticleStateTransitionGraphValidator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParticleStateTransitionGraphValidator.find_solutions"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.ParticleStateTransitionGraphValidator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;validating graph...&quot;</span><span class="p">)</span>
@@ -436,10 +439,10 @@
 
 
 <div class="viewcode-block" id="VariableInfo"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.VariableInfo">[docs]</a><span class="k">class</span> <span class="nc">VariableInfo</span><span class="p">():</span>
-<div class="viewcode-block" id="VariableInfo.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.VariableInfo.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_element_type</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graph_element_type</span> <span class="o">=</span> <span class="n">graph_element_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">element_id</span> <span class="o">=</span> <span class="n">element_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span></div>
 
 
 <div class="viewcode-block" id="decode_variable_name"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.decode_variable_name">[docs]</a><span class="k">def</span> <span class="nf">decode_variable_name</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">):</span>
@@ -494,13 +497,13 @@
 <span class="sd">    special class :class:`.ConservationLawConstraintWrapper`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CSPPropagator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.CSPPropagator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variable_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">solver</span> <span class="o">=</span> <span class="n">BacktrackingSolver</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particle_variable_delimiter</span> <span class="o">=</span> <span class="s2">&quot;-*-&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CSPPropagator.find_solutions"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.CSPPropagator.find_solutions">[docs]</a>    <span class="k">def</span> <span class="nf">find_solutions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initialize_constraints</span><span class="p">()</span>
@@ -754,7 +757,7 @@
 <span class="sd">    user interface.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConservationLawConstraintWrapper.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="p">,</span> <span class="n">name_delimiter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="p">,</span> <span class="n">name_delimiter</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">AbstractRule</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;rule has to be of type AbstractRule!&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rule</span> <span class="o">=</span> <span class="n">rule</span>
@@ -775,7 +778,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conditions_never_met</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_results</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_results</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <div class="viewcode-block" id="ConservationLawConstraintWrapper.register_graph_node"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.propagation.html#pycompwa.expertsystem.state.propagation.ConservationLawConstraintWrapper.register_graph_node">[docs]</a>    <span class="k">def</span> <span class="nf">register_graph_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="n">node_id</span></div>
@@ -897,7 +900,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

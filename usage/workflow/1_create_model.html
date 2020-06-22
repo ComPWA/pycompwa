@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Step 2: Generate data samples" href="2_generate_data.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -119,6 +121,7 @@
     <a href= "../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -157,7 +160,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../usage.html">Usage</a> &raquo;</li>
         
@@ -495,8 +498,8 @@ configuration (especially the STM).</p>
 <ul class="simple">
 <li><p>A subset of particles that are allowed as intermediate states can also
 be specified: either through the
-<a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">STM's</span> <span class="pre">constructor</span></code></a> or by
-setting the instance attribute <code class="docutils literal notranslate"><span class="pre">allowed_intermediate_particles</span></code>.</p></li>
+<a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">STM's</span> <span class="pre">constructor</span></code></a> or by setting the
+instance attribute <code class="docutils literal notranslate"><span class="pre">allowed_intermediate_particles</span></code>.</p></li>
 </ul>
 </div>
 <div class="admonition hint">
@@ -595,7 +598,7 @@ assigned to each graph and they are grouped according to this strength.</p>
 <div class="highlight"><pre>
 found 272 solutions!
 intermediate states:
-{&#39;D*(2007)0&#39;, &#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;f0(980)&#39;, &#39;a2(1320)0&#39;, &#39;D1(2420)0&#39;, &#39;D*(2007)0bar&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;omega(782)&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;}
+{&#39;f0(1500)&#39;, &#39;D1(2420)0&#39;, &#39;D*(2007)0bar&#39;, &#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;phi(1020)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;D*(2007)0&#39;, &#39;a2(1320)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Now we have a lot of solutions that are actually heavily suppressed (they involve two weak decays).</p>
@@ -650,7 +653,7 @@ Using valid list instead.
 <div class="highlight"><pre>
 found 48 solutions!
 intermediate states:
-{&#39;rho(770)0&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;f0(1500)&#39;}
+{&#39;f0(1500)&#39;, &#39;rho(770)0&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Huh, what happened here? Actually, since a <span class="math notranslate nohighlight">\(\gamma\)</span> particle appears in one of the interaction nodes, the expert system knows that this node <strong>must involve EM interactions</strong>! Because the node can be an effective interaction, the weak interaction cannot be excluded, as it contains only a subset of conservation laws.</p>
@@ -679,7 +682,7 @@ intermediate states:
 <div class="highlight"><pre>
 found 96 solutions!
 intermediate states:
-{&#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;f0(980)&#39;, &#39;a2(1320)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;omega(782)&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;}
+{&#39;f0(1500)&#39;, &#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;phi(1020)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;a2(1320)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Great! Now we selected only the strongest contributions. Be aware, though, that there are more effects that can suppress certain decays, like small branching ratios. In this example, the initial state <span class="math notranslate nohighlight">\(J/\Psi\)</span> can decay into <span class="math notranslate nohighlight">\(\pi^0 + \rho^0\)</span> or <span class="math notranslate nohighlight">\(\pi^0 + \omega\)</span>.</p>
@@ -730,13 +733,13 @@ intermediate states:
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;2.0-&#39;, &#39;1.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;2.0-&#39;, &#39;1.0+&#39;}
-WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;2.0-&#39;, &#39;1.0+&#39;}
-WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;2.0-&#39;, &#39;1.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:No intermediate state particles match the found 171 solutions!WARNING:root:No intermediate state particles match the found 171 solutions!
+
+WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
+
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -746,7 +749,7 @@ WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;2.
 <div class="highlight"><pre>
 found 32 solutions!
 intermediate states:
-{&#39;f2(1950)&#39;, &#39;f0(1500)&#39;, &#39;f2(1270)&#39;, &#39;f0(980)&#39;}
+{&#39;f0(1500)&#39;, &#39;f2(1270)&#39;, &#39;f0(980)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Now we have selected all amplitudes that involve <strong>f</strong> states. The warnings appear only to notify the user that the list of solutions is not exhaustive: for certain edges in the graph, no suitable particle was found (since only f states were allowed).</p>
@@ -818,7 +821,6 @@ amplitude will not make sense!</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

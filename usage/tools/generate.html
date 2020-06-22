@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Particle database" href="particles.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -118,6 +120,7 @@
     <a href= "../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -156,7 +159,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../usage.html">Usage</a> &raquo;</li>
         
@@ -456,11 +459,7 @@ for numerical precision:</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="sig-name descname">EvtGenGenerator</code></dt>
-<dd><dl class="method">
-<dt>
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self: pycompwa.ui.EvtGenGenerator</em>, <em class="sig-param">arg0: pycompwa.ui.ParticleStateTransitionKinematicsInfo</em><span class="sig-paren">)</span> &#x2192; None</dt>
-<dd></dd></dl>
-
+<dd><p>Bases: <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.PhaseSpaceEventGenerator" title="pycompwa.ui.PhaseSpaceEventGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.ui.PhaseSpaceEventGenerator</span></code></a></p>
 </dd></dl>
 
 <p>As you can see, such a <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.PhaseSpaceEventGenerator" title="pycompwa.ui.PhaseSpaceEventGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhaseSpaceEventGenerator</span></code></a> requires state
@@ -555,13 +554,13 @@ found 32 solutions!
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:36,186 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+2020-06-22 13:22:40,432 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 
-2020-04-29 14:30:36,187 [INFO] Generating phase-space MC: [1000 events]
+2020-06-22 13:22:40,433 [INFO] Generating phase-space MC: [1000 events]
 
 
 </pre></div></div>
@@ -601,11 +600,11 @@ which is reflected by the efficiency printed at the end.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:36,209 [INFO] Setting phase space sample weights...
-2020-04-29 14:30:36,215 [INFO] Updating data container content...
-2020-04-29 14:30:36,241 [INFO] Generating hit-and-miss sample: [100 events]
+2020-06-22 13:22:40,456 [INFO] Setting phase space sample weights...
+2020-06-22 13:22:40,462 [INFO] Updating data container content...
+2020-06-22 13:22:40,488 [INFO] Generating hit-and-miss sample: [100 events]
 
-2020-04-29 14:30:36,530 [INFO] Successfully generated 100 with an efficiency of 0.00666667
+2020-06-22 13:22:40,773 [INFO] Successfully generated 100 with an efficiency of 0.00666667
 
 </pre></div></div>
 </div>
@@ -721,32 +720,32 @@ is irrelevant and just causes a constant scaling factor.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:39,633 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+2020-06-22 13:22:43,864 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 
-2020-04-29 14:30:39,635 [INFO] Generating phase-space MC: [100000 events]
+2020-06-22 13:22:43,866 [INFO] Generating phase-space MC: [100000 events]
 
 
-2020-04-29 14:30:39,722 [INFO] Setting phase space sample weights...
-2020-04-29 14:30:39,724 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_-1+pi0_0; already exists!
-2020-04-29 14:30:39,725 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_-1+pi0_0; already exists!
-2020-04-29 14:30:39,726 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_1+pi0_0; already exists!
-2020-04-29 14:30:39,727 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_1+pi0_0; already exists!
-2020-04-29 14:30:39,728 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_-1+pi0_0; already exists!
-2020-04-29 14:30:39,729 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_-1+pi0_0; already exists!
-2020-04-29 14:30:39,730 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_1+pi0_0; already exists!
-2020-04-29 14:30:39,731 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_1+pi0_0; already exists!
-2020-04-29 14:30:39,735 [INFO] Updating data container content...
-2020-04-29 14:30:41,845 [INFO] Generating phase space sample (hit-and-miss importance sampled): [2000 events]
+2020-06-22 13:22:43,951 [INFO] Setting phase space sample weights...
+2020-06-22 13:22:43,953 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_-1+pi0_0; already exists!
+2020-06-22 13:22:43,954 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_-1+pi0_0; already exists!
+2020-06-22 13:22:43,956 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_1+pi0_0; already exists!
+2020-06-22 13:22:43,957 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_1+pi0_0; already exists!
+2020-06-22 13:22:43,958 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_1+pi0_0; already exists!
+2020-06-22 13:22:43,959 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_-1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_1+pi0_0; already exists!
+2020-06-22 13:22:43,960 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_1+pi0_0;omega(782)_1_to_gamma_-1+pi0_0; already exists!
+2020-06-22 13:22:43,960 [ERROR] IntensityBuilderXML::addFunctionTreeComponent(): FunctionTree with name J/psi_1_to_omega(782)_-1+pi0_0;omega(782)_-1_to_gamma_-1+pi0_0; already exists!
+2020-06-22 13:22:43,964 [INFO] Updating data container content...
+2020-06-22 13:22:46,053 [INFO] Generating phase space sample (hit-and-miss importance sampled): [2000 events]
 
-2020-04-29 14:30:42,341 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 46.4232 value and restart generation!
+2020-06-22 13:22:46,544 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 46.4232 value and restart generation!
 
-2020-04-29 14:30:42,590 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 51.6626 value and restart generation!
+2020-06-22 13:22:46,787 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 51.6626 value and restart generation!
 
-2020-04-29 14:30:43,081 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 69.7599 value and restart generation!
+2020-06-22 13:22:47,275 [INFO] Tools::generateImportanceSampledPhsp() | Error in HitMiss procedure: Maximum value of random number generation smaller then amplitude maximum! We raise the maximum to 69.7599 value and restart generation!
 
 
 </pre></div></div>
@@ -777,10 +776,10 @@ saw in <a class="reference internal" href="../workflow/4_analyze_results.html#4.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:46,540 [INFO] creating all Subsystems!
+2020-06-22 13:22:50,803 [INFO] creating all Subsystems!
 </pre></div></div>
 </div>
-<p>We can then use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.2.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> to create the Dalitz plot. Note that
+<p>We can then use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.2.2)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> to create the Dalitz plot. Note that
 we use <a class="reference internal" href="../../api/pycompwa.data.naming.html#pycompwa.data.naming.replace_ids" title="pycompwa.data.naming.replace_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_ids</span></code></a> to transform the final state IDs into readable
 particles names.</p>
 <div class="nbinput nblast docutils container">
@@ -865,7 +864,7 @@ particles names.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:30:50,116 [INFO] Logging to file disabled!
+2020-06-22 13:22:54,482 [INFO] Logging to file disabled!
 
 
 
@@ -914,7 +913,6 @@ particles names.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

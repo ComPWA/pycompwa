@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Step 4: Analyze results" href="4_analyze_results.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -120,6 +122,7 @@
     <a href= "../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -158,7 +161,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../usage.html">Usage</a> &raquo;</li>
         
@@ -479,15 +482,15 @@ so that it matches the distribution of our data sample. This is what we call
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:32:28,680 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+2020-06-22 13:24:34,890 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 
-2020-04-29 14:32:28,681 [INFO] creating all Subsystems!
-2020-04-29 14:32:29,105 [INFO] Setting phase space sample weights...
-2020-04-29 14:32:29,114 [INFO] Updating data container content...
+2020-06-22 13:24:34,891 [INFO] creating all Subsystems!
+2020-06-22 13:24:35,302 [INFO] Setting phase space sample weights...
+2020-06-22 13:24:35,311 [INFO] Updating data container content...
 </pre></div></div>
 </div>
 <div class="section" id="3.1-Define-estimator">
@@ -697,8 +700,8 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-04-29 14:32:31,672 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
-2020-04-29 14:32:31,673 [INFO] Minuit2 strategy: medium
+2020-06-22 13:24:37,871 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
+2020-06-22 13:24:37,872 [INFO] Minuit2 strategy: medium
        GradientNCycles: 3
        GradientStepTolerance: 0.3
        GradientTolerance: 0.05
@@ -706,11 +709,11 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
        HessianGradientNCycles: 2
        HessianStepTolerance: 0.3
        HessianG2Tolerance: 0.05
-2020-04-29 14:32:31,673 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
-2020-04-29 14:33:02,226 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
-2020-04-29 14:33:02,227 [INFO] MinuitIF::optimize() | Starting hesse
-2020-04-29 14:33:08,268 [INFO] MinuitIF::optimize() | Hesse finished
-2020-04-29 14:33:08,269 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086088
+2020-06-22 13:24:37,872 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
+2020-06-22 13:25:09,432 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
+2020-06-22 13:25:09,434 [INFO] MinuitIF::optimize() | Starting hesse
+2020-06-22 13:25:15,680 [INFO] MinuitIF::optimize() | Hesse finished
+2020-06-22 13:25:15,681 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086088
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -728,7 +731,7 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-36
+37
 </pre></div></div>
 </div>
 <p>Let’s check whether the fit parameters are close to the true values.</p>
@@ -753,7 +756,7 @@ Core(TM) i7-6820HQ 2.70GHz CPU</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 This value is close to 1.0 again:
-0.9747981228363631 +- 0.10720965372242383
+0.9747981229269227 +- 0.10720845075510864
 </pre></div></div>
 </div>
 <div class="admonition warning">
@@ -805,7 +808,7 @@ of parameters. They can be applied with <a class="reference internal" href="../.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.10721
+Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.107208
 </pre></div></div>
 </div>
 </div>
@@ -844,7 +847,6 @@ Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.1
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

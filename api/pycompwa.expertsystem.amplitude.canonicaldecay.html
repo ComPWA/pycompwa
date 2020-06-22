@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="helicitydecay" href="pycompwa.expertsystem.amplitude.helicitydecay.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -104,6 +106,7 @@
     <a href= "../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../api.html">API</a> &raquo;</li>
         
@@ -219,12 +222,6 @@ just exchange the helicity amplitudes F as a sum of canonical amplitudes a:
 F^J_lambda1,lambda2 = sum_LS { norm * a^J_LS * CG * CG }
 Here CG stands for Clebsch-Gordan factor.</p>
 <dl class="method">
-<dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">top_node_no_dynamics=True</em>, <em class="sig-param">name_generator=&lt;pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeGeneratorXML.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay">
 <code class="sig-name descname">generate_partial_decay</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeGeneratorXML.generate_partial_decay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeGeneratorXML.generate_partial_decay" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -237,12 +234,6 @@ Here CG stands for Clebsch-Gordan factor.</p>
 <dd><p>Bases: <a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator" title="pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator</span></code></a></p>
 <p>Generates names for canonical partial decays using the properties of
 the decay.</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">use_parity_conservation=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeNameGenerator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name">
 <code class="sig-name descname">generate_unique_amplitude_name</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">node_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/amplitude/canonicaldecay.html#CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.amplitude.canonicaldecay.CanonicalAmplitudeNameGenerator.generate_unique_amplitude_name" title="Permalink to this definition">¶</a></dt>
@@ -299,7 +290,6 @@ given <a class="reference internal" href="pycompwa.expertsystem.topology.graph.h
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

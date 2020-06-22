@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -80,6 +81,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -102,6 +104,7 @@
     <a href= "../../../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -140,7 +143,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
@@ -413,7 +416,7 @@
 
 
 <div class="viewcode-block" id="HelicityAmplitudeNameGenerator"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="n">AbstractAmplitudeNameGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeNameGenerator.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_parity_conservation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_amp_coefficient_infos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_parity_conservation</span> <span class="o">=</span> <span class="n">use_parity_conservation</span>
 
@@ -421,7 +424,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_parity_conservation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">use_parity_conservation</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using parity conservation to connect fit &quot;</span>
-                          <span class="s2">&quot;parameters together with prefactors.&quot;</span><span class="p">)</span></div>
+                          <span class="s2">&quot;parameters together with prefactors.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeNameGenerator.generate_amplitude_coefficient_infos">[docs]</a>    <span class="k">def</span> <span class="nf">generate_amplitude_coefficient_infos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -521,14 +524,14 @@
 
 
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML">[docs]</a><span class="k">class</span> <span class="nc">HelicityAmplitudeGeneratorXML</span><span class="p">(</span><span class="n">AbstractAmplitudeGenerator</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_node_no_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">name_generator</span><span class="o">=</span><span class="n">HelicityAmplitudeNameGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particle_list</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helicity_amplitudes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">top_node_no_dynamics</span> <span class="o">=</span> <span class="n">top_node_no_dynamics</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name_generator</span> <span class="o">=</span> <span class="n">name_generator</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_parameter_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
 <div class="viewcode-block" id="HelicityAmplitudeGeneratorXML.generate"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.amplitude.helicitydecay.html#pycompwa.expertsystem.amplitude.helicitydecay.HelicityAmplitudeGeneratorXML.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">graphs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -768,7 +771,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

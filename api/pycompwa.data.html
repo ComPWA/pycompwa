@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="io" href="pycompwa.data.io.html" />
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -104,6 +106,7 @@
     <a href= "../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../api.html">API</a> &raquo;</li>
         
@@ -234,22 +237,16 @@
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycompwa.data" title="Permalink to this headline">¶</a></h2>
 <p>Data I/O of the <a class="reference internal" href="pycompwa.html#module-pycompwa" title="pycompwa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa</span></code></a> package.</p>
 <p>This module forms the bridge between ComPWA data samples (or, more generally,
-collections of 4-momentum tuples) to the world of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.3)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a>.
+collections of 4-momentum tuples) to the world of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.0.5)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a>.
 Additional PWA tools are available through a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/development/extending.html#registering-custom-accessors">dataframe accessor</a>
 named <code class="docutils literal notranslate"><span class="pre">pwa</span></code> (see <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>).</p>
 <dl class="class">
 <dt id="pycompwa.data.PwaAccessor">
 <em class="property">class </em><code class="sig-name descname">PwaAccessor</code><span class="sig-paren">(</span><em class="sig-param">pandas_object</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data.html#PwaAccessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.PwaAccessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> accessor for PWA properties.</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> accessor for PWA properties.</p>
 <p>Additional namespace to interpret DataFrame as PWA style dataframe, see
 <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/development/extending.html#registering-custom-accessors">here</a>.</p>
-<dl class="method">
-<dt id="pycompwa.data.PwaAccessor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">pandas_object</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data.html#PwaAccessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.PwaAccessor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pycompwa.data.PwaAccessor.energy">
 <em class="property">property </em><code class="sig-name descname">energy</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.energy" title="Permalink to this definition">¶</a></dt>
@@ -284,12 +281,22 @@ named <code class="docutils literal notranslate"><span class="pre">pwa</span></c
 <dt id="pycompwa.data.PwaAccessor.momentum_labels">
 <em class="property">property </em><code class="sig-name descname">momentum_labels</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.momentum_labels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get list of momentum labels contained in the data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pycompwa.data.PwaAccessor.other_columns">
 <em class="property">property </em><code class="sig-name descname">other_columns</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.other_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get list of non-particle column names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -302,6 +309,11 @@ named <code class="docutils literal notranslate"><span class="pre">pwa</span></c
 <dt id="pycompwa.data.PwaAccessor.particles">
 <em class="property">property </em><code class="sig-name descname">particles</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.particles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get list of non-particle columns contained in the data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -320,6 +332,11 @@ named <code class="docutils literal notranslate"><span class="pre">pwa</span></c
 <dt id="pycompwa.data.PwaAccessor.top_columns">
 <em class="property">property </em><code class="sig-name descname">top_columns</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.top_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of the top layer column names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -327,6 +344,11 @@ named <code class="docutils literal notranslate"><span class="pre">pwa</span></c
 <em class="property">property </em><code class="sig-name descname">weight_label</code><a class="headerlink" href="#pycompwa.data.PwaAccessor.weight_label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the label of the weight column.</p>
 <p>You need to know this string when adding weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -339,19 +361,22 @@ named <code class="docutils literal notranslate"><span class="pre">pwa</span></c
 
 <dl class="function">
 <dt id="pycompwa.data.append">
-<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">pwa_frame: pandas.core.frame.DataFrame</em>, <em class="sig-param">other: pandas.core.frame.DataFrame</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="../_modules/pycompwa/data.html#append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.append" title="Permalink to this definition">¶</a></dt>
-<dd><p>Append another <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to a <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>.</p>
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">pwa_frame</em>, <em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/data.html#append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.data.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append another <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to a <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pwa_frame</strong> – <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> to which
+<li><p><strong>pwa_frame</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> to which
 you want to append additional columns.</p></li>
-<li><p><strong>other</strong> – Other <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> from which you take the columns.</p></li>
+<li><p><strong>other</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – Other <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.0.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> from which you take the columns.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="pycompwa.data.exception.html#pycompwa.data.exception.InvalidPwaFormat" title="pycompwa.data.exception.InvalidPwaFormat"><strong>InvalidPwaFormat</strong></a> – If the input <code class="docutils literal notranslate"><span class="pre">pwa_frame</span></code> is not a
     <a class="reference internal" href="#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -392,7 +417,6 @@ you want to append additional columns.</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

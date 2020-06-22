@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -34,11 +40,6 @@
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -80,6 +81,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
     
@@ -102,6 +104,7 @@
     <a href= "../../../../genindex.html">General Index</a>
   
         </div>
+        
       </div>
     </nav>
 
@@ -140,7 +143,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
@@ -218,8 +221,8 @@
 <span class="sd">    Implements logic for...</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeparate.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_qn_names</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">other_qn_names</span> <span class="o">=</span> <span class="n">other_qn_names</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_qn_names</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">other_qn_names</span> <span class="o">=</span> <span class="n">other_qn_names</span>
 
 <div class="viewcode-block" id="DefinedIfOtherQnNotDefinedInOutSeparate.check"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">out_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_edge_set</span><span class="p">(</span><span class="n">qn_names</span><span class="p">,</span> <span class="n">in_edges</span><span class="p">,</span> <span class="n">int_node</span><span class="p">)</span> <span class="ow">and</span>
@@ -273,11 +276,11 @@
 
 
 <div class="viewcode-block" id="AbstractRule"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.AbstractRule">[docs]</a><span class="k">class</span> <span class="nc">AbstractRule</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="AbstractRule.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.AbstractRule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rule_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rule_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">required_qn_names</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qn_conditions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">specify_required_qns</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">specify_required_qns</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rule_name</span><span class="p">)</span>
@@ -337,9 +340,9 @@
 <span class="sd">    :math:`\\sum q_{in} = \\sum q_{out}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AdditiveQuantumNumberConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qn_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span> <span class="o">=</span> <span class="n">qn_name</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">qn_name</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">qn_name</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="AdditiveQuantumNumberConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qn_name</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span></div>
@@ -354,8 +357,8 @@
 
 
 <div class="viewcode-block" id="ParityConservation"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservation">[docs]</a><span class="k">class</span> <span class="nc">ParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="ParityConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservation&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -378,8 +381,8 @@
 
 
 <div class="viewcode-block" id="ParityConservationHelicity"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity">[docs]</a><span class="k">class</span> <span class="nc">ParityConservationHelicity</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="ParityConservationHelicity.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservationHelicity&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ParityConservationHelicity&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ParityConservationHelicity.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -422,8 +425,8 @@
 
 
 <div class="viewcode-block" id="CParityConservation"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.CParityConservation">[docs]</a><span class="k">class</span> <span class="nc">CParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="CParityConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.CParityConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;CParityConservation&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;CParityConservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Cparity</span><span class="p">)</span>
@@ -497,8 +500,8 @@
 
 
 <div class="viewcode-block" id="GParityConservation"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GParityConservation">[docs]</a><span class="k">class</span> <span class="nc">GParityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="GParityConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GParityConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GParityConservation&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GParityConservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GParityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Gparity</span><span class="p">)</span>
@@ -578,8 +581,8 @@
 
 
 <div class="viewcode-block" id="IdenticalParticleSymmetrization"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization">[docs]</a><span class="k">class</span> <span class="nc">IdenticalParticleSymmetrization</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="IdenticalParticleSymmetrization.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;IdenticalParticleSymmetrization&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;IdenticalParticleSymmetrization&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="IdenticalParticleSymmetrization.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="n">StateQuantumNumberNames</span><span class="o">.</span><span class="n">Parity</span><span class="p">)</span>
@@ -626,7 +629,7 @@
 <span class="sd">    (coupling of two particle states). See :meth:`check` for details.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SpinConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spinlike_qn</span><span class="p">,</span> <span class="n">use_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spinlike_qn</span><span class="p">,</span> <span class="n">use_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spinlike_qn</span><span class="p">,</span> <span class="n">StateQuantumNumberNames</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expecting Emum of the type </span><span class="se">\</span>
 <span class="s1">                ParticleQuantumNumberNames for spinlike_qn&#39;</span><span class="p">)</span>
@@ -636,7 +639,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;spinlike_qn is not of class Spin&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span> <span class="o">=</span> <span class="n">spinlike_qn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_projection</span> <span class="o">=</span> <span class="n">use_projection</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">spinlike_qn</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">spinlike_qn</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;Conservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SpinConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spinlike_qn</span><span class="p">,</span> <span class="p">[</span><span class="n">DefinedForAllEdges</span><span class="p">()])</span>
@@ -762,8 +765,8 @@
 <span class="sd">    canonical amplitude sums</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ClebschGordanCheckHelicityToCanonical.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ClebschGordanCheckHelicityToCanonical&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;ClebschGordanCheckHelicityToCanonical&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ClebschGordanCheckHelicityToCanonical.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -796,8 +799,8 @@
 
 
 <div class="viewcode-block" id="HelicityConservation"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation">[docs]</a><span class="k">class</span> <span class="nc">HelicityConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="HelicityConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;HelicityConservation&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;HelicityConservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="HelicityConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -819,8 +822,8 @@
 
 
 <div class="viewcode-block" id="GellMannNishijimaRule"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule">[docs]</a><span class="k">class</span> <span class="nc">GellMannNishijimaRule</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="GellMannNishijimaRule.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GellMannNishijimaRule&#39;</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;GellMannNishijimaRule&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GellMannNishijimaRule.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -877,9 +880,9 @@
 
 
 <div class="viewcode-block" id="MassConservation"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.MassConservation">[docs]</a><span class="k">class</span> <span class="nc">MassConservation</span><span class="p">(</span><span class="n">AbstractRule</span><span class="p">):</span>
-<div class="viewcode-block" id="MassConservation.__init__"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.MassConservation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width_factor</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width_factor</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width_factor</span> <span class="o">=</span> <span class="n">width_factor</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;MassConservation&#39;</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;MassConservation&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MassConservation.specify_required_qns"><a class="viewcode-back" href="../../../../api/pycompwa.expertsystem.state.conservationrules.html#pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns">[docs]</a>    <span class="k">def</span> <span class="nf">specify_required_qns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_required_qn</span><span class="p">(</span>
@@ -934,7 +937,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
