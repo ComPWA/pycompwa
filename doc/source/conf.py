@@ -73,16 +73,6 @@ subprocess.call(
     shell=True)
 
 
-def skip(app, what, name, obj, would_skip, options):
-    if name == "__init__":
-        return False
-    return would_skip
-
-
-def setup(app):
-    app.connect("autodoc-skip-member", skip)
-
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -104,6 +94,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
+    'sphinx_autodoc_typehints',
     'sphinx_copybutton',
 ]
 
@@ -113,9 +104,10 @@ primary_domain = 'py'
 nitpicky = True  # warn if cross-references are missing
 nitpick_ignore = [
     ('py:class', 'function'),
+    ('py:class', 'pandas.core.frame.DataFrame'),
+    ('py:class', 'pybind11_builtins.pybind11_object'),
     ('py:class', 'pycompwa.expertsystem.solvers.constraint.Constraint'),
     ('py:class', 'pycompwa.expertsystem.state.propagation.GraphElementTypes'),
-    ('py:class', 'pybind11_builtins.pybind11_object'),
 ]
 
 # Settings for intersphinx
@@ -190,6 +182,12 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 add_module_names = False  # True is the default
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True,
+    'special-members': '__eq__',
+}
 modindex_common_prefix = ['pycompwa.']
 
 viewcode_follow_imported_members = True
