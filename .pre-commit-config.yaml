@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v3.3.0
     hooks:
       - id: check-docstring-first
       - id: check-case-conflict
@@ -10,7 +10,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.3.7
+    rev: 0.3.9
     hooks:
       - id: nbstripout
         files: ".ipynb"
