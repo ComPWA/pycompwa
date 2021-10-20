@@ -1,3 +1,11 @@
+ci:
+  autoupdate_commit_msg: "ci: autoupdate pre-commit hooks"
+  autoupdate_schedule: quarterly
+  skip:
+    # local hooks
+    - flake8
+    - pylint
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
@@ -23,6 +31,9 @@ repos:
     rev: 0.5.0
     hooks:
       - id: nbstripout
+
+  # The following tools have to be install locally, because they can also be
+  # used by code editors (e.g. linting and format-on-save).
 
   - repo: local
     hooks:
