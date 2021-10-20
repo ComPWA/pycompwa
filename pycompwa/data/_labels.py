@@ -5,6 +5,6 @@ These labels are used to consistently name the columns of the
 """
 
 
-ENERGY = 'E'
-MOMENTA = ['p_x', 'p_y', 'p_z', ENERGY]
-WEIGHT = 'weight'
+ENERGY = "E"
+MOMENTA = ["p_x", "p_y", "p_z", ENERGY]
+WEIGHT = "weight"

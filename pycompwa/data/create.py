@@ -2,20 +2,19 @@
 
 
 __all__ = [
-    'pwa_frame',
-    'multicolumn',
+    "pwa_frame",
+    "multicolumn",
 ]
 
 
 import pandas as pd
 
-from . import _labels
-from . import naming
+from . import _labels, naming
 
 
-def pwa_frame(data=None,
-              particle_names: list = None,
-              number_of_rows: int = None) -> pd.DataFrame:
+def pwa_frame(
+    data=None, particle_names: list = None, number_of_rows: int = None
+) -> pd.DataFrame:
     """Create an :class:`PWA DataFrame <.PwaAccessor>`.
 
     The columns of the :class:`~pandas.DataFrame` are specially formatted so
@@ -52,8 +51,7 @@ def multicolumn(particle_names: list = None):
     if particle_names is None:
         return _labels.MOMENTA
     particle_names = naming.make_values_unique(particle_names)
-    cols = [(par, mom)
-            for par in particle_names
-            for mom in _labels.MOMENTA]
+    cols = [(par, mom) for par in particle_names for mom in _labels.MOMENTA]
     return pd.MultiIndex.from_tuples(
-        tuples=cols, names=['Particle', 'Momentum'])
+        tuples=cols, names=["Particle", "Momentum"]
+    )

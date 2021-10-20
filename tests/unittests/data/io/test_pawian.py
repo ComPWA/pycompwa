@@ -10,7 +10,6 @@ import pytest
 from pycompwa.data import exception
 from pycompwa.data.io import pawian
 
-
 SCRIPT_DIR = dirname(realpath(__file__))
 
 
@@ -19,16 +18,19 @@ def test_read_hists_file(root_version):
     """Test :func:`~.read_hists_file`."""
     # File loading
     frame_data = pawian.read_hists_file(
-        f'{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root')
+        f"{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root"
+    )
     frame_fit = pawian.read_hists_file(
-        f'{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root', 'fit')
+        f"{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root", "fit"
+    )
     with pytest.raises(exception.MissingParameter):
         pawian.read_hists_file(
-            f'{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root', 'wrong')
+            f"{SCRIPT_DIR}/files/pawianHists_ROOT{root_version}.root", "wrong"
+        )
 
     # Column names
-    assert frame_data.pwa.particles == ['gamma', 'pi0_1', 'pi0_2']
-    assert frame_fit.pwa.particles == ['gamma', 'pi0_1', 'pi0_2']
+    assert frame_data.pwa.particles == ["gamma", "pi0_1", "pi0_2"]
+    assert frame_fit.pwa.particles == ["gamma", "pi0_1", "pi0_2"]
     assert not frame_data.pwa.other_columns
     assert not frame_fit.pwa.other_columns
 
@@ -43,27 +45,30 @@ def test_read_hists_file(root_version):
     assert frame_fit.pwa.weights.mean() < 0.95
 
     # Physics
-    pi0_1 = frame_data['pi0_1']
-    pi0_2 = frame_data['pi0_2']
+    pi0_1 = frame_data["pi0_1"]
+    pi0_2 = frame_data["pi0_2"]
     assert isclose(frame_data.sum(axis=1).mean(), 3.097, abs_tol=1e-3)
     assert isclose(pi0_1.pwa.mass.mean(), 0.135, abs_tol=1e-3)
     assert isclose(pi0_2.pwa.mass.mean(), 0.135, abs_tol=1e-3)
 
 
 @pytest.mark.parametrize("has_weights", [False, True])
-@pytest.mark.parametrize("particle_interpretation, expected", [
-    (None, [1, 2, 3]),
-    (3, [1, 2, 3]),
-    (['gamma', 'pi0_1', 'pi0_2'], ['gamma', 'pi0_1', 'pi0_2']),
-])
+@pytest.mark.parametrize(
+    "particle_interpretation, expected",
+    [
+        (None, [1, 2, 3]),
+        (3, [1, 2, 3]),
+        (["gamma", "pi0_1", "pi0_2"], ["gamma", "pi0_1", "pi0_2"]),
+    ],
+)
 def test_read_ascii_no_header(has_weights, particle_interpretation, expected):
     """Test :func:`~.pawian.read_ascii` without header."""
     # Construct filename
-    filename = f'{SCRIPT_DIR}/files/'
+    filename = f"{SCRIPT_DIR}/files/"
     if has_weights:
-        filename += 'pawian_weights.dat'
+        filename += "pawian_weights.dat"
     else:
-        filename += 'pawian_noweights.dat'
+        filename += "pawian_noweights.dat"
 
     # Abort if insufficient info
     if particle_interpretation is None and not has_weights:
@@ -79,35 +84,35 @@ def test_read_ascii_exceptions():
     """Test exceptions in :func:`~.pawian.read_ascii` without header."""
     # Missing particle interpretation
     with pytest.raises(exception.DataException):
-        pawian.read_ascii(f'{SCRIPT_DIR}/files/pawian_noweights.dat', None)
+        pawian.read_ascii(f"{SCRIPT_DIR}/files/pawian_noweights.dat", None)
     # Wrong number of particles WITHOUT header
     with pytest.raises(exception.DataException):
-        pawian.read_ascii(
-            f'{SCRIPT_DIR}/files/pawian_weights.dat', 4)
+        pawian.read_ascii(f"{SCRIPT_DIR}/files/pawian_weights.dat", 4)
     # Wrong number of particles WITH header
     with pytest.raises(exception.DataException):
         pawian.read_ascii(
-            f'{SCRIPT_DIR}/../files/ascii_noweights.dat', ['gamma', 'pi0'])
+            f"{SCRIPT_DIR}/../files/ascii_noweights.dat", ["gamma", "pi0"]
+        )
     # Correct
     frame = pawian.read_ascii(
-        f'{SCRIPT_DIR}/../files/ascii_noweights.dat',
-        ['gamma', 'pi0', 'pi0'])
-    assert frame.pwa.particles == [22, '111-1', '111-2']
+        f"{SCRIPT_DIR}/../files/ascii_noweights.dat", ["gamma", "pi0", "pi0"]
+    )
+    assert frame.pwa.particles == [22, "111-1", "111-2"]
 
 
 @pytest.mark.parametrize("has_weights", [False, True])
 def test_write_ascii(has_weights):
     """Test :func:`~.pawian.write_ascii`."""
     # Construct
-    input_file = f'{SCRIPT_DIR}/files/pawian_'
+    input_file = f"{SCRIPT_DIR}/files/pawian_"
     if has_weights:
-        input_file += 'weights.dat'
+        input_file += "weights.dat"
     else:
-        input_file += 'noweights.dat'
-    particles = ['gamma', 'pi0-1', 'pi0-2']
+        input_file += "noweights.dat"
+    particles = ["gamma", "pi0-1", "pi0-2"]
     frame_out = pawian.read_ascii(input_file, particles)
     # Export
-    output_file = f'{SCRIPT_DIR}/test_pawian.dat'
+    output_file = f"{SCRIPT_DIR}/test_pawian.dat"
     pawian.write_ascii(frame_out, output_file)
     # Import
     frame_in = pawian.read_ascii(output_file, particles)

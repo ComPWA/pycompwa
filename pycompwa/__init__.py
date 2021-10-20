@@ -9,14 +9,11 @@ useful when doing PWA research with Python.
 
 
 __all__ = [
-    'data',
-    'expertsystem',
-    'plotting',
-    'ui',
+    "data",
+    "expertsystem",
+    "plotting",
+    "ui",
 ]
 
 
-from . import data
-from . import expertsystem
-from . import plotting
-from . import ui
+from . import data, expertsystem, plotting, ui
