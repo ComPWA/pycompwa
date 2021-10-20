@@ -1,19 +1,38 @@
+ci:
+  autoupdate_commit_msg: "ci: autoupdate pre-commit hooks"
+  autoupdate_schedule: quarterly
+  skip:
+    # local hooks
+    - flake8
+    - pylint
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v4.0.1
     hooks:
-      - id: check-docstring-first
       - id: check-case-conflict
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: requirements-txt-fixer
       - id: trailing-whitespace
 
+  - repo: https://github.com/psf/black
+    rev: 21.9b0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.9.3
+    hooks:
+      - id: isort
+
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.3.7
+    rev: 0.5.0
     hooks:
       - id: nbstripout
-        files: ".ipynb"
+
+  # The following tools have to be install locally, because they can also be
+  # used by code editors (e.g. linting and format-on-save).
 
   - repo: local
     hooks:
@@ -23,15 +42,13 @@ repos:
         language: system
         types:
           - python
-      - id: autopep8
-        name: autopep8
-        entry: autopep8 --in-place
-        language: system
-        types:
-          - python
+
       - id: pylint
         name: pylint
         entry: pylint
+        args:
+          - --rcfile=.pylintrc
+          - --score=no
         language: system
         types:
           - python

@@ -1,3 +1,2 @@
-__all__ = ['graph', 'topologybuilder']
-from . import graph
-from . import topologybuilder
+__all__ = ["graph", "topologybuilder"]
+from . import graph, topologybuilder

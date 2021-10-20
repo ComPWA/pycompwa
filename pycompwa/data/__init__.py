@@ -9,28 +9,22 @@ named ``pwa`` (see :class:`PwaAccessor`).
 
 
 __all__ = [
-    'PwaAccessor',
-    'append',
-    'convert',
-    'create',
-    'io',
-    'naming',
+    "PwaAccessor",
+    "append",
+    "convert",
+    "create",
+    "io",
+    "naming",
 ]
 
 
+import pandas as pd
 from numpy import sqrt
 
-import pandas as pd
-
-from . import _labels
-from . import convert
-from . import create
-from . import exception
-from . import io
-from . import naming
+from . import _labels, convert, create, exception, io, naming
 
 
-@pd.api.extensions.register_dataframe_accessor('pwa')
+@pd.api.extensions.register_dataframe_accessor("pwa")
 class PwaAccessor:
     """:class:`~pandas.DataFrame` accessor for PWA properties.
 
@@ -62,7 +56,8 @@ class PwaAccessor:
         # Check if (sub)column names are same as momentum labels
         if not set(_labels.MOMENTA) <= set(columns):
             raise exception.InvalidPwaFormat(
-                f"Columns must be {_labels.MOMENTA}")
+                f"Columns must be {_labels.MOMENTA}"
+            )
 
     @property
     def has_weights(self):
@@ -97,8 +92,8 @@ class PwaAccessor:
         else:
             momentum_labels = self._obj.columns
         momentum_labels = momentum_labels.to_list()
-        if '' in momentum_labels:
-            momentum_labels.remove('')
+        if "" in momentum_labels:
+            momentum_labels.remove("")
         return momentum_labels
 
     @property
@@ -115,10 +110,12 @@ class PwaAccessor:
         columns = self._obj.columns
         if not isinstance(columns, pd.MultiIndex):
             return None
-        return [col for col in self.top_columns
-                if isinstance(self._obj[col], pd.DataFrame)
-                and self._obj[col].columns.unique().to_list()
-                == _labels.MOMENTA]
+        return [
+            col
+            for col in self.top_columns
+            if isinstance(self._obj[col], pd.DataFrame)
+            and self._obj[col].columns.unique().to_list() == _labels.MOMENTA
+        ]
 
     @property
     def other_columns(self) -> list:
@@ -126,9 +123,11 @@ class PwaAccessor:
         particles = self.particles
         if particles is None:
             return list()
-        return [col for col in self.top_columns
-                if col not in particles
-                and col != _labels.WEIGHT]
+        return [
+            col
+            for col in self.top_columns
+            if col not in particles and col != _labels.WEIGHT
+        ]
 
     @property
     def energy(self):
@@ -140,15 +139,15 @@ class PwaAccessor:
     @property
     def p_xyz(self):
         """Get a dataframe containing only the 3-momenta."""
-        return self._obj.filter(regex=('p_[xyz]'))
+        return self._obj.filter(regex=("p_[xyz]"))
         # ! may conflict with _labels.MOMENTA
 
     @property
     def rho2(self):
         """**Compute** quadratic sum of the 3-momenta."""
         if isinstance(self._obj.columns, pd.MultiIndex):
-            return (self.p_xyz**2).sum(axis=1, level=0)
-        return (self.p_xyz**2).sum(axis=1)
+            return (self.p_xyz ** 2).sum(axis=1, level=0)
+        return (self.p_xyz ** 2).sum(axis=1)
 
     @property
     def rho(self):
@@ -158,7 +157,7 @@ class PwaAccessor:
     @property
     def mass2(self):
         """**Compute** the square of the invariant masses."""
-        return self.energy**2 - self.rho2
+        return self.energy ** 2 - self.rho2
 
     @property
     def mass(self):
@@ -182,7 +181,8 @@ def append(pwa_frame: pd.DataFrame, other: pd.DataFrame) -> pd.DataFrame:
     if len(pwa_frame) != len(other):
         raise exception.InvalidPwaFormat(
             f"Cannot merge other DataFrame of length {len(other)} with a "
-            f"PWA frame of length {len(pwa_frame)}")
+            f"PWA frame of length {len(pwa_frame)}"
+        )
     for col in other.columns:
         pwa_frame[col] = other[col]
     return pwa_frame
