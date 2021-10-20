@@ -1,4 +1,4 @@
-""" Functors for quantum number condition checks """
+"""Functors for quantum number condition checks."""
 
 
 import logging
@@ -53,9 +53,7 @@ class DefinedForInteractionNode(AbstractConditionFunctor):
 
 
 class DefinedIfOtherQnNotDefinedInOutSeparate(AbstractConditionFunctor):
-    """
-    Implements logic for...
-    """
+    """Implements logic for..."""
 
     def __init__(self, other_qn_names):
         self.other_qn_names = other_qn_names
@@ -108,8 +106,8 @@ class DefinedIfOtherQnNotDefinedInOutSeparate(AbstractConditionFunctor):
 def is_particle_antiparticle_pair(pid1, pid2):
     """Check if PID is opposite sign.
 
-    We just check if the pid is opposite in sign, this is a requirement of
-    the pid numbers of course
+    We just check if the pid is opposite in sign, this is a requirement of the
+    pid numbers of course
     """
     return pid1 == -pid2
 
@@ -182,9 +180,8 @@ class AbstractRule(ABC):
 
 
 class AdditiveQuantumNumberConservation(AbstractRule):
-    """
-    checks for the conservation of an additive quantum number such as electric
-    charge, baryon number, lepton number
+    """checks for the conservation of an additive quantum number such as
+    electric charge, baryon number, lepton number.
 
     :math:`\\sum q_{in} = \\sum q_{out}`
     """
@@ -559,9 +556,10 @@ class IdenticalParticleSymmetrization(AbstractRule):
 
 
 class SpinConservation(AbstractRule):
-    """
-    Implements conservation of a spin-like quantum number for a two body decay
-    (coupling of two particle states). See :meth:`check` for details.
+    """Implements conservation of a spin-like quantum number for a two body
+    decay (coupling of two particle states).
+
+    See :meth:`check` for details.
     """
 
     def __init__(self, spinlike_qn, use_projection=True):
@@ -661,8 +659,8 @@ class SpinConservation(AbstractRule):
         return total_spins
 
     def spin_couplings(self, spin1, spin2):
-        """
-        implements the coupling of two spins
+        """implements the coupling of two spins.
+
         :math:`|S_1 - S_2| \\leq S \\leq |S_1 + S_2|` and :math:`M_1 + M_2 = M`
         """
         j1 = spin1.magnitude()
@@ -763,9 +761,7 @@ class HelicityConservation(AbstractRule):
         )
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """
-        implements :math:`|\\lambda_2-\\lambda_3| \\leq S_1`
-        """
+        """implements :math:`|\\lambda_2-\\lambda_3| \\leq S_1`"""
         if len(ingoing_part_qns) == 1 and len(outgoing_part_qns) == 2:
             spin_label = StateQuantumNumberNames.Spin
 
@@ -799,10 +795,8 @@ class GellMannNishijimaRule(AbstractRule):
         self.add_required_qn(StateQuantumNumberNames.TauLN)
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """
-        checks the Gell-Mann–Nishijima formula :math:`Q=I_3+\\frac{Y}{2}` for
-        each particle.
-        """
+        """checks the Gell-Mann–Nishijima formula :math:`Q=I_3+\\frac{Y}{2}`
+        for each particle."""
         charge_label = StateQuantumNumberNames.Charge
         isospin_label = StateQuantumNumberNames.IsoSpin
 
@@ -833,9 +827,7 @@ class GellMannNishijimaRule(AbstractRule):
         return True
 
     def calculate_hypercharge(self, particle):
-        """
-        calculates the hypercharge :math:`Y=S+C+B+T+B`
-        """
+        """calculates the hypercharge :math:`Y=S+C+B+T+B`"""
         qn_labels = [
             StateQuantumNumberNames.Strangeness,
             StateQuantumNumberNames.Charm,
@@ -859,8 +851,7 @@ class MassConservation(AbstractRule):
         self.add_required_qn(ParticleDecayPropertyNames.Width)
 
     def check(self, ingoing_part_qns, outgoing_part_qns, interaction_qns):
-        """
-        implements the mass check
+        """implements the mass check.
 
         :math:`M_{out} - N \\cdot W_{out} < M_{in} + N \\cdot W_{in}`
 

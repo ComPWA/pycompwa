@@ -4,8 +4,8 @@ from collections import OrderedDict
 
 
 def are_graphs_isomorphic(graph1, graph2):
-    """Returns True if the two graphs have a one-to-one mapping
-    of the node IDs and edge IDs"""
+    """Returns True if the two graphs have a one-to-one mapping of the node IDs
+    and edge IDs."""
     # EdgeIndexMapping = {}
     # NodeIndexMapping = {}
 
@@ -116,13 +116,13 @@ def dicts_unequal(dict1, dict2):
 
 
 class StateTransitionGraph:
-    """
-    Graph class which contains edges and nodes, similar to feynman graphs.
-    The graphs are directed, meaning the edges are ingoing and outgoing
-    to specific nodes (since feynman graphs also have a time axis)
-    This class can contain the full information of a state transition from
-    a initial state to a final state. This information can be attached to
-    the nodes and edges via properties.
+    """Graph class which contains edges and nodes, similar to feynman graphs.
+
+    The graphs are directed, meaning the edges are ingoing and outgoing to
+    specific nodes (since feynman graphs also have a time axis) This class can
+    contain the full information of a state transition from a initial state to
+    a final state. This information can be attached to the nodes and edges via
+    properties.
     """
 
     def __init__(self):
@@ -168,9 +168,7 @@ class StateTransitionGraph:
         return return_string
 
     def __eq__(self, other):
-        """
-        defines the equal operator for the graph class
-        """
+        """defines the equal operator for the graph class."""
         if isinstance(other, StateTransitionGraph):
             if set(self.nodes) != set(other.nodes):
                 return False
@@ -193,8 +191,10 @@ class StateTransitionGraph:
             return NotImplemented
 
     def add_node(self, node_id):
-        """Adds a node with id node_id. Raises an value error,
-        if node_id already exists"""
+        """Adds a node with id node_id.
+
+        Raises an value error, if node_id already exists
+        """
         if node_id in self.nodes:
             raise ValueError(
                 "Node with id " + str(node_id) + " already exists!"
@@ -202,7 +202,7 @@ class StateTransitionGraph:
         self.nodes.append(node_id)
 
     def add_edges(self, edge_ids):
-        """Adds edges with the ids in the edge_ids list"""
+        """Adds edges with the ids in the edge_ids list."""
         for edge_id in edge_ids:
             if edge_id in self.edges:
                 raise ValueError(
@@ -212,7 +212,7 @@ class StateTransitionGraph:
 
     def attach_edges_to_node_ingoing(self, ingoing_edge_ids, node_id):
         """Attaches existing edges to nodes, so that the are ingoing to these
-        nodes
+        nodes.
 
         Args:
             ingoing_edge_ids ([int]): list of edge ids, that will be attached
@@ -259,7 +259,7 @@ class StateTransitionGraph:
             self.edges[edge_id].originating_node_id = node_id
 
     def get_originating_node_list(self, edge_ids):
-        """ Get list of node ids from which the supplied edges originate from
+        """Get list of node ids from which the supplied edges originate from.
 
         Args:
             edge_ids ([int]): list of edge ids for which the origin node is \
@@ -292,14 +292,14 @@ class StateTransitionGraph:
             self.edge_props[edge_id1] = val2
 
     def verify(self):
-        """Verify the graph is connected,
-        so no dangling parts which are not connected"""
+        """Verify the graph is connected, so no dangling parts which are not
+        connected."""
 
         return True
 
 
 class InteractionNode:
-    """struct-like definition of an interaction node"""
+    """struct-like definition of an interaction node."""
 
     def __init__(
         self, type_name, number_of_ingoing_edges, number_of_outgoing_edges
@@ -318,7 +318,7 @@ class InteractionNode:
 
 
 class Edge:
-    """struct-like definition of an edge"""
+    """struct-like definition of an edge."""
 
     def __init__(self):
         self.ending_node_id = None
@@ -331,9 +331,7 @@ class Edge:
         return str((self.ending_node_id, self.originating_node_id))
 
     def __eq__(self, other):
-        """
-        defines the equal operator for the graph class
-        """
+        """defines the equal operator for the graph class."""
         if isinstance(other, Edge):
             return (
                 self.ending_node_id == other.ending_node_id

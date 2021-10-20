@@ -166,8 +166,7 @@ class PwaAccessor:
 
 
 def append(pwa_frame: pd.DataFrame, other: pd.DataFrame) -> pd.DataFrame:
-    """
-    Append another `~pandas.DataFrame` to a `PWA DataFrame <PwaAccessor>`.
+    """Append another `~pandas.DataFrame` to a `PWA DataFrame <PwaAccessor>`.
 
     Parameters:
         pwa_frame: :class:`PWA DataFrame <PwaAccessor>` to which

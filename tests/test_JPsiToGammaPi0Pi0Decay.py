@@ -1,6 +1,5 @@
-""" sample script for the testing purposes using the decay
-    JPsi -> gamma pi0 pi0
-"""
+"""sample script for the testing purposes using the decay JPsi -> gamma pi0
+pi0."""
 import logging
 
 import pytest

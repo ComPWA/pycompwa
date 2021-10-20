@@ -27,10 +27,8 @@ def open_compwa_plot_data(input_file_path):
 
 
 def load_ttree(filename, treename, branchnames=None):
-    """
-    Loads a root ttree into a numpy record array
-    If branchnames is None all branches are read.
-    """
+    """Loads a root ttree into a numpy record array If branchnames is None all
+    branches are read."""
     import numpy as np
 
     tree = uproot.open(filename)[treename]

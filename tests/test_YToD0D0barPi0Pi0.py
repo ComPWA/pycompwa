@@ -1,6 +1,5 @@
-""" sample script for the testing purposes using the decay
-    Y -> D*0 D*0bar -> D0 D0bar pi0 pi0
-"""
+"""sample script for the testing purposes using the decay Y -> D*0 D*0bar -> D0
+D0bar pi0 pi0."""
 import logging
 
 import pytest

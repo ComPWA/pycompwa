@@ -1,7 +1,5 @@
-"""
-This module defines a particle as a collection of quantum numbers and
-things related to this
-"""
+"""This module defines a particle as a collection of quantum numbers and things
+related to this."""
 import logging
 from abc import ABC, abstractmethod
 from collections import OrderedDict
@@ -36,10 +34,8 @@ XMLLabelTags = [
 
 
 def get_xml_label(enum):
-    """
-    Return the the correctly formatted XML label as required by ComPWA and
-    ``xmltodict``.
-    """
+    """Return the the correctly formatted XML label as required by ComPWA and
+    ``xmltodict``."""
     attribute_prefix = "@"
     if enum in XMLLabelTags:
         return enum.name
@@ -48,9 +44,8 @@ def get_xml_label(enum):
 
 
 class Spin:
-    """
-    Simple struct-like class defining spin as a magnitude plus the projection
-    """
+    """Simple struct-like class defining spin as a magnitude plus the
+    projection."""
 
     def __init__(self, mag, proj):
         self.__magnitude = float(mag)
@@ -89,10 +84,8 @@ class Spin:
         )
 
     def __eq__(self, other):
-        """
-        define the equal operator for the spin class, which is needed for
-        equality checks of states in certain rules
-        """
+        """define the equal operator for the spin class, which is needed for
+        equality checks of states in certain rules."""
         if isinstance(other, Spin):
             return (
                 self.__magnitude == other.magnitude()
@@ -262,12 +255,11 @@ particle_list = dict()
 
 
 def load_particle_list_from_xml(file_path):
-    """
-    By default, the expert system loads the ``particle_list``
-    from the XML file ``particle_list.xml`` located in the ComPWA module.
-    Use `.load_particle_list_from_xml` to append to the ``particle_list``.
-    .. note::
-    If a particle name in the loaded XML file already exists in the
+    """By default, the expert system loads the ``particle_list`` from the XML
+    file ``particle_list.xml`` located in the ComPWA module. Use
+    `.load_particle_list_from_xml` to append to the ``particle_list``.
+
+    .. note:: If a particle name in the loaded XML file already exists in the
     ``particle_list``, the one in the ``particle_list`` will be overwritten.
     """
     name_label = get_xml_label(XMLLabelConstants.Name)
@@ -289,8 +281,8 @@ def write_particle_list_to_xml(file_path: str):
 
 
 def add_to_particle_list(particle):
-    """
-    Add a particle dictionary object to the ``particle_list`` dictionary.
+    """Add a particle dictionary object to the ``particle_list`` dictionary.
+
     The key will be extracted from the ``particle`` name (XML tag ``@Name``).
     If the key already exists, the entry in ``particle_list`` will be
     overwritten by this one.
@@ -312,10 +304,9 @@ def get_particle_with_name(particle_name):
 
 
 def get_particle_copy_by_name(particle_name):
-    """
-    Get a `~copy.deepcopy` of a particle from the ``particle_list``
-    dictionary so you can manipulate it and add it to the particle data base.
-    """
+    """Get a `~copy.deepcopy` of a particle from the ``particle_list``
+    dictionary so you can manipulate it and add it to the particle data
+    base."""
     return deepcopy(particle_list[particle_name])
 
 

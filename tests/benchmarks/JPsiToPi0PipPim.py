@@ -1,6 +1,5 @@
-""" sample script for the testing purposes using the decay
-    JPsi -> pi0 pi+ pi-
-"""
+"""sample script for the testing purposes using the decay JPsi -> pi0 pi+
+pi-"""
 
 import logging
 

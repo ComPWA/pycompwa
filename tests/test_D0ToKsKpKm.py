@@ -1,6 +1,4 @@
-""" sample script for the testing purposes using the decay
-    D0 -> K_S0 K+ K-
-"""
+"""sample script for the testing purposes using the decay D0 -> K_S0 K+ K-"""
 import logging
 
 import pytest

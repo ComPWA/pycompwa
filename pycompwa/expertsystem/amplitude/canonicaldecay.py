@@ -25,10 +25,8 @@ def generate_clebsch_gordan_string(graph, node_id):
 
 
 class CanonicalAmplitudeNameGenerator(HelicityAmplitudeNameGenerator):
-    """
-    Generates names for canonical partial decays using the properties of
-    the decay.
-    """
+    """Generates names for canonical partial decays using the properties of the
+    decay."""
 
     def __init__(self, use_parity_conservation=False):
         super().__init__(use_parity_conservation)
@@ -70,11 +68,11 @@ class CanonicalAmplitudeNameGenerator(HelicityAmplitudeNameGenerator):
 
 
 class CanonicalAmplitudeGeneratorXML(HelicityAmplitudeGeneratorXML):
-    """
-    This class defines a full amplitude in the canonical formalism, using the
-    helicity formalism as a foundation.
-    The key here is that we take the full helicity intensity as a template, and
-    just exchange the helicity amplitudes F as a sum of canonical amplitudes a:
+    """This class defines a full amplitude in the canonical formalism, using
+    the helicity formalism as a foundation. The key here is that we take the
+    full helicity intensity as a template, and just exchange the helicity
+    amplitudes F as a sum of canonical amplitudes a:
+
     F^J_lambda1,lambda2 = sum_LS { norm * a^J_LS * CG * CG }
     Here CG stands for Clebsch-Gordan factor.
     """
@@ -87,10 +85,8 @@ class CanonicalAmplitudeGeneratorXML(HelicityAmplitudeGeneratorXML):
         super().__init__(top_node_no_dynamics, name_generator=name_generator)
 
     def _clebsch_gordan_decorator(decay_generate_function):
-        """
-        Decorator method which adds two clebsch gordan coefficients based on
-        the translation of helicity amplitudes to canonical ones.
-        """
+        """Decorator method which adds two clebsch gordan coefficients based on
+        the translation of helicity amplitudes to canonical ones."""
 
         def wrapper(self, graph, node_id):
             spin = StateQuantumNumberNames.Spin

@@ -85,9 +85,7 @@ __all__ = [
 
 
 class Problem(object):
-    """
-    Class used to define a problem and retrieve solutions
-    """
+    """Class used to define a problem and retrieve solutions."""
 
     def __init__(self, solver=None):
         """
@@ -100,8 +98,7 @@ class Problem(object):
         self._variables = {}
 
     def reset(self):
-        """
-        Reset the current problem definition
+        """Reset the current problem definition.
 
         Example:
 
@@ -115,8 +112,7 @@ class Problem(object):
         self._variables.clear()
 
     def setSolver(self, solver):
-        """
-        Change the problem solver currently in use
+        """Change the problem solver currently in use.
 
         Example:
 
@@ -131,8 +127,7 @@ class Problem(object):
         self._solver = solver
 
     def getSolver(self):
-        """
-        Obtain the problem solver currently in use
+        """Obtain the problem solver currently in use.
 
         Example:
 
@@ -147,8 +142,7 @@ class Problem(object):
         return self._solver
 
     def addVariable(self, variable, domain):
-        """
-        Add a variable to the problem
+        """Add a variable to the problem.
 
         Example:
 
@@ -178,8 +172,7 @@ class Problem(object):
         self._variables[variable] = domain
 
     def addVariables(self, variables, domain):
-        """
-        Add one or more variables to the problem
+        """Add one or more variables to the problem.
 
         Example:
 
@@ -202,8 +195,7 @@ class Problem(object):
             self.addVariable(variable, domain)
 
     def addConstraint(self, constraint, variables=None):
-        """
-        Add a constraint to the problem
+        """Add a constraint to the problem.
 
         Example:
 
@@ -233,8 +225,7 @@ class Problem(object):
         self._constraints.append((constraint, variables))
 
     def getSolution(self):
-        """
-        Find and return a solution to the problem
+        """Find and return a solution to the problem.
 
         Example:
 
@@ -254,8 +245,7 @@ class Problem(object):
         return self._solver.getSolution(domains, constraints, v_constraints)
 
     def getSolutions(self):
-        """
-        Find and return all solutions to the problem
+        """Find and return all solutions to the problem.
 
         Example:
 
@@ -275,8 +265,7 @@ class Problem(object):
         return self._solver.getSolutions(domains, constraints, vconstraints)
 
     def getSolutionIter(self):
-        """
-        Return an iterator to the solutions of the problem
+        """Return an iterator to the solutions of the problem.
 
         Example:
 
@@ -329,8 +318,7 @@ class Problem(object):
 
 
 def getArcs(domains, constraints):
-    """
-    Return a dictionary mapping pairs (arcs) of constrained variables
+    """Return a dictionary mapping pairs (arcs) of constrained variables.
 
     @attention: Currently unused.
     """
@@ -345,8 +333,7 @@ def getArcs(domains, constraints):
 
 
 def doArc8(arcs, domains, assignments):
-    """
-    Perform the ARC-8 arc checking algorithm and prune domains
+    """Perform the ARC-8 arc checking algorithm and prune domains.
 
     @attention: Currently unused.
     """
@@ -392,15 +379,13 @@ def doArc8(arcs, domains, assignments):
 
 
 class Solver(object):
-    """
-    Abstract base class for solvers
+    """Abstract base class for solvers.
 
     @sort: getSolution, getSolutions, getSolutionIter
     """
 
     def getSolution(self, domains, constraints, vconstraints):
-        """
-        Return one solution for the given problem
+        """Return one solution for the given problem.
 
         @param domains: Dictionary mapping variables to their domains
         @type  domains: dict
@@ -414,8 +399,7 @@ class Solver(object):
         raise NotImplementedError(msg)
 
     def getSolutions(self, domains, constraints, vconstraints):
-        """
-        Return all solutions for the given problem
+        """Return all solutions for the given problem.
 
         @param domains: Dictionary mapping variables to domains
         @type  domains: dict
@@ -429,8 +413,7 @@ class Solver(object):
         raise NotImplementedError(msg)
 
     def getSolutionIter(self, domains, constraints, vconstraints):
-        """
-        Return an iterator for the solutions of the given problem
+        """Return an iterator for the solutions of the given problem.
 
         @param domains: Dictionary mapping variables to domains
         @type  domains: dict
@@ -445,8 +428,7 @@ class Solver(object):
 
 
 class BacktrackingSolver(Solver):
-    """
-    Problem solver with backtracking capabilities
+    """Problem solver with backtracking capabilities.
 
     Examples:
 
@@ -581,8 +563,7 @@ class BacktrackingSolver(Solver):
 
 
 class RecursiveBacktrackingSolver(Solver):
-    """
-    Recursive problem solver with backtracking capabilities
+    """Recursive problem solver with backtracking capabilities.
 
     Examples:
 
@@ -687,8 +668,7 @@ class RecursiveBacktrackingSolver(Solver):
 
 
 class MinConflictsSolver(Solver):
-    """
-    Problem solver based on the minimum conflicts theory
+    """Problem solver based on the minimum conflicts theory.
 
     Examples:
 
@@ -768,11 +748,10 @@ class MinConflictsSolver(Solver):
 
 
 class Variable(object):
-    """
-    Helper class for variable definition
+    """Helper class for variable definition.
 
-    Using this class is optional, since any hashable object,
-    including plain strings and integers, may be used as variables.
+    Using this class is optional, since any hashable object, including plain
+    strings and integers, may be used as variables.
     """
 
     def __init__(self, name):
@@ -794,11 +773,10 @@ Unassigned = Variable("Unassigned")
 
 
 class Domain(list):
-    """
-    Class used to control possible values for variables
+    """Class used to control possible values for variables.
 
-    When list or tuples are used as domains, they are automatically
-    converted to an instance of that class.
+    When list or tuples are used as domains, they are automatically converted
+    to an instance of that class.
     """
 
     def __init__(self, set):
@@ -811,28 +789,24 @@ class Domain(list):
         self._states = []
 
     def resetState(self):
-        """
-        Reset to the original domain state, including all possible values
-        """
+        """Reset to the original domain state, including all possible
+        values."""
         self.extend(self._hidden)
         del self._hidden[:]
         del self._states[:]
 
     def pushState(self):
-        """
-        Save current domain state
+        """Save current domain state.
 
-        Variables hidden after that call are restored when that state
-        is popped from the stack.
+        Variables hidden after that call are restored when that state is popped
+        from the stack.
         """
         self._states.append(len(self))
 
     def popState(self):
-        """
-        Restore domain state from the top of the stack
+        """Restore domain state from the top of the stack.
 
-        Variables hidden since the last popped state are then available
-        again.
+        Variables hidden since the last popped state are then available again.
         """
         diff = self._states.pop() - len(self)
         if diff:
@@ -840,8 +814,7 @@ class Domain(list):
             del self._hidden[-diff:]
 
     def hideValue(self, value):
-        """
-        Hide the given value from the domain
+        """Hide the given value from the domain.
 
         After that call the given value won't be seen as a possible value
         on that domain anymore. The hidden value will be restored when the
@@ -859,13 +832,10 @@ class Domain(list):
 
 
 class Constraint(object):
-    """
-    Abstract base class for constraints
-    """
+    """Abstract base class for constraints."""
 
     def __call__(self, variables, domains, assignments, forwardcheck=False):
-        """
-        Perform the constraint checking
+        """Perform the constraint checking.
 
         If the forwardcheck parameter is not false, besides telling if
         the constraint is currently broken or not, the constraint
@@ -890,8 +860,7 @@ class Constraint(object):
         return True
 
     def preProcess(self, variables, domains, constraints, vconstraints):
-        """
-        Preprocess variable domains
+        """Preprocess variable domains.
 
         This method is called before starting to look for solutions,
         and is used to prune domains with specific constraint logic
@@ -923,8 +892,7 @@ class Constraint(object):
     def forwardCheck(
         self, variables, domains, assignments, _unassigned=Unassigned
     ):
-        """
-        Helper method for generic forward checking
+        """Helper method for generic forward checking.
 
         Currently, this method acts only when there's a single
         unassigned variable.
@@ -965,8 +933,7 @@ class Constraint(object):
 
 
 class FunctionConstraint(Constraint):
-    """
-    Constraint which wraps a function defining the constraint logic
+    """Constraint which wraps a function defining the constraint logic.
 
     Examples:
 
@@ -1018,8 +985,7 @@ class FunctionConstraint(Constraint):
 
 
 class AllDifferentConstraint(Constraint):
-    """
-    Constraint enforcing that values of all given variables are different
+    """Constraint enforcing that values of all given variables are different.
 
     Example:
 
@@ -1058,8 +1024,7 @@ class AllDifferentConstraint(Constraint):
 
 
 class AllEqualConstraint(Constraint):
-    """
-    Constraint enforcing that values of all given variables are equal
+    """Constraint enforcing that values of all given variables are equal.
 
     Example:
 
@@ -1098,9 +1063,8 @@ class AllEqualConstraint(Constraint):
 
 
 class MaxSumConstraint(Constraint):
-    """
-    Constraint enforcing that values of given variables sum up to
-    a given amount
+    """Constraint enforcing that values of given variables sum up to a given
+    amount.
 
     Example:
 
@@ -1183,9 +1147,8 @@ class MaxSumConstraint(Constraint):
 
 
 class ExactSumConstraint(Constraint):
-    """
-    Constraint enforcing that values of given variables sum exactly
-    to a given amount
+    """Constraint enforcing that values of given variables sum exactly to a
+    given amount.
 
     Example:
 
@@ -1276,9 +1239,8 @@ class ExactSumConstraint(Constraint):
 
 
 class MinSumConstraint(Constraint):
-    """
-    Constraint enforcing that values of given variables sum at least
-    to a given amount
+    """Constraint enforcing that values of given variables sum at least to a
+    given amount.
 
     Example:
 
@@ -1320,9 +1282,8 @@ class MinSumConstraint(Constraint):
 
 
 class InSetConstraint(Constraint):
-    """
-    Constraint enforcing that values of given variables are present in
-    the given set
+    """Constraint enforcing that values of given variables are present in the
+    given set.
 
     Example:
 
@@ -1356,9 +1317,8 @@ class InSetConstraint(Constraint):
 
 
 class NotInSetConstraint(Constraint):
-    """
-    Constraint enforcing that values of given variables are not present in
-    the given set
+    """Constraint enforcing that values of given variables are not present in
+    the given set.
 
     Example:
 
@@ -1392,9 +1352,8 @@ class NotInSetConstraint(Constraint):
 
 
 class SomeInSetConstraint(Constraint):
-    """
-    Constraint enforcing that at least some of the values of given
-    variables must be present in a given set
+    """Constraint enforcing that at least some of the values of given variables
+    must be present in a given set.
 
     Example:
 
@@ -1458,9 +1417,8 @@ class SomeInSetConstraint(Constraint):
 
 
 class SomeNotInSetConstraint(Constraint):
-    """
-    Constraint enforcing that at least some of the values of given
-    variables must not be present in a given set
+    """Constraint enforcing that at least some of the values of given variables
+    must not be present in a given set.
 
     Example:
 

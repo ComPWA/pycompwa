@@ -24,6 +24,6 @@ class ConfigurationConflict(DataException):
 class InvalidPwaFormat(DataException):
     """Raised if :class:`pandas.DataFrame` is not PWA-formatted.
 
-    See :class:`~.PwaAccessor` for how the :class:`~pandas.DataFrame` should
-    be formatted.
+    See :class:`~.PwaAccessor` for how the :class:`~pandas.DataFrame` should be
+    formatted.
     """

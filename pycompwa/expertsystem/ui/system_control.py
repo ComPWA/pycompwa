@@ -222,9 +222,8 @@ def remove_qns_from_graph(graph, qn_list):
 
 
 def check_equal_ignoring_qns(ref_graph, solutions, ignored_qn_list):
-    """
-    defines the equal operator for the graphs ignoring certain quantum numbers
-    """
+    """defines the equal operator for the graphs ignoring certain quantum
+    numbers."""
 
     if not isinstance(ref_graph, StateTransitionGraph):
         raise TypeError(
@@ -245,8 +244,7 @@ def check_equal_ignoring_qns(ref_graph, solutions, ignored_qn_list):
 
 
 def filter_graphs(graphs, filters):
-    """
-    Implements filtering of a list of :class:`.StateTransitionGraph` 's.
+    """Implements filtering of a list of :class:`.StateTransitionGraph` 's.
 
     This function can be used to select a subset of
     :class:`.StateTransitionGraph` 's from a list. Only the graphs passing
@@ -449,11 +447,11 @@ def create_edge_id_particle_mapping(graph, external_edge_getter_function):
 
 
 def perform_external_edge_identical_particle_combinatorics(graph):
-    """
-    Creates combinatorics clones of the StateTransitionGraph in case of
-    identical particles in the initial or final state. Only identical
-    particles, which do not enter or exit the same node allow for
-    combinatorics!
+    """Creates combinatorics clones of the StateTransitionGraph in case of
+    identical particles in the initial or final state.
+
+    Only identical particles, which do not enter or exit the same node allow
+    for combinatorics!
     """
     if not isinstance(graph, StateTransitionGraph):
         raise TypeError("graph argument is not of type StateTransitionGraph!")

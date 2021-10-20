@@ -26,11 +26,10 @@ from .abstractgenerator import (
 
 
 def group_graphs_same_initial_and_final(graphs):
-    """
-    Each graph corresponds to a specific state transition amplitude.
-    This function groups together graphs, which have the same initial and
-    final state (including spin). This is needed to determine the coherency of
-    the individual amplitude parts.
+    """Each graph corresponds to a specific state transition amplitude. This
+    function groups together graphs, which have the same initial and final
+    state (including spin). This is needed to determine the coherency of the
+    individual amplitude parts.
 
     Args:
         graphs ([:class:`.StateTransitionGraph`])
@@ -89,8 +88,7 @@ def determine_attached_final_state_string(graph, edge_id):
 
 
 def determine_attached_final_state(graph, edge_id):
-    """
-    Determines all final state particles of a graph, which are attached
+    """Determines all final state particles of a graph, which are attached
     downward (forward in time) for a given edge (resembling the root)
 
     Args:
@@ -117,8 +115,7 @@ def determine_attached_final_state(graph, edge_id):
 
 
 def get_recoil_edge(graph, edge_id):
-    """
-    Determines the id of the recoil edge for the specified edge of a graph.
+    """Determines the id of the recoil edge for the specified edge of a graph.
 
     Args:
         graph (:class:`.StateTransitionGraph`)
@@ -143,9 +140,8 @@ def get_recoil_edge(graph, edge_id):
 
 
 def get_parent_recoil_edge(graph, edge_id):
-    """
-    Determines the id of the recoil edge of the parent edge for the specified
-    edge of a graph.
+    """Determines the id of the recoil edge of the parent edge for the
+    specified edge of a graph.
 
     Args:
         graph (:class:`.StateTransitionGraph`)
@@ -169,9 +165,8 @@ def get_parent_recoil_edge(graph, edge_id):
 
 
 def get_prefactor(graph):
-    """
-    calculates the product of all prefactors defined in this graph as a double
-    """
+    """calculates the product of all prefactors defined in this graph as a
+    double."""
     prefactor_label = InteractionQuantumNumberNames.ParityPrefactor
     prefactor = None
     for node_id in graph.nodes:
@@ -291,8 +286,7 @@ class HelicityAmplitudeNameGenerator(AbstractAmplitudeNameGenerator):
             )
 
     def generate_amplitude_coefficient_infos(self, graph):
-        """
-        Generates coefficient info for a sequential amplitude graph.
+        """Generates coefficient info for a sequential amplitude graph.
 
         Generally, each partial amplitude of a sequential amplitude graph
         should check itself if it or a parity partner is already defined. If so
@@ -390,9 +384,7 @@ class HelicityAmplitudeNameGenerator(AbstractAmplitudeNameGenerator):
         return (in_names_hel_list, out_names_hel_list)
 
     def _generate_amplitude_coefficient_names(self, graph, node_id):
-        """
-        Generates partial amplitude coefficient name suffixes.
-        """
+        """Generates partial amplitude coefficient name suffixes."""
         (in_hel_info, out_hel_info) = self._retrieve_helicity_info(
             graph, node_id
         )
@@ -452,10 +444,11 @@ class HelicityAmplitudeGeneratorXML(AbstractAmplitudeGenerator):
         self.generate_amplitude_info(graph_groups)
 
     def fix_parameters_unambiguously(self):
-        """
-        Fix parameters, so that the total amplitude is unambiguous, with regard
-        to the fit parameters. In other words: all fit parameters per graph,
-        except one, will all be fixed. It's fine if they are all already fixed.
+        """Fix parameters, so that the total amplitude is unambiguous, with
+        regard to the fit parameters.
+
+        In other words: all fit parameters per graph, except one, will all be
+        fixed. It's fine if they are all already fixed.
         """
         pass
 

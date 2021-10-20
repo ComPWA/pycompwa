@@ -89,8 +89,8 @@ def pid_to_name(frame: pd.DataFrame, particle_list) -> pd.DataFrame:
 def replace_ids(string: str, model: str):
     """Replace all IDs in a string by particle names.
 
-    Only whole words are replaced, so the final state IDs have to be
-    separated by word boundaries or underscores.
+    Only whole words are replaced, so the final state IDs have to be separated
+    by word boundaries or underscores.
     """
     id_to_name = _id_to_name(model)
     new_string = string
@@ -171,8 +171,7 @@ def _cast_string(string: str):
 
 
 def _id_to_name(model):
-    """
-    Extract final state ID to particle name mapping.
+    """Extract final state ID to particle name mapping.
 
     Parameters:
         model: can be either a `str` with the XML model filename or a
