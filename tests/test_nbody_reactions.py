@@ -9,7 +9,6 @@ from pycompwa.expertsystem.ui.system_control import (
 # logging.basicConfig(level=logging.INFO)
 
 
-
 @pytest.mark.slow
 @pytest.mark.parametrize(
     "test_input,expected",
