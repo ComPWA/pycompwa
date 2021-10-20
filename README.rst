@@ -8,6 +8,9 @@
    :target: https://badge.fury.io/py/pycompwa
 .. image:: https://api.codacy.com/project/badge/Grade/adb3ab8d774346b2a3c68f5fa3479c08
    :target: https://app.codacy.com/gh/ComPWA/pycompwa?utm_source=github.com&utm_medium=referral&utm_content=ComPWA/pycompwa&utm_campaign=Badge_Grade_Dashboard
+.. image:: https://results.pre-commit.ci/badge/github/ComPWA/qrules/main.svg
+   :target: https://results.pre-commit.ci/latest/github/ComPWA/qrules/main
+   :alt: pre-commit.ci status
 
 About pycompwa
 ==============
