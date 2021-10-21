@@ -4,7 +4,7 @@ dist: bionic
 
 branches:
   only:
-    - master
+    - main
     - /\d+\.\d+.*/
   except: gh-pages
 
@@ -108,11 +108,11 @@ jobs:
         cleanup: false
         edge: true
         repo: ComPWA/ComPWA.github.io
-        target_branch: master
+        target_branch: main
         local_dir: "$BASEPATH/doc/build/html"
         verbose: true
         on:
-          branch: master
+          branch: main
 
     - name: test clang build (Linux) + code coverage
       os: linux

@@ -232,7 +232,7 @@ html_context = {
     "display_github": True,
     "github_user": "ComPWA",
     "github_repo": "pycompwa",
-    "github_version": "master/doc/source/",
+    "github_version": "main/doc/source/",
 }
 
 # Custom sidebar templates, must be a dictionary that maps document names

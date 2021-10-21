@@ -18,7 +18,7 @@ Usually, you go through the following four steps to perform your analysis:
 .. note::
 
     Each of these steps can be downloaded as Jupyter notebooks
-    `here <https://github.com/ComPWA/pycompwa/tree/master/examples>`_.
+    `here <https://github.com/ComPWA/pycompwa/tree/main/examples>`_.
     The notebooks have been written in such a way that you can rerun each of
     the steps separately once you have the output files of the previous steps.
     As such, these notebooks can be easily used for your own partial-wave

@@ -1,6 +1,6 @@
-.. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=master
+.. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=main
    :target: https://travis-ci.com/ComPWA/pycompwa
-.. image:: https://codecov.io/gh/ComPWA/pycompwa/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/ComPWA/pycompwa/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/ComPWA/pycompwa
 .. image:: https://zenodo.org/badge/212384131.svg
    :target: https://zenodo.org/badge/latestdoi/212384131
@@ -63,7 +63,7 @@ Usage
 =====
 
 On how to use ComPWA please refer to the
-`Quickstart Example <https://github.com/ComPWA/pycompwa/blob/master/examples/jupyter/Quickstart.ipynb>`_.
+`Quickstart Example <https://github.com/ComPWA/pycompwa/blob/main/examples/jupyter/Quickstart.ipynb>`_.
 
 Documentation
 =============

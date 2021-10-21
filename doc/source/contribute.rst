@@ -107,7 +107,7 @@ contribute:
   common label for the main repository.
 
   Note that the remote from which you cloned the repository is named ``origin``
-  by default (here: your fork). A local ``master`` branch is automatically
+  by default (here: your fork). A local ``main`` branch is automatically
   checked out from the origin after the clone. You can list all branches with
   ``git branch -a``.
 
@@ -128,9 +128,9 @@ can your contributions be added main repository through a `pull request
 
   - Fetch new changes: |br|
     ``git fetch upstream``
-  - Re-apply your current branch commits to the head of the ``upstream`` master
+  - Re-apply your current branch commits to the head of the ``upstream`` main
     branch: |br|
-    ``git rebase -i upstream/master``
+    ``git rebase -i upstream/main``
   - At this point, conflicts between your changes and those from the main
     ``upstream`` repository may occur. If no conflicts appeared, then you are
     finished and you can continue coding or push your work onto you fork.
@@ -161,10 +161,10 @@ can your contributions be added main repository through a `pull request
 Once you think your contribution is finished and can be merged into the main
 repository:
 
-* Make sure your the latest commits from the ``upstream/master`` are rebased
+* Make sure your the latest commits from the ``upstream/main`` are rebased
   onto your new branch and pushed to your fork
 * Log into GitHub with your account and create a PR. This is a request to merge
-  the changes in your fork branch with the ``master`` branch of the pycompwa or
+  the changes in your fork branch with the ``main`` branch of the pycompwa or
   ComPWA repository.
 * While the PR is open, commits pushed to the fork branch behind your PR will
   immediately appear in the PR.
@@ -172,7 +172,7 @@ repository:
 Commit conventions
 ^^^^^^^^^^^^^^^^^^
 
-* In the master branch, it should be possible to compile and test the framework
+* In the main branch, it should be possible to compile and test the framework
   **in each commit**. In your own topic branches, it is recommended to commit
   frequently (WIP keyword), but `squash those commits
   <https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History>`_
@@ -210,16 +210,16 @@ to (py)ComPWA!
 
 Continuous Integration (CI)
 ---------------------------
-The master branch is automatically build using TravisCI. Probably it is
+The main branch is automatically build using TravisCI. Probably it is
 interesting to check out the `log file
 <https://travis-ci.com/ComPWA/pycompwa>`_ and the projects TravisCI
 configuration file `travisCI.yml
-<https://github.com/ComPWA/pycompwa/blob/master/.travis.yml>`_.
+<https://github.com/ComPWA/pycompwa/blob/main/.travis.yml>`_.
 
 A code coverage report is generated for each pull request. Try to keep coverage
 high by writing new tests if coverage decreases. You can see an overview
 pycompwa's coverage `here <https://codecov.io/gh/ComPWA/pycompwa>`_. Under
-`files <https://codecov.io/gh/ComPWA/pycompwa/tree/master/pycompwa>`_ you have
+`files <https://codecov.io/gh/ComPWA/pycompwa/tree/main/pycompwa>`_ you have
 a detailed overview of coverage per module, and you can investigate coverage
 all the way down to the source code.
 
