@@ -1,3 +1,10 @@
+[build-system]
+requires = [
+    "scikit-build",
+    "setuptools",
+    "wheel",
+]
+
 [tool.black]
 line-length = 79
 target-version = [
