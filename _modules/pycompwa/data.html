@@ -1,32 +1,15 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>pycompwa.data &mdash; pycompwa  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pycompwa.data &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -36,40 +19,18 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html">
-          
-
-          
-            
-            <img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
-          
+            <a href="../../index.html"><img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,20 +38,9 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
     
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <p><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
@@ -98,70 +48,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
 </ul>
 
-            
-          
     <a href= "../../py-modindex.html">Module Index (API)</a>
     <a href= "../../genindex.html">General Index</a>
   
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">pycompwa</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../index.html">Module code</a> &raquo;</li>
-        
       <li>pycompwa.data</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for pycompwa.data</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Data I/O of the :mod:`pycompwa` package.</span>
 
@@ -174,28 +87,22 @@
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;PwaAccessor&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;append&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;convert&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;create&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;io&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;naming&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;PwaAccessor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;append&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;convert&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;create&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;naming&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_labels</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">convert</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">create</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">exception</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">io</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">naming</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_labels</span><span class="p">,</span> <span class="n">convert</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">naming</span>
 
 
-<div class="viewcode-block" id="PwaAccessor"><a class="viewcode-back" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor">[docs]</a><span class="nd">@pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">register_dataframe_accessor</span><span class="p">(</span><span class="s1">&#39;pwa&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="PwaAccessor"><a class="viewcode-back" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor">[docs]</a><span class="nd">@pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">register_dataframe_accessor</span><span class="p">(</span><span class="s2">&quot;pwa&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">PwaAccessor</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;:class:`~pandas.DataFrame` accessor for PWA properties.</span>
 
@@ -227,7 +134,8 @@
         <span class="c1"># Check if (sub)column names are same as momentum labels</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">_labels</span><span class="o">.</span><span class="n">MOMENTA</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">set</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">InvalidPwaFormat</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Columns must be </span><span class="si">{</span><span class="n">_labels</span><span class="o">.</span><span class="n">MOMENTA</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;Columns must be </span><span class="si">{</span><span class="n">_labels</span><span class="o">.</span><span class="n">MOMENTA</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">has_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -262,8 +170,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">momentum_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">columns</span>
         <span class="n">momentum_labels</span> <span class="o">=</span> <span class="n">momentum_labels</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-        <span class="k">if</span> <span class="s1">&#39;&#39;</span> <span class="ow">in</span> <span class="n">momentum_labels</span><span class="p">:</span>
-            <span class="n">momentum_labels</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;&quot;</span> <span class="ow">in</span> <span class="n">momentum_labels</span><span class="p">:</span>
+            <span class="n">momentum_labels</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">momentum_labels</span>
 
     <span class="nd">@property</span>
@@ -280,10 +188,12 @@
         <span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">columns</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_columns</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span>
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-                <span class="o">==</span> <span class="n">_labels</span><span class="o">.</span><span class="n">MOMENTA</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">col</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_columns</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="o">==</span> <span class="n">_labels</span><span class="o">.</span><span class="n">MOMENTA</span>
+        <span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">other_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
@@ -291,9 +201,11 @@
         <span class="n">particles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">particles</span>
         <span class="k">if</span> <span class="n">particles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_columns</span>
-                <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">particles</span>
-                <span class="ow">and</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">_labels</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">col</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_columns</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">particles</span> <span class="ow">and</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">_labels</span><span class="o">.</span><span class="n">WEIGHT</span>
+        <span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -305,15 +217,15 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">p_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a dataframe containing only the 3-momenta.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;p_[xyz]&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;p_[xyz]&quot;</span><span class="p">))</span>
         <span class="c1"># ! may conflict with _labels.MOMENTA</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">rho2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Compute** quadratic sum of the 3-momenta.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p_xyz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p_xyz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p_xyz</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p_xyz</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">rho</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -323,7 +235,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mass2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Compute** the square of the invariant masses.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho2</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho2</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -332,8 +244,7 @@
 
 
 <div class="viewcode-block" id="append"><a class="viewcode-back" href="../../api/pycompwa.data.html#pycompwa.data.append">[docs]</a><span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="n">pwa_frame</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Append another `~pandas.DataFrame` to a `PWA DataFrame &lt;PwaAccessor&gt;`.</span>
+    <span class="sd">&quot;&quot;&quot;Append another `~pandas.DataFrame` to a `PWA DataFrame &lt;PwaAccessor&gt;`.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        pwa_frame: :class:`PWA DataFrame &lt;PwaAccessor&gt;` to which</span>
@@ -347,46 +258,35 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pwa_frame</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">exception</span><span class="o">.</span><span class="n">InvalidPwaFormat</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Cannot merge other DataFrame of length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2"> with a &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;PWA frame of length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pwa_frame</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s2">&quot;PWA frame of length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pwa_frame</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="n">pwa_frame</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">pwa_frame</span></div>
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
+    <p></p>
+  </div>
 
-    </p>
-  </div> 
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

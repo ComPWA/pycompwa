@@ -1,32 +1,16 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Step 1: Create an amplitude model &mdash; pycompwa  documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1: Create an amplitude model &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -36,42 +20,20 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Step 2: Generate data samples" href="2_generate_data.html" />
     <link rel="prev" title="ComPWA Workflow" href="../workflow.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html">
-          
-
-          
-            
-            <img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
-          
+            <a href="../../index.html"><img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,20 +41,9 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
     
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <p><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
@@ -115,87 +66,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
 </ul>
 
-            
-          
     <a href= "../../py-modindex.html">Module Index (API)</a>
     <a href= "../../genindex.html">General Index</a>
   
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">pycompwa</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../../usage.html">Usage</a> &raquo;</li>
-        
           <li><a href="../workflow.html">ComPWA Workflow</a> &raquo;</li>
-        
       <li>Step 1: Create an amplitude model</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            
-              <a href="https://github.com/ComPWA/pycompwa/blob/master/doc/source/usage/workflow/1_create_model.ipynb" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
+              <a href="https://github.com/ComPWA/pycompwa/blob/main/doc/source/usage/workflow/1_create_model.ipynb" class="fa fa-github"> Edit on GitHub</a>
       </li>
-    
-  </ul>
-
-  
-  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
-      
-        <a href="2_generate_data.html" class="btn btn-neutral float-right" title="Step 2: Generate data samples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../workflow.html" class="btn btn-neutral float-left" title="ComPWA Workflow" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../workflow.html" class="btn btn-neutral float-left" title="ComPWA Workflow" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_generate_data.html" class="btn btn-neutral float-right" title="Step 2: Generate data samples" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -439,19 +341,19 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/c06f47d7c7ea9d9f9ead93b1c0560fb5/1_create_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="Step-1:-Create-an-amplitude-model">
+<section id="Step-1:-Create-an-amplitude-model">
 <h1>Step 1: Create an amplitude model<a class="headerlink" href="#Step-1:-Create-an-amplitude-model" title="Permalink to this headline">¶</a></h1>
 <p>Your analysis starts by defining an amplitude model that describes the reaction process you want to study. Such a model is generally very complex and requires a fair amount of effort by the analyst (you). This also gives a lot of room for mistakes.</p>
 <p>To facilitate this process of defining an amplitude model, <code class="docutils literal notranslate"><span class="pre">pycompwa</span></code> comes with a so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Expert_system">‘expert system’</a>. Its responsibility is to give you advice on the form of an amplitude model based on the problem set you define (initial state, final state, allowed interactions, intermediate states, etc.). Internally, the system propagates the quantum numbers through the reaction graph while satisfying the specified conservation rules. How to control
 this procedure is explained in more detail below.</p>
 <p>Afterwards, the amplitude model of the expert system can be exported. The model can for instance be used to generate a data set (toy Monte Carlo) for this reaction and to optimize its parameters to resemble an actual data set as good as possible.</p>
-<div class="section" id="1.1.-Define-the-problem-set">
+<section id="1.1.-Define-the-problem-set">
 <h2>1.1. Define the problem set<a class="headerlink" href="#1.1.-Define-the-problem-set" title="Permalink to this headline">¶</a></h2>
 <p>We first define the boundary conditions of our physics problem, such as
 initial state, final state, formalism type, etc. and pass all of that
 information to the <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a>. This is the main user
 interface class of the ComPWA expert system.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -459,6 +361,26 @@ interface class of the ComPWA expert system.</p>
 <span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span> <span class="kn">import</span> <span class="n">StateTransitionManager</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2021-10-22 22:31:55,053 INFO [default] Logging to file disabled!
+2021-10-22 22:31:55,053 [INFO] Log level: INFO
+2021-10-22 22:31:55,053 [INFO] Current date and time: Fri Oct 22 22:31:55 2021
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/traitlets/traitlets.py:3050: FutureWarning: --rc={&#39;figure.dpi&#39;: 96} for dict-traits is deprecated in traitlets 5.0. You can pass --rc &lt;key=value&gt; ... multiple times to add items to a dict.
+  FutureWarning,
+</pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -468,9 +390,12 @@ interface class of the ComPWA expert system.</p>
 <span></span><span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;J/psi&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
 <span class="n">final_state</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;pi0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
 
-<span class="n">tbd_manager</span> <span class="o">=</span> <span class="n">StateTransitionManager</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span>
-                                     <span class="n">formalism_type</span><span class="o">=</span><span class="s1">&#39;helicity&#39;</span><span class="p">,</span>
-                                     <span class="n">topology_building</span><span class="o">=</span><span class="s1">&#39;isobar&#39;</span><span class="p">)</span>
+<span class="n">tbd_manager</span> <span class="o">=</span> <span class="n">StateTransitionManager</span><span class="p">(</span>
+    <span class="n">initial_state</span><span class="p">,</span>
+    <span class="n">final_state</span><span class="p">,</span>
+    <span class="n">formalism_type</span><span class="o">=</span><span class="s2">&quot;helicity&quot;</span><span class="p">,</span>
+    <span class="n">topology_building</span><span class="o">=</span><span class="s2">&quot;isobar&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -510,15 +435,15 @@ It simply uses a default particle list that is shipped with ComPWA (see
 and is handled by the <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#module-pycompwa.expertsystem.state.particle" title="pycompwa.expertsystem.state.particle"><code class="xref py py-mod docutils literal notranslate"><span class="pre">particle</span></code></a> module. For more info, see
 <a class="reference internal" href="../tools/particles.html"><span class="doc">Particle database</span></a>.</p>
 </div>
-</div>
-<div class="section" id="1.2.-Prepare-topologies">
+</section>
+<section id="1.2.-Prepare-topologies">
 <h2>1.2. Prepare topologies<a class="headerlink" href="#1.2.-Prepare-topologies" title="Permalink to this headline">¶</a></h2>
 <p>Create all topology graphs using the <strong>isobar model</strong> (tree of two-body decays) and initialize the graphs with the initial and final state. Remember that each interaction node defines its own set of conservation laws.</p>
 <p>The <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a> (STM) defines three interaction types:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 56%" />
-<col style="width: 44%" />
+<col style="width: 57%" />
+<col style="width: 43%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Interaction</p></th>
@@ -550,8 +475,8 @@ assigned to each graph and they are grouped according to this strength.</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="1.3.-Find-solutions">
+</section>
+<section id="1.3.-Find-solutions">
 <h2>1.3. Find solutions<a class="headerlink" href="#1.3.-Find-solutions" title="Permalink to this headline">¶</a></h2>
 <p>If you are happy with the default settings generated by the
 <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a>, just start with solving directly!</p>
@@ -566,7 +491,8 @@ assigned to each graph and they are grouped according to this strength.</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+    <span class="n">graph_interaction_settings_groups</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -577,14 +503,16 @@ assigned to each graph and they are grouped according to this strength.</p>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.topology.graph</span> <span class="kn">import</span> <span class="n">get_intermediate_state_edges</span>
 
+
 <span class="k">def</span> <span class="nf">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Just a little function to print the intermediate states.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intermediate states:&quot;</span><span class="p">)</span>
     <span class="n">intermediate_states</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">solutions</span><span class="p">:</span>
         <span class="n">edge_id</span> <span class="o">=</span> <span class="n">get_intermediate_state_edges</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">intermediate_states</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id</span><span class="p">][</span><span class="s1">&#39;@Name&#39;</span><span class="p">])</span>
+        <span class="n">intermediate_states</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">edge_props</span><span class="p">[</span><span class="n">edge_id</span><span class="p">][</span><span class="s2">&quot;@Name&quot;</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">intermediate_states</span><span class="p">)</span>
+
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">),</span> <span class="s2">&quot;solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -598,7 +526,7 @@ assigned to each graph and they are grouped according to this strength.</p>
 <div class="highlight"><pre>
 found 272 solutions!
 intermediate states:
-{&#39;f0(1500)&#39;, &#39;D1(2420)0&#39;, &#39;D*(2007)0bar&#39;, &#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;phi(1020)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;D*(2007)0&#39;, &#39;a2(1320)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;D*(2007)0&#39;, &#39;D*(2007)0bar&#39;, &#39;omega(782)&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;, &#39;a2(1320)0&#39;, &#39;D1(2420)0&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Now we have a lot of solutions that are actually heavily suppressed (they involve two weak decays).</p>
@@ -616,7 +544,8 @@ to globally choose the allowed interaction types.</p>
 <span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">([</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">])</span>
 <span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
 <span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+    <span class="n">graph_interaction_settings_groups</span>
+<span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">),</span> <span class="s2">&quot;solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -653,7 +582,7 @@ Using valid list instead.
 <div class="highlight"><pre>
 found 48 solutions!
 intermediate states:
-{&#39;f0(1500)&#39;, &#39;rho(770)0&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Huh, what happened here? Actually, since a <span class="math notranslate nohighlight">\(\gamma\)</span> particle appears in one of the interaction nodes, the expert system knows that this node <strong>must involve EM interactions</strong>! Because the node can be an effective interaction, the weak interaction cannot be excluded, as it contains only a subset of conservation laws.</p>
@@ -665,10 +594,12 @@ intermediate states:
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tbd_manager</span><span class="o">.</span><span class="n">set_allowed_interaction_types</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">])</span>
+    <span class="p">[</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">Strong</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">EM</span><span class="p">]</span>
+<span class="p">)</span>
 <span class="n">graph_interaction_settings_groups</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">prepare_graphs</span><span class="p">()</span>
 <span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+    <span class="n">graph_interaction_settings_groups</span>
+<span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">),</span> <span class="s2">&quot;solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -682,14 +613,14 @@ intermediate states:
 <div class="highlight"><pre>
 found 96 solutions!
 intermediate states:
-{&#39;f0(1500)&#39;, &#39;rho(770)0&#39;, &#39;a0(980)0&#39;, &#39;phi(1020)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;a2(1320)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;omega(782)&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;phi(1020)&#39;, &#39;a0(980)0&#39;, &#39;a2(1320)0&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Great! Now we selected only the strongest contributions. Be aware, though, that there are more effects that can suppress certain decays, like small branching ratios. In this example, the initial state <span class="math notranslate nohighlight">\(J/\Psi\)</span> can decay into <span class="math notranslate nohighlight">\(\pi^0 + \rho^0\)</span> or <span class="math notranslate nohighlight">\(\pi^0 + \omega\)</span>.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 30%" />
+<col style="width: 73%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>decay</p></th>
@@ -717,10 +648,11 @@ intermediate states:
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># particles are found by name comparison,</span>
 <span class="c1"># i.e. f2 will find all f2&#39;s and f all f&#39;s independent of their spin</span>
-<span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="n">tbd_manager</span><span class="o">.</span><span class="n">allowed_intermediate_particles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span>
 
 <span class="n">solutions</span><span class="p">,</span> <span class="n">violated_rules</span> <span class="o">=</span> <span class="n">tbd_manager</span><span class="o">.</span><span class="n">find_solutions</span><span class="p">(</span>
-    <span class="n">graph_interaction_settings_groups</span><span class="p">)</span>
+    <span class="n">graph_interaction_settings_groups</span>
+<span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; solutions!&quot;</span><span class="p">)</span>
 <span class="n">print_intermediate_states</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
@@ -733,13 +665,13 @@ intermediate states:
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;}
 WARNING:root:No intermediate state particles match the found 171 solutions!
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
-WARNING:root:No intermediate state particles match the found 171 solutions!WARNING:root:No intermediate state particles match the found 171 solutions!
-
-WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.0-&#39;, &#39;2.0+&#39;}
-
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;}
+WARNING:root:No intermediate state particles match the found 171 solutions!
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;}
+WARNING:root:No intermediate state particles match the found 171 solutions!
+WARNING:root:solution inter. state J^P: {&#39;1.0-&#39;, &#39;2.0+&#39;, &#39;1.0+&#39;, &#39;2.0-&#39;}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -749,7 +681,7 @@ WARNING:root:solution inter. state J^P: {&#39;1.0+&#39;, &#39;2.0-&#39;, &#39;1.
 <div class="highlight"><pre>
 found 32 solutions!
 intermediate states:
-{&#39;f0(1500)&#39;, &#39;f2(1270)&#39;, &#39;f0(980)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f0(1500)&#39;, &#39;f2(1950)&#39;}
 </pre></div></div>
 </div>
 <p>Now we have selected all amplitudes that involve <strong>f</strong> states. The warnings appear only to notify the user that the list of solutions is not exhaustive: for certain edges in the graph, no suitable particle was found (since only f states were allowed).</p>
@@ -759,12 +691,13 @@ intermediate states:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> \
-    <span class="n">HelicityAmplitudeGeneratorXML</span>
+<span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.amplitude.helicitydecay</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">xml_generator</span> <span class="o">=</span> <span class="n">HelicityAmplitudeGeneratorXML</span><span class="p">()</span>
 <span class="n">xml_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
-<span class="n">xml_generator</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s1">&#39;model.xml&#39;</span><span class="p">)</span>
+<span class="n">xml_generator</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s2">&quot;model.xml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -783,55 +716,37 @@ instead of
 <p>Note that you <strong>have to do both</strong>, because otherwise the resulting
 amplitude will not make sense!</p>
 </div>
-<p>Have a look through the sections of the resulting XML file to see what you recognize from the problem set defined above. There may also be some things you want to change in there manually, so <strong>make sure you store this XML file</strong> carefully (e.g. track it with Git) so that you don’t overwrite it your changed after rerunning the expert system.</p>
+<p>Have a look through the sections of the resulting XML file to see what you recognize from the problem set defined above. There may also be some things you want to change in there manually, so <strong>make sure you store this XML file</strong> carefully (e.g. track it with Git) so that you don’t overwrite it your changed after rerunning the expert system.</p>
 <p>In the next step, we’ll use this amplitude model to generate a data sample.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="2_generate_data.html" class="btn btn-neutral float-right" title="Step 2: Generate data samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../workflow.html" class="btn btn-neutral float-left" title="ComPWA Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../workflow.html" class="btn btn-neutral float-left" title="ComPWA Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_generate_data.html" class="btn btn-neutral float-right" title="Step 2: Generate data samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
+    <p></p>
+  </div>
 
-    </p>
-  </div> 
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
