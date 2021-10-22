@@ -20,7 +20,7 @@ What you definitely need to install, is:
 The following package are optional:
 
 * `ROOT <https://root.cern.ch/downloading-root>`_ and/or `Minuit2
-  <http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/>`_
+  <https://root.cern.ch/root/htmldoc/guides/minuit2/Minuit2.html>`_
 * `GSL <https://www.gnu.org/software/gsl/>`_
 * `Geneva <https://www.gemfony.eu/>`_
 

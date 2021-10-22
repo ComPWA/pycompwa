@@ -1,0 +1,107 @@
+name: pytest
+
+on:
+  push:
+    branches:
+      - main
+      - epic/*
+  pull_request:
+    branches:
+      - main
+      - epic/*
+
+jobs:
+  codecov:
+    name: Unit tests + coverage
+    env:
+      CXX: g++
+      OMP_NUM_THREADS: 1
+      LANG: en_US.UTF-8
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.7"
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install libboost-all-dev
+          python -m pip install --upgrade pip
+          pip install \
+            codecov \
+            scikit-build \
+            -r requirements.txt \
+            -r tests/requirements.txt
+      - name: Install CERN ROOT
+        run: |
+          wget https://root.cern.ch/download/root_v6.18.04.Linux-ubuntu18-x86_64-gcc7.4.tar.gz
+          tar xpvfz root_*.tar.gz > /dev/null 2>&1
+      - name: Build pycompwa
+        run: |
+          source ./root/bin/thisroot.sh
+          python3 setup.py install \
+            --generator "Unix Makefiles" \
+            --skip-generator-test \
+            -- -- -j2
+      - name: Test with pytest-cov
+        working-directory: tests
+        run: |
+          source ../root/bin/thisroot.sh
+          pytest --cov=pycompwa --cov-report=xml
+      - uses: codecov/codecov-action@v1
+        with:
+          file: tests/coverage.xml
+          flags: unittests
+
+  pytest:
+    name: Unit tests
+    env:
+      CXX: ${{ matrix.compiler }}
+      OMP_NUM_THREADS: 1
+      LANG: en_US.UTF-8
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-20.04
+        compiler:
+          - g++
+          # - clang  # does not work yet
+        python-version:
+          - "3.7"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install libboost-all-dev
+          python -m pip install --upgrade pip
+          pip install \
+            scikit-build \
+            -r requirements.txt \
+            -r tests/requirements.txt
+      - name: Install CERN ROOT
+        run: |
+          wget https://root.cern.ch/download/root_v6.18.04.Linux-ubuntu18-x86_64-gcc7.4.tar.gz
+          tar xpvfz root_*.tar.gz > /dev/null 2>&1
+      - name: Build pycompwa
+        run: |
+          source ./root/bin/thisroot.sh
+          python3 setup.py install \
+            --generator "Unix Makefiles" \
+            --skip-generator-test \
+            -- -- -j2
+      - name: Run unit tests and doctests with pytest
+        working-directory: tests
+        run: |
+          source ../root/bin/thisroot.sh
+          pytest

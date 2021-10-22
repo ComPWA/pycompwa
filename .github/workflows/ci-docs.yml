@@ -1,0 +1,62 @@
+name: CI-docs
+
+on:
+  push:
+    branches:
+      - main
+      - epic/*
+  pull_request:
+    branches:
+      - main
+      - epic/*
+
+jobs:
+  documentation:
+    name: Build documentation and run notebooks
+    runs-on: ubuntu-20.04
+    env:
+      CXX: g++
+      OMP_NUM_THREADS: 1
+      LANG: en_US.UTF-8
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.7"
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install libboost-all-dev pandoc
+          python -m pip install --upgrade pip
+          pip install \
+            scikit-build \
+            -r requirements.txt \
+            -r doc/requirements.txt
+      - name: Install CERN ROOT
+        run: |
+          wget https://root.cern.ch/download/root_v6.18.04.Linux-ubuntu18-x86_64-gcc7.4.tar.gz
+          tar xpvfz root_*.tar.gz > /dev/null 2>&1
+      - name: Build pycompwa
+        run: |
+          source ./root/bin/thisroot.sh
+          python3 setup.py install \
+            --generator "Unix Makefiles" \
+            --skip-generator-test \
+            -- -- -j2
+      - name: Build documentation and run notebooks
+        working-directory: doc
+        env:
+          EXECUTE_NB: YES
+        run: |
+          source ../root/bin/thisroot.sh
+          make html
+      - name: Deploy 🚀
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          folder: doc/build/html
+          repository-name: ComPWA/ComPWA.github.io
+          branch: main
+          token: ${{ secrets.PAT }}

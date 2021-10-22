@@ -1,4 +1,4 @@
-import uproot
+import uproot3
 
 
 def open_compwa_plot_data(input_file_path):
@@ -7,7 +7,7 @@ def open_compwa_plot_data(input_file_path):
     pd = PlotData()
 
     # open file
-    file = uproot.open(input_file_path)
+    file = uproot3.open(input_file_path)
     trees = file.keys()
 
     file = file.get("final_state_id_to_name_mapping")
@@ -31,7 +31,7 @@ def load_ttree(filename, treename, branchnames=None):
     branches are read."""
     import numpy as np
 
-    tree = uproot.open(filename)[treename]
+    tree = uproot3.open(filename)[treename]
 
     if not branchnames:
         branchnames = tree.keys()

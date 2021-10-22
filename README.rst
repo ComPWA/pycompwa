@@ -1,7 +1,7 @@
-.. image:: https://travis-ci.com/ComPWA/pycompwa.svg?branch=main
-   :target: https://travis-ci.com/ComPWA/pycompwa
+.. image:: https://github.com/ComPWA/pycompwa/actions/workflows/ci-tests.yml/badge.svg
+   :target: https://github.com/ComPWA/pycompwa/actions/workflows/ci-tests.yml
 .. image:: https://codecov.io/gh/ComPWA/pycompwa/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/ComPWA/pycompwa
+   :target: https://codecov.io/gh/ComPWA/pycompwa
 .. image:: https://zenodo.org/badge/212384131.svg
    :target: https://zenodo.org/badge/latestdoi/212384131
 .. image:: https://badge.fury.io/py/pycompwa.svg

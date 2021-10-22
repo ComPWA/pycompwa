@@ -1,6 +1,7 @@
+awkward0
 matplotlib
 numpy
 pandas
 progress
-uproot
+uproot3
 xmltodict

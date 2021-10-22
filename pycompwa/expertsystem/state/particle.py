@@ -259,8 +259,11 @@ def load_particle_list_from_xml(file_path):
     file ``particle_list.xml`` located in the ComPWA module. Use
     `.load_particle_list_from_xml` to append to the ``particle_list``.
 
-    .. note:: If a particle name in the loaded XML file already exists in the
-    ``particle_list``, the one in the ``particle_list`` will be overwritten.
+    .. note::
+
+        If a particle name in the loaded XML file already exists in the
+        ``particle_list``, the one in the ``particle_list`` will be
+        overwritten.
     """
     name_label = get_xml_label(XMLLabelConstants.Name)
     with open(file_path, "rb") as xmlfile:

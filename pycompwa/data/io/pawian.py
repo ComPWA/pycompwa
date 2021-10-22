@@ -15,7 +15,7 @@ __all__ = [
 
 
 import pandas as pd
-import uproot
+import uproot3
 
 import pycompwa.ui as pwa
 from pycompwa.data import _labels, convert, create, exception
@@ -45,7 +45,7 @@ def read_hists_file(filename: str, type_name: str = "data"):
     tree_name = f"_{type_name}Fourvecs"
 
     # Get particle names
-    uproot_file = uproot.open(filename)
+    uproot_file = uproot3.open(filename)
     tree = uproot_file[tree_name]
     particles = [
         particle.decode()

@@ -1,20 +1,17 @@
 codecov:
-  require_ci_to_pass: yes
+  require_ci_to_pass: true
 
 coverage:
   precision: 2
   round: down
-  # everything above 75% will be good (green)
   range: "75...100"
 
   status:
     project:
       default:
-        # basic
-        target: 75% # can't go below 75%
-        threshold: 3% # allow drops by 3%
+        target: 75%
+        threshold: 3%
         base: auto
-        # advanced
         branches: null
         if_no_uploads: error
         if_not_found: success
@@ -24,11 +21,9 @@ coverage:
         paths: null
     patch:
       default:
-        # basic
         target: 0
         threshold: 0
         base: auto
-        # advanced
         branches: null
         if_no_uploads: error
         if_not_found: success
@@ -36,7 +31,7 @@ coverage:
         only_pulls: false
         flags: null
         paths: null
-    changes: no
+    changes: false
 
 parsers:
   gcov:
@@ -46,7 +41,4 @@ parsers:
       method: no
       macro: no
 
-comment:
-  layout: "reach,diff,flags,tree"
-  behavior: default
-  require_changes: no
+comment: false

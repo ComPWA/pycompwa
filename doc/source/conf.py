@@ -131,7 +131,7 @@ linkcheck_ignore = [
 ]
 
 # Settings for nbsphinx
-if "NBSPHINX_EXECUTE" in os.environ:
+if "EXECUTE_NB" in os.environ:
     nbsphinx_execute = "always"
 else:
     nbsphinx_execute = "never"

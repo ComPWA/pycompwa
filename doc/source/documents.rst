@@ -52,8 +52,8 @@ Poster
 Theses
 ------
 
-.. _michelthesis: https://publications.ub.uni-mainz.de/theses/frontdoor.php?source_opus=100000599&la=de
-.. _weidenkaffthesis: https://publications.ub.uni-mainz.de/theses/frontdoor.php?source_opus=100000936&la=de
+.. _michelthesis: http://nbn-resolving.org/urn:nbn:de:hebis:77-diss-1000005992
+.. _weidenkaffthesis: https://openscience.ub.uni-mainz.de/handle/20.500.12030/2783
 .. _pfluegerthesis: https://hss-opus.ub.ruhr-uni-bochum.de/opus4/frontdoor/index/index/docId/5614
 
 +------------------+-------------------------------------------------------+------------+------+

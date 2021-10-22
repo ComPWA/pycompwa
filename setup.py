@@ -63,7 +63,7 @@ setup(
         "matplotlib>=2.2.2",
         "numpy>=1.14.5",
         "progress>1.3",
-        "uproot",
+        "uproot3",
         "xmltodict>=0.11.0",
     ],
 )

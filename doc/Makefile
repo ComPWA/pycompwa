@@ -1,12 +1,17 @@
 # Minimal makefile for Sphinx documentation
 #
 
-# You can set these variables from the command line.
-SPHINXOPTS    = -T -W --keep-going
-SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = pycompwa
+# You can set these variables from the command line, and also
+# from the environment for the first two.
+SPHINXOPTS    ?= -T --color
+SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+
+ifdef ignore-warnings
+else
+	SPHINXOPTS += -W --keep-going
+endif
 
 # Put it first so that "make" without argument is like "make help".
 help:

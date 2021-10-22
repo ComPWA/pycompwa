@@ -11,28 +11,34 @@ from pycompwa.expertsystem.ui.system_control import (
     StateTransitionManager,
 )
 
-logging.basicConfig(level=logging.INFO)
 
-# initialize the graph edges (initial and final state)
-initial_state = [("J/psi", [1])]
-final_state = [("pi0", [0]), ("pi+", [0]), ("pi-", [0])]
+def main():
+    logging.basicConfig(level=logging.INFO)
 
-tbd_manager = StateTransitionManager(initial_state, final_state, ["rho"])
-# tbd_manager.number_of_threads = 1
-tbd_manager.add_final_state_grouping(["pi+", "pi-"])
-tbd_manager.set_allowed_interaction_types([InteractionTypes.EM])
-graph_interaction_settings_groups = tbd_manager.prepare_graphs()
+    # initialize the graph edges (initial and final state)
+    initial_state = [("J/psi", [1])]
+    final_state = [("pi0", [0]), ("pi+", [0]), ("pi-", [0])]
 
-(solutions, violated_rules) = tbd_manager.find_solutions(
-    graph_interaction_settings_groups
-)
+    tbd_manager = StateTransitionManager(initial_state, final_state, ["rho"])
+    # tbd_manager.number_of_threads = 1
+    tbd_manager.add_final_state_grouping(["pi+", "pi-"])
+    tbd_manager.set_allowed_interaction_types([InteractionTypes.EM])
+    graph_interaction_settings_groups = tbd_manager.prepare_graphs()
 
-print("found " + str(len(solutions)) + " solutions!")
+    (solutions, vGiolated_rules) = tbd_manager.find_solutions(
+        graph_interaction_settings_groups
+    )
 
-print("intermediate states:")
-for g in solutions:
-    print(g.edge_props[1]["@Name"])
+    print("found " + str(len(solutions)) + " solutions!")
 
-xml_generator = HelicityDecayAmplitudeGeneratorXML()
-xml_generator.generate(solutions)
-xml_generator.write_to_file("test.xml")
+    print("intermediate states:")
+    for g in solutions:
+        print(g.edge_props[1]["@Name"])
+
+    xml_generator = HelicityDecayAmplitudeGeneratorXML()
+    xml_generator.generate(solutions)
+    xml_generator.write_to_file("test.xml")
+
+
+if __name__ == "__main__":
+    main()

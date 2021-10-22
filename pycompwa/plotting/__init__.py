@@ -1,6 +1,7 @@
-""".. deprecated:: Will be migrated to `pandas.DataFrame.
+"""Plotting module.
 
-<https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`_
+.. deprecated:: Will be migrated to `pandas.DataFrame.
+    <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`_
 """
 
 import copy
