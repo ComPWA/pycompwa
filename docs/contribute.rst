@@ -11,7 +11,7 @@ Python developer tools
 ^^^^^^^^^^^^^^^^^^^^^^
 
 For contributing to pycompwa, we recommend you also install the packages listed
-under :download:`requirements-dev.txt <../../requirements-dev.txt>`. In the
+under :download:`requirements-dev.txt <../requirements-dev.txt>`. In the
 Conda environment you created for pycompwa:
 
 .. code-block:: shell
@@ -254,8 +254,8 @@ navigate to the pycompwa repository, then do:
 
 .. code-block:: shell
 
-  cd doc
+  cd docs
   conda install --file requirements.txt
   make html
 
-Now, open the file ``doc/source/_build/html/index.html``.
+Now, open the file ``docs/_build/html/index.html``.

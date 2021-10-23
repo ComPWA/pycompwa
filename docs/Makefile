@@ -5,8 +5,8 @@
 # from the environment for the first two.
 SPHINXOPTS    ?= -T --color
 SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = source
-BUILDDIR      = build
+SOURCEDIR     = .
+BUILDDIR      = _build
 
 ifdef ignore-warnings
 else

@@ -76,9 +76,9 @@ The most important binary build file is the shared library for the
 
 .. code-block:: shell
 
-  cd ../pycompwa
+  cd ../src/pycompwa
   rm -f ui.*.so  # in case you already created a symlink
-  ln -s ../build/ui.*.so
+  ln -s ../../build/ui.*.so
 
 
 Test the installation

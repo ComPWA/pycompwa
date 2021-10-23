@@ -7,6 +7,7 @@ MANIFEST
 
 # Build files
 *.egg-info/
+*.so
 *build/
 .eggs/
 .fuse_*
@@ -28,12 +29,6 @@ prof/
 # Python virtual environments
 .tox/
 *venv/
-
-# Build files
-_skbuild/
-build/
-dist/
-*.so
 
 # Visual Studio Code
 /.vscode/c_cpp_properties.json

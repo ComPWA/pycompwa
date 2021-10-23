@@ -34,7 +34,7 @@ jobs:
           pip install \
             scikit-build \
             -r requirements.txt \
-            -r doc/requirements.txt
+            -r docs/requirements.txt
       - name: Install CERN ROOT
         run: |
           wget https://root.cern.ch/download/root_v6.18.04.Linux-ubuntu18-x86_64-gcc7.4.tar.gz
@@ -47,7 +47,7 @@ jobs:
             --skip-generator-test \
             -- -- -j2
       - name: Check external links
-        working-directory: doc
+        working-directory: docs
         run: |
           source ../root/bin/thisroot.sh
           make ignore-warnings=1 linkcheck

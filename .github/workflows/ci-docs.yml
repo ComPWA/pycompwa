@@ -33,7 +33,7 @@ jobs:
           pip install \
             scikit-build \
             -r requirements.txt \
-            -r doc/requirements.txt
+            -r docs/requirements.txt
       - name: Install CERN ROOT
         run: |
           wget https://root.cern.ch/download/root_v6.18.04.Linux-ubuntu18-x86_64-gcc7.4.tar.gz
@@ -46,7 +46,7 @@ jobs:
             --skip-generator-test \
             -- -- -j2
       - name: Build documentation and run notebooks
-        working-directory: doc
+        working-directory: docs
         env:
           EXECUTE_NB: YES
         run: |
@@ -56,7 +56,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          folder: doc/build/html
+          folder: docs/_build/html
           repository-name: ComPWA/ComPWA.github.io
           branch: main
           token: ${{ secrets.PAT }}

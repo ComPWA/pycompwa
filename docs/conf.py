@@ -26,7 +26,7 @@ import subprocess
 
 # -- Copy example notebooks ---------------------------------------------------
 print("Copy example notebook files")
-PATH_SOURCE = "../../examples"
+PATH_SOURCE = "../examples"
 PATH_TARGET = "usage"
 EXAMPLE_FOLDERS_TO_COPY = [
     "tools",
@@ -67,9 +67,9 @@ subprocess.call(
     "--no-toc "
     "--templatedir _templates "
     "--separate "
-    "-o api/ ../../src/pycompwa/ "
-    "../../src/pycompwa/expertsystem/solvers/constraint "
-    "../../src/pycompwa/ui.*.so; "
+    "-o api/ ../src/pycompwa/ "
+    "../src/pycompwa/expertsystem/solvers/constraint "
+    "../src/pycompwa/ui.*.so; "
     "cp api/pycompwa_overwrite api/pycompwa.rst",
     shell=True,
 )
@@ -220,7 +220,7 @@ html_theme_options = {
     "titles_only": False,
 }
 
-html_logo = "../../src/ComPWA/doc/images/logo-small.png"
+html_logo = "../src/ComPWA/doc/images/logo-small.png"
 
 html_copy_source = False  # do not copy rst files
 
@@ -232,7 +232,7 @@ html_context = {
     "display_github": True,
     "github_user": "ComPWA",
     "github_repo": "pycompwa",
-    "github_version": "main/doc/source/",
+    "github_version": "main/docs",
 }
 
 # Custom sidebar templates, must be a dictionary that maps document names
