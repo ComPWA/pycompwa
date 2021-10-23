@@ -1,15 +1,19 @@
 -r docs/requirements.txt
 -r tests/requirements.txt
+
+aquirdturtle-collapsible-headings
 black
-flake8==3.7.9
+flake8 >=4  # extend-select
 flake8-blind-except
 flake8-builtins
 flake8-docstrings
 flake8-import-order
 flake8-rst-docstrings
 isort
-jupyter_contrib_nbextensions
+jupyterlab
+jupyterlab-code-formatter
 pep8-naming
-pre-commit
-pylint==2.4.4
-tox
+pre-commit >= 1.4.0
+pylint >= 2.5  # good-names-rgxs
+sphinx-autobuild
+tox >= 1.9  # for skip_install, use_develop

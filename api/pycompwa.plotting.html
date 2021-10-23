@@ -1,270 +1,739 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>plotting &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script src="../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>plotting &#8212; pycompwa</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="rootplotdatareader" href="pycompwa.plotting.rootplotdatareader.html" />
-    <link rel="prev" title="system_control" href="pycompwa.expertsystem.ui.system_control.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../index.html"><img src="../_static/logo-small.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <link rel="prev" title="system_control" href="pycompwa.expertsystem.ui.system_control.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-              <p><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo-small.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">pycompwa</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../installation.html">
+   Installation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/get-the-source-code.html">
+     Get the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/virtual-environment.html">
+     Create a virtual environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/build.html">
+     Build and install
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../usage.html">
+   Usage
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/workflow.html">
+     ComPWA Workflow
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+       Step 1: Create an amplitude model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+       Step 2: Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+       Step 3: Perform fit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+       Step 4: Analyze results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/tools.html">
+     Additional Tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/data_module.html">
+       Data module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/generate.html">
+       Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/particles.html">
+       Particle database
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documents.html">
+   Talks and Documents
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pycompwa.html">
+   API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.data.html">
+     data
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.data.io.html">
+       io
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.data.io.pawian.html">
+         pawian
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.convert.html">
+       convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.create.html">
+       create
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.exception.html">
+       exception
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.naming.html">
+       naming
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.expertsystem.html">
+     expertsystem
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.amplitude.html">
+       amplitude
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.abstractgenerator.html">
+         abstractgenerator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.canonicaldecay.html">
+         canonicaldecay
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html">
+         helicitydecay
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.expertsystem.solvers.html">
+       solvers
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.state.html">
+       state
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.conservationrules.html">
+         conservationrules
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.particle.html">
+         particle
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.propagation.html">
+         propagation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.topology.html">
+       topology
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html">
+         graph
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.topologybuilder.html">
+         topologybuilder
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.ui.html">
+       ui
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.default_settings.html">
+         default_settings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.system_control.html">
+         system_control
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
+     plotting
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.plotting.rootplotdatareader.html">
+       rootplotdatareader
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pycompwa.ui.html">
+     ui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Related projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://qrules.readthedocs.io">
+   QRules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ampform.readthedocs.io">
+   AmpForm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://tensorwaves.readthedocs.io">
+   TensorWaves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pwa.readthedocs.io">
+   PWA Pages
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  ComPWA Organization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io">
+   Website
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ComPWA">
+   GitHub Repositories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io/en/stable/about.html">
+   About
+  </a>
+ </li>
 </ul>
 
-    <a href= "../py-modindex.html">Module Index (API)</a>
-    <a href= "../genindex.html">General Index</a>
-  
-        </div>
-      </div>
-    </nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">pycompwa</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../api.html">API</a> &raquo;</li>
-          <li><a href="pycompwa.html">pycompwa</a> &raquo;</li>
-      <li>plotting</li>
-      <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsapi/pycompwa.plotting.rst" class="fa fa-github"> Edit on GitHub</a>
-      </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="pycompwa.expertsystem.ui.system_control.html" class="btn btn-neutral float-left" title="system_control" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.plotting.rootplotdatareader.html" class="btn btn-neutral float-right" title="rootplotdatareader" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
-  <hr/>
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+</div>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+          
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="plotting">
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/pycompwa.plotting.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ComPWA/pycompwa"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fapi/pycompwa.plotting.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/api/pycompwa.plotting.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="plotting">
 <h1>plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.plotting</span>
+</pre></div>
+</div>
+<span class="target" id="module-pycompwa.plotting"></span><p>Plotting module.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version Will: </span>be migrated to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame.</a></p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.plotting.Dimension">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_field_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#Dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.Dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.plotting.Histogram">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_contents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">mpl_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#Histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.Histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.plotting.PlotData">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">PlotData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_record</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([],</span> <span class="pre">dtype=float64)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_result_data_record</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([],</span> <span class="pre">dtype=float64)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#PlotData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.PlotData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.change_theta_to_cosine">
+<span class="sig-name descname"><span class="pre">change_theta_to_cosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datarecord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cosine_theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#change_theta_to_cosine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.change_theta_to_cosine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.chisquare">
+<span class="sig-name descname"><span class="pre">chisquare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#chisquare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.chisquare" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.chisquare_test">
+<span class="sig-name descname"><span class="pre">chisquare_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histogram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#chisquare_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.chisquare_test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.correct_phi_range">
+<span class="sig-name descname"><span class="pre">correct_phi_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#correct_phi_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.correct_phi_range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.create_axis_title">
+<span class="sig-name descname"><span class="pre">create_axis_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_axis_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.create_axis_title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.create_data_values">
+<span class="sig-name descname"><span class="pre">create_data_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datarecord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cosine_theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_data_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.create_data_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.create_nprecord">
+<span class="sig-name descname"><span class="pre">create_nprecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_nprecord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.create_nprecord" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.function_to_histogram">
+<span class="sig-name descname"><span class="pre">function_to_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#function_to_histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.function_to_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.integrate_row_of_bins">
+<span class="sig-name descname"><span class="pre">integrate_row_of_bins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integration_ranges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#integrate_row_of_bins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.integrate_row_of_bins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.make_binned_distributions">
+<span class="sig-name descname"><span class="pre">make_binned_distributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cosine_theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_binned_distributions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.make_binned_distributions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.make_comparison_plot_1d">
+<span class="sig-name descname"><span class="pre">make_comparison_plot_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_comparison_plot_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.make_comparison_plot_1d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.make_dalitz_plots">
+<span class="sig-name descname"><span class="pre">make_dalitz_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_dalitz_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.make_dalitz_plots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.make_difference_plot_2d">
+<span class="sig-name descname"><span class="pre">make_difference_plot_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_difference_plot_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.make_difference_plot_2d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.make_histogram">
+<span class="sig-name descname"><span class="pre">make_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.make_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.plot_distribution_2d">
+<span class="sig-name descname"><span class="pre">plot_distribution_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histogram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_difference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zaxis_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_distribution_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.plot_distribution_2d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.plot_distributions_1d">
+<span class="sig-name descname"><span class="pre">plot_distributions_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histograms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_bin_centers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_distributions_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.plot_distributions_1d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.plot_histogram_difference_2d">
+<span class="sig-name descname"><span class="pre">plot_histogram_difference_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histograms</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_histogram_difference_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.plot_histogram_difference_2d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.replace_particle_ids_with_name">
+<span class="sig-name descname"><span class="pre">replace_particle_ids_with_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#replace_particle_ids_with_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.replace_particle_ids_with_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.plotting.scale_to_other_histogram">
+<span class="sig-name descname"><span class="pre">scale_to_other_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histogram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram_reference</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#scale_to_other_histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.plotting.scale_to_other_histogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Submodules and Subpackages</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pycompwa.plotting.rootplotdatareader.html">rootplotdatareader</a></li>
 </ul>
 </div>
-</section>
-<section id="module-pycompwa.plotting">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycompwa.plotting" title="Permalink to this headline">¶</a></h2>
-<p>Plotting module.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version Will: </span>be migrated to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame.</a></p>
 </div>
-<dl class="class">
-<dt id="pycompwa.plotting.Dimension">
-<em class="property">class </em><code class="sig-name descname">Dimension</code><span class="sig-paren">(</span><em class="sig-param">field_name</em>, <em class="sig-param">binary_operator=None</em>, <em class="sig-param">secondary_field_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#Dimension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.Dimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.plotting.Histogram">
-<em class="property">class </em><code class="sig-name descname">Histogram</code><span class="sig-paren">(</span><em class="sig-param">dimensions</em>, <em class="sig-param">bin_edges</em>, <em class="sig-param">bin_contents</em>, <em class="sig-param">bin_errors=None</em>, <em class="sig-param">**mpl_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#Histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.Histogram" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd></dl>
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ComPWA/pycompwa",
+            ref: "stable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
-<dl class="class">
-<dt id="pycompwa.plotting.PlotData">
-<em class="property">class </em><code class="sig-name descname">PlotData</code><span class="sig-paren">(</span><em class="sig-param">data_record=array([]</em>, <em class="sig-param">dtype=float64)</em>, <em class="sig-param">fit_result_data_record=array([]</em>, <em class="sig-param">dtype=float64)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#PlotData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.PlotData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.change_theta_to_cosine">
-<code class="sig-name descname">change_theta_to_cosine</code><span class="sig-paren">(</span><em class="sig-param">datarecord</em>, <em class="sig-param">column_name</em>, <em class="sig-param">use_cosine_theta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#change_theta_to_cosine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.change_theta_to_cosine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.chisquare">
-<code class="sig-name descname">chisquare</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">errors</em>, <em class="sig-param">expected</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#chisquare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.chisquare" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.chisquare_test">
-<code class="sig-name descname">chisquare_test</code><span class="sig-paren">(</span><em class="sig-param">histogram</em>, <em class="sig-param">func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#chisquare_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.chisquare_test" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.correct_phi_range">
-<code class="sig-name descname">correct_phi_range</code><span class="sig-paren">(</span><em class="sig-param">phi</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#correct_phi_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.correct_phi_range" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.create_axis_title">
-<code class="sig-name descname">create_axis_title</code><span class="sig-paren">(</span><em class="sig-param">dimension</em>, <em class="sig-param">plot_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_axis_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.create_axis_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.create_data_values">
-<code class="sig-name descname">create_data_values</code><span class="sig-paren">(</span><em class="sig-param">datarecord</em>, <em class="sig-param">dimensions</em>, <em class="sig-param">use_cosine_theta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_data_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.create_data_values" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.create_nprecord">
-<code class="sig-name descname">create_nprecord</code><span class="sig-paren">(</span><em class="sig-param">column_names</em>, <em class="sig-param">data_array</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#create_nprecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.create_nprecord" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.function_to_histogram">
-<code class="sig-name descname">function_to_histogram</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">histogram</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#function_to_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.function_to_histogram" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.integrate_row_of_bins">
-<code class="sig-name descname">integrate_row_of_bins</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">integration_ranges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#integrate_row_of_bins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.integrate_row_of_bins" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.make_binned_distributions">
-<code class="sig-name descname">make_binned_distributions</code><span class="sig-paren">(</span><em class="sig-param">plot_data</em>, <em class="sig-param">dimensions_list</em>, <em class="sig-param">number_of_bins=50</em>, <em class="sig-param">use_cosine_theta=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_binned_distributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.make_binned_distributions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.make_comparison_plot_1d">
-<code class="sig-name descname">make_comparison_plot_1d</code><span class="sig-paren">(</span><em class="sig-param">plot_data</em>, <em class="sig-param">column_names</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_comparison_plot_1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.make_comparison_plot_1d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.make_dalitz_plots">
-<code class="sig-name descname">make_dalitz_plots</code><span class="sig-paren">(</span><em class="sig-param">plot_data</em>, <em class="sig-param">var_names</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_dalitz_plots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.make_dalitz_plots" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.make_difference_plot_2d">
-<code class="sig-name descname">make_difference_plot_2d</code><span class="sig-paren">(</span><em class="sig-param">plot_data</em>, <em class="sig-param">var_names</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_difference_plot_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.make_difference_plot_2d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.make_histogram">
-<code class="sig-name descname">make_histogram</code><span class="sig-paren">(</span><em class="sig-param">dimensions</em>, <em class="sig-param">values</em>, <em class="sig-param">weights</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#make_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.make_histogram" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.plot_distribution_2d">
-<code class="sig-name descname">plot_distribution_2d</code><span class="sig-paren">(</span><em class="sig-param">histogram</em>, <em class="sig-param">is_difference=False</em>, <em class="sig-param">zaxis_label=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_distribution_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.plot_distribution_2d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.plot_distributions_1d">
-<code class="sig-name descname">plot_distributions_1d</code><span class="sig-paren">(</span><em class="sig-param">histograms</em>, <em class="sig-param">use_bin_centers=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_distributions_1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.plot_distributions_1d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.plot_histogram_difference_2d">
-<code class="sig-name descname">plot_histogram_difference_2d</code><span class="sig-paren">(</span><em class="sig-param">histograms</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#plot_histogram_difference_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.plot_histogram_difference_2d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.replace_particle_ids_with_name">
-<code class="sig-name descname">replace_particle_ids_with_name</code><span class="sig-paren">(</span><em class="sig-param">column_name</em>, <em class="sig-param">plot_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#replace_particle_ids_with_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.replace_particle_ids_with_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pycompwa.plotting.scale_to_other_histogram">
-<code class="sig-name descname">scale_to_other_histogram</code><span class="sig-paren">(</span><em class="sig-param">histogram</em>, <em class="sig-param">histogram_reference</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/plotting.html#scale_to_other_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.plotting.scale_to_other_histogram" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</section>
-</section>
+              </div>
+              
+        
+            
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycompwa.expertsystem.ui.system_control.html" class="btn btn-neutral float-left" title="system_control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.plotting.rootplotdatareader.html" class="btn btn-neutral float-right" title="rootplotdatareader" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pycompwa.expertsystem.ui.system_control.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">system_control</p>
+            </div>
+        </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="pycompwa.plotting.rootplotdatareader.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">rootplotdatareader</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-   
-
-</footer>
+</div>
+        
         </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Common Partial Wave Analysis<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
 
-</body>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
 </html>

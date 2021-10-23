@@ -1,275 +1,705 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>system_control &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script src="../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>system_control &#8212; pycompwa</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="plotting" href="pycompwa.plotting.html" />
-    <link rel="prev" title="default_settings" href="pycompwa.expertsystem.ui.default_settings.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../index.html"><img src="../_static/logo-small.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <link rel="prev" title="default_settings" href="pycompwa.expertsystem.ui.default_settings.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-              <p><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo-small.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">pycompwa</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../installation.html">
+   Installation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/get-the-source-code.html">
+     Get the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/virtual-environment.html">
+     Create a virtual environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/build.html">
+     Build and install
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../usage.html">
+   Usage
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/workflow.html">
+     ComPWA Workflow
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+       Step 1: Create an amplitude model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+       Step 2: Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+       Step 3: Perform fit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+       Step 4: Analyze results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/tools.html">
+     Additional Tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/data_module.html">
+       Data module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/generate.html">
+       Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/particles.html">
+       Particle database
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documents.html">
+   Talks and Documents
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pycompwa.html">
+   API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.data.html">
+     data
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.data.io.html">
+       io
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.data.io.pawian.html">
+         pawian
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.convert.html">
+       convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.create.html">
+       create
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.exception.html">
+       exception
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.naming.html">
+       naming
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pycompwa.expertsystem.html">
+     expertsystem
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.amplitude.html">
+       amplitude
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.abstractgenerator.html">
+         abstractgenerator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.canonicaldecay.html">
+         canonicaldecay
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html">
+         helicitydecay
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.expertsystem.solvers.html">
+       solvers
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.state.html">
+       state
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.conservationrules.html">
+         conservationrules
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.particle.html">
+         particle
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.propagation.html">
+         propagation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.topology.html">
+       topology
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html">
+         graph
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.topologybuilder.html">
+         topologybuilder
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.ui.html">
+       ui
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.default_settings.html">
+         default_settings
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         system_control
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.plotting.html">
+     plotting
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.plotting.rootplotdatareader.html">
+       rootplotdatareader
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pycompwa.ui.html">
+     ui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Related projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://qrules.readthedocs.io">
+   QRules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ampform.readthedocs.io">
+   AmpForm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://tensorwaves.readthedocs.io">
+   TensorWaves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pwa.readthedocs.io">
+   PWA Pages
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  ComPWA Organization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io">
+   Website
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ComPWA">
+   GitHub Repositories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io/en/stable/about.html">
+   About
+  </a>
+ </li>
 </ul>
 
-    <a href= "../py-modindex.html">Module Index (API)</a>
-    <a href= "../genindex.html">General Index</a>
-  
-        </div>
-      </div>
-    </nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">pycompwa</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../api.html">API</a> &raquo;</li>
-          <li><a href="pycompwa.html">pycompwa</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.html">expertsystem</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.ui.html">ui</a> &raquo;</li>
-      <li>system_control</li>
-      <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsapi/pycompwa.expertsystem.ui.system_control.rst" class="fa fa-github"> Edit on GitHub</a>
-      </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="pycompwa.expertsystem.ui.default_settings.html" class="btn btn-neutral float-left" title="default_settings" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.plotting.html" class="btn btn-neutral float-right" title="plotting" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
-  <hr/>
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+</div>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+          
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="module-pycompwa.expertsystem.ui.system_control">
-<span id="system-control"></span><h1>system_control<a class="headerlink" href="#module-pycompwa.expertsystem.ui.system_control" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="pycompwa.expertsystem.ui.system_control.GammaCheck">
-<em class="property">class </em><code class="sig-name descname">GammaCheck</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#GammaCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck" title="Permalink to this definition">¶</a></dt>
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/pycompwa.expertsystem.ui.system_control.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ComPWA/pycompwa"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fapi/pycompwa.expertsystem.ui.system_control.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/api/pycompwa.expertsystem.ui.system_control.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="system-control">
+<h1>system_control<a class="headerlink" href="#system-control" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.expertsystem.ui.system_control</span>
+</pre></div>
+</div>
+<span class="target" id="module-pycompwa.expertsystem.ui.system_control"></span><dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.GammaCheck">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GammaCheck</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#GammaCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface" title="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.GammaCheck.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">in_edge_props</em>, <em class="sig-param">out_edge_props</em>, <em class="sig-param">node_props</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#GammaCheck.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.GammaCheck.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#GammaCheck.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.ui.system_control.GammaCheck.name_label">
-<code class="sig-name descname">name_label</code><em class="property"> = '&#64;Name'</em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck.name_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.GammaCheck.name_label">
+<span class="sig-name descname"><span class="pre">name_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Name'</span></em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.GammaCheck.name_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface">
-<em class="property">class </em><code class="sig-name descname">InteractionDeterminationFunctorInterface</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#InteractionDeterminationFunctorInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">InteractionDeterminationFunctorInterface</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#InteractionDeterminationFunctorInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check">
-<em class="property">abstract </em><code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">in_edge_props</em>, <em class="sig-param">out_edge_props</em>, <em class="sig-param">node_props</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#InteractionDeterminationFunctorInterface.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#InteractionDeterminationFunctorInterface.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.ui.system_control.LeptonCheck">
-<em class="property">class </em><code class="sig-name descname">LeptonCheck</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#LeptonCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.LeptonCheck">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">LeptonCheck</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#LeptonCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface" title="pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.ui.system_control.InteractionDeterminationFunctorInterface</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.LeptonCheck.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">in_edge_props</em>, <em class="sig-param">out_edge_props</em>, <em class="sig-param">node_props</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#LeptonCheck.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.LeptonCheck.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edge_props</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#LeptonCheck.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.ui.system_control.LeptonCheck.lepton_flavour_labels">
-<code class="sig-name descname">lepton_flavour_labels</code><em class="property"> = [&lt;StateQuantumNumberNames.ElectronLN: 12&gt;, &lt;StateQuantumNumberNames.MuonLN: 13&gt;, &lt;StateQuantumNumberNames.TauLN: 14&gt;]</em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.lepton_flavour_labels" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.LeptonCheck.lepton_flavor_labels">
+<span class="sig-name descname"><span class="pre">lepton_flavor_labels</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[&lt;StateQuantumNumberNames.ElectronLN:</span> <span class="pre">12&gt;,</span> <span class="pre">&lt;StateQuantumNumberNames.MuonLN:</span> <span class="pre">13&gt;,</span> <span class="pre">&lt;StateQuantumNumberNames.TauLN:</span> <span class="pre">14&gt;]</span></em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.lepton_flavor_labels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.ui.system_control.LeptonCheck.name_label">
-<code class="sig-name descname">name_label</code><em class="property"> = '&#64;Name'</em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.name_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.LeptonCheck.name_label">
+<span class="sig-name descname"><span class="pre">name_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Name'</span></em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.name_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.ui.system_control.LeptonCheck.qns_label">
-<code class="sig-name descname">qns_label</code><em class="property"> = 'QuantumNumber'</em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.qns_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.LeptonCheck.qns_label">
+<span class="sig-name descname"><span class="pre">qns_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'QuantumNumber'</span></em><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.LeptonCheck.qns_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager">
-<em class="property">class </em><code class="sig-name descname">StateTransitionManager</code><span class="sig-paren">(</span><em class="sig-param">initial_state</em>, <em class="sig-param">final_state</em>, <em class="sig-param">allowed_intermediate_particles=[]</em>, <em class="sig-param">interaction_type_settings={}</em>, <em class="sig-param">formalism_type='helicity'</em>, <em class="sig-param">topology_building='isobar'</em>, <em class="sig-param">number_of_threads=4</em>, <em class="sig-param">propagation_mode='fast'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">StateTransitionManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_intermediate_particles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_type_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formalism_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'helicity'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topology_building</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'isobar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagation_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fast'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping">
-<code class="sig-name descname">add_final_state_grouping</code><span class="sig-paren">(</span><em class="sig-param">fs_group</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.add_final_state_grouping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping">
+<span class="sig-name descname"><span class="pre">add_final_state_grouping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs_group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.add_final_state_grouping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.add_final_state_grouping" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies">
-<code class="sig-name descname">build_topologies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.build_topologies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies">
+<span class="sig-name descname"><span class="pre">build_topologies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.build_topologies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.build_topologies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups">
-<code class="sig-name descname">create_interaction_setting_groups</code><span class="sig-paren">(</span><em class="sig-param">graph_node_setting_pairs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.create_interaction_setting_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups">
+<span class="sig-name descname"><span class="pre">create_interaction_setting_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_node_setting_pairs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.create_interaction_setting_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_interaction_setting_groups" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs">
-<code class="sig-name descname">create_seed_graphs</code><span class="sig-paren">(</span><em class="sig-param">topology_graphs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.create_seed_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs">
+<span class="sig-name descname"><span class="pre">create_seed_graphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology_graphs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.create_seed_graphs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.create_seed_graphs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings">
-<code class="sig-name descname">determine_node_settings</code><span class="sig-paren">(</span><em class="sig-param">graphs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.determine_node_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings">
+<span class="sig-name descname"><span class="pre">determine_node_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.determine_node_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.determine_node_settings" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions">
-<code class="sig-name descname">find_solutions</code><span class="sig-paren">(</span><em class="sig-param">graph_setting_groups</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.find_solutions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions">
+<span class="sig-name descname"><span class="pre">find_solutions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_setting_groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.find_solutions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.find_solutions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator">
-<code class="sig-name descname">initialize_qn_propagator</code><span class="sig-paren">(</span><em class="sig-param">state_graph</em>, <em class="sig-param">node_settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.initialize_qn_propagator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator">
+<span class="sig-name descname"><span class="pre">initialize_qn_propagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.initialize_qn_propagator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.initialize_qn_propagator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs">
-<code class="sig-name descname">prepare_graphs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.prepare_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs">
+<span class="sig-name descname"><span class="pre">prepare_graphs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.prepare_graphs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.prepare_graphs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers">
-<code class="sig-name descname">propagate_quantum_numbers</code><span class="sig-paren">(</span><em class="sig-param">state_graph_node_settings_pair</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.propagate_quantum_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers">
+<span class="sig-name descname"><span class="pre">propagate_quantum_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_graph_node_settings_pair</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.propagate_quantum_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.propagate_quantum_numbers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types">
-<code class="sig-name descname">set_allowed_interaction_types</code><span class="sig-paren">(</span><em class="sig-param">allowed_interaction_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.set_allowed_interaction_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types">
+<span class="sig-name descname"><span class="pre">set_allowed_interaction_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed_interaction_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.set_allowed_interaction_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_allowed_interaction_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder">
-<code class="sig-name descname">set_topology_builder</code><span class="sig-paren">(</span><em class="sig-param">topology_builder</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.set_topology_builder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder">
+<span class="sig-name descname"><span class="pre">set_topology_builder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology_builder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#StateTransitionManager.set_topology_builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.StateTransitionManager.set_topology_builder" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.analyse_solution_failure">
-<code class="sig-name descname">analyse_solution_failure</code><span class="sig-paren">(</span><em class="sig-param">violated_laws_per_node_and_graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#analyse_solution_failure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.analyse_solution_failure" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.analyse_solution_failure">
+<span class="sig-name descname"><span class="pre">analyse_solution_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">violated_laws_per_node_and_graph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#analyse_solution_failure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.analyse_solution_failure" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.calculate_strength">
-<code class="sig-name descname">calculate_strength</code><span class="sig-paren">(</span><em class="sig-param">node_interaction_settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#calculate_strength"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.calculate_strength" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.calculate_strength">
+<span class="sig-name descname"><span class="pre">calculate_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_interaction_settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#calculate_strength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.calculate_strength" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.calculate_swappings">
-<code class="sig-name descname">calculate_swappings</code><span class="sig-paren">(</span><em class="sig-param">id_mapping</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#calculate_swappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.calculate_swappings" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.calculate_swappings">
+<span class="sig-name descname"><span class="pre">calculate_swappings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_mapping</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#calculate_swappings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.calculate_swappings" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.change_qn_domain">
-<code class="sig-name descname">change_qn_domain</code><span class="sig-paren">(</span><em class="sig-param">interaction_settings</em>, <em class="sig-param">qn_name</em>, <em class="sig-param">new_domain</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#change_qn_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.change_qn_domain" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.change_qn_domain">
+<span class="sig-name descname"><span class="pre">change_qn_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_domain</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#change_qn_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.change_qn_domain" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns">
-<code class="sig-name descname">check_equal_ignoring_qns</code><span class="sig-paren">(</span><em class="sig-param">ref_graph</em>, <em class="sig-param">solutions</em>, <em class="sig-param">ignored_qn_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#check_equal_ignoring_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns">
+<span class="sig-name descname"><span class="pre">check_equal_ignoring_qns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solutions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored_qn_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#check_equal_ignoring_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.check_equal_ignoring_qns" title="Permalink to this definition">¶</a></dt>
 <dd><p>defines the equal operator for the graphs ignoring certain quantum
 numbers.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping">
-<code class="sig-name descname">create_edge_id_particle_mapping</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">external_edge_getter_function</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#create_edge_id_particle_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping">
+<span class="sig-name descname"><span class="pre">create_edge_id_particle_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_edge_getter_function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#create_edge_id_particle_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.create_edge_id_particle_mapping" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.create_setting_combinations">
-<code class="sig-name descname">create_setting_combinations</code><span class="sig-paren">(</span><em class="sig-param">node_settings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#create_setting_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.create_setting_combinations" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.create_setting_combinations">
+<span class="sig-name descname"><span class="pre">create_setting_combinations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#create_setting_combinations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.create_setting_combinations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics">
-<code class="sig-name descname">external_edge_identical_particle_combinatorics</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">external_edge_getter_function</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#external_edge_identical_particle_combinatorics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics">
+<span class="sig-name descname"><span class="pre">external_edge_identical_particle_combinatorics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_edge_getter_function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#external_edge_identical_particle_combinatorics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.external_edge_identical_particle_combinatorics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.filter_graphs">
-<code class="sig-name descname">filter_graphs</code><span class="sig-paren">(</span><em class="sig-param">graphs</em>, <em class="sig-param">filters</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#filter_graphs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.filter_graphs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.filter_graphs">
+<span class="sig-name descname"><span class="pre">filter_graphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#filter_graphs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.filter_graphs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements filtering of a list of <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph" title="pycompwa.expertsystem.topology.graph.StateTransitionGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionGraph</span></code></a> ‘s.</p>
 <p>This function can be used to select a subset of
 <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html#pycompwa.expertsystem.topology.graph.StateTransitionGraph" title="pycompwa.expertsystem.topology.graph.StateTransitionGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionGraph</span></code></a> ‘s from a list. Only the graphs passing
@@ -297,56 +727,56 @@ filtered</p></li>
 <p class="rubric">Example</p>
 <p>Selecting only the solutions, in which the <span class="math notranslate nohighlight">\(\rho\)</span> decays via
 p-wave:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myfilter</span> <span class="o">=</span> <span class="n">require_interaction_property</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_filter</span> <span class="o">=</span> <span class="n">require_interaction_property</span><span class="p">(</span>
 <span class="go">        &#39;rho&#39;, InteractionQuantumNumberNames.L,</span>
 <span class="go">        create_spin_domain([1], True))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered_solutions</span> <span class="o">=</span> <span class="n">filter_graphs</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="p">[</span><span class="n">myfilter</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered_solutions</span> <span class="o">=</span> <span class="n">filter_graphs</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="p">[</span><span class="n">my_filter</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.filter_interaction_types">
-<code class="sig-name descname">filter_interaction_types</code><span class="sig-paren">(</span><em class="sig-param">valid_determined_interaction_types</em>, <em class="sig-param">allowed_interaction_types</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#filter_interaction_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.filter_interaction_types" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.filter_interaction_types">
+<span class="sig-name descname"><span class="pre">filter_interaction_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valid_determined_interaction_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_interaction_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#filter_interaction_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.filter_interaction_types" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.match_external_edge_ids">
-<code class="sig-name descname">match_external_edge_ids</code><span class="sig-paren">(</span><em class="sig-param">graphs</em>, <em class="sig-param">ref_graph_id</em>, <em class="sig-param">external_edge_getter_function</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#match_external_edge_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.match_external_edge_ids" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.match_external_edge_ids">
+<span class="sig-name descname"><span class="pre">match_external_edge_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_graph_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_edge_getter_function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#match_external_edge_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.match_external_edge_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.match_external_edges">
-<code class="sig-name descname">match_external_edges</code><span class="sig-paren">(</span><em class="sig-param">graphs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#match_external_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.match_external_edges" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.match_external_edges">
+<span class="sig-name descname"><span class="pre">match_external_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#match_external_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.match_external_edges" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics">
-<code class="sig-name descname">perform_external_edge_identical_particle_combinatorics</code><span class="sig-paren">(</span><em class="sig-param">graph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#perform_external_edge_identical_particle_combinatorics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics">
+<span class="sig-name descname"><span class="pre">perform_external_edge_identical_particle_combinatorics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#perform_external_edge_identical_particle_combinatorics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.perform_external_edge_identical_particle_combinatorics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates combinatorics clones of the StateTransitionGraph in case of
 identical particles in the initial or final state.</p>
 <p>Only identical particles, which do not enter or exit the same node allow
 for combinatorics!</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.remove_conservation_law">
-<code class="sig-name descname">remove_conservation_law</code><span class="sig-paren">(</span><em class="sig-param">interaction_settings</em>, <em class="sig-param">cons_law</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_conservation_law"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_conservation_law" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.remove_conservation_law">
+<span class="sig-name descname"><span class="pre">remove_conservation_law</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cons_law</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_conservation_law"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_conservation_law" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions">
-<code class="sig-name descname">remove_duplicate_solutions</code><span class="sig-paren">(</span><em class="sig-param">results</em>, <em class="sig-param">remove_qns_list=[]</em>, <em class="sig-param">ignore_qns_list=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_duplicate_solutions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions">
+<span class="sig-name descname"><span class="pre">remove_duplicate_solutions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_qns_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_qns_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_duplicate_solutions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_duplicate_solutions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.remove_qns_from_graph">
-<code class="sig-name descname">remove_qns_from_graph</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">qn_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_qns_from_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_qns_from_graph" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.remove_qns_from_graph">
+<span class="sig-name descname"><span class="pre">remove_qns_from_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#remove_qns_from_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.remove_qns_from_graph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.ui.system_control.require_interaction_property">
-<code class="sig-name descname">require_interaction_property</code><span class="sig-paren">(</span><em class="sig-param">ingoing_particle_name</em>, <em class="sig-param">interaction_qn</em>, <em class="sig-param">allowed_values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#require_interaction_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.require_interaction_property" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.ui.system_control.require_interaction_property">
+<span class="sig-name descname"><span class="pre">require_interaction_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_particle_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/ui/system_control.html#require_interaction_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.ui.system_control.require_interaction_property" title="Permalink to this definition">¶</a></dt>
 <dd><p>Closure, which can be used as a filter function in
 <a class="reference internal" href="#pycompwa.expertsystem.ui.system_control.filter_graphs" title="pycompwa.expertsystem.ui.system_control.filter_graphs"><code class="xref py py-func docutils literal notranslate"><span class="pre">filter_graphs()</span></code></a>.</p>
 <p>It selects graphs based on a requirement on the property of specific
@@ -376,34 +806,77 @@ requirement</p></li>
 </dl>
 </dd></dl>
 
-</section>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ComPWA/pycompwa",
+            ref: "stable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycompwa.expertsystem.ui.default_settings.html" class="btn btn-neutral float-left" title="default_settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.plotting.html" class="btn btn-neutral float-right" title="plotting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pycompwa.expertsystem.ui.default_settings.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">default_settings</p>
+            </div>
+        </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="pycompwa.plotting.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">plotting</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-   
-
-</footer>
+</div>
+        
         </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Common Partial Wave Analysis<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
 
-</body>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
 </html>

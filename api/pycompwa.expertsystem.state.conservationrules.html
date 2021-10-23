@@ -1,370 +1,800 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>conservationrules &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script src="../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>conservationrules &#8212; pycompwa</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="particle" href="pycompwa.expertsystem.state.particle.html" />
-    <link rel="prev" title="state" href="pycompwa.expertsystem.state.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../index.html"><img src="../_static/logo-small.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <link rel="prev" title="state" href="pycompwa.expertsystem.state.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-              <p><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo-small.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">pycompwa</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../installation.html">
+   Installation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/get-the-source-code.html">
+     Get the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/virtual-environment.html">
+     Create a virtual environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/build.html">
+     Build and install
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../usage.html">
+   Usage
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/workflow.html">
+     ComPWA Workflow
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+       Step 1: Create an amplitude model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+       Step 2: Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+       Step 3: Perform fit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+       Step 4: Analyze results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/tools.html">
+     Additional Tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/data_module.html">
+       Data module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/generate.html">
+       Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/particles.html">
+       Particle database
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documents.html">
+   Talks and Documents
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pycompwa.html">
+   API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.data.html">
+     data
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.data.io.html">
+       io
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.data.io.pawian.html">
+         pawian
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.convert.html">
+       convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.create.html">
+       create
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.exception.html">
+       exception
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.naming.html">
+       naming
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pycompwa.expertsystem.html">
+     expertsystem
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.amplitude.html">
+       amplitude
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.abstractgenerator.html">
+         abstractgenerator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.canonicaldecay.html">
+         canonicaldecay
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html">
+         helicitydecay
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.expertsystem.solvers.html">
+       solvers
+      </a>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.state.html">
+       state
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         conservationrules
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.particle.html">
+         particle
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.propagation.html">
+         propagation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.topology.html">
+       topology
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html">
+         graph
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.topologybuilder.html">
+         topologybuilder
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.ui.html">
+       ui
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.default_settings.html">
+         default_settings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.system_control.html">
+         system_control
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.plotting.html">
+     plotting
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.plotting.rootplotdatareader.html">
+       rootplotdatareader
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pycompwa.ui.html">
+     ui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Related projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://qrules.readthedocs.io">
+   QRules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ampform.readthedocs.io">
+   AmpForm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://tensorwaves.readthedocs.io">
+   TensorWaves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pwa.readthedocs.io">
+   PWA Pages
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  ComPWA Organization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io">
+   Website
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ComPWA">
+   GitHub Repositories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io/en/stable/about.html">
+   About
+  </a>
+ </li>
 </ul>
 
-    <a href= "../py-modindex.html">Module Index (API)</a>
-    <a href= "../genindex.html">General Index</a>
-  
-        </div>
-      </div>
-    </nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">pycompwa</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../api.html">API</a> &raquo;</li>
-          <li><a href="pycompwa.html">pycompwa</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.html">expertsystem</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.state.html">state</a> &raquo;</li>
-      <li>conservationrules</li>
-      <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsapi/pycompwa.expertsystem.state.conservationrules.rst" class="fa fa-github"> Edit on GitHub</a>
-      </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="pycompwa.expertsystem.state.html" class="btn btn-neutral float-left" title="state" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.expertsystem.state.particle.html" class="btn btn-neutral float-right" title="particle" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
-  <hr/>
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+</div>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+          
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="module-pycompwa.expertsystem.state.conservationrules">
-<span id="conservationrules"></span><h1>conservationrules<a class="headerlink" href="#module-pycompwa.expertsystem.state.conservationrules" title="Permalink to this headline">¶</a></h1>
-<p>Functors for quantum number condition checks.</p>
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor">
-<em class="property">class </em><code class="sig-name descname">AbstractConditionFunctor</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="Permalink to this definition">¶</a></dt>
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/pycompwa.expertsystem.state.conservationrules.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ComPWA/pycompwa"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fapi/pycompwa.expertsystem.state.conservationrules.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/api/pycompwa.expertsystem.state.conservationrules.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="conservationrules">
+<h1>conservationrules<a class="headerlink" href="#conservationrules" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.expertsystem.state.conservationrules</span>
+</pre></div>
+</div>
+<span class="target" id="module-pycompwa.expertsystem.state.conservationrules"></span><p>Functors for quantum number condition checks.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">AbstractConditionFunctor</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check">
-<em class="property">abstract </em><code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractConditionFunctor.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule">
-<em class="property">class </em><code class="sig-name descname">AbstractRule</code><span class="sig-paren">(</span><em class="sig-param">rule_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">AbstractRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rule_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.add_required_qn">
-<code class="sig-name descname">add_required_qn</code><span class="sig-paren">(</span><em class="sig-param">qn_name</em>, <em class="sig-param">qn_condition_functions=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.add_required_qn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.add_required_qn" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.add_required_qn">
+<span class="sig-name descname"><span class="pre">add_required_qn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_condition_functions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.add_required_qn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.add_required_qn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.check">
-<em class="property">abstract </em><code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.check">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.check_requirements">
-<code class="sig-name descname">check_requirements</code><span class="sig-paren">(</span><em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.check_requirements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.check_requirements" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.check_requirements">
+<span class="sig-name descname"><span class="pre">check_requirements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.check_requirements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.check_requirements" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.get_qn_conditions">
-<code class="sig-name descname">get_qn_conditions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.get_qn_conditions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_qn_conditions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.get_qn_conditions">
+<span class="sig-name descname"><span class="pre">get_qn_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.get_qn_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_qn_conditions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.get_required_qn_names">
-<code class="sig-name descname">get_required_qn_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.get_required_qn_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_required_qn_names" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.get_required_qn_names">
+<span class="sig-name descname"><span class="pre">get_required_qn_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.get_required_qn_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.get_required_qn_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AbstractRule.specify_required_qns">
-<em class="property">abstract </em><code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AbstractRule.specify_required_qns">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AbstractRule.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation">
-<em class="property">class </em><code class="sig-name descname">AdditiveQuantumNumberConservation</code><span class="sig-paren">(</span><em class="sig-param">qn_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">AdditiveQuantumNumberConservation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
 <p>checks for the conservation of an additive quantum number such as
 electric charge, baryon number, lepton number.</p>
 <p><span class="math notranslate nohighlight">\(\sum q_{in} = \sum q_{out}\)</span></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#AdditiveQuantumNumberConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.AdditiveQuantumNumberConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.CParityConservation">
-<em class="property">class </em><code class="sig-name descname">CParityConservation</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.CParityConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CParityConservation</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.CParityConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.CParityConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements <span class="math notranslate nohighlight">\(C_{in} = C_{out}\)</span>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.CParityConservation.get_cparity_multiparticle">
-<code class="sig-name descname">get_cparity_multiparticle</code><span class="sig-paren">(</span><em class="sig-param">part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.get_cparity_multiparticle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.get_cparity_multiparticle" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.CParityConservation.get_cparity_multiparticle">
+<span class="sig-name descname"><span class="pre">get_cparity_multiparticle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.get_cparity_multiparticle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.get_cparity_multiparticle" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#CParityConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.CParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical">
-<em class="property">class </em><code class="sig-name descname">ClebschGordanCheckHelicityToCanonical</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ClebschGordanCheckHelicityToCanonical</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
 <p>implements clebsch gordan checks for <span class="math notranslate nohighlight">\(S_1, S_2\)</span> to <span class="math notranslate nohighlight">\(S\)</span> and the
 <span class="math notranslate nohighlight">\(L,S\)</span> to <span class="math notranslate nohighlight">\(J\)</span> coupling based on the conversion of helicity to
 canonical amplitude sums</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ClebschGordanCheckHelicityToCanonical.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ClebschGordanCheckHelicityToCanonical.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges">
-<em class="property">class </em><code class="sig-name descname">DefinedForAllEdges</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllEdges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">DefinedForAllEdges</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllEdges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllEdges.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllEdges.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllEdges.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges">
-<em class="property">class </em><code class="sig-name descname">DefinedForAllOutgoingEdges</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllOutgoingEdges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">DefinedForAllOutgoingEdges</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllOutgoingEdges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllOutgoingEdges.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForAllOutgoingEdges.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForAllOutgoingEdges.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode">
-<em class="property">class </em><code class="sig-name descname">DefinedForInteractionNode</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForInteractionNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">DefinedForInteractionNode</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForInteractionNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForInteractionNode.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedForInteractionNode.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedForInteractionNode.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate">
-<em class="property">class </em><code class="sig-name descname">DefinedIfOtherQnNotDefinedInOutSeparate</code><span class="sig-paren">(</span><em class="sig-param">other_qn_names</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">DefinedIfOtherQnNotDefinedInOutSeparate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_qn_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor" title="pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractConditionFunctor</span></code></a></p>
 <p>Implements logic for…</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">in_edges</em>, <em class="sig-param">out_edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set">
-<code class="sig-name descname">check_edge_set</code><span class="sig-paren">(</span><em class="sig-param">qn_names</em>, <em class="sig-param">edges</em>, <em class="sig-param">int_node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set">
+<span class="sig-name descname"><span class="pre">check_edge_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.check_edge_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict">
-<code class="sig-name descname">find_in_dict</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">props</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict">
+<span class="sig-name descname"><span class="pre">find_in_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.DefinedIfOtherQnNotDefinedInOutSeparate.find_in_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.GParityConservation">
-<em class="property">class </em><code class="sig-name descname">GParityConservation</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GParityConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GParityConservation</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GParityConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GParityConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements <span class="math notranslate nohighlight">\(G_{in} = G_{out}\)</span>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GParityConservation.check_multistate_gparity">
-<code class="sig-name descname">check_multistate_gparity</code><span class="sig-paren">(</span><em class="sig-param">single_state_qns</em>, <em class="sig-param">double_state_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.check_multistate_gparity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.check_multistate_gparity" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GParityConservation.check_multistate_gparity">
+<span class="sig-name descname"><span class="pre">check_multistate_gparity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">single_state_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double_state_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.check_multistate_gparity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.check_multistate_gparity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GParityConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule">
-<em class="property">class </em><code class="sig-name descname">GellMannNishijimaRule</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GellMannNishijimaRule</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.calculate_hypercharge">
-<code class="sig-name descname">calculate_hypercharge</code><span class="sig-paren">(</span><em class="sig-param">particle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.calculate_hypercharge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.calculate_hypercharge" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.calculate_hypercharge">
+<span class="sig-name descname"><span class="pre">calculate_hypercharge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.calculate_hypercharge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.calculate_hypercharge" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculates the hypercharge <span class="math notranslate nohighlight">\(Y=S+C+B+T+B\)</span></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>checks the Gell-Mann–Nishijima formula <span class="math notranslate nohighlight">\(Q=I_3+\frac{Y}{2}\)</span>
 for each particle.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#GellMannNishijimaRule.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.GellMannNishijimaRule.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.HelicityConservation">
-<em class="property">class </em><code class="sig-name descname">HelicityConservation</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.HelicityConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">HelicityConservation</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.HelicityConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.HelicityConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>implements <span class="math notranslate nohighlight">\(|\lambda_2-\lambda_3| \leq S_1\)</span></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#HelicityConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.HelicityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization">
-<em class="property">class </em><code class="sig-name descname">IdenticalParticleSymmetrization</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">IdenticalParticleSymmetrization</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check_particles_identical">
-<code class="sig-name descname">check_particles_identical</code><span class="sig-paren">(</span><em class="sig-param">particles</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.check_particles_identical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check_particles_identical" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check_particles_identical">
+<span class="sig-name descname"><span class="pre">check_particles_identical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.check_particles_identical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.check_particles_identical" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#IdenticalParticleSymmetrization.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.IdenticalParticleSymmetrization.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.MassConservation">
-<em class="property">class </em><code class="sig-name descname">MassConservation</code><span class="sig-paren">(</span><em class="sig-param">width_factor=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.MassConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">MassConservation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.MassConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.MassConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>implements the mass check.</p>
 <p><span class="math notranslate nohighlight">\(M_{out} - N \cdot W_{out} &lt; M_{in} + N \cdot W_{in}\)</span></p>
 <p>It makes sure that the net mass outgoing state <span class="math notranslate nohighlight">\(M_{out}\)</span> is
@@ -372,135 +802,178 @@ smaller than the net mass of the ingoing state <span class="math notranslate noh
 the width <span class="math notranslate nohighlight">\(W\)</span> of the states is taken into account.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#MassConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.MassConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservation">
-<em class="property">class </em><code class="sig-name descname">ParityConservation</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ParityConservation</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements <span class="math notranslate nohighlight">\(P_{in} = P_{out} \cdot (-1)^L\)</span> .</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity">
-<em class="property">class </em><code class="sig-name descname">ParityConservationHelicity</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ParityConservationHelicity</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the check.</p>
 <p><span class="math notranslate nohighlight">\(A_{-\lambda_1-\lambda_2} = P_1 P_2 P_3 (-1)^{S_2+S_3-S_1} A_{\lambda_1\lambda_2}\)</span></p>
 <p>Notice that only the special case <span class="math notranslate nohighlight">\(\lambda_1=\lambda_2=0\)</span>
 may return False</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#ParityConservationHelicity.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.ParityConservationHelicity.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation">
-<em class="property">class </em><code class="sig-name descname">SpinConservation</code><span class="sig-paren">(</span><em class="sig-param">spinlike_qn</em>, <em class="sig-param">use_projection=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">SpinConservation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spinlike_qn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.AbstractRule" title="pycompwa.expertsystem.state.conservationrules.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.conservationrules.AbstractRule</span></code></a></p>
 <p>Implements conservation of a spin-like quantum number for a two body
 decay (coupling of two particle states).</p>
 <p>See <a class="reference internal" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check" title="pycompwa.expertsystem.state.conservationrules.SpinConservation.check"><code class="xref py py-meth docutils literal notranslate"><span class="pre">check()</span></code></a> for details.</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.calculate_total_spins">
-<code class="sig-name descname">calculate_total_spins</code><span class="sig-paren">(</span><em class="sig-param">part_list</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.calculate_total_spins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.calculate_total_spins" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.calculate_total_spins">
+<span class="sig-name descname"><span class="pre">calculate_total_spins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.calculate_total_spins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.calculate_total_spins" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check">
-<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">ingoing_part_qns</em>, <em class="sig-param">outgoing_part_qns</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ingoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outgoing_part_qns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>implements <span class="math notranslate nohighlight">\(|S_1 - S_2| \leq S \leq |S_1 + S_2|\)</span> and optionally
 <span class="math notranslate nohighlight">\(|L - S| \leq J \leq |L + S|\)</span>. Also checks
 <span class="math notranslate nohighlight">\(M_1 + M_2 = M\)</span> and if Clebsch-Gordan coefficients are 0</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check_magnitude">
-<code class="sig-name descname">check_magnitude</code><span class="sig-paren">(</span><em class="sig-param">in_part</em>, <em class="sig-param">out_part</em>, <em class="sig-param">interaction_qns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check_magnitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_magnitude" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check_magnitude">
+<span class="sig-name descname"><span class="pre">check_magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_qns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_magnitude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check_projections">
-<code class="sig-name descname">check_projections</code><span class="sig-paren">(</span><em class="sig-param">in_part</em>, <em class="sig-param">out_part</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check_projections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_projections" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.check_projections">
+<span class="sig-name descname"><span class="pre">check_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_part</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.check_projections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.check_projections" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns">
-<code class="sig-name descname">specify_required_qns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.specify_required_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns">
+<span class="sig-name descname"><span class="pre">specify_required_qns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.specify_required_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.specify_required_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.conservationrules.SpinConservation.spin_couplings">
-<code class="sig-name descname">spin_couplings</code><span class="sig-paren">(</span><em class="sig-param">spin1</em>, <em class="sig-param">spin2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.spin_couplings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.spin_couplings" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.SpinConservation.spin_couplings">
+<span class="sig-name descname"><span class="pre">spin_couplings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spin1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#SpinConservation.spin_couplings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.SpinConservation.spin_couplings" title="Permalink to this definition">¶</a></dt>
 <dd><p>implements the coupling of two spins.</p>
 <p><span class="math notranslate nohighlight">\(|S_1 - S_2| \leq S \leq |S_1 + S_2|\)</span> and <span class="math notranslate nohighlight">\(M_1 + M_2 = M\)</span></p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.conservationrules.is_clebsch_gordan_coefficient_zero">
-<code class="sig-name descname">is_clebsch_gordan_coefficient_zero</code><span class="sig-paren">(</span><em class="sig-param">spin1</em>, <em class="sig-param">spin2</em>, <em class="sig-param">spin_coupled</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#is_clebsch_gordan_coefficient_zero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.is_clebsch_gordan_coefficient_zero" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.is_clebsch_gordan_coefficient_zero">
+<span class="sig-name descname"><span class="pre">is_clebsch_gordan_coefficient_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spin1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_coupled</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#is_clebsch_gordan_coefficient_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.is_clebsch_gordan_coefficient_zero" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair">
-<code class="sig-name descname">is_particle_antiparticle_pair</code><span class="sig-paren">(</span><em class="sig-param">pid1</em>, <em class="sig-param">pid2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#is_particle_antiparticle_pair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair">
+<span class="sig-name descname"><span class="pre">is_particle_antiparticle_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pid1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pid2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/conservationrules.html#is_particle_antiparticle_pair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.conservationrules.is_particle_antiparticle_pair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if PID is opposite sign.</p>
 <p>We just check if the pid is opposite in sign, this is a requirement of the
 pid numbers of course</p>
 </dd></dl>
 
-</section>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ComPWA/pycompwa",
+            ref: "stable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycompwa.expertsystem.state.html" class="btn btn-neutral float-left" title="state" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.expertsystem.state.particle.html" class="btn btn-neutral float-right" title="particle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pycompwa.expertsystem.state.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">state</p>
+            </div>
+        </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="pycompwa.expertsystem.state.particle.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">particle</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-   
-
-</footer>
+</div>
+        
         </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Common Partial Wave Analysis<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
 
-</body>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
 </html>

@@ -1,388 +1,628 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step 4: Analyze results &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script src="../../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step 4: Analyze results &#8212; pycompwa</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Additional Tools" href="../tools.html" />
-    <link rel="prev" title="Step 3: Perform fit" href="3_perform_fit.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../index.html"><img src="../../_static/logo-small.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <link rel="prev" title="Step 3: Perform fit" href="3_perform_fit.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-              <p><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../usage.html">Usage</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../workflow.html">ComPWA Workflow</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="1_create_model.html">Step 1: Create an amplitude model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2_generate_data.html">Step 2: Generate data samples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="3_perform_fit.html">Step 3: Perform fit</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 4: Analyze results</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#4.1-Convert-to-pandas">4.1 Convert to pandas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#4.2-Visualize">4.2 Visualize</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#4.3-Calculate-fit-fractions">4.3 Calculate fit fractions</a></li>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-small.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">pycompwa</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../installation.html">
+   Installation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../install/get-the-source-code.html">
+     Get the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../install/virtual-environment.html">
+     Create a virtual environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../install/build.html">
+     Build and install
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../usage.html">
+   Usage
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../workflow.html">
+     ComPWA Workflow
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="1_create_model.html">
+       Step 1: Create an amplitude model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2_generate_data.html">
+       Step 2: Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="3_perform_fit.html">
+       Step 3: Perform fit
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Step 4: Analyze results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../tools.html">
+     Additional Tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tools/data_module.html">
+       Data module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tools/generate.html">
+       Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tools/particles.html">
+       Particle database
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contribute.html">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../documents.html">
+   Talks and Documents
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../api/pycompwa.html">
+   API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/pycompwa.data.html">
+     data
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../api/pycompwa.data.io.html">
+       io
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.data.io.pawian.html">
+         pawian
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.data.convert.html">
+       convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.data.create.html">
+       create
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.data.exception.html">
+       exception
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.data.naming.html">
+       naming
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/pycompwa.expertsystem.html">
+     expertsystem
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../api/pycompwa.expertsystem.amplitude.html">
+       amplitude
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.amplitude.abstractgenerator.html">
+         abstractgenerator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.amplitude.canonicaldecay.html">
+         canonicaldecay
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.amplitude.helicitydecay.html">
+         helicitydecay
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.expertsystem.solvers.html">
+       solvers
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../api/pycompwa.expertsystem.state.html">
+       state
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.state.conservationrules.html">
+         conservationrules
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html">
+         particle
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.state.propagation.html">
+         propagation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../api/pycompwa.expertsystem.topology.html">
+       topology
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.topology.graph.html">
+         graph
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.topology.topologybuilder.html">
+         topologybuilder
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.html">
+       ui
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.default_settings.html">
+         default_settings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html">
+         system_control
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/pycompwa.plotting.html">
+     plotting
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../api/pycompwa.plotting.rootplotdatareader.html">
+       rootplotdatareader
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/pycompwa.ui.html">
+     ui
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Related projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://qrules.readthedocs.io">
+   QRules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ampform.readthedocs.io">
+   AmpForm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://tensorwaves.readthedocs.io">
+   TensorWaves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pwa.readthedocs.io">
+   PWA Pages
+  </a>
+ </li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">Additional Tools</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../contribute.html">How to contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documents.html">Talks and Documents</a></li>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  ComPWA Organization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io">
+   Website
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ComPWA">
+   GitHub Repositories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io/en/stable/about.html">
+   About
+  </a>
+ </li>
 </ul>
 
-    <a href= "../../py-modindex.html">Module Index (API)</a>
-    <a href= "../../genindex.html">General Index</a>
-  
-        </div>
-      </div>
-    </nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">pycompwa</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../usage.html">Usage</a> &raquo;</li>
-          <li><a href="../workflow.html">ComPWA Workflow</a> &raquo;</li>
-      <li>Step 4: Analyze results</li>
-      <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsusage/workflow/4_analyze_results.ipynb" class="fa fa-github"> Edit on GitHub</a>
-      </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="3_perform_fit.html" class="btn btn-neutral float-left" title="Step 3: Perform fit" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../tools.html" class="btn btn-neutral float-right" title="Additional Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
-  <hr/>
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  
-<style>
-/* CSS for nbsphinx extension */
 
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
-    border: none;
-    padding: 0 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    background: #f5f5f5;
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
+</div>
 
 
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
-}
+          
 
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
 
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
-    display: none;
-}
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-/* Some additional styling taken form the Jupyter notebook CSS */
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-div.rendered_html th {
-  font-weight: bold;
-}
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/usage/workflow/4_analyze_results.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
 
-/* CSS overrides for sphinx_rtd_theme */
+            <!-- Source interaction buttons -->
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ComPWA/pycompwa"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/4_analyze_results.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/4_analyze_results.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/31cbfe48dd4e218d6d7e9f577e89d1b5/4_analyze_results.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<section id="Step-4:-Analyze-results">
-<h1>Step 4: Analyze results<a class="headerlink" href="#Step-4:-Analyze-results" title="Permalink to this headline">¶</a></h1>
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/4_analyze_results.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/4_analyze_results.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convert-to-pandas">
+   4.1 Convert to pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize">
+   4.2 Visualize
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kinematic-variables">
+     Kinematic variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dalitz-plots">
+     Dalitz plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-fit-fractions">
+   4.3 Calculate fit fractions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/31cbfe48dd4e218d6d7e9f577e89d1b5/4_analyze_results.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<div class="section" id="step-4-analyze-results">
+<h1>Step 4: Analyze results<a class="headerlink" href="#step-4-analyze-results" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <a class="reference internal" href="../../index.html"><span class="doc">pycompwa</span></a> is no longer maintained. Use the <a class="reference external" href="https://compwa-org.rtfd.io">ComPWA</a> packages <a class="reference external" href="https://qrules.rtfd.io">QRules</a>, <a class="reference external" href="https://ampform.rtfd.io">AmpForm</a>, and <a class="reference external" href="https://tensorwaves.rtfd.io">TensorWaves</a> instead!</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We load the output from the previous steps first. Note that you need to
-define an estimator before loading the fit result to the intensity.</p>
+<p>We load the output from the previous steps first. Note that you need to define an estimator before loading the fit result to the intensity.</p>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-2021-10-23 15:21:39,794 INFO [default] Logging to file disabled!
-2021-10-23 15:21:39,794 [INFO] Log level: INFO
-2021-10-23 15:21:39,794 [INFO] Current date and time: Sat Oct 23 15:21:39 2021
-
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/traitlets/traitlets.py:3050: FutureWarning: --rc={&#39;figure.dpi&#39;: 96} for dict-traits is deprecated in traitlets 5.0. You can pass --rc &lt;key=value&gt; ... multiple times to add items to a dict.
-  FutureWarning,
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:17:05,748 INFO [default] Logging to file disabled!
+2021-10-23 20:17:05,748 [INFO] Log level: INFO
+2021-10-23 20:17:05,748 [INFO] Current date and time: Sat Oct 23 20:17:05 2021
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pwa</span><span class="o">.</span><span class="n">Logging</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>  <span class="c1"># at this stage, we are not interested in the back-end</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwa</span><span class="o">.</span><span class="n">Logging</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>  <span class="c1"># at this stage, we are not interested in the back-end</span>
 <span class="n">particle_list</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">read_particles</span><span class="p">(</span><span class="s2">&quot;model.xml&quot;</span><span class="p">)</span>
 <span class="n">kinematics</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">create_helicity_kinematics</span><span class="p">(</span><span class="s2">&quot;model.xml&quot;</span><span class="p">,</span> <span class="n">particle_list</span><span class="p">)</span>
 <span class="n">kinematics</span><span class="o">.</span><span class="n">create_all_subsystems</span><span class="p">()</span>
@@ -405,59 +645,32 @@ define an estimator before loading the fit result to the intensity.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-2021-10-23 15:21:40,173 [INFO] Logging to file disabled!
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-ERROR in cling::CIFactory::createCI(): cannot extract standard library include paths!
-Invoking:
-  LC_ALL=C x86_64-linux-gnu-g++-7  -O3 -DNDEBUG -xc++ -E -v /dev/null 2&gt;&amp;1 &gt;/dev/null | awk &#39;/^#include &lt;/,/^End of search/{if (!/^#include &lt;/ &amp;&amp; !/^End of search/){ print }}&#39; | GREP_OPTIONS= grep -E &#34;(c|g)\+\+&#34;
-Results was:
-With exit code 256
-</pre></div></div>
-</div>
-<section id="4.1-Convert-to-pandas">
-<h2>4.1 Convert to pandas<a class="headerlink" href="#4.1-Convert-to-pandas" title="Permalink to this headline">¶</a></h2>
-<p>It is easiest to analyze your data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>.
-We are mostly interested in the distributions of the kinematic variables, so
-we first have to convert the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> instances to a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. We can do this with the <a class="reference internal" href="../../api/pycompwa.data.convert.html#module-pycompwa.data.convert" title="pycompwa.data.convert"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.convert</span></code></a>
-module:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">convert</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:17:06,101 [INFO] Logging to file disabled!
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</div>
+<div class="section" id="convert-to-pandas">
+<h2>4.1 Convert to pandas<a class="headerlink" href="#convert-to-pandas" title="Permalink to this headline">¶</a></h2>
+<p>It is easiest to analyze your data with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. We are mostly interested in the distributions of the kinematic variables, so we first have to convert the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> instances to a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. We can do this with the <a class="reference internal" href="../../api/pycompwa.data.convert.html#module-pycompwa.data.convert" title="pycompwa.data.convert"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.convert</span></code></a> module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">convert</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">frame_data</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">data_set</span><span class="p">)</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_data</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">data_set</span><span class="p">)</span>
 <span class="n">frame_phsp</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">data_set_to_pandas</span><span class="p">(</span><span class="n">phsp_set</span><span class="p">)</span>
 <span class="n">frame_data</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -730,82 +943,53 @@ module:</p>
   </tbody>
 </table>
 <p>10000 rows × 18 columns</p>
-</div></div>
+</div></div></div>
 </div>
-<p>We converted the phase space sample as well, because it serves as a uniform
-space over which to evaluate the intensity model. We therefore attribute an
-intensity as a weight to each entry in the phase space
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">intensity_set</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<p>We converted the phase space sample as well, because it serves as a uniform space over which to evaluate the intensity model. We therefore attribute an intensity as a weight to each entry in the phase space <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensity_set</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">phsp_set</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 <span class="n">frame_phsp</span><span class="p">[</span><span class="s2">&quot;weights&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intensity_set</span>
 </pre></div>
 </div>
 </div>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>The <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.data</span></code></a> contains several tools for converting from and
-to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. There is also a <a class="reference internal" href="../../api/pycompwa.data.io.html#module-pycompwa.data.io" title="pycompwa.data.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.io</span></code></a> submodule,
-which allows you to import form and export to file formats of other PWA
-frameworks. A demonstration of this module can be found under
-<a class="reference internal" href="../tools/data_module.html"><span class="doc">Data module</span></a>.</p>
+<p>The <a class="reference internal" href="../../api/pycompwa.data.html#module-pycompwa.data" title="pycompwa.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.data</span></code></a> contains several tools for converting from and to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. There is also a <a class="reference internal" href="../../api/pycompwa.data.io.html#module-pycompwa.data.io" title="pycompwa.data.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.io</span></code></a> submodule, which allows you to import form and export to file formats of other PWA frameworks. A demonstration of this module can be found under <a class="reference internal" href="../tools/data_module.html"><span class="doc">Data module</span></a>.</p>
 </div>
-</section>
-<section id="4.2-Visualize">
-<h2>4.2 Visualize<a class="headerlink" href="#4.2-Visualize" title="Permalink to this headline">¶</a></h2>
-<p>Now that we converted our data to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>,
-we can use its full potential! In this section, we will use some of that
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame</span></code></a> functionality to create histograms of the distributions
-of the kinematic variables and will have a look at the Dalitz plots both
-data and fit result.</p>
-<section id="Kinematic-variables">
-<h3>Kinematic variables<a class="headerlink" href="#Kinematic-variables" title="Permalink to this headline">¶</a></h3>
-<p>Currently, the columns of the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> created above
-contain final state IDs. Of course, you would rather see particle names
-there, but we need to use unique IDs in case there are identical particle
-names. The <a class="reference internal" href="../../api/pycompwa.data.naming.html#module-pycompwa.data.naming" title="pycompwa.data.naming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.naming</span></code></a> module provides a tool that can convert the
-final state IDs to recognisable names:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">naming</span>
+<div class="section" id="visualize">
+<h2>4.2 Visualize<a class="headerlink" href="#visualize" title="Permalink to this headline">¶</a></h2>
+<p>Now that we converted our data to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>, we can use its full potential! In this section, we will use some of that <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> functionality to create histograms of the distributions of the kinematic variables and will have a look at the Dalitz plots both data and fit result.</p>
+<div class="section" id="kinematic-variables">
+<h3>Kinematic variables<a class="headerlink" href="#kinematic-variables" title="Permalink to this headline">¶</a></h3>
+<p>Currently, the columns of the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> created above contain final state IDs. Of course, you would rather see particle names there, but we need to use unique IDs in case there are identical particle names. The <a class="reference internal" href="../../api/pycompwa.data.naming.html#module-pycompwa.data.naming" title="pycompwa.data.naming"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data.naming</span></code></a> module provides a tool that can convert the final state IDs to recognizable names:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.data</span> <span class="kn">import</span> <span class="n">naming</span>
 
 <span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="s2">&quot;2,3&quot;</span><span class="p">,</span> <span class="s2">&quot;model.xml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;gamma,pi0&#39;
-</pre></div></div>
-</div>
-<p>Now you can apply the usual <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.4.3)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> tools to plot the
-distributions.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;gamma,pi0&#39;
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</div>
+<p>Now you can apply the usual <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.4.3)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> tools to plot the distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">plot_1d_comparison</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_1d_comparison</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Helper function for comparing the 1D distributions of fit and data.&quot;&quot;&quot;</span>
     <span class="n">frame_data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
         <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
@@ -825,32 +1009,22 @@ distributions.</p>
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s2">&quot;theta_2_4_vs_3&quot;</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d_comparison</span><span class="p">(</span><span class="s2">&quot;theta_2_4_vs_3&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/4_analyze_results_21_0.png" src="../../_images/4_analyze_results_21_0.png" />
 </div>
-<div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_20_0.svg" src="../../_images/usage_workflow_4_analyze_results_20_0.svg" /></div>
 </div>
-<p>Applying a transformation to one of the columns is also easily done for a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. For instance, if you are interested in the
-invariant mass (and not the <strong>square value</strong> of the invariant mass), simply
-use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html#numpy.sqrt" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sqrt</span></code></a>:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<p>Applying a transformation to one of the columns is also easily done for a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. For instance, if you are interested in the invariant mass (and not the <strong>square value</strong> of the invariant mass), simply use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html#numpy.sqrt" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.sqrt()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">frame_data</span><span class="p">[</span><span class="s2">&quot;M(3,4)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">frame_data</span><span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">])</span>
 <span class="n">frame_phsp</span><span class="p">[</span><span class="s2">&quot;M(3,4)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">frame_phsp</span><span class="p">[</span><span class="s2">&quot;mSq_(3,4)&quot;</span><span class="p">])</span>
@@ -860,42 +1034,31 @@ use <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/4_analyze_results_23_0.png" src="../../_images/4_analyze_results_23_0.png" />
 </div>
-<div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_22_0.svg" src="../../_images/usage_workflow_4_analyze_results_22_0.svg" /></div>
 </div>
-</section>
-<section id="Dalitz-plots">
-<h3>Dalitz plots<a class="headerlink" href="#Dalitz-plots" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="dalitz-plots">
+<h3>Dalitz plots<a class="headerlink" href="#dalitz-plots" title="Permalink to this headline">¶</a></h3>
 <p>Dalitz plots are 2-dimensional histograms of the square values of the invariant masses. We are therefore interested in the following variables:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">variable_names</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable_names</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variable_names</span> <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mSq_&quot;</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mSq_(2,3)&#39;, &#39;mSq_(2,4)&#39;, &#39;mSq_(3,4)&#39;, &#39;mSq_(2,3,4)&#39;]
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;mSq_(2,3)&#39;, &#39;mSq_(2,4)&#39;, &#39;mSq_(3,4)&#39;, &#39;mSq_(2,3,4)&#39;]
-</pre></div></div>
 </div>
-<p>We now use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html#matplotlib.pyplot.hist2d" title="(in Matplotlib v3.4.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hist2d</span></code></a> to generate the Dalitz plots:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">dalitz_plot</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mass_x</span><span class="p">,</span> <span class="n">mass_y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<p>We now use <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist2d.html#matplotlib.pyplot.hist2d" title="(in Matplotlib v3.4.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hist2d()</span></code></a> to generate the Dalitz plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dalitz_plot</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">mass_x</span><span class="p">,</span> <span class="n">mass_y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Helper function to create a Dalitz plot with useful axis titles.&quot;&quot;&quot;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="n">mass_x</span><span class="p">],</span> <span class="n">frame</span><span class="p">[</span><span class="n">mass_y</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">naming</span><span class="o">.</span><span class="n">replace_ids</span><span class="p">(</span><span class="n">mass_x</span><span class="p">,</span> <span class="n">kinematics</span><span class="p">))</span>
@@ -903,12 +1066,10 @@ use <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LogNorm</span>  <span class="c1"># logarithmic z-axis</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LogNorm</span>  <span class="c1"># logarithmic z-axis</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
@@ -928,35 +1089,23 @@ use <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/4_analyze_results_29_0.png" src="../../_images/4_analyze_results_29_0.png" />
 </div>
-<div class="output_area docutils container">
-<img alt="../../_images/usage_workflow_4_analyze_results_28_0.svg" src="../../_images/usage_workflow_4_analyze_results_28_0.svg" /></div>
 </div>
-</section>
-</section>
-<section id="4.3-Calculate-fit-fractions">
-<h2>4.3 Calculate fit fractions<a class="headerlink" href="#4.3-Calculate-fit-fractions" title="Permalink to this headline">¶</a></h2>
-<p>The original intensity model that we optimized consists of several
-components. All registered component names can be retrieved via
-<a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.IntensityBuilderXML.get_all_component_names" title="pycompwa.ui.IntensityBuilderXML.get_all_component_names"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_all_component_names()</span></code></a>:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">intensity_builder</span><span class="o">.</span><span class="n">get_all_component_names</span><span class="p">()</span>
+</div>
+<div class="section" id="calculate-fit-fractions">
+<h2>4.3 Calculate fit fractions<a class="headerlink" href="#calculate-fit-fractions" title="Permalink to this headline">¶</a></h2>
+<p>The original intensity model that we optimized consists of several components. All registered component names can be retrieved via <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.IntensityBuilderXML.get_all_component_names" title="pycompwa.ui.IntensityBuilderXML.get_all_component_names"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_all_component_names()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intensity_builder</span><span class="o">.</span><span class="n">get_all_component_names</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;J/psi_-1_to_f0(1500)_0+gamma_-1;f0(1500)_0_to_pi0_0+pi0_0;&#39;: &#39;Amplitude&#39;,
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;J/psi_-1_to_f0(1500)_0+gamma_-1;f0(1500)_0_to_pi0_0+pi0_0;&#39;: &#39;Amplitude&#39;,
  &#39;J/psi_-1_to_f0(1500)_0+gamma_1;f0(1500)_0_to_pi0_0+pi0_0;&#39;: &#39;Amplitude&#39;,
  &#39;J/psi_-1_to_f0(980)_0+gamma_-1;f0(980)_0_to_pi0_0+pi0_0;&#39;: &#39;Amplitude&#39;,
  &#39;J/psi_-1_to_f0(980)_0+gamma_1;f0(980)_0_to_pi0_0+pi0_0;&#39;: &#39;Amplitude&#39;,
@@ -993,24 +1142,15 @@ components. All registered component names can be retrieved via
  &#39;coherent_J/psi_1_to_gamma_-1+pi0_0+pi0_0&#39;: &#39;Intensity&#39;,
  &#39;coherent_J/psi_1_to_gamma_1+pi0_0+pi0_0&#39;: &#39;Intensity&#39;,
  &#39;incoherent_with_strength&#39;: &#39;Intensity&#39;}
-</pre></div></div>
-</div>
-<p>As you can see, these components are amplitudes and intensities that are added coherently or incoherently.</p>
-<p>In PWA, you are often interested in the fractions that those amplitudes
-contribute to the total intensity. These <strong>fit fractions</strong> can be calculated
-using the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.fit_fractions_with_propagated_errors" title="pycompwa.ui.fit_fractions_with_propagated_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code></a> function. It
-requires amplitude or <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> components that can be extracted
-from the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.IntensityBuilderXML" title="pycompwa.ui.IntensityBuilderXML"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntensityBuilderXML</span></code></a> instance. A nested list of the
-component names has to be specified as well. These are the names specified in
-the component XML attributes. If the inner lists contain more than one
-component, these components will be added coherently. In this way, you can
-calculate your own customized fit fractions.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">components</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity_components</span><span class="p">(</span>
+</div>
+</div>
+<p>As you can see, these components are amplitudes and intensities that are added coherently or incoherently.</p>
+<p>In PWA, you are often interested in the fractions that those amplitudes contribute to the total intensity. These <strong>fit fractions</strong> can be calculated using the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.fit_fractions_with_propagated_errors" title="pycompwa.ui.fit_fractions_with_propagated_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code></a> function. It requires amplitude or <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> components that can be extracted from the <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.IntensityBuilderXML" title="pycompwa.ui.IntensityBuilderXML"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntensityBuilderXML</span></code></a> instance. A nested list of the component names has to be specified as well. These are the names specified in the component XML attributes. If the inner lists contain more than one component, these components will be added coherently. In this way, you can calculate your own customized fit fractions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span> <span class="o">=</span> <span class="n">intensity_builder</span><span class="o">.</span><span class="n">create_intensity_components</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">[</span><span class="s2">&quot;coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0&quot;</span><span class="p">],</span>
         <span class="p">[</span><span class="s2">&quot;J/psi_-1_to_f2(1270)_-1+gamma_-1;f2(1270)_-1_to_pi0_0+pi0_0;&quot;</span><span class="p">],</span>
@@ -1026,16 +1166,11 @@ calculate your own customized fit fractions.</p>
 </pre></div>
 </div>
 </div>
-<p>The last step is to call the actual fit fraction calculation function
-<a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.fit_fractions_with_propagated_errors" title="pycompwa.ui.fit_fractions_with_propagated_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code></a>. Here, the first required
-argument is a list of component pairs. Each pair resembles the nominator
-and denominator of a fit fraction.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fit_fractions</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">fit_fractions_with_propagated_errors</span><span class="p">(</span>
+<p>The last step is to call the actual fit fraction calculation function <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.fit_fractions_with_propagated_errors" title="pycompwa.ui.fit_fractions_with_propagated_errors"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_fractions_with_propagated_errors()</span></code></a>. Here, the first required argument is a list of component pairs. Each pair resembles the nominator and denominator of a fit fraction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_fractions</span> <span class="o">=</span> <span class="n">pwa</span><span class="o">.</span><span class="n">fit_fractions_with_propagated_errors</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
         <span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
@@ -1048,37 +1183,31 @@ and denominator of a fit fraction.</p>
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">fraction</span> <span class="ow">in</span> <span class="n">fit_fractions</span><span class="p">:</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fraction</span> <span class="ow">in</span> <span class="n">fit_fractions</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">fraction</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">fraction</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;+/-&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-J/psi_-1_to_f2(1270)_-1+gamma_-1
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.005501850830424637 +/- 0.002218390463328159
+0.005501850829265467 +/- 0.002218392040543499
 
 J/psi_-1_to_f2(1270)_-2+gamma_-1
   f2(1270)_-2_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.01242067241466148 +/- 0.0026534356146688865
+0.012420672413564506 +/- 0.002653439377578946
 
 J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.010391539894593073 +/- 0.0021906653140513176
+0.010391539895566813 +/- 0.0021907169946113916
 
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
@@ -1087,42 +1216,85 @@ J/psi_-1_to_f2(1270)_-1+gamma_-1
   _J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.028241292334017242 +/- 0.002995913837471348
-
-</pre></div></div>
+0.02824129233273513 +/- 0.002995934047430585
+</pre></div>
 </div>
-<p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html"><span class="doc">examples</span></a> to
-learn about more detailed features of ComPWA.</p>
+</div>
+</div>
+<p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html"><span class="doc">examples</span></a> to learn about more detailed features of ComPWA.</p>
 <p>And, please, feel free to <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues/new">provide feedback</a> or <a class="reference external" href="https://compwa.github.io/contribute.html">contribute</a> ;)</p>
-</section>
-</section>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ComPWA/pycompwa",
+            ref: "stable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./usage/workflow"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="3_perform_fit.html" class="btn btn-neutral float-left" title="Step 3: Perform fit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../tools.html" class="btn btn-neutral float-right" title="Additional Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="3_perform_fit.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Step 3: Perform fit</p>
+            </div>
+        </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="../tools.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Additional Tools</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-   
-
-</footer>
+</div>
+        
         </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Common Partial Wave Analysis<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
 
-</body>
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
 </html>

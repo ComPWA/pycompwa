@@ -1,586 +1,1015 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>particle &mdash; pycompwa  documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script src="../_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>particle &#8212; pycompwa</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="propagation" href="pycompwa.expertsystem.state.propagation.html" />
-    <link rel="prev" title="conservationrules" href="pycompwa.expertsystem.state.conservationrules.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../index.html"><img src="../_static/logo-small.png" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <link rel="prev" title="conservationrules" href="pycompwa.expertsystem.state.conservationrules.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-              <p><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute.html">How to contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documents.html">Talks and Documents</a></li>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo-small.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">pycompwa</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../installation.html">
+   Installation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/get-the-source-code.html">
+     Get the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/virtual-environment.html">
+     Create a virtual environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../install/build.html">
+     Build and install
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../usage.html">
+   Usage
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/workflow.html">
+     ComPWA Workflow
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+       Step 1: Create an amplitude model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+       Step 2: Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+       Step 3: Perform fit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+       Step 4: Analyze results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../usage/tools.html">
+     Additional Tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/data_module.html">
+       Data module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/generate.html">
+       Generate data samples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../usage/tools/particles.html">
+       Particle database
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documents.html">
+   Talks and Documents
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pycompwa.html">
+   API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.data.html">
+     data
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.data.io.html">
+       io
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.data.io.pawian.html">
+         pawian
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.convert.html">
+       convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.create.html">
+       create
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.exception.html">
+       exception
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.data.naming.html">
+       naming
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pycompwa.expertsystem.html">
+     expertsystem
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.amplitude.html">
+       amplitude
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.abstractgenerator.html">
+         abstractgenerator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.canonicaldecay.html">
+         canonicaldecay
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.amplitude.helicitydecay.html">
+         helicitydecay
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.expertsystem.solvers.html">
+       solvers
+      </a>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.state.html">
+       state
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.conservationrules.html">
+         conservationrules
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         particle
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.state.propagation.html">
+         propagation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.topology.html">
+       topology
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.graph.html">
+         graph
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.topology.topologybuilder.html">
+         topologybuilder
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="pycompwa.expertsystem.ui.html">
+       ui
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.default_settings.html">
+         default_settings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="pycompwa.expertsystem.ui.system_control.html">
+         system_control
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="pycompwa.plotting.html">
+     plotting
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pycompwa.plotting.rootplotdatareader.html">
+       rootplotdatareader
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pycompwa.ui.html">
+     ui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Related projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://qrules.readthedocs.io">
+   QRules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ampform.readthedocs.io">
+   AmpForm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://tensorwaves.readthedocs.io">
+   TensorWaves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pwa.readthedocs.io">
+   PWA Pages
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  ComPWA Organization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io">
+   Website
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ComPWA">
+   GitHub Repositories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://compwa-org.readthedocs.io/en/stable/about.html">
+   About
+  </a>
+ </li>
 </ul>
 
-    <a href= "../py-modindex.html">Module Index (API)</a>
-    <a href= "../genindex.html">General Index</a>
-  
-        </div>
-      </div>
-    </nav>
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">pycompwa</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../api.html">API</a> &raquo;</li>
-          <li><a href="pycompwa.html">pycompwa</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.html">expertsystem</a> &raquo;</li>
-          <li><a href="pycompwa.expertsystem.state.html">state</a> &raquo;</li>
-      <li>particle</li>
-      <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsapi/pycompwa.expertsystem.state.particle.rst" class="fa fa-github"> Edit on GitHub</a>
-      </li>
-  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="pycompwa.expertsystem.state.conservationrules.html" class="btn btn-neutral float-left" title="conservationrules" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.expertsystem.state.propagation.html" class="btn btn-neutral float-right" title="propagation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-  </div>
-  <hr/>
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+</div>
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
+          
 
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="module-pycompwa.expertsystem.state.particle">
-<span id="particle"></span><h1>particle<a class="headerlink" href="#module-pycompwa.expertsystem.state.particle" title="Permalink to this headline">¶</a></h1>
-<p>This module defines a particle as a collection of quantum numbers and things
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/api/pycompwa.expertsystem.state.particle.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ComPWA/pycompwa"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fapi/pycompwa.expertsystem.state.particle.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/api/pycompwa.expertsystem.state.particle.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="particle">
+<h1>particle<a class="headerlink" href="#particle" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.expertsystem.state.particle</span>
+</pre></div>
+</div>
+<span class="target" id="module-pycompwa.expertsystem.state.particle"></span><p>This module defines a particle as a collection of quantum numbers and things
 related to this.</p>
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.AbstractQNConverter">
-<em class="property">class </em><code class="sig-name descname">AbstractQNConverter</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.AbstractQNConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">AbstractQNConverter</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict">
-<em class="property">abstract </em><code class="sig-name descname">convert_to_dict</code><span class="sig-paren">(</span><em class="sig-param">qn_type</em>, <em class="sig-param">qn_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter.convert_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">convert_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter.convert_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict">
-<em class="property">abstract </em><code class="sig-name descname">parse_from_dict</code><span class="sig-paren">(</span><em class="sig-param">data_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter.parse_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">parse_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#AbstractQNConverter.parse_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">
-<em class="property">class </em><code class="sig-name descname">CompareGraphElementPropertiesFunctor</code><span class="sig-paren">(</span><em class="sig-param">ignored_qn_list=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CompareGraphElementPropertiesFunctor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignored_qn_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">
-<code class="sig-name descname">compare_qn_numbers</code><span class="sig-paren">(</span><em class="sig-param">qns1</em>, <em class="sig-param">qns2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor.compare_qn_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers">
+<span class="sig-name descname"><span class="pre">compare_qn_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qns1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qns2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#CompareGraphElementPropertiesFunctor.compare_qn_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.CompareGraphElementPropertiesFunctor.compare_qn_numbers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter">
-<em class="property">class </em><code class="sig-name descname">FloatQNConverter</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">FloatQNConverter</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="pycompwa.expertsystem.state.particle.AbstractQNConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.particle.AbstractQNConverter</span></code></a></p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter.class_label">
-<code class="sig-name descname">class_label</code><em class="property"> = '&#64;Class'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter.class_label">
+<span class="sig-name descname"><span class="pre">class_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Class'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict">
-<code class="sig-name descname">convert_to_dict</code><span class="sig-paren">(</span><em class="sig-param">qn_type</em>, <em class="sig-param">qn_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter.convert_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict">
+<span class="sig-name descname"><span class="pre">convert_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter.convert_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict">
-<code class="sig-name descname">parse_from_dict</code><span class="sig-paren">(</span><em class="sig-param">data_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter.parse_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict">
+<span class="sig-name descname"><span class="pre">parse_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#FloatQNConverter.parse_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter.type_label">
-<code class="sig-name descname">type_label</code><em class="property"> = '&#64;Type'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter.type_label">
+<span class="sig-name descname"><span class="pre">type_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Type'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.FloatQNConverter.value_label">
-<code class="sig-name descname">value_label</code><em class="property"> = '&#64;Value'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.FloatQNConverter.value_label">
+<span class="sig-name descname"><span class="pre">value_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Value'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.FloatQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter">
-<em class="property">class </em><code class="sig-name descname">IntQNConverter</code><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">IntQNConverter</span></span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="pycompwa.expertsystem.state.particle.AbstractQNConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.particle.AbstractQNConverter</span></code></a></p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter.class_label">
-<code class="sig-name descname">class_label</code><em class="property"> = '&#64;Class'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter.class_label">
+<span class="sig-name descname"><span class="pre">class_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Class'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict">
-<code class="sig-name descname">convert_to_dict</code><span class="sig-paren">(</span><em class="sig-param">qn_type</em>, <em class="sig-param">qn_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter.convert_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict">
+<span class="sig-name descname"><span class="pre">convert_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter.convert_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict">
-<code class="sig-name descname">parse_from_dict</code><span class="sig-paren">(</span><em class="sig-param">data_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter.parse_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict">
+<span class="sig-name descname"><span class="pre">parse_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#IntQNConverter.parse_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter.type_label">
-<code class="sig-name descname">type_label</code><em class="property"> = '&#64;Type'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter.type_label">
+<span class="sig-name descname"><span class="pre">type_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Type'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.IntQNConverter.value_label">
-<code class="sig-name descname">value_label</code><em class="property"> = '&#64;Value'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.IntQNConverter.value_label">
+<span class="sig-name descname"><span class="pre">value_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Value'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.IntQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames">
-<em class="property">class </em><code class="sig-name descname">InteractionQuantumNumberNames</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">InteractionQuantumNumberNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>An enumeration.</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.L">
-<code class="sig-name descname">L</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.L" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.L">
+<span class="sig-name descname"><span class="pre">L</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.L" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.ParityPrefactor">
-<code class="sig-name descname">ParityPrefactor</code><em class="property"> = 3</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.ParityPrefactor" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.ParityPrefactor">
+<span class="sig-name descname"><span class="pre">ParityPrefactor</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.ParityPrefactor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.S">
-<code class="sig-name descname">S</code><em class="property"> = 2</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.S" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.S">
+<span class="sig-name descname"><span class="pre">S</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.InteractionQuantumNumberNames.S" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames">
-<em class="property">class </em><code class="sig-name descname">ParticleDecayPropertyNames</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ParticleDecayPropertyNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>definition of quantum number names for interaction nodes</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames.Width">
-<code class="sig-name descname">Width</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames.Width" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames.Width">
+<span class="sig-name descname"><span class="pre">Width</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticleDecayPropertyNames.Width" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.ParticlePropertyNames">
-<em class="property">class </em><code class="sig-name descname">ParticlePropertyNames</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.ParticlePropertyNames">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ParticlePropertyNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>definition of decay properties names of particles</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.ParticlePropertyNames.Mass">
-<code class="sig-name descname">Mass</code><em class="property"> = 2</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames.Mass" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.ParticlePropertyNames.Mass">
+<span class="sig-name descname"><span class="pre">Mass</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames.Mass" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.ParticlePropertyNames.Pid">
-<code class="sig-name descname">Pid</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames.Pid" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.ParticlePropertyNames.Pid">
+<span class="sig-name descname"><span class="pre">Pid</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.ParticlePropertyNames.Pid" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.QuantumNumberClasses">
-<em class="property">class </em><code class="sig-name descname">QuantumNumberClasses</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.QuantumNumberClasses">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">QuantumNumberClasses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>definition of quantum number names for states</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Float">
-<code class="sig-name descname">Float</code><em class="property"> = 2</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Float" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Float">
+<span class="sig-name descname"><span class="pre">Float</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Float" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Int">
-<code class="sig-name descname">Int</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Int" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Int">
+<span class="sig-name descname"><span class="pre">Int</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Int" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Spin">
-<code class="sig-name descname">Spin</code><em class="property"> = 3</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Spin" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.QuantumNumberClasses.Spin">
+<span class="sig-name descname"><span class="pre">Spin</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.QuantumNumberClasses.Spin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.Spin">
-<em class="property">class </em><code class="sig-name descname">Spin</code><span class="sig-paren">(</span><em class="sig-param">mag</em>, <em class="sig-param">proj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.Spin">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Simple struct-like class defining spin as a magnitude plus the
 projection.</p>
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.Spin.__eq__">
-<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.__eq__" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.Spin.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.__eq__" title="Permalink to this definition">¶</a></dt>
 <dd><p>define the equal operator for the spin class, which is needed for
 equality checks of states in certain rules.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.Spin.magnitude">
-<code class="sig-name descname">magnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.magnitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.magnitude" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.Spin.magnitude">
+<span class="sig-name descname"><span class="pre">magnitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.magnitude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.Spin.projection">
-<code class="sig-name descname">projection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.projection" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.Spin.projection">
+<span class="sig-name descname"><span class="pre">projection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#Spin.projection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.Spin.projection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter">
-<em class="property">class </em><code class="sig-name descname">SpinQNConverter</code><span class="sig-paren">(</span><em class="sig-param">parse_projection=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">SpinQNConverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parse_projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycompwa.expertsystem.state.particle.AbstractQNConverter" title="pycompwa.expertsystem.state.particle.AbstractQNConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.expertsystem.state.particle.AbstractQNConverter</span></code></a></p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.class_label">
-<code class="sig-name descname">class_label</code><em class="property"> = '&#64;Class'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.class_label">
+<span class="sig-name descname"><span class="pre">class_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Class'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.class_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict">
-<code class="sig-name descname">convert_to_dict</code><span class="sig-paren">(</span><em class="sig-param">qn_type</em>, <em class="sig-param">qn_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter.convert_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict">
+<span class="sig-name descname"><span class="pre">convert_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter.convert_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.convert_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict">
-<code class="sig-name descname">parse_from_dict</code><span class="sig-paren">(</span><em class="sig-param">data_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter.parse_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict">
+<span class="sig-name descname"><span class="pre">parse_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#SpinQNConverter.parse_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.parse_from_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.proj_label">
-<code class="sig-name descname">proj_label</code><em class="property"> = '&#64;Projection'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.proj_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.proj_label">
+<span class="sig-name descname"><span class="pre">proj_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Projection'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.proj_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.type_label">
-<code class="sig-name descname">type_label</code><em class="property"> = '&#64;Type'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.type_label">
+<span class="sig-name descname"><span class="pre">type_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Type'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.type_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.SpinQNConverter.value_label">
-<code class="sig-name descname">value_label</code><em class="property"> = '&#64;Value'</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.SpinQNConverter.value_label">
+<span class="sig-name descname"><span class="pre">value_label</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&#64;Value'</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.SpinQNConverter.value_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames">
-<em class="property">class </em><code class="sig-name descname">StateQuantumNumberNames</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">StateQuantumNumberNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>definition of properties names of particles</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.BaryonNumber">
-<code class="sig-name descname">BaryonNumber</code><em class="property"> = 11</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.BaryonNumber" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.BaryonNumber">
+<span class="sig-name descname"><span class="pre">BaryonNumber</span></span><em class="property"> <span class="pre">=</span> <span class="pre">11</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.BaryonNumber" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Bottomness">
-<code class="sig-name descname">Bottomness</code><em class="property"> = 9</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Bottomness" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Bottomness">
+<span class="sig-name descname"><span class="pre">Bottomness</span></span><em class="property"> <span class="pre">=</span> <span class="pre">9</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Bottomness" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charge">
-<code class="sig-name descname">Charge</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charge" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charge">
+<span class="sig-name descname"><span class="pre">Charge</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charge" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charm">
-<code class="sig-name descname">Charm</code><em class="property"> = 8</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charm" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charm">
+<span class="sig-name descname"><span class="pre">Charm</span></span><em class="property"> <span class="pre">=</span> <span class="pre">8</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Charm" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Cparity">
-<code class="sig-name descname">Cparity</code><em class="property"> = 4</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Cparity" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Cparity">
+<span class="sig-name descname"><span class="pre">Cparity</span></span><em class="property"> <span class="pre">=</span> <span class="pre">4</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Cparity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.ElectronLN">
-<code class="sig-name descname">ElectronLN</code><em class="property"> = 12</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.ElectronLN" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.ElectronLN">
+<span class="sig-name descname"><span class="pre">ElectronLN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">12</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.ElectronLN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Gparity">
-<code class="sig-name descname">Gparity</code><em class="property"> = 5</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Gparity" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Gparity">
+<span class="sig-name descname"><span class="pre">Gparity</span></span><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Gparity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.IsoSpin">
-<code class="sig-name descname">IsoSpin</code><em class="property"> = 6</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.IsoSpin" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.IsoSpin">
+<span class="sig-name descname"><span class="pre">IsoSpin</span></span><em class="property"> <span class="pre">=</span> <span class="pre">6</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.IsoSpin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.MuonLN">
-<code class="sig-name descname">MuonLN</code><em class="property"> = 13</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.MuonLN" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.MuonLN">
+<span class="sig-name descname"><span class="pre">MuonLN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">13</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.MuonLN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Parity">
-<code class="sig-name descname">Parity</code><em class="property"> = 3</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Parity" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Parity">
+<span class="sig-name descname"><span class="pre">Parity</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Parity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Spin">
-<code class="sig-name descname">Spin</code><em class="property"> = 2</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Spin" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Spin">
+<span class="sig-name descname"><span class="pre">Spin</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Spin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Strangeness">
-<code class="sig-name descname">Strangeness</code><em class="property"> = 7</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Strangeness" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Strangeness">
+<span class="sig-name descname"><span class="pre">Strangeness</span></span><em class="property"> <span class="pre">=</span> <span class="pre">7</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Strangeness" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.TauLN">
-<code class="sig-name descname">TauLN</code><em class="property"> = 14</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.TauLN" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.TauLN">
+<span class="sig-name descname"><span class="pre">TauLN</span></span><em class="property"> <span class="pre">=</span> <span class="pre">14</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.TauLN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Topness">
-<code class="sig-name descname">Topness</code><em class="property"> = 10</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Topness" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Topness">
+<span class="sig-name descname"><span class="pre">Topness</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.StateQuantumNumberNames.Topness" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants">
-<em class="property">class </em><code class="sig-name descname">XMLLabelConstants</code><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">XMLLabelConstants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>An enumeration.</p>
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Class">
-<code class="sig-name descname">Class</code><em class="property"> = 6</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Class" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"> <span class="pre">=</span> <span class="pre">6</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Class" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Component">
-<code class="sig-name descname">Component</code><em class="property"> = 8</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Component" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Component">
+<span class="sig-name descname"><span class="pre">Component</span></span><em class="property"> <span class="pre">=</span> <span class="pre">8</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Component" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.DecayInfo">
-<code class="sig-name descname">DecayInfo</code><em class="property"> = 11</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.DecayInfo" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.DecayInfo">
+<span class="sig-name descname"><span class="pre">DecayInfo</span></span><em class="property"> <span class="pre">=</span> <span class="pre">11</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.DecayInfo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Name">
-<code class="sig-name descname">Name</code><em class="property"> = 1</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Name">
+<span class="sig-name descname"><span class="pre">Name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Parameter">
-<code class="sig-name descname">Parameter</code><em class="property"> = 9</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Parameter" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Parameter">
+<span class="sig-name descname"><span class="pre">Parameter</span></span><em class="property"> <span class="pre">=</span> <span class="pre">9</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Parameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Pid">
-<code class="sig-name descname">Pid</code><em class="property"> = 2</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Pid" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Pid">
+<span class="sig-name descname"><span class="pre">Pid</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Pid" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.PreFactor">
-<code class="sig-name descname">PreFactor</code><em class="property"> = 10</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.PreFactor" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.PreFactor">
+<span class="sig-name descname"><span class="pre">PreFactor</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.PreFactor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Projection">
-<code class="sig-name descname">Projection</code><em class="property"> = 7</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Projection" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Projection">
+<span class="sig-name descname"><span class="pre">Projection</span></span><em class="property"> <span class="pre">=</span> <span class="pre">7</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Projection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.QuantumNumber">
-<code class="sig-name descname">QuantumNumber</code><em class="property"> = 5</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.QuantumNumber" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.QuantumNumber">
+<span class="sig-name descname"><span class="pre">QuantumNumber</span></span><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.QuantumNumber" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Type">
-<code class="sig-name descname">Type</code><em class="property"> = 3</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Type" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Type">
+<span class="sig-name descname"><span class="pre">Type</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Value">
-<code class="sig-name descname">Value</code><em class="property"> = 4</em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Value" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.XMLLabelConstants.Value">
+<span class="sig-name descname"><span class="pre">Value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">4</span></em><a class="headerlink" href="#pycompwa.expertsystem.state.particle.XMLLabelConstants.Value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.add_to_particle_list">
-<code class="sig-name descname">add_to_particle_list</code><span class="sig-paren">(</span><em class="sig-param">particle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#add_to_particle_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.add_to_particle_list" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.add_to_particle_list">
+<span class="sig-name descname"><span class="pre">add_to_particle_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#add_to_particle_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.add_to_particle_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a particle dictionary object to the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> dictionary.</p>
 <p>The key will be extracted from the <code class="docutils literal notranslate"><span class="pre">particle</span></code> name (XML tag <code class="docutils literal notranslate"><span class="pre">&#64;Name</span></code>).
 If the key already exists, the entry in <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> will be
 overwritten by this one.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.calculate_combinatorics">
-<code class="sig-name descname">calculate_combinatorics</code><span class="sig-paren">(</span><em class="sig-param">edges</em>, <em class="sig-param">state_particles</em>, <em class="sig-param">attached_external_edges_per_node</em>, <em class="sig-param">allowed_particle_groupings=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#calculate_combinatorics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.calculate_combinatorics" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.calculate_combinatorics">
+<span class="sig-name descname"><span class="pre">calculate_combinatorics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_particles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attached_external_edges_per_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_particle_groupings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#calculate_combinatorics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.calculate_combinatorics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.check_if_spin_projections_set">
-<code class="sig-name descname">check_if_spin_projections_set</code><span class="sig-paren">(</span><em class="sig-param">state</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#check_if_spin_projections_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.check_if_spin_projections_set" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.check_if_spin_projections_set">
+<span class="sig-name descname"><span class="pre">check_if_spin_projections_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#check_if_spin_projections_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.check_if_spin_projections_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.check_qns_equal">
-<code class="sig-name descname">check_qns_equal</code><span class="sig-paren">(</span><em class="sig-param">qns_state</em>, <em class="sig-param">qns_particle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#check_qns_equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.check_qns_equal" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.check_qns_equal">
+<span class="sig-name descname"><span class="pre">check_qns_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qns_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qns_particle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#check_qns_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.check_qns_equal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.compare_qns">
-<code class="sig-name descname">compare_qns</code><span class="sig-paren">(</span><em class="sig-param">qn_dict</em>, <em class="sig-param">qn_dict2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#compare_qns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.compare_qns" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.compare_qns">
+<span class="sig-name descname"><span class="pre">compare_qns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_dict2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#compare_qns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.compare_qns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.create_spin_domain">
-<code class="sig-name descname">create_spin_domain</code><span class="sig-paren">(</span><em class="sig-param">list_of_magnitudes</em>, <em class="sig-param">set_projection_zero=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#create_spin_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.create_spin_domain" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.create_spin_domain">
+<span class="sig-name descname"><span class="pre">create_spin_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_magnitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_projection_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#create_spin_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.create_spin_domain" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_interaction_property">
-<code class="sig-name descname">get_interaction_property</code><span class="sig-paren">(</span><em class="sig-param">interaction_properties</em>, <em class="sig-param">qn_name</em>, <em class="sig-param">converter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_interaction_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_interaction_property" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_interaction_property">
+<span class="sig-name descname"><span class="pre">get_interaction_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_properties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_interaction_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_interaction_property" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_particle_candidates_for_state">
-<code class="sig-name descname">get_particle_candidates_for_state</code><span class="sig-paren">(</span><em class="sig-param">state</em>, <em class="sig-param">allowed_particle_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_candidates_for_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_candidates_for_state" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_particle_candidates_for_state">
+<span class="sig-name descname"><span class="pre">get_particle_candidates_for_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_particle_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_candidates_for_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_candidates_for_state" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_particle_copy_by_name">
-<code class="sig-name descname">get_particle_copy_by_name</code><span class="sig-paren">(</span><em class="sig-param">particle_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_copy_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_copy_by_name" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_particle_copy_by_name">
+<span class="sig-name descname"><span class="pre">get_particle_copy_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_copy_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_copy_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.deepcopy" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deepcopy</span></code></a> of a particle from the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code>
 dictionary so you can manipulate it and add it to the particle data
 base.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_particle_property">
-<code class="sig-name descname">get_particle_property</code><span class="sig-paren">(</span><em class="sig-param">particle_properties</em>, <em class="sig-param">qn_name</em>, <em class="sig-param">converter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_property" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_particle_property">
+<span class="sig-name descname"><span class="pre">get_particle_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle_properties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qn_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_property" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_particle_with_name">
-<code class="sig-name descname">get_particle_with_name</code><span class="sig-paren">(</span><em class="sig-param">particle_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_with_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_with_name" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_particle_with_name">
+<span class="sig-name descname"><span class="pre">get_particle_with_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_particle_with_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_particle_with_name" title="Permalink to this definition">¶</a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.2.0: </span><code class="docutils literal notranslate"><span class="pre">particle_list</span></code> has become a dictionary, so you can already access
 its entries with a string index.</p>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.get_xml_label">
-<code class="sig-name descname">get_xml_label</code><span class="sig-paren">(</span><em class="sig-param">enum</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_xml_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_xml_label" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.get_xml_label">
+<span class="sig-name descname"><span class="pre">get_xml_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#get_xml_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.get_xml_label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the the correctly formatted XML label as required by ComPWA and
 <code class="docutils literal notranslate"><span class="pre">xmltodict</span></code>.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.initialize_allowed_particle_list">
-<code class="sig-name descname">initialize_allowed_particle_list</code><span class="sig-paren">(</span><em class="sig-param">allowed_particle_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_allowed_particle_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_allowed_particle_list" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.initialize_allowed_particle_list">
+<span class="sig-name descname"><span class="pre">initialize_allowed_particle_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed_particle_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_allowed_particle_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_allowed_particle_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.initialize_edges">
-<code class="sig-name descname">initialize_edges</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">edge_particle_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_edges" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.initialize_edges">
+<span class="sig-name descname"><span class="pre">initialize_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_particle_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_edges" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.initialize_external_edge_lists">
-<code class="sig-name descname">initialize_external_edge_lists</code><span class="sig-paren">(</span><em class="sig-param">attached_external_edges_per_node</em>, <em class="sig-param">edge_particle_mapping</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_external_edge_lists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_external_edge_lists" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.initialize_external_edge_lists">
+<span class="sig-name descname"><span class="pre">initialize_external_edge_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attached_external_edges_per_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_particle_mapping</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_external_edge_lists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_external_edge_lists" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.initialize_graph">
-<code class="sig-name descname">initialize_graph</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">initial_state</em>, <em class="sig-param">final_state</em>, <em class="sig-param">final_state_groupings</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_graph" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.initialize_graph">
+<span class="sig-name descname"><span class="pre">initialize_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_state_groupings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_graph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.initialize_graphs_with_particles">
-<code class="sig-name descname">initialize_graphs_with_particles</code><span class="sig-paren">(</span><em class="sig-param">graphs</em>, <em class="sig-param">allowed_particle_list=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_graphs_with_particles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_graphs_with_particles" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.initialize_graphs_with_particles">
+<span class="sig-name descname"><span class="pre">initialize_graphs_with_particles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_particle_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#initialize_graphs_with_particles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.initialize_graphs_with_particles" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.is_boson">
-<code class="sig-name descname">is_boson</code><span class="sig-paren">(</span><em class="sig-param">qn_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#is_boson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.is_boson" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.is_boson">
+<span class="sig-name descname"><span class="pre">is_boson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qn_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#is_boson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.is_boson" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.load_particle_list_from_xml">
-<code class="sig-name descname">load_particle_list_from_xml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#load_particle_list_from_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.load_particle_list_from_xml" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.load_particle_list_from_xml">
+<span class="sig-name descname"><span class="pre">load_particle_list_from_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#load_particle_list_from_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.load_particle_list_from_xml" title="Permalink to this definition">¶</a></dt>
 <dd><p>By default, the expert system loads the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> from the XML
 file <code class="docutils literal notranslate"><span class="pre">particle_list.xml</span></code> located in the ComPWA module. Use
 <a class="reference internal" href="#pycompwa.expertsystem.state.particle.load_particle_list_from_xml" title="pycompwa.expertsystem.state.particle.load_particle_list_from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_particle_list_from_xml</span></code></a> to append to the <code class="docutils literal notranslate"><span class="pre">particle_list</span></code>.</p>
@@ -592,50 +1021,93 @@ overwritten.</p>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.merge_qn_props">
-<code class="sig-name descname">merge_qn_props</code><span class="sig-paren">(</span><em class="sig-param">qns_state</em>, <em class="sig-param">qns_particle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#merge_qn_props"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.merge_qn_props" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.merge_qn_props">
+<span class="sig-name descname"><span class="pre">merge_qn_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qns_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qns_particle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#merge_qn_props"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.merge_qn_props" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections">
-<code class="sig-name descname">populate_edge_with_spin_projections</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">edge_id</em>, <em class="sig-param">spin_projections</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#populate_edge_with_spin_projections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections">
+<span class="sig-name descname"><span class="pre">populate_edge_with_spin_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_projections</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#populate_edge_with_spin_projections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.populate_edge_with_spin_projections" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="pycompwa.expertsystem.state.particle.write_particle_list_to_xml">
-<code class="sig-name descname">write_particle_list_to_xml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#write_particle_list_to_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.write_particle_list_to_xml" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycompwa.expertsystem.state.particle.write_particle_list_to_xml">
+<span class="sig-name descname"><span class="pre">write_particle_list_to_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycompwa/expertsystem/state/particle.html#write_particle_list_to_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycompwa.expertsystem.state.particle.write_particle_list_to_xml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> instance to XML file.</p>
 </dd></dl>
 
-</section>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ComPWA/pycompwa",
+            ref: "stable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycompwa.expertsystem.state.conservationrules.html" class="btn btn-neutral float-left" title="conservationrules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycompwa.expertsystem.state.propagation.html" class="btn btn-neutral float-right" title="propagation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pycompwa.expertsystem.state.conservationrules.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">conservationrules</p>
+            </div>
+        </a>
     </div>
+     <div id="next">
+        <a class="right-next" href="pycompwa.expertsystem.state.propagation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">propagation</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p></p>
-  </div>
-
-   
-
-</footer>
+</div>
+        
         </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Common Partial Wave Analysis<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
 
-</body>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
 </html>
