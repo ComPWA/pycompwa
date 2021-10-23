@@ -86,7 +86,7 @@
           <li><a href="../installation.html">Installation</a> &raquo;</li>
       <li>Build and install</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ComPWA/pycompwa/blob/main/doc/source/install/build.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ComPWA/pycompwa/blob/main/docsinstall/build.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="virtual-environment.html" class="btn btn-neutral float-left" title="Create a virtual environment" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -179,9 +179,9 @@ cmake --build . -- -j2
 <p>The most important binary build file is the shared library for the
 <a class="reference internal" href="../api/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> package. You need to set a symbolic link to this file from the
 <code class="file docutils literal notranslate"><span class="pre">pycompwa</span></code> source code folder:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../pycompwa
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../src/pycompwa
 rm -f ui.*.so  <span class="c1"># in case you already created a symlink</span>
-ln -s ../build/ui.*.so
+ln -s ../../build/ui.*.so
 </pre></div>
 </div>
 </section>
