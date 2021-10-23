@@ -1,6 +1,15 @@
+# Welcome to the pycompwa website!
+
 <!-- cspell:ignore genindex modindex -->
 
-# Welcome to the pycompwa website!
+:::{warning}
+
+`pycompwa` is no longer maintained. Use the
+[ComPWA](https://compwa-org.rtfd.io) packages [QRules](https://qrules.rtfd.io),
+[AmpForm](https://ampform.rtfd.io), and
+[TensorWaves](https://tensorwaves.rtfd.io) instead!
+
+:::
 
 The {mod}`pycompwa` package is a collection of python modules that interface
 and extend the "Common Partial-Wave-Analysis Framework"
