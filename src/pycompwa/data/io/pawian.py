@@ -1,3 +1,4 @@
+# cspell:ignore astype dropna Fourvecs
 """Import Pawian data files.
 
 For more information, see the `Pawian website
@@ -159,26 +160,26 @@ def _read_ascii_without_header(filename, particles=None, **kwargs):
 
     # Prepare splitting into particle columns
     first_momentum_row = 0
-    nrows = len(particles)
+    n_rows = len(particles)
     if has_weights:
         first_momentum_row = 1
-        nrows += 1
+        n_rows += 1
 
     # Create multi-column pandas.DataFrame
     frame = create.pwa_frame(
         particle_names=particles,
-        number_of_rows=len(full_table) // nrows,
+        number_of_rows=len(full_table) // n_rows,
     )
     particles = frame.pwa.particles
 
     # Convert imported table to the multi-column one
     if has_weights:
         frame[_labels.WEIGHT] = full_table[_labels.MOMENTA[0]][
-            0::nrows
+            0::n_rows
         ].reset_index(drop=True)
     for start_row, par in enumerate(particles, first_momentum_row):
         for mom in _labels.MOMENTA:
-            frame[par, mom] = full_table[mom][start_row::nrows].reset_index(
+            frame[par, mom] = full_table[mom][start_row::n_rows].reset_index(
                 drop=True
             )
     return frame

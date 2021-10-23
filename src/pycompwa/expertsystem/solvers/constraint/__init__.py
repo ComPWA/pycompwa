@@ -23,6 +23,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# cspell:ignore Niemeyer v_constraints
 """
 @var Unassigned: Helper object instance representing unassigned values
 
@@ -259,10 +260,10 @@ class Problem(object):
         @return: All solutions for the problem
         @rtype: list of dictionaries mapping variables to values
         """
-        domains, constraints, vconstraints = self._getArgs()
+        domains, constraints, v_constraints = self._getArgs()
         if not domains:
             return []
-        return self._solver.getSolutions(domains, constraints, vconstraints)
+        return self._solver.getSolutions(domains, constraints, v_constraints)
 
     def getSolutionIter(self):
         """Return an iterator to the solutions of the problem.
@@ -281,10 +282,12 @@ class Problem(object):
           File "<stdin>", line 1, in ?
         StopIteration
         """
-        domains, constraints, vconstraints = self._getArgs()
+        domains, constraints, v_constraints = self._getArgs()
         if not domains:
             return iter(())
-        return self._solver.getSolutionIter(domains, constraints, vconstraints)
+        return self._solver.getSolutionIter(
+            domains, constraints, v_constraints
+        )
 
     def _getArgs(self):
         domains = self._variables.copy()
@@ -294,22 +297,22 @@ class Problem(object):
             if not variables:
                 variables = allvariables
             constraints.append((constraint, variables))
-        vconstraints = {}
+        v_constraints = {}
         for variable in domains:
-            vconstraints[variable] = []
+            v_constraints[variable] = []
         for constraint, variables in constraints:
             for variable in variables:
-                vconstraints[variable].append((constraint, variables))
+                v_constraints[variable].append((constraint, variables))
         for constraint, variables in constraints[:]:
             constraint.preProcess(
-                variables, domains, constraints, vconstraints
+                variables, domains, constraints, v_constraints
             )
         for domain in domains.values():
             domain.resetState()
             if not domain:
                 return None, None, None
         # doArc8(getArcs(domains, constraints), domains, {})
-        return domains, constraints, vconstraints
+        return domains, constraints, v_constraints
 
 
 # ----------------------------------------------------------------------
@@ -384,44 +387,44 @@ class Solver(object):
     @sort: getSolution, getSolutions, getSolutionIter
     """
 
-    def getSolution(self, domains, constraints, vconstraints):
+    def getSolution(self, domains, constraints, v_constraints):
         """Return one solution for the given problem.
 
         @param domains: Dictionary mapping variables to their domains
         @type  domains: dict
         @param constraints: List of pairs of (constraint, variables)
         @type  constraints: list
-        @param vconstraints: Dictionary mapping variables to a list of
+        @param v_constraints: Dictionary mapping variables to a list of
                              constraints affecting the given variables.
-        @type  vconstraints: dict
+        @type  v_constraints: dict
         """
         msg = "%s is an abstract class" % self.__class__.__name__
         raise NotImplementedError(msg)
 
-    def getSolutions(self, domains, constraints, vconstraints):
+    def getSolutions(self, domains, constraints, v_constraints):
         """Return all solutions for the given problem.
 
         @param domains: Dictionary mapping variables to domains
         @type  domains: dict
         @param constraints: List of pairs of (constraint, variables)
         @type  constraints: list
-        @param vconstraints: Dictionary mapping variables to a list of
+        @param v_constraints: Dictionary mapping variables to a list of
                              constraints affecting the given variables.
-        @type  vconstraints: dict
+        @type  v_constraints: dict
         """
         msg = "%s provides only a single solution" % self.__class__.__name__
         raise NotImplementedError(msg)
 
-    def getSolutionIter(self, domains, constraints, vconstraints):
+    def getSolutionIter(self, domains, constraints, v_constraints):
         """Return an iterator for the solutions of the given problem.
 
         @param domains: Dictionary mapping variables to domains
         @type  domains: dict
         @param constraints: List of pairs of (constraint, variables)
         @type  constraints: list
-        @param vconstraints: Dictionary mapping variables to a list of
+        @param v_constraints: Dictionary mapping variables to a list of
                              constraints affecting the given variables.
-        @type  vconstraints: dict
+        @type  v_constraints: dict
         """
         msg = "%s doesn't provide iteration" % self.__class__.__name__
         raise NotImplementedError(msg)
@@ -466,7 +469,7 @@ class BacktrackingSolver(Solver):
         """
         self._forwardcheck = forwardcheck
 
-    def getSolutionIter(self, domains, constraints, vconstraints):
+    def getSolutionIter(self, domains, constraints, v_constraints):
         forwardcheck = self._forwardcheck
         assignments = {}
 
@@ -478,7 +481,7 @@ class BacktrackingSolver(Solver):
             lst = sorted(
                 [
                     (
-                        -len(vconstraints[variable]),
+                        -len(v_constraints[variable]),
                         len(domains[variable]),
                         variable,
                     )
@@ -533,7 +536,7 @@ class BacktrackingSolver(Solver):
                     for domain in pushdomains:
                         domain.pushState()
 
-                for constraint, variables in vconstraints[variable]:
+                for constraint, variables in v_constraints[variable]:
                     if not constraint(
                         variables, domains, assignments, pushdomains
                     ):
@@ -551,15 +554,15 @@ class BacktrackingSolver(Solver):
 
         raise RuntimeError("Can't happen")
 
-    def getSolution(self, domains, constraints, vconstraints):
-        iter = self.getSolutionIter(domains, constraints, vconstraints)
+    def getSolution(self, domains, constraints, v_constraints):
+        iter = self.getSolutionIter(domains, constraints, v_constraints)
         try:
             return next(iter)
         except StopIteration:
             return None
 
-    def getSolutions(self, domains, constraints, vconstraints):
-        return list(self.getSolutionIter(domains, constraints, vconstraints))
+    def getSolutions(self, domains, constraints, v_constraints):
+        return list(self.getSolutionIter(domains, constraints, v_constraints))
 
 
 class RecursiveBacktrackingSolver(Solver):
@@ -601,14 +604,14 @@ class RecursiveBacktrackingSolver(Solver):
         self._forwardcheck = forwardcheck
 
     def recursiveBacktracking(
-        self, solutions, domains, vconstraints, assignments, single
+        self, solutions, domains, v_constraints, assignments, single
     ):
 
         # Mix the Degree and Minimum Remaining Values (MRV) heuristics
         lst = sorted(
             [
                 (
-                    -len(vconstraints[variable]),
+                    -len(v_constraints[variable]),
                     len(domains[variable]),
                     variable,
                 )
@@ -638,7 +641,7 @@ class RecursiveBacktrackingSolver(Solver):
             if pushdomains:
                 for domain in pushdomains:
                     domain.pushState()
-            for constraint, variables in vconstraints[variable]:
+            for constraint, variables in v_constraints[variable]:
                 if not constraint(
                     variables, domains, assignments, pushdomains
                 ):
@@ -647,7 +650,7 @@ class RecursiveBacktrackingSolver(Solver):
             else:
                 # Value is good. Recurse and get next variable.
                 self.recursiveBacktracking(
-                    solutions, domains, vconstraints, assignments, single
+                    solutions, domains, v_constraints, assignments, single
                 )
                 if solutions and single:
                     return solutions
@@ -657,14 +660,16 @@ class RecursiveBacktrackingSolver(Solver):
         del assignments[variable]
         return solutions
 
-    def getSolution(self, domains, constraints, vconstraints):
+    def getSolution(self, domains, constraints, v_constraints):
         solutions = self.recursiveBacktracking(
-            [], domains, vconstraints, {}, True
+            [], domains, v_constraints, {}, True
         )
         return solutions and solutions[0] or None
 
-    def getSolutions(self, domains, constraints, vconstraints):
-        return self.recursiveBacktracking([], domains, vconstraints, {}, False)
+    def getSolutions(self, domains, constraints, v_constraints):
+        return self.recursiveBacktracking(
+            [], domains, v_constraints, {}, False
+        )
 
 
 class MinConflictsSolver(Solver):
@@ -703,7 +708,7 @@ class MinConflictsSolver(Solver):
         """
         self._steps = steps
 
-    def getSolution(self, domains, constraints, vconstraints):
+    def getSolution(self, domains, constraints, v_constraints):
         assignments = {}
         # Initial assignment
         for variable in domains:
@@ -714,18 +719,18 @@ class MinConflictsSolver(Solver):
             random.shuffle(lst)
             for variable in lst:
                 # Check if variable is not in conflict
-                for constraint, variables in vconstraints[variable]:
+                for constraint, variables in v_constraints[variable]:
                     if not constraint(variables, domains, assignments):
                         break
                 else:
                     continue
                 # Variable has conflicts. Find values with less conflicts.
-                mincount = len(vconstraints[variable])
+                mincount = len(v_constraints[variable])
                 minvalues = []
                 for value in domains[variable]:
                     assignments[variable] = value
                     count = 0
-                    for constraint, variables in vconstraints[variable]:
+                    for constraint, variables in v_constraints[variable]:
                         if not constraint(variables, domains, assignments):
                             count += 1
                     if count == mincount:
@@ -859,7 +864,7 @@ class Constraint(object):
         """
         return True
 
-    def preProcess(self, variables, domains, constraints, vconstraints):
+    def preProcess(self, variables, domains, constraints, v_constraints):
         """Preprocess variable domains.
 
         This method is called before starting to look for solutions,
@@ -876,9 +881,9 @@ class Constraint(object):
         @type  domains: dict
         @param constraints: List of pairs of (constraint, variables)
         @type  constraints: list
-        @param vconstraints: Dictionary mapping variables to a list of
+        @param v_constraints: Dictionary mapping variables to a list of
                              constraints affecting the given variables.
-        @type  vconstraints: dict
+        @type  v_constraints: dict
         """
         if len(variables) == 1:
             variable = variables[0]
@@ -887,7 +892,7 @@ class Constraint(object):
                 if not self(variables, domains, {variable: value}):
                     domain.remove(value)
             constraints.remove((self, variables))
-            vconstraints[variable].remove((self, variables))
+            v_constraints[variable].remove((self, variables))
 
     def forwardCheck(
         self, variables, domains, assignments, _unassigned=Unassigned
@@ -1086,9 +1091,9 @@ class MaxSumConstraint(Constraint):
         self._maxsum = maxsum
         self._multipliers = multipliers
 
-    def preProcess(self, variables, domains, constraints, vconstraints):
+    def preProcess(self, variables, domains, constraints, v_constraints):
         Constraint.preProcess(
-            self, variables, domains, constraints, vconstraints
+            self, variables, domains, constraints, v_constraints
         )
         multipliers = self._multipliers
         maxsum = self._maxsum
@@ -1170,9 +1175,9 @@ class ExactSumConstraint(Constraint):
         self._exactsum = exactsum
         self._multipliers = multipliers
 
-    def preProcess(self, variables, domains, constraints, vconstraints):
+    def preProcess(self, variables, domains, constraints, v_constraints):
         Constraint.preProcess(
-            self, variables, domains, constraints, vconstraints
+            self, variables, domains, constraints, v_constraints
         )
         multipliers = self._multipliers
         exactsum = self._exactsum
@@ -1305,14 +1310,14 @@ class InSetConstraint(Constraint):
         # preProcess() will remove it.
         raise RuntimeError("Can't happen")
 
-    def preProcess(self, variables, domains, constraints, vconstraints):
+    def preProcess(self, variables, domains, constraints, v_constraints):
         set = self._set
         for variable in variables:
             domain = domains[variable]
             for value in domain[:]:
                 if value not in set:
                     domain.remove(value)
-            vconstraints[variable].remove((self, variables))
+            v_constraints[variable].remove((self, variables))
         constraints.remove((self, variables))
 
 
@@ -1340,14 +1345,14 @@ class NotInSetConstraint(Constraint):
         # preProcess() will remove it.
         raise RuntimeError("Can't happen")
 
-    def preProcess(self, variables, domains, constraints, vconstraints):
+    def preProcess(self, variables, domains, constraints, v_constraints):
         set = self._set
         for variable in variables:
             domain = domains[variable]
             for value in domain[:]:
                 if value in set:
                     domain.remove(value)
-            vconstraints[variable].remove((self, variables))
+            v_constraints[variable].remove((self, variables))
         constraints.remove((self, variables))
 
 

@@ -1,5 +1,4 @@
-from itertools import product
-
+# cspell:ignore angmom
 from pycompwa.expertsystem.state.conservationrules import SpinConservation
 from pycompwa.expertsystem.state.particle import (
     InteractionQuantumNumberNames,

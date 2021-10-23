@@ -1,3 +1,4 @@
+# cspell:ignore Makefiles thisroot
 name: CI-docs
 
 on:

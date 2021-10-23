@@ -1,3 +1,4 @@
+# cspell:ignore phspdata ttree
 import uproot3
 
 

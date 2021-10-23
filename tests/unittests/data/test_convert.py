@@ -1,3 +1,4 @@
+# cspell:ignore iloc
 """Test :mod:`pycompwa.data.convert`."""
 
 from math import isclose, sqrt

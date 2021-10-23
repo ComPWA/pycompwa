@@ -241,8 +241,8 @@ class TestSolutionFilter(object):
             tempgraph.edge_props[0] = {name_label: {value_label: x[0]}}
             graphs.append(tempgraph)
 
-        myfilter = require_interaction_property(*filter_parameters)
-        filtered_graphs = filter_graphs(graphs, [myfilter])
+        my_filter = require_interaction_property(*filter_parameters)
+        filtered_graphs = filter_graphs(graphs, [my_filter])
         assert len(filtered_graphs) == result
 
 

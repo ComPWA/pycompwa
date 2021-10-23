@@ -1,3 +1,4 @@
+# cspell:ignore angmom cpar cparity
 from itertools import product
 
 from pycompwa.expertsystem.state.conservationrules import CParityConservation

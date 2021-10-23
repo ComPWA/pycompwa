@@ -1,3 +1,4 @@
+# cspell:ignore nbar pbar vebar
 import pytest
 
 from pycompwa.expertsystem.ui.system_control import (

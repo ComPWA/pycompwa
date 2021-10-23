@@ -13,20 +13,29 @@
 {%- endmacro %}
 
 {{ pkgname.split(".")[-1] | e | heading }}
+
+.. code-block:: python
+
+    import {{ pkgname }}
+
 {%- if modulefirst and not is_namespace %}
 {{ automodule(pkgname, automodule_options) }}
 {% endif %}
 
+{%- if not modulefirst and not is_namespace %}
+
+{{ automodule(pkgname, automodule_options) }}
+{% endif %}
+
+{%- if submodules or subpackages %}
+.. rubric:: Submodules and Subpackages
+{% endif %}
+
 {%- if subpackages %}
-Subpackages
------------
 
 {{ toctree(subpackages) }}
 {% endif %}
-
 {%- if submodules %}
-Submodules
-----------
 {% if separatemodules %}
 {{ toctree(submodules) }}
 {%- else %}
@@ -37,11 +46,4 @@ Submodules
 {{ automodule(submodule, automodule_options) }}
 {% endfor %}
 {%- endif %}
-{% endif %}
-
-{%- if not modulefirst and not is_namespace %}
-Module contents
----------------
-
-{{ automodule(pkgname, automodule_options) }}
 {% endif %}

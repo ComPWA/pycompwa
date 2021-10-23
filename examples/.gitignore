@@ -1,9 +1,0 @@
-# nbconvert output
-*.html
-
-# Output files
-*.dat
-*.pkl
-*.png
-*.root
-*.xml

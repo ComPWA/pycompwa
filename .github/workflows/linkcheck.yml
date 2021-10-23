@@ -1,3 +1,4 @@
+# cspell:ignore linkcheck Makefiles thisroot
 name: Linkcheck
 
 on:

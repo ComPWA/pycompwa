@@ -26,7 +26,7 @@ except SKBuildError:
     SETUP_REQUIRES.append("cmake")
 
 
-with open("README.rst") as stream:
+with open("README.md") as stream:
     README = stream.read()
 
 setup(
@@ -44,7 +44,7 @@ setup(
     },
     description="ComPWA: The Common Partial Wave Analysis framework",
     long_description=README,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     license="GPLv3 or later",
     keywords=[
         "HEP",

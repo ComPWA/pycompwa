@@ -1,3 +1,4 @@
+# cspell:ignore analyse vmubar vebar vtau vtaubar
 import inspect
 import logging
 from abc import ABC, abstractmethod
@@ -102,7 +103,7 @@ class GammaCheck(InteractionDeterminationFunctorInterface):
 
 
 class LeptonCheck(InteractionDeterminationFunctorInterface):
-    lepton_flavour_labels = [
+    lepton_flavor_labels = [
         StateQuantumNumberNames.ElectronLN,
         StateQuantumNumberNames.MuonLN,
         StateQuantumNumberNames.TauLN,
@@ -116,7 +117,7 @@ class LeptonCheck(InteractionDeterminationFunctorInterface):
             if sum(
                 [
                     get_particle_property(edge_props, x)
-                    for x in self.lepton_flavour_labels
+                    for x in self.lepton_flavor_labels
                     if get_particle_property(edge_props, x) is not None
                 ]
             ):
@@ -265,10 +266,10 @@ def filter_graphs(graphs, filters):
         Selecting only the solutions, in which the :math:`\\rho` decays via
         p-wave:
 
-        >>> myfilter = require_interaction_property(
+        >>> my_filter = require_interaction_property(
                 'rho', InteractionQuantumNumberNames.L,
                 create_spin_domain([1], True))
-        >>> filtered_solutions = filter_graphs(solutions, [myfilter])
+        >>> filtered_solutions = filter_graphs(solutions, [my_filter])
     """
     filtered_graphs = graphs
     for x in filters:
@@ -497,11 +498,11 @@ def external_edge_identical_particle_combinatorics(
         temp_new_graphs = []
         for g in new_graphs:
             for c in ext_edge_combinations:
-                gnew = deepcopy(g)
+                g_new = deepcopy(g)
                 swappings = calculate_swappings(c)
                 for edge_id1, edge_id2 in swappings.items():
-                    gnew.swap_edges(edge_id1, edge_id2)
-                temp_new_graphs.append(gnew)
+                    g_new.swap_edges(edge_id1, edge_id2)
+                temp_new_graphs.append(g_new)
         new_graphs = temp_new_graphs
     return new_graphs
 
@@ -638,13 +639,13 @@ class StateTransitionManager:
     def create_seed_graphs(self, topology_graphs):
         # initialize the graph edges (initial and final state)
         init_graphs = []
-        for tgraph in topology_graphs:
-            tgraph.set_graph_element_properties_comparator(
+        for t_graph in topology_graphs:
+            t_graph.set_graph_element_properties_comparator(
                 CompareGraphElementPropertiesFunctor()
             )
             init_graphs.extend(
                 initialize_graph(
-                    tgraph,
+                    t_graph,
                     self.initial_state,
                     self.final_state,
                     self.final_state_groupings,

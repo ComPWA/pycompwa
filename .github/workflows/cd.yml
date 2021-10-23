@@ -1,3 +1,4 @@
+# cspell:ignore noreply prereleased sdist
 name: CD
 
 on:

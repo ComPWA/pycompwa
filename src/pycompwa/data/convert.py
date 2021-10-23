@@ -1,3 +1,4 @@
+# cspell:ignore pids
 """Conversion tools between from ComPWA objects and :class:`pandas.DataFrame`.
 
 This module contains functions that help convertion from ComPWA objects like

@@ -1,3 +1,4 @@
+# cspell:ignore alist Cparity Gparity
 import sys
 from copy import deepcopy
 

@@ -1,5 +1,4 @@
-from itertools import product
-
+# cspell:ignore angmom cpar cparity gpar gparity
 from pycompwa.expertsystem.state.conservationrules import GParityConservation
 from pycompwa.expertsystem.state.particle import (
     InteractionQuantumNumberNames,

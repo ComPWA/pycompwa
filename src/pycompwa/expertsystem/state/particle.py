@@ -1,3 +1,5 @@
+# cspell:ignore Cparity Gparity
+# cspell:ignore curr projs
 """This module defines a particle as a collection of quantum numbers and things
 related to this."""
 import logging

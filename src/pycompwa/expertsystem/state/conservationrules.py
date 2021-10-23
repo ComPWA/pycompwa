@@ -1,3 +1,4 @@
+# cspell:ignore cond cpar cparity inpart gpar gparity
 """Functors for quantum number condition checks."""
 
 
@@ -565,7 +566,7 @@ class SpinConservation(AbstractRule):
     def __init__(self, spinlike_qn, use_projection=True):
         if not isinstance(spinlike_qn, StateQuantumNumberNames):
             raise TypeError(
-                "Expecting Emum of the type \
+                "Expecting enum of the type \
                 ParticleQuantumNumberNames for spinlike_qn"
             )
         if spinlike_qn not in QNNameClassMapping:
@@ -692,17 +693,17 @@ def is_clebsch_gordan_coefficient_zero(spin1, spin2, spin_coupled):
     j2 = spin2.magnitude()
     m = spin_coupled.projection()
     j = spin_coupled.magnitude()
-    iszero = False
+    is_zero = False
     if (j1 == j2 and m1 == m2) or (m1 == 0.0 and m2 == 0.0):
         if abs(j - j1 - j2) % 2 == 1:
-            iszero = True
+            is_zero = True
     elif j1 == j and m1 == -m:
         if abs(j2 - j1 - j) % 2 == 1:
-            iszero = True
+            is_zero = True
     elif j2 == j and m2 == -m:
         if abs(j1 - j2 - j) % 2 == 1:
-            iszero = True
-    return iszero
+            is_zero = True
+    return is_zero
 
 
 class ClebschGordanCheckHelicityToCanonical(AbstractRule):

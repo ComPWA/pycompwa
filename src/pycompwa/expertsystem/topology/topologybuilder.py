@@ -1,3 +1,4 @@
+# cspell:ignore combi
 """module topologybuilder responsible for building all possible topologies base
 on basic user input.
 

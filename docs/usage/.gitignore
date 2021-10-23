@@ -1,12 +1,9 @@
-# Copied notebooks
-*.ipynb
-
-# nbconvert output
-*.html
-
 # Output files
 *.dat
 *.pkl
 *.png
 *.root
 *.xml
+
+# Ignore
+!particle_list.xml

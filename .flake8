@@ -1,0 +1,16 @@
+[flake8]
+filename =
+    ./pycompwa/*.py
+    ./tests/*.py
+exclude =
+    ./pycompwa/ui.*.so
+    ./pycompwa/expertsystem/solvers/constraint
+    __pycache__
+ignore =
+    D107
+    RST201
+    RST203
+    RST301
+    RST304
+    W503
+application-import-names = pycompwa

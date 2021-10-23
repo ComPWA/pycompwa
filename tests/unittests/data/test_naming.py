@@ -1,3 +1,4 @@
+# cspell:ignore pids
 """Test :mod:`pycompwa.data.naming`."""
 
 from copy import copy

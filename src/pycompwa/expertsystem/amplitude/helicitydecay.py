@@ -1,3 +1,4 @@
+# cspell:ignore coeff curr eprops ifsg
 import json
 import logging
 from collections import OrderedDict
@@ -460,7 +461,7 @@ class HelicityAmplitudeGeneratorXML(AbstractAmplitudeGenerator):
         parameter_label = get_xml_label(XMLLabelConstants.Parameter)
 
         # for each graph group we create a coherent amplitude
-        coherent_intensites = []
+        coherent_intensities = []
         for graph_group in graph_groups:
             seq_partial_decays = []
 
@@ -473,7 +474,7 @@ class HelicityAmplitudeGeneratorXML(AbstractAmplitudeGenerator):
             coherent_amp_name = "coherent_" + get_graph_group_unique_label(
                 graph_group
             )
-            coherent_intensites.append(
+            coherent_intensities.append(
                 {
                     class_label: "CoherentIntensity",
                     component_label: coherent_amp_name,
@@ -484,13 +485,13 @@ class HelicityAmplitudeGeneratorXML(AbstractAmplitudeGenerator):
         # now wrap it with an incoherent intensity
         incoherent_amp_name = "incoherent"
 
-        if len(coherent_intensites) > 1:
-            coherent_intensites_dict = {
+        if len(coherent_intensities) > 1:
+            coherent_intensities_dict = {
                 class_label: "IncoherentIntensity",
-                "Intensity": coherent_intensites,
+                "Intensity": coherent_intensities,
             }
         else:
-            coherent_intensites_dict = coherent_intensites[0]
+            coherent_intensities_dict = coherent_intensities[0]
 
         self.helicity_amplitudes = {
             "Intensity": {
@@ -505,7 +506,7 @@ class HelicityAmplitudeGeneratorXML(AbstractAmplitudeGenerator):
                 },
                 "Intensity": {
                     class_label: "NormalizedIntensity",
-                    "Intensity": coherent_intensites_dict,
+                    "Intensity": coherent_intensities_dict,
                 },
             }
         }

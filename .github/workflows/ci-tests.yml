@@ -1,3 +1,4 @@
+# cspell:ignore doctests Makefiles thisroot unittests
 name: pytest
 
 on:

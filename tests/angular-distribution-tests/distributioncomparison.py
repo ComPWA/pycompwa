@@ -1,3 +1,4 @@
+# cspell:ignore nprecord xtitle ytitle
 import pycompwa.ui as ui
 
 
@@ -72,11 +73,11 @@ def compare_data_samples_and_theory(
     )
 
     for x in distribution_test_tuples:
-        binned_dists = make_binned_distributions(
+        binned_distributions = make_binned_distributions(
             plot_data, x.variable_names, **x.kwargs
         )
-        for dists in binned_dists:
-            data_hist = dists["data"]
+        for distribution in binned_distributions:
+            data_hist = distribution["data"]
             if make_plots and len(data_hist.dimensions) == 1:
                 function_hist = function_to_histogram(
                     x.required_distribution, data_hist

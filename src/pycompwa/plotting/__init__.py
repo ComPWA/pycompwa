@@ -1,3 +1,4 @@
+# cspell:ignore asarray cmap cmin histogramdd imshow nprecord nquad viridis vmax vmin xtitle ytitle yerr ylim zaxis
 """Plotting module.
 
 .. deprecated:: Will be migrated to `pandas.DataFrame.
@@ -426,8 +427,8 @@ def make_dalitz_plots(plot_data, var_names, **kwargs):
 
         xtitle = create_axis_title(Dimension(im1), plot_data)
         axs[i, 0].set_xlabel(xtitle)
-        ytitle = create_axis_title(Dimension(im2), plot_data)
-        axs[i, 0].set_ylabel(ytitle)
+        y_title = create_axis_title(Dimension(im2), plot_data)
+        axs[i, 0].set_ylabel(y_title)
         plt.colorbar(
             img[3],
             ax=axs[i, 0],
@@ -449,7 +450,7 @@ def make_dalitz_plots(plot_data, var_names, **kwargs):
             )
 
             axs[i, 1].set_xlabel(xtitle)
-            axs[i, 1].set_ylabel(ytitle)
+            axs[i, 1].set_ylabel(y_title)
             plt.colorbar(
                 img[3],
                 ax=axs[i, 1],
@@ -470,21 +471,21 @@ def make_difference_plot_2d(plot_data, var_names, **kwargs):
     if plot_data.fit_result_data is None:
         raise ValueError("Fit result data has to be present!")
 
-    dists = make_binned_distributions(plot_data, var_names)
+    distributions = make_binned_distributions(plot_data, var_names)
 
-    for dist_pair in dists:
+    for dist_pair in distributions:
         plot_histogram_difference_2d(dist_pair, **kwargs)
 
 
 def plot_histogram_difference_2d(histograms, **kwargs):
     keys = list(histograms.keys())
-    hdiff = copy.deepcopy(histograms[keys[0]])
+    h_diff = copy.deepcopy(histograms[keys[0]])
     label = keys[0] + "-" + keys[1]
-    hdiff.bin_contents = (
+    h_diff.bin_contents = (
         histograms[keys[0]].bin_contents - histograms[keys[1]].bin_contents
     )
 
-    plot_distribution_2d(hdiff, True, label, **kwargs)
+    plot_distribution_2d(h_diff, True, label, **kwargs)
 
 
 def plot_distribution_2d(
