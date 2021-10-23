@@ -16,7 +16,7 @@ submodules will also be downloaded.
 After that, there should be a folder called :file:`pycompwa`. We'll call this
 folder the **local repository**. If you navigate into it, you can see it has:
 
-* a `pycompwa <https://github.com/ComPWA/pycompwa/tree/main/pycompwa>`_
+* a `pycompwa <https://github.com/ComPWA/pycompwa/tree/main/src/pycompwa>`_
   folder with Python source code
 * a `ComPWA <https://github.com/ComPWA/ComPWA/>`_ folder with C++ source code
 * a `requirements.txt <https://github.com/ComPWA/pycompwa/blob/main/requirements.txt>`_

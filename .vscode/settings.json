@@ -5,5 +5,11 @@
     }
   },
   "editor.formatOnSave": true,
-  "python.formatting.provider": "black"
+  "git.detectSubmodules": false,
+  "python.formatting.provider": "black",
+  "python.testing.pytestArgs": ["--color=no"],
+  "search.exclude": {
+    "src/ComPWA": true,
+    "src/pybind11": true
+  }
 }

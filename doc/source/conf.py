@@ -67,9 +67,9 @@ subprocess.call(
     "--no-toc "
     "--templatedir _templates "
     "--separate "
-    "-o api/ ../../pycompwa/ "
-    "../../pycompwa/expertsystem/solvers/constraint "
-    "../../pycompwa/ui.*.so; "
+    "-o api/ ../../src/pycompwa/ "
+    "../../src/pycompwa/expertsystem/solvers/constraint "
+    "../../src/pycompwa/ui.*.so; "
     "cp api/pycompwa_overwrite api/pycompwa.rst",
     shell=True,
 )
@@ -220,7 +220,7 @@ html_theme_options = {
     "titles_only": False,
 }
 
-html_logo = "../../ComPWA/doc/images/logo-small.png"
+html_logo = "../../src/ComPWA/doc/images/logo-small.png"
 
 html_copy_source = False  # do not copy rst files
 

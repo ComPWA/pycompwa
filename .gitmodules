@@ -1,6 +1,6 @@
 [submodule "ComPWA"]
-	path = ComPWA
+	path = src/ComPWA
 	url = https://github.com/ComPWA/ComPWA.git
 [submodule "pybind11"]
-	path = pybind11
+	path = src/pybind11
 	url = https://github.com/pybind/pybind11.git

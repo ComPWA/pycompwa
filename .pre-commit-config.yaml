@@ -5,6 +5,7 @@ ci:
     # local hooks
     - flake8
     - pylint
+  submodules: true
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

@@ -5,16 +5,25 @@ MANIFEST
 *.root
 *.xml
 
-# Python temporary files
+# Build files
+*.egg-info/
+*build/
+.eggs/
+.fuse_*
+dist/
+version.py
+
+# Temporary files
 *.pyc
+*condaenv.*
 .coverage
 .coverage.*
-.eggs
-.ipynb_checkpoints
+.ipynb_checkpoints/
+.mypy*/
 .pytest_cache/
-__pycache__
+__pycache__/
 htmlcov/
-pycompwa.egg-info
+prof/
 
 # Python virtual environments
 .tox/
