@@ -73,8 +73,8 @@ examples from the {doc}`usage` page.
 
 Note that {command}`pip` **only allows you to install specific releases**. We
 therefore recommend following the
-{ref}`interactive installation <installation:Interactive installation>`
-procedure instead.
+{ref}`interactive installation <install:Interactive installation>` procedure
+instead.
 
 ## Interactive installation
 
@@ -91,10 +91,9 @@ up this 'interactive installation':
 ```{toctree}
 :maxdepth: 2
 
-install/get-the-source-code
+install/source
 install/virtual-environment
 install/build
 ```
 
-After that, it's worth having a look at the
-{doc}`contribute tutorials <contribute>`!
+After that, it's worth having a look at {doc}`develop`!

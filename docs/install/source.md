@@ -9,8 +9,8 @@
 
 :::
 
-After you have {ref}`installed the prerequisites <installation:Prerequisites>`,
-use [Git](https://git-scm.com/) to get a copy of the
+After you have {ref}`installed the prerequisites <install:prerequisites>`, use
+[Git](https://git-scm.com/) to get a copy of the
 [pycompwa source code](http://github.com/ComPWA/pycompwa). To do so, navigate
 to a suitable folder and run:
 
@@ -52,7 +52,7 @@ git pull --recurse-submodules
 ```
 
 It's best to have a clean your working tree before you do a
-{command}`git pull`. See {doc}`/contribute` for more info.
+{command}`git pull`. See {doc}`/develop` for more info.
 
 Once you have the update, don't forget to {doc}`rebuild pycompwa <build>`!
 

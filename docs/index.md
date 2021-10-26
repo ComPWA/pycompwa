@@ -20,9 +20,9 @@ design, as well as documentation of the ongoing development.
 ```{toctree}
 :maxdepth: 3
 
-installation
+install
 usage
-contribute
+develop
 documents
 API <api/pycompwa>
 ```

@@ -1,0 +1,65 @@
+{
+  "access_right": "open",
+  "creators": [
+    {
+      "affiliation": "Ruhr University Bochum",
+      "name": "Miriam Fritsch",
+      "orcid": "0000-0002-6463-8295"
+    },
+    {
+      "affiliation": "GSI Helmholtz Centre for Heavy Ion Research",
+      "name": "Klaus Goetzen",
+      "orcid": "0000-0002-0782-3806"
+    },
+    {
+      "affiliation": "Johannes Gutenberg University Mainz",
+      "name": "Wolfgang Gradl",
+      "orcid": "0000-0002-9974-8320"
+    },
+    {
+      "affiliation": "Helmholtz Institute Mainz",
+      "name": "Mathias Michel"
+    },
+    {
+      "affiliation": "GSI Helmholtz Centre for Heavy Ion Research",
+      "name": "Klaus Peters",
+      "orcid": "0000-0001-7133-0662"
+    },
+    {
+      "affiliation": "Helmholtz Institute Mainz",
+      "name": "Stefan Pflüger"
+    },
+    {
+      "affiliation": "Ruhr University Bochum",
+      "name": "Andreas Pitka"
+    },
+    {
+      "affiliation": "Johannes Gutenberg University Mainz",
+      "name": "Peter Weidenkaff",
+      "orcid": "0000-0002-5529-438X"
+    },
+    {
+      "affiliation": "Ruhr University Bochum",
+      "name": "Jingqing Zhang",
+      "orcid": "0000-0003-3314-2534"
+    }
+  ],
+  "description": "<p>ComPWA is a project to provide a flexible and modular Partial Wave Analysis framework for various use-cases. It was initiated and is developed by the Panda Collaboration (antiProton ANnihilation at DArmstadt) at Fair (Facility for Antiproton and Ion Research). But ComPWA will not just be used for the Panda physics program, but also for various other experiments to provide a commonly used tool which is stable, efficient and provides comparable results. At the moment there are many PWA-tools on the market, most used just for specific experiments and specific physics cases, some experiments even have multiple tools. But why write the same software again and again? E.g. the model describing physical processes should stay the same independent where and how there was a measurement of the process. Using the actual same implementation of the model does not only save a lot of time, it also ensures that two experiments are comparing the same thing. The same argument holds for optimization-routines and estimation-functions. It might even allow combined fitting of different experiments instead of taking the average of the results!</p>\n\n<p>The natural modularization, following the considerations above, would be to separate into experiment specific information, physics (models, formalisms), estimation how good the model fits the data and optimization of free parameters. The first considerations on this where discussed with experts from different experiments and different technologies where discussed and tested. The result of this process is the first requirement document of the new PWA-Framework.</p>",
+  "keywords": [
+    "Dality plot analysis",
+    "Partial-wave analysis",
+    "amplitude analysis"
+  ],
+  "language": "eng",
+  "license": "GPL-3.0-or-later",
+  "publication_date": "2019-10-10",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.3479232",
+      "relation": "isVersionOf",
+      "scheme": "doi"
+    }
+  ],
+  "title": "(py)ComPWA - The Common Partial Wave Analysis framework",
+  "upload_type": "software"
+}

@@ -23,9 +23,8 @@ and recreate it. There are two options:
 [Conda](https://www.anaconda.com/) can be installed without administrator
 rights, see instructions on
 [this page](https://www.anaconda.com/distribution/). Once installed, you can
-use the {file}`environment.yml` file from the
-{doc}`local repository <get-the-source-code>` to create a Conda environment for
-the `pycompwa` installation:
+use the {file}`environment.yml` file from the {doc}`local repository <source>`
+to create a Conda environment for the `pycompwa` install:
 
 ```shell
 conda env create -f environment.yml
@@ -69,7 +68,7 @@ unset ROOTSYS
 
 Alternatively, you can use
 [Python's venv](https://docs.python.org/3/library/venv.html). All you have to
-do, is navigate into {doc}`local repository <get-the-source-code>` and run:
+do, is navigate into {doc}`local repository <source>` and run:
 
 ```shell
 python3 -m venv ./venv

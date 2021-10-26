@@ -1,4 +1,4 @@
-# How to contribute
+# Help developing
 
 <!-- cspell:ignore autopep htmlcov nbstripout -->
 

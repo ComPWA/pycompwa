@@ -22,7 +22,7 @@ Usually, you go through the following four steps to perform your analysis:
 workflow/*
 ```
 
-{doc}`Let’s go! <workflow/1_create_model>`
+{doc}`Let’s go! <workflow/step1>`
 
 :::{note}
 
