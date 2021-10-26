@@ -88,7 +88,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../installation.html">
+  <a class="reference internal" href="../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -98,7 +98,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../install/get-the-source-code.html">
+    <a class="reference internal" href="../install/source.html">
      Get the source code
     </a>
    </li>
@@ -135,22 +135,22 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+      <a class="reference internal" href="../usage/workflow/step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+      <a class="reference internal" href="../usage/workflow/step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+      <a class="reference internal" href="../usage/workflow/step3.html">
        Step 3: Perform fit
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+      <a class="reference internal" href="../usage/workflow/step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -186,8 +186,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -1109,7 +1109,7 @@ with <a class="reference external" href="https://pybind11.readthedocs.io/">pybin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycompwa.ui.create_rootplotdata">
-<span class="sig-name descname"><span class="pre">create_rootplotdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">kinematics:</span> <span class="pre">pycompwa.ui.Kinematics</span></em>, <em class="sig-param"><span class="pre">data_sample:</span> <span class="pre">pycompwa.ui.DataSet</span></em>, <em class="sig-param"><span class="pre">phsp_sample:</span> <span class="pre">pycompwa.ui.DataSet</span> <span class="pre">=</span> <span class="pre">&lt;pycompwa.ui.DataSet</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f9bab2e2130&gt;</span></em>, <em class="sig-param"><span class="pre">intensity:</span> <span class="pre">pycompwa.ui.Intensity</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">intensity_components:</span> <span class="pre">Dict[str</span></em>, <em class="sig-param"><span class="pre">pycompwa.ui.Intensity]</span> <span class="pre">=</span> <span class="pre">{}</span></em>, <em class="sig-param"><span class="pre">hit_and_miss_sample:</span> <span class="pre">pycompwa.ui.DataSet</span> <span class="pre">=</span> <span class="pre">&lt;pycompwa.ui.DataSet</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f9bab2e20f0&gt;</span></em>, <em class="sig-param"><span class="pre">tfile_option:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RECREATE'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_rootplotdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">kinematics:</span> <span class="pre">pycompwa.ui.Kinematics</span></em>, <em class="sig-param"><span class="pre">data_sample:</span> <span class="pre">pycompwa.ui.DataSet</span></em>, <em class="sig-param"><span class="pre">phsp_sample:</span> <span class="pre">pycompwa.ui.DataSet</span> <span class="pre">=</span> <span class="pre">&lt;pycompwa.ui.DataSet</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f4901b33330&gt;</span></em>, <em class="sig-param"><span class="pre">intensity:</span> <span class="pre">pycompwa.ui.Intensity</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">intensity_components:</span> <span class="pre">Dict[str</span></em>, <em class="sig-param"><span class="pre">pycompwa.ui.Intensity]</span> <span class="pre">=</span> <span class="pre">{}</span></em>, <em class="sig-param"><span class="pre">hit_and_miss_sample:</span> <span class="pre">pycompwa.ui.DataSet</span> <span class="pre">=</span> <span class="pre">&lt;pycompwa.ui.DataSet</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f4901b332f0&gt;</span></em>, <em class="sig-param"><span class="pre">tfile_option:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RECREATE'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pycompwa.ui.create_rootplotdata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

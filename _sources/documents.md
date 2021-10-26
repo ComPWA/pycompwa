@@ -28,22 +28,17 @@
 ## Poster
 
 <!-- cspell:ignore tabularcolumns Münster Partialwellenanalyse -->
+<!-- markdownlint-disable -->
 
-```{eval-rst}
-.. tabularcolumns:: |l|l|l|l|
-```
+| Event                | Year | Location      | Title                                                                                                   |
+| -------------------- | ---- | ------------- | ------------------------------------------------------------------------------------------------------- |
+| CHEP                 | 2010 | Taipei        | [Partial Wave Analysis with Geneva](https://github.com/ComPWA/ComPWA/wiki/talks/Michel_CHEP10_10.pdf)   |
+| DPG Frühjahrs-Tagung | 2011 | Münster       | [Partialwellenanalyse mit Geneva](https://github.com/ComPWA/ComPWA/wiki/talks/Michel_DPG11.pdf)         |
+| PWA Summer School    | 2012 | Williamsburg  | [Common PWA Framework](https://github.com/ComPWA/ComPWA/wiki/talks/Jlab_PWA_12.pdf)                     |
+| DPG Frühjahrs-Tagung | 2013 | Dresden       | [Common PWA framework for PANDA](https://github.com/ComPWA/ComPWA/wiki/talks/DPG_PWA13.pdf)             |
+| CHEP                 | 2016 | San Francisco | [Common Partial Wave Analysis Framework](https://github.com/ComPWA/ComPWA/wiki/talks/CHEP16_Michel.pdf) |
 
-```{eval-rst}
-.. csv-table::
-   :header: "Event", "Year", "Location", "Title"
-   :widths: 25 5 20 50
-
-   CHEP, 2010, Taipei, `Partial Wave Analysis with Geneva <https://github.com/ComPWA/ComPWA/wiki/talks/Michel_CHEP10_10.pdf>`_
-   DPG Frühjahrs-Tagung, 2011, Münster, `Partialwellenanalyse mit Geneva <https://github.com/ComPWA/ComPWA/wiki/talks/Michel_DPG11.pdf>`_
-   PWA Summer School, 2012, Williamsburg, `Common PWA Framework <https://github.com/ComPWA/ComPWA/wiki/talks/Jlab_PWA_12.pdf>`_
-   DPG Frühjahrs-Tagung, 2013, Dresden, `Common PWA framework for PANDA <https://github.com/ComPWA/ComPWA/wiki/talks/DPG_PWA13.pdf>`_
-   CHEP, 2016, San Francisco, `Common Partial Wave Analysis Framework <https://github.com/ComPWA/ComPWA/wiki/talks/CHEP16_Michel.pdf>`_
-```
+<!-- markdownlint-enable -->
 
 ## Theses
 

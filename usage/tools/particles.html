@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="How to contribute" href="../../contribute.html" />
+    <link rel="next" title="Help developing" href="../../develop.html" />
     <link rel="prev" title="Generate data samples" href="generate.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -90,7 +90,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../installation.html">
+  <a class="reference internal" href="../../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -100,7 +100,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../install/get-the-source-code.html">
+    <a class="reference internal" href="../../install/source.html">
      Get the source code
     </a>
    </li>
@@ -137,22 +137,22 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/1_create_model.html">
+      <a class="reference internal" href="../workflow/step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/2_generate_data.html">
+      <a class="reference internal" href="../workflow/step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/3_perform_fit.html">
+      <a class="reference internal" href="../workflow/step3.html">
        Step 3: Perform fit
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/4_analyze_results.html">
+      <a class="reference internal" href="../workflow/step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -188,8 +188,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -591,8 +591,7 @@
         
               <div>
                 
-  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/182735af75d35ab4958dc44bda4af37d/particles.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="particle-database">
+  <div class="section" id="particle-database">
 <h1>Particle database<a class="headerlink" href="#particle-database" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -601,7 +600,7 @@
 <p>This notebook explains the difference between the particle list in <a class="reference internal" href="../../api/pycompwa.html#module-pycompwa" title="pycompwa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa</span></code></a> and the list used in the ComPWA C++ back-end. The two are only related the way they import and export XML files.</p>
 <div class="section" id="pycompwa-particle-list">
 <h2>pycompwa particle list<a class="headerlink" href="#pycompwa-particle-list" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#module-pycompwa.expertsystem.state.particle" title="pycompwa.expertsystem.state.particle"><code class="xref py py-mod docutils literal notranslate"><span class="pre">particle</span></code></a> module is required for the expert system (see <a class="reference internal" href="../workflow/1_create_model.html"><span class="doc">Step 1: Create an amplitude model</span></a>): when you create an instance of the <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a>, it loads the <a class="reference external" href="https://github.com/ComPWA/ComPWA/blob/master/Physics/particle_list.xml">default list of particles that is shipped with ComPWA</a>. This default list is loaded into a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> called <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> and is <strong>used internally by the expert system</strong>.</p>
+<p>The <a class="reference internal" href="../../api/pycompwa.expertsystem.state.particle.html#module-pycompwa.expertsystem.state.particle" title="pycompwa.expertsystem.state.particle"><code class="xref py py-mod docutils literal notranslate"><span class="pre">particle</span></code></a> module is required for the expert system (see <a class="reference internal" href="../workflow/step1.html"><span class="doc">Step 1: Create an amplitude model</span></a>): when you create an instance of the <a class="reference internal" href="../../api/pycompwa.expertsystem.ui.system_control.html#pycompwa.expertsystem.ui.system_control.StateTransitionManager" title="pycompwa.expertsystem.ui.system_control.StateTransitionManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTransitionManager</span></code></a>, it loads the <a class="reference external" href="https://github.com/ComPWA/ComPWA/blob/master/Physics/particle_list.xml">default list of particles that is shipped with ComPWA</a>. This default list is loaded into a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> called <code class="docutils literal notranslate"><span class="pre">particle_list</span></code> and is <strong>used internally by the expert system</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycompwa.expertsystem.state.particle</span> <span class="kn">import</span> <span class="n">particle_list</span>
@@ -621,9 +620,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:51,941 INFO [default] Logging to file disabled!
-2021-10-23 20:41:51,941 [INFO] Log level: INFO
-2021-10-23 20:41:51,941 [INFO] Current date and time: Sat Oct 23 20:41:51 2021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:03,004 INFO [default] Logging to file disabled!
+2021-10-26 17:36:03,004 [INFO] Log level: INFO
+2021-10-26 17:36:03,004 [INFO] Current date and time: Tue Oct 26 17:36:03 2021
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loaded 70 particles
@@ -811,7 +810,7 @@
 </div>
 <div class="section" id="compwa-particle-list">
 <h2>ComPWA particle list<a class="headerlink" href="#compwa-particle-list" title="Permalink to this headline">¶</a></h2>
-<p>ComPWA, which we manage through the <a class="reference internal" href="../../api/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> module, works with a different particle list than the one discussed in the <a class="reference internal" href="#pycompwa-particle-list"><span class="std std-ref">previous section</span></a>, because ComPWA’s objects ‘live’ in the C++ backend. We saw this <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleList</span></code></a> class before, for instance when, <a class="reference internal" href="../workflow/2_generate_data.html"><span class="doc">generating data</span></a>. A <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.ui.ParticleList</span></code></a> can be created from an XML file as follows:</p>
+<p>ComPWA, which we manage through the <a class="reference internal" href="../../api/pycompwa.ui.html#module-pycompwa.ui" title="pycompwa.ui"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pycompwa.ui</span></code></a> module, works with a different particle list than the one discussed in the <a class="reference internal" href="#pycompwa-particle-list"><span class="std std-ref">previous section</span></a>, because ComPWA’s objects ‘live’ in the C++ backend. We saw this <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParticleList</span></code></a> class before, for instance when, <a class="reference internal" href="../workflow/step2.html"><span class="doc">generating data</span></a>. A <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.ParticleList" title="pycompwa.ui.ParticleList"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycompwa.ui.ParticleList</span></code></a> can be created from an XML file as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span>
@@ -821,13 +820,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:52,436 [INFO]  Particle a0(980)- with identical ID 9000211 already exists in list with the name a0(980)+ and ID 9000211. Particle properties will be overwritten!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:03,571 [INFO]  Particle a0(980)- with identical ID 9000211 already exists in list with the name a0(980)+ and ID 9000211. Particle properties will be overwritten!
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:52,437 [INFO]  Particle PatricParticle with identical ID 1234 already exists in list with the name Chic1 and ID 1234. Particle properties will be overwritten!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:03,575 [INFO]  Particle PatricParticle with identical ID 1234 already exists in list with the name Chic1 and ID 1234. Particle properties will be overwritten!
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:52,438 [INFO]  Particle nbar with identical ID 2112 already exists in list with the name n and ID 2112. Particle properties will be overwritten!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:03,576 [INFO]  Particle nbar with identical ID 2112 already exists in list with the name n and ID 2112. Particle properties will be overwritten!
 </pre></div>
 </div>
 </div>
@@ -841,7 +840,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:52,445 [INFO] Logging to file disabled!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:03,586 [INFO] Logging to file disabled!
 </pre></div>
 </div>
 </div>
@@ -888,10 +887,10 @@
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../../contribute.html" title="next page">
+        <a class="right-next" href="../../develop.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">How to contribute</p>
+                <p class="prevnext-title">Help developing</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

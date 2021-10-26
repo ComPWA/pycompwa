@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Step 2: Generate data samples" href="2_generate_data.html" />
+    <link rel="next" title="Step 2: Generate data samples" href="step2.html" />
     <link rel="prev" title="ComPWA Workflow" href="../workflow.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -90,7 +90,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../installation.html">
+  <a class="reference internal" href="../../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -100,7 +100,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../install/get-the-source-code.html">
+    <a class="reference internal" href="../../install/source.html">
      Get the source code
     </a>
    </li>
@@ -142,17 +142,17 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="2_generate_data.html">
+      <a class="reference internal" href="step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="3_perform_fit.html">
+      <a class="reference internal" href="step3.html">
        Step 3: Perform fit
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="4_analyze_results.html">
+      <a class="reference internal" href="step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -188,8 +188,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -485,7 +485,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/usage/workflow/1_create_model.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/usage/workflow/step1.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -505,10 +505,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/1_create_model.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/step1.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/1_create_model.ipynb"><button
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/step1.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -528,7 +528,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/1_create_model.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/step1.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -536,7 +536,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/1_create_model.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/step1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -584,8 +584,7 @@
         
               <div>
                 
-  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/c06f47d7c7ea9d9f9ead93b1c0560fb5/1_create_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="step-1-create-an-amplitude-model">
+  <div class="section" id="step-1-create-an-amplitude-model">
 <h1>Step 1: Create an amplitude model<a class="headerlink" href="#step-1-create-an-amplitude-model" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -604,9 +603,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:54,401 INFO [default] Logging to file disabled!
-2021-10-23 20:41:54,401 [INFO] Log level: INFO
-2021-10-23 20:41:54,401 [INFO] Current date and time: Sat Oct 23 20:41:54 2021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:36:05,816 INFO [default] Logging to file disabled!
+2021-10-26 17:36:05,816 [INFO] Log level: INFO
+2021-10-26 17:36:05,816 [INFO] Current date and time: Tue Oct 26 17:36:05 2021
 </pre></div>
 </div>
 </div>
@@ -713,7 +712,7 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>found 272 solutions!
 intermediate states:
-{&#39;a0(980)0&#39;, &#39;a2(1320)0&#39;, &#39;rho(770)0&#39;, &#39;D*(2007)0bar&#39;, &#39;D*(2007)0&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;D1(2420)0&#39;, &#39;phi(1020)&#39;}
+{&#39;f0(1500)&#39;, &#39;a0(980)0&#39;, &#39;f0(980)&#39;, &#39;D*(2007)0&#39;, &#39;D*(2007)0bar&#39;, &#39;D1(2420)0&#39;, &#39;rho(770)0&#39;, &#39;phi(1020)&#39;, &#39;a2(1320)0&#39;, &#39;omega(782)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div>
 </div>
 </div>
@@ -739,7 +738,7 @@ intermediate states:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>found 48 solutions!
 intermediate states:
-{&#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;rho(770)0&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div>
 </div>
 </div>
@@ -765,7 +764,7 @@ intermediate states:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>found 96 solutions!
 intermediate states:
-{&#39;a0(980)0&#39;, &#39;a2(1320)0&#39;, &#39;rho(770)0&#39;, &#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;omega(782)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;, &#39;phi(1020)&#39;}
+{&#39;f0(1500)&#39;, &#39;a0(980)0&#39;, &#39;f0(980)&#39;, &#39;rho(770)0&#39;, &#39;phi(1020)&#39;, &#39;a2(1320)0&#39;, &#39;omega(782)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div>
 </div>
 </div>
@@ -805,7 +804,7 @@ intermediate states:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>found 32 solutions!
 intermediate states:
-{&#39;f0(980)&#39;, &#39;f0(1500)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
+{&#39;f0(1500)&#39;, &#39;f0(980)&#39;, &#39;f2(1270)&#39;, &#39;f2(1950)&#39;}
 </pre></div>
 </div>
 </div>
@@ -878,7 +877,7 @@ intermediate states:
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="2_generate_data.html" title="next page">
+        <a class="right-next" href="step2.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
                 <p class="prevnext-title">Step 2: Generate data samples</p>

@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Additional Tools" href="../tools.html" />
-    <link rel="prev" title="Step 3: Perform fit" href="3_perform_fit.html" />
+    <link rel="prev" title="Step 3: Perform fit" href="step3.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,7 +89,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../installation.html">
+  <a class="reference internal" href="../../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -99,7 +99,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../install/get-the-source-code.html">
+    <a class="reference internal" href="../../install/source.html">
      Get the source code
     </a>
    </li>
@@ -136,17 +136,17 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
-      <a class="reference internal" href="1_create_model.html">
+      <a class="reference internal" href="step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="2_generate_data.html">
+      <a class="reference internal" href="step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="3_perform_fit.html">
+      <a class="reference internal" href="step3.html">
        Step 3: Perform fit
       </a>
      </li>
@@ -187,8 +187,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -484,7 +484,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/usage/workflow/4_analyze_results.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/usage/workflow/step4.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -504,10 +504,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/4_analyze_results.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/step4.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/4_analyze_results.ipynb"><button
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/step4.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -527,7 +527,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/4_analyze_results.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/step4.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -535,7 +535,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/4_analyze_results.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/step4.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -595,8 +595,7 @@
         
               <div>
                 
-  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/31cbfe48dd4e218d6d7e9f577e89d1b5/4_analyze_results.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="step-4-analyze-results">
+  <div class="section" id="step-4-analyze-results">
 <h1>Step 4: Analyze results<a class="headerlink" href="#step-4-analyze-results" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -613,9 +612,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:42,178 INFO [default] Logging to file disabled!
-2021-10-23 20:43:42,178 [INFO] Log level: INFO
-2021-10-23 20:43:42,178 [INFO] Current date and time: Sat Oct 23 20:43:42 2021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:07,807 INFO [default] Logging to file disabled!
+2021-10-26 17:38:07,807 [INFO] Log level: INFO
+2021-10-26 17:38:07,807 [INFO] Current date and time: Tue Oct 26 17:38:07 2021
 </pre></div>
 </div>
 </div>
@@ -646,7 +645,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:42,566 [INFO] Logging to file disabled!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:08,256 [INFO] Logging to file disabled!
 </pre></div>
 </div>
 </div>
@@ -1018,7 +1017,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4_analyze_results_21_0.png" src="../../_images/4_analyze_results_21_0.png" />
+<img alt="../../_images/step4_20_0.png" src="../../_images/step4_20_0.png" />
 </div>
 </div>
 <p>Applying a transformation to one of the columns is also easily done for a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. For instance, if you are interested in the invariant mass (and not the <strong>square value</strong> of the invariant mass), simply use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html#numpy.sqrt" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.sqrt()</span></code></a>:</p>
@@ -1035,7 +1034,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4_analyze_results_23_0.png" src="../../_images/4_analyze_results_23_0.png" />
+<img alt="../../_images/step4_22_0.png" src="../../_images/step4_22_0.png" />
 </div>
 </div>
 </div>
@@ -1090,7 +1089,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4_analyze_results_29_0.png" src="../../_images/4_analyze_results_29_0.png" />
+<img alt="../../_images/step4_28_0.png" src="../../_images/step4_28_0.png" />
 </div>
 </div>
 </div>
@@ -1197,17 +1196,17 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.005501850830271934 +/- 0.0022183924278350166
+0.005509843135139346 +/- 0.0022245361734702417
 
 J/psi_-1_to_f2(1270)_-2+gamma_-1
   f2(1270)_-2_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.012420672414339593 +/- 0.0026534378040259095
+0.012420775373455139 +/- 0.002678577958383222
 
 J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.010391539894976263 +/- 0.002190682079425624
+0.01039097228168917 +/- 0.002167959571578847
 
 J/psi_-1_to_f2(1270)_-1+gamma_-1
   f2(1270)_-1_to_pi0_0+pi0_0
@@ -1216,13 +1215,13 @@ J/psi_-1_to_f2(1270)_-1+gamma_-1
   _J/psi_-1_to_f2(1270)_0+gamma_-1
   f2(1270)_0_to_pi0_0+pi0_0
   /coherent_J/psi_-1_to_gamma_-1+pi0_0+pi0_0
-0.028241292333928133 +/- 0.0029959295033270307
+0.028248777187048418 +/- 0.002994514647683007
 </pre></div>
 </div>
 </div>
 </div>
 <p>That’s it! You can check some of the other <a class="reference internal" href="../../usage.html"><span class="doc">examples</span></a> to learn about more detailed features of ComPWA.</p>
-<p>And, please, feel free to <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues/new">provide feedback</a> or <a class="reference external" href="https://compwa.github.io/contribute.html">contribute</a> ;)</p>
+<p>And, please, feel free to <a class="reference external" href="https://github.com/ComPWA/pycompwa/issues/new">provide feedback</a> or <a class="reference external" href="https://compwa.github.io/develop.html">contribute</a> ;)</p>
 </div>
 </div>
 
@@ -1256,7 +1255,7 @@ J/psi_-1_to_f2(1270)_-1+gamma_-1
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="3_perform_fit.html" title="previous page">
+        <a class="left-prev" href="step3.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>

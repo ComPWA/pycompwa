@@ -52,8 +52,8 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Step 4: Analyze results" href="4_analyze_results.html" />
-    <link rel="prev" title="Step 2: Generate data samples" href="2_generate_data.html" />
+    <link rel="next" title="Step 4: Analyze results" href="step4.html" />
+    <link rel="prev" title="Step 2: Generate data samples" href="step2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,7 +89,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../installation.html">
+  <a class="reference internal" href="../../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -99,7 +99,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../install/get-the-source-code.html">
+    <a class="reference internal" href="../../install/source.html">
      Get the source code
     </a>
    </li>
@@ -136,12 +136,12 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
-      <a class="reference internal" href="1_create_model.html">
+      <a class="reference internal" href="step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="2_generate_data.html">
+      <a class="reference internal" href="step2.html">
        Step 2: Generate data samples
       </a>
      </li>
@@ -151,7 +151,7 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="4_analyze_results.html">
+      <a class="reference internal" href="step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -187,8 +187,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -484,7 +484,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/usage/workflow/3_perform_fit.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/usage/workflow/step3.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -504,10 +504,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/3_perform_fit.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ComPWA/pycompwa/issues/new?title=Issue%20on%20page%20%2Fusage/workflow/step3.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/3_perform_fit.ipynb"><button
+        <a class="edit-button" href="https://github.com/ComPWA/pycompwa/edit/stable/docs/usage/workflow/step3.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -527,7 +527,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/3_perform_fit.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ComPWA/pycompwa/stable?urlpath=lab/tree/docs/usage/workflow/step3.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -535,7 +535,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/3_perform_fit.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ComPWA/pycompwa/blob/stable/docs/usage/workflow/step3.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -588,14 +588,13 @@
         
               <div>
                 
-  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/ef57895778fb0560f01f1f48d54ba705/3_perform_fit.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="step-3-perform-fit">
+  <div class="section" id="step-3-perform-fit">
 <h1>Step 3: Perform fit<a class="headerlink" href="#step-3-perform-fit" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The <a class="reference internal" href="../../index.html"><span class="doc">pycompwa</span></a> is no longer maintained. Use the <a class="reference external" href="https://compwa-org.rtfd.io">ComPWA</a> packages <a class="reference external" href="https://qrules.rtfd.io">QRules</a>, <a class="reference external" href="https://ampform.rtfd.io">AmpForm</a>, and <a class="reference external" href="https://tensorwaves.rtfd.io">TensorWaves</a> instead!</p>
 </div>
-<p>As explained in the <a class="reference internal" href="2_generate_data.html"><span class="doc">previous step</span></a>, an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> object behaves just like a mathematical function that takes a <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> as an argument and returns a list of intensities (real numbers). We now want to optimize the parameters of the intensity model so that it matches  the distribution of our data sample. This is what we call ‘performing a fit’.</p>
+<p>As explained in the <a class="reference internal" href="step2.html"><span class="doc">previous step</span></a>, an <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.Intensity" title="pycompwa.ui.Intensity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Intensity</span></code></a> object behaves just like a mathematical function that takes a <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.DataSet" title="pycompwa.ui.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> as an argument and returns a list of intensities (real numbers). We now want to optimize the parameters of the intensity model so that it matches  the distribution of our data sample. This is what we call ‘performing a fit’.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We first load the relevant data from the previous steps.</p>
@@ -607,9 +606,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:19,511 INFO [default] Logging to file disabled!
-2021-10-23 20:43:19,511 [INFO] Log level: INFO
-2021-10-23 20:43:19,511 [INFO] Current date and time: Sat Oct 23 20:43:19 2021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:43,007 INFO [default] Logging to file disabled!
+2021-10-26 17:37:43,007 [INFO] Log level: INFO
+2021-10-26 17:37:43,008 [INFO] Current date and time: Tue Oct 26 17:37:43 2021
 </pre></div>
 </div>
 </div>
@@ -629,20 +628,20 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:19,900 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:43,454 [INFO] HelicityKinematics::HelicityKinematics() | Initialized kinematics for reaction ( J/psi )-&gt;( gamma[ID=2] pi0[ID=3] pi0[ID=4] )
 Event position to final state ID mapping:
 0: 2
 1: 3
 2: 4
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:19,901 [INFO] creating all Subsystems!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:43,455 [INFO] creating all Subsystems!
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:20,283 [INFO] Setting phase space sample weights...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:43,904 [INFO] Setting phase space sample weights...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:20,293 [INFO] Updating data container content...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:43,914 [INFO] Updating data container content...
 </pre></div>
 </div>
 </div>
@@ -697,31 +696,31 @@ Event position to final state ID mapping:
  Mass_neutralPion: 0.134977 +- 6e-06 (fixed),
  width_f21270: 0.185 (fixed),
  Radius_f21270: 1 (fixed),
- Magnitude_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1270)_2+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1270)_2+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 0,
  mass_f21950: 1.944 +- 0.012 (fixed),
  width_f21950: 0.472 (fixed),
  Radius_f21950: 1 (fixed),
- Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0,
- Magnitude_J/psi_to_f2(1270)_-1+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1270)_-1+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0,
- Magnitude_J/psi_to_f2(1950)_-1+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1950)_-1+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0,
- Magnitude_J/psi_to_f2(1270)_-2+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1270)_-2+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0,
- Magnitude_J/psi_to_f2(1950)_-2+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f2(1950)_-2+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1950)_2+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1950)_2+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1270)_1+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1270)_1+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1950)_1+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1950)_1+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1270)_0+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1270)_0+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f2(1950)_0+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f2(1950)_0+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 0,
  mass_f0980: 0.994 +- 0.001 (fixed),
  width_f0980: 0.07 (fixed),
  Radius_f0980: 1 (fixed),
- Magnitude_J/psi_to_f0(980)_0+gamma_-1;f0(980)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f0(980)_0+gamma_-1;f0(980)_to_pi0_0+pi0_0;: 0,
+ Magnitude_J/psi_to_f0(980)_0+gamma_1;f0(980)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f0(980)_0+gamma_1;f0(980)_to_pi0_0+pi0_0;: 0,
  mass_f01500: 1.505 +- 0.006 (fixed),
  width_f01500: 0.109 (fixed),
  Radius_f01500: 1 (fixed),
- Magnitude_J/psi_to_f0(1500)_0+gamma_-1;f0(1500)_to_pi0_0+pi0_0;: 1,
- Phase_J/psi_to_f0(1500)_0+gamma_-1;f0(1500)_to_pi0_0+pi0_0;: 0]
+ Magnitude_J/psi_to_f0(1500)_0+gamma_1;f0(1500)_to_pi0_0+pi0_0;: 1,
+ Phase_J/psi_to_f0(1500)_0+gamma_1;f0(1500)_to_pi0_0+pi0_0;: 0]
 </pre></div>
 </div>
 </div>
@@ -744,10 +743,10 @@ Event position to final state ID mapping:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this parameter is initially not fixed:
-Phase_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0
+Phase_J/psi_to_f2(1270)_2+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 0
 
 and now it is fixed:
-Phase_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0 (fixed)
+Phase_J/psi_to_f2(1270)_2+gamma_1;f2(1270)_to_pi0_0+pi0_0;: 0 (fixed)
 </pre></div>
 </div>
 </div>
@@ -761,7 +760,7 @@ Phase_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0 (fixed)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_2+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 1
 </pre></div>
 </div>
 </div>
@@ -774,7 +773,7 @@ Phase_J/psi_to_f2(1270)_0+gamma_-1;f2(1270)_to_pi0_0+pi0_0;: 0 (fixed)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_2+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 2
 </pre></div>
 </div>
 </div>
@@ -815,10 +814,10 @@ free parameters: 14
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:22,622 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:46,674 [INFO] MinuitIF::optimize() | Number of parameters (free): 32 (14)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:22,623 [INFO] Minuit2 strategy: medium
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:46,675 [INFO] Minuit2 strategy: medium
        GradientNCycles: 3
        GradientStepTolerance: 0.3
        GradientTolerance: 0.05
@@ -828,19 +827,19 @@ free parameters: 14
        HessianG2Tolerance: 0.05
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:22,624 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:37:46,676 [INFO] MinuitIF::optimize() | Starting migrad: maxCalls=0 tolerance=0.1
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:37,061 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:02,360 [INFO] MinuitIF::optimize() | Migrad finished! Minimum is valid = 1
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:37,064 [INFO] MinuitIF::optimize() | Starting hesse
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:02,363 [INFO] MinuitIF::optimize() | Starting hesse
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:39,894 [INFO] MinuitIF::optimize() | Hesse finished
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:05,414 [INFO] MinuitIF::optimize() | Hesse finished
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:43:39,894 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086088
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:38:05,415 [INFO] MinuitIF::optimize() | Minimization finished! LH = -5496.086075
 </pre></div>
 </div>
 </div>
@@ -852,7 +851,7 @@ free parameters: 14
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18
 </pre></div>
 </div>
 </div>
@@ -872,7 +871,7 @@ free parameters: 14
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This value is close to 1.0 again:
-0.9747981228967589 +- 0.10721062179072079
+0.8677141168275438 +- 0.10293684753100336
 </pre></div>
 </div>
 </div>
@@ -914,7 +913,7 @@ free parameters: 14
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_0+gamma_-1;f2(1950)_to_pi0_0+pi0_0;: 0.974798 +- 0.107211
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude_J/psi_to_f2(1950)_2+gamma_1;f2(1950)_to_pi0_0+pi0_0;: 0.867714 +- 0.102937
 </pre></div>
 </div>
 </div>
@@ -952,7 +951,7 @@ free parameters: 14
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="2_generate_data.html" title="previous page">
+        <a class="left-prev" href="step2.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
@@ -961,7 +960,7 @@ free parameters: 14
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="4_analyze_results.html" title="next page">
+        <a class="right-next" href="step4.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
                 <p class="prevnext-title">Step 4: Analyze results</p>

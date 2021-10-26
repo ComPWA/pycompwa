@@ -11,7 +11,7 @@
 
 :::
 
-Once you {doc}`have the source code <get-the-source-code>` and have
+Once you {doc}`have the source code <source>` and have
 {doc}`activated the virtual environment <virtual-environment>`, you're ready to
 build and install `pycompwa`.
 
@@ -21,8 +21,8 @@ are two ways of doing this:
 1. by copying the source code and binaries to a folder known to the system (you
    do this {ref}`with setuptools <setuptools>`)
 2. by telling the system to directly monitor the
-   {doc}`local repository <get-the-source-code>` as the installation path (we
-   call this {ref}`'developer mode' <install/build:Developer Mode>`).
+   {doc}`local repository <source>` as the installation path (we call this
+   {ref}`'developer mode' <install/build:Developer Mode>`).
 
 The second option is more dynamic, because any changes to the source code are
 immediately available at runtime, which allows you to tweak the code and try
@@ -33,8 +33,8 @@ again to make the changes known to the system.
 
 ## Using `setuptools`
 
-This is easy-peasy! Just navigate to the
-{doc}`local repository <get-the-source-code>` and run:
+This is easy-peasy! Just navigate to the {doc}`local repository <source>` and
+run:
 
 ```shell
 python setup.py install -- -- -j2
@@ -48,22 +48,20 @@ environment directory.
 
 In this set-up, we first tell the virtual environment to monitor the source
 code directory as an install directory. So, navigate to the base folder of the
-{doc}`local repository <get-the-source-code>` then, depending on which
+{doc}`local repository <source>` then, depending on which
 {doc}`virtual environment </install/virtual-environment>` you chose, do the
 following:
 
 ```{code-block} shell
 :caption: |-
-:  if you :ref:`use a Conda environment
-:  <install/virtual-environment:Conda environment>`
+:  if you {ref}`use a Conda environment <install/virtual-environment:Conda environment>`
 
 conda develop .
 ```
 
 ```{code-block} shell
 :caption: |-
-:  if you :ref:`use Python venv <install/virtual-environment:Python
-:  venv>`
+:  if you {ref}`use Python venv <install/virtual-environment:Python venv>`
 
 pip install virtualenvwrapper
 source venv/bin/virtualenvwrapper.sh
@@ -93,10 +91,10 @@ ln -s ../../build/ui.*.so
 ## Test the installation
 
 First, navigate out of the main directory of the
-{doc}`local repository <get-the-source-code>` in order to make sure that the
-`pycompwa` we run is the system installation and not the {file}`pycompwa`
-folder in the current working directory. Then, simply launch launch a Python
-interpreter and run:
+{doc}`local repository <source>` in order to make sure that the `pycompwa` we
+run is the system installation and not the {file}`pycompwa` folder in the
+current working directory. Then, simply launch launch a Python interpreter and
+run:
 
 ```python
 import pycompwa

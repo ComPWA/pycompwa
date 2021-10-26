@@ -90,7 +90,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../installation.html">
+  <a class="reference internal" href="../../install.html">
    Installation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -100,7 +100,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../install/get-the-source-code.html">
+    <a class="reference internal" href="../../install/source.html">
      Get the source code
     </a>
    </li>
@@ -137,22 +137,22 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/1_create_model.html">
+      <a class="reference internal" href="../workflow/step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/2_generate_data.html">
+      <a class="reference internal" href="../workflow/step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/3_perform_fit.html">
+      <a class="reference internal" href="../workflow/step3.html">
        Step 3: Perform fit
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../workflow/4_analyze_results.html">
+      <a class="reference internal" href="../workflow/step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -188,8 +188,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -584,8 +584,7 @@
         
               <div>
                 
-  <p>Download this notebook <a class="reference download internal" download="" href="../../_downloads/1557fb93260135bca52aba5a9a07d70c/data_module.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="data-module">
+  <div class="section" id="data-module">
 <h1>Data module<a class="headerlink" href="#data-module" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -605,9 +604,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:24,975 INFO [default] Logging to file disabled!
-2021-10-23 20:41:24,975 [INFO] Log level: INFO
-2021-10-23 20:41:24,975 [INFO] Current date and time: Sat Oct 23 20:41:24 2021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:35:32,224 INFO [default] Logging to file disabled!
+2021-10-26 17:35:32,224 [INFO] Log level: INFO
+2021-10-26 17:35:32,224 [INFO] Current date and time: Tue Oct 26 17:35:32 2021
 </pre></div>
 </div>
 </div>
@@ -1002,7 +1001,7 @@ Average gamma 3-momentum:
 <p>1510 rows × 13 columns</p>
 </div></div></div>
 </div>
-<p>Note how, here too, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is formatted in such a way that it can be handled by the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. Also note that the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> for the fit result contains weights. As discussed in <a class="reference internal" href="../workflow/4_analyze_results.html"><span class="doc">Step 4: Analyze results</span></a>, these are the fit intensities for each data point in the phase space. This allows us to already make some quick visualization of invariant mass distribution of the resonance:</p>
+<p>Note how, here too, the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is formatted in such a way that it can be handled by the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PwaAccessor</span></code></a>. Also note that the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> for the fit result contains weights. As discussed in <a class="reference internal" href="../workflow/step4.html"><span class="doc">Step 4: Analyze results</span></a>, these are the fit intensities for each data point in the phase space. This allows us to already make some quick visualization of invariant mass distribution of the resonance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1033,7 +1032,7 @@ Average gamma 3-momentum:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/data_module_19_0.png" src="../../_images/data_module_19_0.png" />
+<img alt="../../_images/data_module_18_0.png" src="../../_images/data_module_18_0.png" />
 </div>
 </div>
 <p>You can also easily export the data again after you’ve made some adjustments, like selecting certain events. Just to illustrate the benefits of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="(in pandas v1.3.4)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pandas</span></code></a>, we apply some filter on one of the <span class="math notranslate nohighlight">\(\pi^0\)</span> mass, export the frame to an ASCII file and import it again:</p>
@@ -1258,7 +1257,7 @@ Average gamma 3-momentum:
 </div>
 <div class="section" id="conversion-to-kinematic-variables">
 <h2>Conversion to kinematic variables<a class="headerlink" href="#conversion-to-kinematic-variables" title="Permalink to this headline">¶</a></h2>
-<p>Having a <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>, we can use ComPWA to convert the momentum tuples to kinematic variables. For that, of course, we first need to <a class="reference internal" href="../workflow/1_create_model.html"><span class="doc">create a model file</span></a> for the kinematics. As can be seen from the column names of the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> that we imported from the <code class="docutils literal notranslate"><span class="pre">pawianHists.root</span></code> file, we have momentum tuples for a <span class="math notranslate nohighlight">\(J/\psi \to \gamma\pi^0\pi^0\)</span> decay and we saw that there is only one resonance (<span class="math notranslate nohighlight">\(f_0(980)\)</span>):</p>
+<p>Having a <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a>, we can use ComPWA to convert the momentum tuples to kinematic variables. For that, of course, we first need to <a class="reference internal" href="../workflow/step1.html"><span class="doc">create a model file</span></a> for the kinematics. As can be seen from the column names of the <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> that we imported from the <code class="docutils literal notranslate"><span class="pre">pawianHists.root</span></code> file, we have momentum tuples for a <span class="math notranslate nohighlight">\(J/\psi \to \gamma\pi^0\pi^0\)</span> decay and we saw that there is only one resonance (<span class="math notranslate nohighlight">\(f_0(980)\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
@@ -1273,7 +1272,7 @@ Average gamma 3-momentum:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-23 20:41:26,051 [INFO] Logging to file disabled!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-26 17:35:33,484 [INFO] Logging to file disabled!
 </pre></div>
 </div>
 </div>
@@ -1375,7 +1374,7 @@ Average gamma 3-momentum:
 </div>
 </div>
 </div>
-<p>Now that you have <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventCollection</span></code></a> instances, you are free to use all ComPWA functionality from <a class="reference internal" href="../workflow/3_perform_fit.html"><span class="doc">Step 3: Perform fit</span></a> onwards. If, however, you were more interested in the kinematic variables for these imported data sets immediately, you can expand the original <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> with the kinematic variables as follows:</p>
+<p>Now that you have <a class="reference internal" href="../../api/pycompwa.ui.html#pycompwa.ui.EventCollection" title="pycompwa.ui.EventCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventCollection</span></code></a> instances, you are free to use all ComPWA functionality from <a class="reference internal" href="../workflow/step3.html"><span class="doc">Step 3: Perform fit</span></a> onwards. If, however, you were more interested in the kinematic variables for these imported data sets immediately, you can expand the original <a class="reference internal" href="../../api/pycompwa.data.html#pycompwa.data.PwaAccessor" title="pycompwa.data.PwaAccessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PWA</span> <span class="pre">DataFrame</span></code></a> with the kinematic variables as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa.ui</span> <span class="k">as</span> <span class="nn">pwa</span>
@@ -1436,7 +1435,7 @@ Average gamma 3-momentum:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/data_module_38_0.png" src="../../_images/data_module_38_0.png" />
+<img alt="../../_images/data_module_37_0.png" src="../../_images/data_module_37_0.png" />
 </div>
 </div>
 </div>

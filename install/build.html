@@ -89,7 +89,7 @@
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../installation.html">
+  <a class="reference internal" href="../install.html">
    Installation
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -99,7 +99,7 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="get-the-source-code.html">
+    <a class="reference internal" href="source.html">
      Get the source code
     </a>
    </li>
@@ -136,22 +136,22 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/1_create_model.html">
+      <a class="reference internal" href="../usage/workflow/step1.html">
        Step 1: Create an amplitude model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/2_generate_data.html">
+      <a class="reference internal" href="../usage/workflow/step2.html">
        Step 2: Generate data samples
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/3_perform_fit.html">
+      <a class="reference internal" href="../usage/workflow/step3.html">
        Step 3: Perform fit
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../usage/workflow/4_analyze_results.html">
+      <a class="reference internal" href="../usage/workflow/step4.html">
        Step 4: Analyze results
       </a>
      </li>
@@ -187,8 +187,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../contribute.html">
-   How to contribute
+  <a class="reference internal" href="../develop.html">
+   Help developing
   </a>
  </li>
  <li class="toctree-l1">
@@ -573,7 +573,7 @@
 <a class="reference external" href="https://ampform.rtfd.io">AmpForm</a>, and
 <a class="reference external" href="https://tensorwaves.rtfd.io">TensorWaves</a> instead!</p>
 </div>
-<p>Once you <a class="reference internal" href="get-the-source-code.html"><span class="doc">have the source code</span></a> and have
+<p>Once you <a class="reference internal" href="source.html"><span class="doc">have the source code</span></a> and have
 <a class="reference internal" href="virtual-environment.html"><span class="doc">activated the virtual environment</span></a>, you’re ready to
 build and install <code class="docutils literal notranslate"><span class="pre">pycompwa</span></code>.</p>
 <p>When you install <code class="docutils literal notranslate"><span class="pre">pycompwa</span></code>, you are telling the system where to find it. There
@@ -582,8 +582,8 @@ are two ways of doing this:</p>
 <li><p>by copying the source code and binaries to a folder known to the system (you
 do this <a class="reference internal" href="#setuptools"><span class="std std-ref">with setuptools</span></a>)</p></li>
 <li><p>by telling the system to directly monitor the
-<a class="reference internal" href="get-the-source-code.html"><span class="doc">local repository</span></a> as the installation path (we
-call this <a class="reference internal" href="#developer-mode"><span class="std std-ref">‘developer mode’</span></a>).</p></li>
+<a class="reference internal" href="source.html"><span class="doc">local repository</span></a> as the installation path (we call this
+<a class="reference internal" href="#developer-mode"><span class="std std-ref">‘developer mode’</span></a>).</p></li>
 </ol>
 <p>The second option is more dynamic, because any changes to the source code are
 immediately available at runtime, which allows you to tweak the code and try
@@ -591,8 +591,8 @@ things out. When using the first option, you would have to run <code class="docu
 again to make the changes known to the system.</p>
 <div class="section" id="using-setuptools">
 <span id="setuptools"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">setuptools</span></code><a class="headerlink" href="#using-setuptools" title="Permalink to this headline">¶</a></h2>
-<p>This is easy-peasy! Just navigate to the
-<a class="reference internal" href="get-the-source-code.html"><span class="doc">local repository</span></a> and run:</p>
+<p>This is easy-peasy! Just navigate to the <a class="reference internal" href="source.html"><span class="doc">local repository</span></a> and
+run:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python setup.py install -- -- -j2
 </pre></div>
 </div>
@@ -604,17 +604,17 @@ environment directory.</p>
 <h2>Developer Mode<a class="headerlink" href="#developer-mode" title="Permalink to this headline">¶</a></h2>
 <p>In this set-up, we first tell the virtual environment to monitor the source
 code directory as an install directory. So, navigate to the base folder of the
-<a class="reference internal" href="get-the-source-code.html"><span class="doc">local repository</span></a> then, depending on which
+<a class="reference internal" href="source.html"><span class="doc">local repository</span></a> then, depending on which
 <a class="reference internal" href="virtual-environment.html"><span class="doc">virtual environment</span></a> you chose, do the
 following:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">if you :ref:<code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">a</span> <span class="pre">Conda</span> <span class="pre">environment</span> <span class="pre">&lt;install/virtual-environment:Conda</span> <span class="pre">environment&gt;</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">if you <a class="reference internal" href="virtual-environment.html#conda-environment"><span class="std std-ref">use a Conda environment</span></a></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda develop .
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">if you :ref:<code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">Python</span> <span class="pre">venv</span> <span class="pre">&lt;install/virtual-environment:Python</span> <span class="pre">venv&gt;</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">if you <a class="reference internal" href="virtual-environment.html#python-venv"><span class="std std-ref">use Python venv</span></a></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install virtualenvwrapper
 <span class="nb">source</span> venv/bin/virtualenvwrapper.sh
 add2virtualenv .
@@ -641,10 +641,10 @@ ln -s ../../build/ui.*.so
 <div class="section" id="test-the-installation">
 <h2>Test the installation<a class="headerlink" href="#test-the-installation" title="Permalink to this headline">¶</a></h2>
 <p>First, navigate out of the main directory of the
-<a class="reference internal" href="get-the-source-code.html"><span class="doc">local repository</span></a> in order to make sure that the
-<code class="docutils literal notranslate"><span class="pre">pycompwa</span></code> we run is the system installation and not the <code class="file docutils literal notranslate"><span class="pre">pycompwa</span></code>
-folder in the current working directory. Then, simply launch launch a Python
-interpreter and run:</p>
+<a class="reference internal" href="source.html"><span class="doc">local repository</span></a> in order to make sure that the <code class="docutils literal notranslate"><span class="pre">pycompwa</span></code> we
+run is the system installation and not the <code class="file docutils literal notranslate"><span class="pre">pycompwa</span></code> folder in the
+current working directory. Then, simply launch launch a Python interpreter and
+run:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycompwa</span>
 </pre></div>
 </div>
