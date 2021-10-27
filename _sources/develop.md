@@ -11,6 +11,13 @@
 
 :::
 
+:::{tip}
+
+For more info, see
+[the developing page of the ComPWA organization](https://compwa-org.readthedocs.io/en/stable/develop.html).
+
+:::
+
 (python-dev-tools)=
 
 ## Python developer tools
