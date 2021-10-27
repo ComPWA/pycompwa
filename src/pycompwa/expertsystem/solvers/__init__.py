@@ -1,2 +1,5 @@
-__all__ = ["constraint"]
+__all__ = [
+    "constraint",
+]
+
 from . import constraint
