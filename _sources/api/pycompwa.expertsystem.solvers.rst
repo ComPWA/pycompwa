@@ -3,7 +3,7 @@
 solvers
 =======
 
-.. deprecated:: 0.1.2
+.. deprecated:: 0.1.3
 
     Use `QRules <https://qrules.readthedocs.io>`_,
     `AmpForm <https://ampform.readthedocs.io>`_, and
